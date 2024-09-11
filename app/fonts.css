@@ -1,0 +1,49 @@
+/* styles/fonts.css */
+@font-face {
+  font-family: 'BeVietnamPro';
+  src: url('/fonts/BeVietnamPro-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BeVietnamPro';
+  src: url('/fonts/BeVietnamPro-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BeVietnamPro';
+  src: url('/fonts/BeVietnamPro-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BeVietnamPro';
+  src: url('/fonts/BeVietnamPro-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BeVietnamPro';
+  src: url('/fonts/BeVietnamPro-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BeVietnamPro';
+  src: url('/fonts/BeVietnamPro-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TiltPrism';
+  src: url('/fonts/TiltPrism-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
