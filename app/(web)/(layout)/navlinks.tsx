@@ -50,7 +50,8 @@ const NavLink = ({
 export const NavLinks = ({ closeMenu }: { closeMenu?: () => void }) => {
   return (
     <>
-      <NavLink text="Mon Parcours" closeMenu={closeMenu} anchor="cursus" />
+      <NavLink text="Mes réalisations" closeMenu={closeMenu} anchor="jobs" />
+      <NavLink text="Me contacter" closeMenu={closeMenu} anchor="contact" />
     </>
   );
 };
@@ -69,7 +70,7 @@ export const MobileNav = () => {
 
       <SheetContent side="left" aria-describedby="app-menu">
         <SheetHeader>
-          <SheetTitle>Archivist</SheetTitle>
+          <SheetTitle>Portfolio</SheetTitle>
         </SheetHeader>
         <ul className="mt-8 flex flex-col gap-4 text-sm font-medium">
           <NavLinks closeMenu={() => setOpen(false)} />

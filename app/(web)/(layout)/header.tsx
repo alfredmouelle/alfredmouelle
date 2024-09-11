@@ -5,8 +5,8 @@ import { ThemeToggle } from "./theme-toggle";
 
 export const Header = () => {
   return (
-    <header className="py-4">
-      <nav className="container flex items-center md:gap-10">
+    <header className="h-20 py-4">
+      <nav className="container flex items-center rounded-full md:gap-10">
         <div className="flex items-center justify-center">
           <MobileNav />
           <Link
