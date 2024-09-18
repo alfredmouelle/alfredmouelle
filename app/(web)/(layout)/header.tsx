@@ -1,5 +1,7 @@
+import { SpinningLoader } from "@/components/spinning-loader";
 import { APP_ROUTES } from "@/routes";
 import Link from "next/link";
+import { Suspense } from "react";
 import { MobileNav, NavLinks } from "./navlinks";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -17,7 +19,9 @@ export const Header = () => {
           </Link>
 
           <ul className="ml-10 hidden items-center gap-10 justify-self-start text-sm font-medium md:flex">
-            <NavLinks />
+            <Suspense fallback={<SpinningLoader />}>
+              <NavLinks />
+            </Suspense>
           </ul>
         </div>
 

@@ -71,19 +71,14 @@
     }
 }
 
-.datatable-cell {
-    text-align: center;
-}
+.gradient {
+    padding: 8px;
+    width: fit-content;
+    background: linear-gradient(#17142c, #17142c) /** padding box**/,
+    linear-gradient(var(--gradient-rotate, 120deg), #9c60d7, #17142c00) /** border box **/ ;
 
-.datatable-header {
-    display: block;
-    text-align: center;
-    white-space: nowrap;
-    overflow-x: auto;
-}
-
-@media (max-width: 768px) {
-    .datatable-header {
-        width: calc(100vw - 4rem);
-    }
+    border: 4px solid transparent;
+    border-radius: 20px;
+    background-clip: padding-box, border-box;
+    background-origin: border-box;
 }

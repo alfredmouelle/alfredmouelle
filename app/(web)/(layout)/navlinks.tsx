@@ -29,7 +29,7 @@ const NavLink = ({
 
   const jumpToAnchor = () => {
     closeMenu && closeMenu();
-    router.push(`?anchor=${anchor}`, { scroll: true });
+    router.push(`/?anchor=${anchor}`, { scroll: true });
   };
 
   return (

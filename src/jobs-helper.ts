@@ -3,12 +3,12 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { z } from 'zod';
 
-const jobsDir = path.join(process.cwd(), '/content/jobs');
+const jobsRootDir = path.join(process.cwd(), '/content/jobs');
 
 export const JobSchema = z.object({
     startDate: z.coerce.date(),
     endDate: z.coerce.date().nullish(),
-    title: z.string(),
+    company: z.string(),
     description: z.string(),
     position: z.string(),
     siteUrl: z.string(),
@@ -19,21 +19,19 @@ export const JobSchema = z.object({
     })
 });
 
-type Job = z.infer<typeof JobSchema> & { id: string; content: string }
+export type Job = z.infer<typeof JobSchema> & { id: string; content: string }
 
 export const getJobs = async () => {
-    let fileNames = await fs.readdir(jobsDir);
+    let fileNames = await fs.readdir(jobsRootDir);
     fileNames = fileNames.filter(f => f.endsWith('.mdx'));
 
     const jobs: Job[] = [];
 
     for await (const fileName of fileNames) {
-        const fullPath = path.join(jobsDir, fileName);
-        const fileContent = await fs.readFile(fullPath, 'utf-8');
-
-        const frontmatter = matter(fileContent);
+        const jobFile = await fs.readFile(path.join(jobsRootDir, fileName), 'utf-8');
+        const { content, data } = matter(jobFile);
         
-        const data = JobSchema.parse(frontmatter.data);
+        const job = JobSchema.parse(data);
 
         if (process.env.NODE_ENV === 'production' && !data.published) {
             continue;
@@ -41,8 +39,8 @@ export const getJobs = async () => {
 
         jobs.push({
             id: fileName.replace('.mdx', ''),
-            content: frontmatter.content,
-            ...data
+            content,
+            ...job
         })
     }
 
@@ -51,10 +49,7 @@ export const getJobs = async () => {
     return jobs;
 }
 
-export const getJob = async (id: string) => {
+export const getJob = async (slug: string) => {
     const jobs = await getJobs();
-
-    const job = jobs.find(j => j.id === id);
-
-    return job
+    return jobs.find(j => j.id === slug);
 }
