@@ -4,7 +4,7 @@ import { SectionTitle } from "./section-title";
 
 export const ContactUs = () => {
   return (
-    <div id="contact">
+    <div>
       <SectionTitle>Contactez moi</SectionTitle>
 
       <p className="text-center text-gray-500">Contact Rapide</p>

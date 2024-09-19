@@ -1,6 +1,9 @@
+import { Icons } from "@/components/icons";
 import { MdxJob } from "@/components/mdx-job";
 import { Section } from "@/components/page-wrapper";
+import { buttonVariants } from "@/components/ui/button";
 import { getJob, getJobs } from "@/jobs-helper";
+import { cn } from "@/lib/utils";
 import { notFound } from "next/navigation";
 
 interface PageProps {
@@ -30,6 +33,20 @@ export default async function JobPage({ params }: PageProps) {
   return (
     <Section>
       <MdxJob job={job} />
+
+      <div className="mt-10 flex w-full items-center md:justify-center">
+        <a
+          target="_blank"
+          href={job.siteUrl}
+          className={cn(
+            "w-full md:w-auto",
+            buttonVariants({ variant: "outline" }),
+          )}
+        >
+          Visiter le site web
+          <Icons.link className="ml-2 h-4 w-4" />
+        </a>
+      </div>
     </Section>
   );
 }

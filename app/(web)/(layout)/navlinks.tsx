@@ -29,7 +29,11 @@ const NavLink = ({
 
   const jumpToAnchor = () => {
     closeMenu && closeMenu();
-    router.push(`/?anchor=${anchor}`, { scroll: true });
+    const element = document.getElementById(anchor);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    router.push(`/?anchor=${anchor}`, { scroll: false });
   };
 
   return (
@@ -50,7 +54,16 @@ const NavLink = ({
 export const NavLinks = ({ closeMenu }: { closeMenu?: () => void }) => {
   return (
     <>
-      <NavLink text="Mes réalisations" closeMenu={closeMenu} anchor="jobs" />
+      <NavLink
+        text="Parcours Académique"
+        closeMenu={closeMenu}
+        anchor="scholarship"
+      />
+      <NavLink
+        text="Parcours Professionnel"
+        closeMenu={closeMenu}
+        anchor="jobs"
+      />
       <NavLink text="Me contacter" closeMenu={closeMenu} anchor="contact" />
     </>
   );

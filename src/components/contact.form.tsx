@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { Icons } from "./icons";
 import { Button } from "./ui/button";
 import {
   Form,
@@ -94,10 +95,11 @@ export function ContactForm() {
 
         <Button
           type="submit"
-          disabled={isPending}
+          isLoading={isPending}
           className="self-stretch md:self-end"
         >
-          {isPending ? "Envoi..." : "Envoyer"}
+          Envoyer
+          {isPending ? null : <Icons.send className="ml-2 h-4 w-4" />}
         </Button>
       </form>
     </Form>

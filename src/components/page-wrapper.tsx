@@ -1,18 +1,18 @@
 import { cn } from "@/lib/utils";
-import { PropsWithChildren } from "react";
+import { HTMLAttributes, PropsWithChildren } from "react";
 
-interface PageWrapperProps extends PropsWithChildren {
-  outerWrapperClassName?: string;
+interface PageWrapperProps extends HTMLAttributes<HTMLElement> {
   innerWrapperClassName?: string;
 }
 
 export const Section = ({
   children,
-  outerWrapperClassName,
+  className,
   innerWrapperClassName,
-}: PageWrapperProps) => {
+  ...props
+}: PropsWithChildren<PageWrapperProps>) => {
   return (
-    <section className={cn("py-10 md:py-24", outerWrapperClassName)}>
+    <section className={cn("py-10 md:py-24", className)} {...props}>
       <div className={cn("container", innerWrapperClassName)}>{children}</div>
     </section>
   );

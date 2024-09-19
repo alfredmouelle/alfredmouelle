@@ -35,12 +35,16 @@ export default async function Home() {
             </div>
 
             <p className="text-balance">
-              Je suis un jeune extrêmement autodidacte avec une expérience de 5
-              ans dans le développement Web et la conception d’application. De
-              plus en plus de technologies abondent le développent; je
-              m&apos;efforce de me les approprier non seulement pour la
-              connaissance personnelle, mais également pour rendre le plus
-              possible service à ceux qui en ont besoin.
+              Je suis Alfred Mouelle, développeur Full Stack basé au Cameroun
+              avec 5 ans d’expérience dans le développement web et la conception
+              d’applications. Passionné et autodidacte, j’ai acquis des
+              compétences solides en ingénierie logicielle à travers de nombreux
+              projets. Mon objectif est de maîtriser les nouvelles technologies
+              pour non seulement enrichir mes connaissances, mais surtout pour
+              offrir des solutions adaptées et de grande qualité à ceux qui en
+              ont besoin. En tant que freelance, je suis dévoué à fournir un
+              service efficace et à contribuer activement à la réussite des
+              projets qui me sont confiés.
             </p>
 
             <div className="mt-4 flex flex-col gap-2 md:flex-row">
@@ -61,7 +65,7 @@ export default async function Home() {
         </div>
       </Section>
 
-      <Section>
+      <Section id="scholarship">
         <SectionTitle>Parcours scolaire</SectionTitle>
         <div className="grid md:grid-cols-2">
           <Image
@@ -124,9 +128,9 @@ export default async function Home() {
         </div>
       </Section>
 
-      <Section>
+      <Section id="jobs">
         <SectionTitle>Parcours professionnel</SectionTitle>
-        <div id="jobs">
+        <div>
           <ul className="grid gap-4 md:grid-cols-2">
             <li key={featuredJob.id} className="col-span-2">
               <Link href={`/jobs/${featuredJob.id}`}>
@@ -153,7 +157,7 @@ export default async function Home() {
         </div>
       </Section>
 
-      <Section>
+      <Section id="contact">
         <ContactUs />
       </Section>
     </>

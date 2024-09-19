@@ -13,6 +13,7 @@ import {
   Mail,
   Menu,
   Moon,
+  Send,
   SunMedium,
   SunMoon,
 } from "lucide-react";
@@ -22,6 +23,7 @@ export const Icons = {
   moon: Moon,
   menu: Menu,
   link: Link,
+  send: Send,
   website: Globe,
   github: GitHubLogoIcon,
   twitter: TwitterLogoIcon,
