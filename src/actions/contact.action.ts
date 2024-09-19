@@ -3,24 +3,16 @@
 import { ContactEmail } from '@/components/emails/contact.email';
 import { action } from '@/lib/next-safe-action';
 import { resend } from '@/lib/resend';
+import { contactSchema } from '@/schemas/contact.schema';
 import { render } from '@react-email/render';
 import { } from 'next-safe-action';
-import { z } from 'zod';
-
-export const contactSchema = z.object({
-  name: z.string().min(2, 'Le nom doit contenir au moins 2 caractères'),
-  email: z.string().email('Adresse email invalide'),
-  message: z.string().min(10, 'Le message doit contenir au moins 10 caractères'),
-});
-
-export type ContactRequest = z.infer<typeof contactSchema>
 
 
 export const contactAction = action
 .schema(contactSchema)
-.action(async (data) => {
+.action(async ({ parsedInput }) => {
   try {
-    const emailHtml = await render(ContactEmail(data.parsedInput));
+    const emailHtml = await render(ContactEmail(parsedInput));
 
     await resend.emails.send({
       html: emailHtml,

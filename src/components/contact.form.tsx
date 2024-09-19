@@ -1,10 +1,7 @@
 "use client";
 
-import {
-  contactAction,
-  ContactRequest,
-  contactSchema,
-} from "@/actions/contact.action";
+import { contactAction } from "@/actions/contact.action";
+import { ContactRequest, contactSchema } from "@/schemas/contact.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
@@ -87,7 +84,7 @@ export default function ContactForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Textarea placeholder="Message" rows={7} />
+                <Textarea placeholder="Message" rows={7} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
