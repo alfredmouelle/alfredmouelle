@@ -1,6 +1,7 @@
 "use client";
 
 import { contactAction } from "@/actions/contact.action";
+import { cn } from "@/lib/utils";
 import { ContactRequest, contactSchema } from "@/schemas/contact.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -49,7 +50,7 @@ export function ContactForm() {
         className="mt-10 flex flex-col gap-y-4"
         onSubmit={form.handleSubmit((data) => contactMe(data))}
       >
-        <div className="grid items-center gap-x-4 md:grid-cols-2">
+        <div className="grid items-center gap-4 md:grid-cols-2">
           <FormField
             name="name"
             control={form.control}
@@ -57,7 +58,13 @@ export function ContactForm() {
               <FormItem>
                 <FormLabel>Nom & Prénom</FormLabel>
                 <FormControl>
-                  <Input placeholder="Alfred Mouelle" {...field} />
+                  <Input
+                    placeholder="Alfred Mouelle"
+                    {...field}
+                    className={cn("", {
+                      "border-destructive": !!form.formState.errors.name,
+                    })}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -71,7 +78,13 @@ export function ContactForm() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="alfredmouelle@gmail.com" {...field} />
+                  <Input
+                    placeholder="alfredmouelle@gmail.com"
+                    {...field}
+                    className={cn("", {
+                      "border-destructive": !!form.formState.errors.email,
+                    })}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -86,7 +99,14 @@ export function ContactForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Textarea placeholder="Message" rows={7} {...field} />
+                <Textarea
+                  placeholder="Message"
+                  rows={7}
+                  {...field}
+                  className={cn("", {
+                    "border-destructive": !!form.formState.errors.message,
+                  })}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

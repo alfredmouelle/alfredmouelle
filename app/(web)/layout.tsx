@@ -1,3 +1,4 @@
+import { BackToTop } from "@/components/back-to-top";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Toaster } from "sonner";
@@ -39,6 +40,7 @@ export default function RootLayout({
           <Footer />
         </Provider>
 
+        <BackToTop />
         <Toaster richColors />
       </body>
     </html>

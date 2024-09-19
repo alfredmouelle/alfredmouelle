@@ -5,6 +5,7 @@ import {
 } from "@radix-ui/react-icons";
 import {
   ArrowRight,
+  ArrowUp,
   ArrowUpDown,
   Check,
   Globe,
@@ -24,6 +25,7 @@ export const Icons = {
   menu: Menu,
   link: Link,
   send: Send,
+  arrowUp: ArrowUp,
   website: Globe,
   github: GitHubLogoIcon,
   twitter: TwitterLogoIcon,
