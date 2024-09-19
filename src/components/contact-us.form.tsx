@@ -7,7 +7,7 @@ export const ContactUs = () => {
       <SectionTitle>Contactez moi</SectionTitle>
 
       <p className="text-center text-gray-500">Contact Rapide</p>
-      <div className="mt-8 grid grid-cols-2 items-center justify-center gap-1 gap-y-4 md:grid-cols-4">
+      <div className="mt-8 grid grid-cols-2 items-center justify-center gap-1 gap-y-4 md:grid-cols-5">
         <a
           href="https://github.com/alfredmouelle"
           className="flex flex-col items-center justify-center gap-y-1.5 text-gray-500"
@@ -42,6 +42,15 @@ export const ContactUs = () => {
         >
           <Icons.mail className="h-10 w-10 text-blue-500" />
           Email
+        </a>
+
+        <a
+          href="https://comeup.com/fr/@alfredmouelle"
+          className="flex flex-col items-center justify-center gap-y-1.5 text-gray-500"
+          target="_blank"
+        >
+          <Icons.website className="h-10 w-10 text-blue-500" />
+          ComeUp
         </a>
       </div>
     </div>
