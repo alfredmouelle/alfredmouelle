@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: PageProps) {
   if (!job) return notFound();
 
   return {
-    title: `${job.position} | {job.company}`,
+    title: `${job.position} at ${job.company}`,
   };
 }
 
@@ -29,9 +29,7 @@ export default async function JobPage({ params }: PageProps) {
 
   return (
     <Section>
-      <div className="prose">
-        <MdxJob content={job.content} />
-      </div>
+      <MdxJob job={job} />
     </Section>
   );
 }

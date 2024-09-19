@@ -28,7 +28,7 @@ export default function RootLayout({
     >
       <body
         className={cn(
-          "flex h-full min-h-screen flex-col bg-background font-global",
+          "grainy-background flex h-full min-h-screen flex-col bg-background font-global",
         )}
       >
         <Provider>

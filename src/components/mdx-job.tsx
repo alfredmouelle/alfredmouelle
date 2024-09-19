@@ -4,6 +4,14 @@ import { Button } from "./ui/button";
 
 export const jobsMdxComponents = { Button: Button };
 
-export const MdxJob = ({ content }: Pick<Job, "content">) => {
-  return <MDXRemote source={content!} components={jobsMdxComponents} />;
+export const MdxJob = ({ job: { content, ...job } }: { job: Job }) => {
+  return (
+    <div className="dark:prose-dark prose w-full max-w-none">
+      <MDXRemote
+        source={content}
+        components={jobsMdxComponents}
+        options={{ parseFrontmatter: true, scope: job }}
+      />
+    </div>
+  );
 };

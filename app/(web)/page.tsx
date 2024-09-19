@@ -5,13 +5,16 @@ import { Icons } from "@/components/icons";
 import { JobCard } from "@/components/job-card";
 import { Section } from "@/components/page-wrapper";
 import { SectionTitle } from "@/components/section-title";
+import TypewriterText from "@/components/typewritter-text";
 import { buttonVariants } from "@/components/ui/button";
 import { getJobs } from "@/jobs-helper";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 export default async function Home() {
-  const jobs = (await getJobs()).splice(0, 2);
+  const jobsAll = await getJobs();
+  const jobs = jobsAll.splice(0, 2);
+  const featuredJob = jobsAll.find((j) => j.featured)!;
 
   return (
     <>
@@ -21,7 +24,15 @@ export default async function Home() {
             <p>Salut, je suis</p>
             <h1 className="text-3xl font-bold">Alfred Mouelle</h1>
 
-            <p className="text-xl font-medium">{"<Développeur Web />"}</p>
+            <div className="flex items-center gap-x-1">
+              <span className="text-xl font-medium">{"<"}</span>
+              <TypewriterText
+                text="Développeur Web"
+                className="text-xl font-medium"
+              />
+              <span className="text-xl font-medium">{"/>"}</span>
+            </div>
+
             <p className="text-balance">
               Je suis un jeune extrêmement autodidacte avec une expérience de 5
               ans dans le développement Web et la conception d’application. De
@@ -43,6 +54,12 @@ export default async function Home() {
         <SectionTitle>Mes réalisations</SectionTitle>
         <div id="jobs">
           <ul className="grid gap-4 md:grid-cols-2">
+            <li key={featuredJob.id} className="col-span-2">
+              <Link href={`/jobs/${featuredJob.id}`}>
+                <JobCard job={featuredJob} />
+              </Link>
+            </li>
+
             {jobs.map((job) => (
               <li key={job.id}>
                 <Link href={`/jobs/${job.id}`}>

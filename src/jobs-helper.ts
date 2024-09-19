@@ -12,6 +12,7 @@ export const JobSchema = z.object({
     description: z.string(),
     position: z.string(),
     siteUrl: z.string(),
+    featured: z.boolean().default(false),
     stacks: z.array(z.string()),
     published: z.boolean(),
     meta: z.object({

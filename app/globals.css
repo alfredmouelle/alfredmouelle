@@ -82,3 +82,16 @@
     background-clip: padding-box, border-box;
     background-origin: border-box;
 }
+
+.grainy-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.03) 10%, transparent 10%);
+    background-size: 3px 3px;
+    z-index: 0;
+  }
