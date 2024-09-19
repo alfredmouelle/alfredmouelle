@@ -1,3 +1,4 @@
+import { ContactForm } from "./contact.form";
 import { Icons } from "./icons";
 import { SectionTitle } from "./section-title";
 
@@ -54,7 +55,7 @@ export const ContactUs = () => {
         </a>
       </div>
 
-      {/* <ContactForm /> */}
+      <ContactForm />
     </div>
   );
 };

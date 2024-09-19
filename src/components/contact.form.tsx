@@ -18,7 +18,7 @@ import {
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 
-export default function ContactForm() {
+export function ContactForm() {
   const form = useForm<ContactRequest>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
@@ -34,6 +34,7 @@ export default function ContactForm() {
       const res = await contactAction(data);
       if (!res || res?.data?.error) throw new Error(res?.data?.error);
       toast.success("Votre message a bien été envoyé.");
+      form.reset();
     },
     onError: (e) => {
       toast.error(e.message || "Une erreur est survenue, veuillez réessayer.");
@@ -91,7 +92,11 @@ export default function ContactForm() {
           )}
         />
 
-        <Button type="submit" disabled={isPending} className="self-end">
+        <Button
+          type="submit"
+          disabled={isPending}
+          className="self-stretch md:self-end"
+        >
           {isPending ? "Envoi..." : "Envoyer"}
         </Button>
       </form>

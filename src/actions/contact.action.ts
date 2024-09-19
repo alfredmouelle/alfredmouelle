@@ -4,20 +4,16 @@ import { ContactEmail } from '@/components/emails/contact.email';
 import { action } from '@/lib/next-safe-action';
 import { resend } from '@/lib/resend';
 import { contactSchema } from '@/schemas/contact.schema';
-import { render } from '@react-email/render';
 import { } from 'next-safe-action';
-
 
 export const contactAction = action
 .schema(contactSchema)
 .action(async ({ parsedInput }) => {
   try {
-    const emailHtml = await render(ContactEmail(parsedInput));
-
     await resend.emails.send({
-      html: emailHtml,
       to: 'alfredmouelle@gmail.com',
-      from: 'Alfred Mouelle | Portfolio',
+      react: ContactEmail(parsedInput),
+      from: 'Portfolio <infos@resend.dev>',
       subject: 'Nouveau message de contact',
     });
 
