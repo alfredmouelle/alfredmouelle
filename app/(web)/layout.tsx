@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
+import { Toaster } from "sonner";
 import "../fonts.css";
 import "../globals.css";
 import { Footer } from "./(layout)/footer";
@@ -37,6 +38,8 @@ export default function RootLayout({
           <main className="grow">{children}</main>
           <Footer />
         </Provider>
+
+        <Toaster richColors />
       </body>
     </html>
   );

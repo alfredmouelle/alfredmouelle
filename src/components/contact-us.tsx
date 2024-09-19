@@ -1,3 +1,4 @@
+import ContactForm from "./contact.form";
 import { Icons } from "./icons";
 import { SectionTitle } from "./section-title";
 
@@ -7,7 +8,7 @@ export const ContactUs = () => {
       <SectionTitle>Contactez moi</SectionTitle>
 
       <p className="text-center text-gray-500">Contact Rapide</p>
-      <div className="mt-8 grid grid-cols-2 items-center justify-center gap-1 gap-y-4 md:grid-cols-5">
+      <div className="mt-8 grid grid-cols-3 items-center justify-center gap-1 gap-y-4 md:grid-cols-5">
         <a
           href="https://github.com/alfredmouelle"
           className="flex flex-col items-center justify-center gap-y-1.5 text-gray-500"
@@ -53,6 +54,8 @@ export const ContactUs = () => {
           ComeUp
         </a>
       </div>
+
+      <ContactForm />
     </div>
   );
 };
