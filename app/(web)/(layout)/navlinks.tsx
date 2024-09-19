@@ -10,6 +10,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
@@ -84,7 +85,10 @@ export const MobileNav = () => {
       <SheetContent side="left" aria-describedby="app-menu">
         <SheetHeader>
           <SheetTitle className="font-brand text-2xl font-semibold md:text-3xl">
-            Portfolio
+            <div className="flex items-center justify-center gap-x-2">
+              <Image src="/assets/logo.svg" alt="Logo" width={25} height={25} />
+              Portfolio
+            </div>
           </SheetTitle>
         </SheetHeader>
         <ul className="mt-8 flex flex-col gap-4 text-sm font-medium">

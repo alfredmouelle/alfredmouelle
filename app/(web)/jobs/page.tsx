@@ -9,7 +9,7 @@ export default async function JobsPage() {
 
   return (
     <Section>
-      <SectionTitle>Mes réalisations</SectionTitle>
+      <SectionTitle>Mon parcours professionnel</SectionTitle>
 
       <ul className="grid gap-4 md:grid-cols-2">
         {jobs.map((job) => (

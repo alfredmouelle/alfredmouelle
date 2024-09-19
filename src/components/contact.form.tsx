@@ -56,7 +56,7 @@ export function ContactForm() {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nom & Prénom</FormLabel>
+                <FormLabel>Nom Prénom</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Alfred Mouelle"

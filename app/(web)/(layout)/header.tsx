@@ -9,7 +9,7 @@ import { ThemeToggle } from "./theme-toggle";
 export const Header = () => {
   return (
     <header className="h-20 py-4">
-      <nav className="container flex items-center rounded-full md:gap-10">
+      <nav className="container flex items-center rounded-full bg-[#F5F5F6] py-2 shadow-sm dark:bg-[#0D1324] md:gap-10">
         <div className="flex items-center justify-center">
           <Link href={APP_ROUTES.web.home}>
             <Image src="/assets/logo.svg" alt="Logo" width={40} height={40} />

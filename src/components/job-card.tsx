@@ -12,7 +12,7 @@ import {
 
 export const JobCard = ({ job }: { job: Job }) => {
   return (
-    <Card className="min-h-56 transition-colors delay-0 duration-200 hover:border-primary hover:bg-accent">
+    <Card className="min-h-56 transition delay-0 duration-200 hover:scale-[1.02] hover:border-primary hover:bg-accent">
       <CardHeader>
         <CardTitle className="flex items-center gap-x-2 text-primary">
           {job.company}{" "}
@@ -38,14 +38,15 @@ const jobDate = function ({
 }: Pick<Job, "endDate" | "startDate">) {
   if (!endDate)
     return (
-      <span>
-        Depuis <span className="font-medium">{formatDate(startDate)}</span>
+      <span className="text-sm text-muted-foreground">
+        Depuis <span>{formatDate(startDate)}</span>
       </span>
     );
+
   return (
-    <span>
-      Du <span className="font-medium">{formatDate(startDate)}</span> au
-      <span className="font-medium"> {formatDate(endDate)}</span>
+    <span className="text-sm text-muted-foreground">
+      Du <span>{formatDate(startDate)}</span> au
+      <span> {formatDate(endDate)}</span>
     </span>
   );
 };
