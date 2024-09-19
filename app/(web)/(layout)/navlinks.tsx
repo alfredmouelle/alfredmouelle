@@ -70,7 +70,9 @@ export const MobileNav = () => {
 
       <SheetContent side="left" aria-describedby="app-menu">
         <SheetHeader>
-          <SheetTitle>Portfolio</SheetTitle>
+          <SheetTitle className="font-brand text-2xl font-semibold md:text-3xl">
+            Portfolio
+          </SheetTitle>
         </SheetHeader>
         <ul className="mt-8 flex flex-col gap-4 text-sm font-medium">
           <NavLinks closeMenu={() => setOpen(false)} />

@@ -9,6 +9,7 @@ import TypewriterText from "@/components/typewritter-text";
 import { buttonVariants } from "@/components/ui/button";
 import { getJobs } from "@/jobs-helper";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
@@ -19,12 +20,12 @@ export default async function Home() {
   return (
     <>
       <Section>
-        <div className="grid h-[calc(100vh-14rem)] items-center">
-          <div className="flex flex-col gap-y-2">
+        <div className="hero grid min-h-[calc(100vh-14rem)] items-center gap-4 md:grid-cols-3">
+          <div className="hero-brand relative order-2 flex flex-col gap-y-2 text-center md:order-none md:col-span-2 md:text-left">
             <p>Salut, je suis</p>
             <h1 className="text-3xl font-bold">Alfred Mouelle</h1>
 
-            <div className="flex items-center gap-x-1">
+            <div className="flex items-center justify-center gap-x-1 md:justify-start">
               <span className="text-xl font-medium">{"<"}</span>
               <TypewriterText
                 text="Développeur Web"
@@ -47,11 +48,21 @@ export default async function Home() {
               <ContactButton />
             </div>
           </div>
+
+          <div className="order-1 md:order-none">
+            <Image
+              src="/assets/images/hero-avatar.webp"
+              className="rounded-full shadow-lg"
+              alt="Photo de moi"
+              width={1920}
+              height={1080}
+            />
+          </div>
         </div>
       </Section>
 
       <Section>
-        <SectionTitle>Mes réalisations</SectionTitle>
+        <SectionTitle>Parcours professionnel</SectionTitle>
         <div id="jobs">
           <ul className="grid gap-4 md:grid-cols-2">
             <li key={featuredJob.id} className="col-span-2">
@@ -61,7 +72,7 @@ export default async function Home() {
             </li>
 
             {jobs.map((job) => (
-              <li key={job.id}>
+              <li key={job.id} className="col-span-2 md:col-span-1">
                 <Link href={`/jobs/${job.id}`}>
                   <JobCard job={job} />
                 </Link>

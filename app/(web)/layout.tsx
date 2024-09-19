@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     name: "Alfred Mouelle",
     url: "https://alfred-mouelle.vercel.app",
   },
+  icons: ["/assets/logo.svg"],
   description: "Mon portfolio personnel et professionnel.",
 };
 
