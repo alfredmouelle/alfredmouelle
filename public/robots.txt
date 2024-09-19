@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://alfredmouelle.vercel.app
+
+# Sitemaps
+Sitemap: https://alfredmouelle.vercel.app/sitemap.xml

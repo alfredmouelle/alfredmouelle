@@ -9,13 +9,48 @@ import Header from "./(layout)/header";
 import { Provider } from "./provider";
 
 export const metadata: Metadata = {
-  title: "Alfred Mouelle | Portfolio",
+  metadataBase: new URL("https://alfredmouelle.vercel.app"),
+  creator: "Alfred Mouelle",
+  category: "Portfolio",
+  title: "Alfred Mouelle | Portfolio - Développeur Web et Mobile",
   authors: {
     name: "Alfred Mouelle",
-    url: "https://alfred-mouelle.vercel.app",
+    url: "https://alfredmouelle.vercel.app",
   },
   icons: ["/assets/logo.svg"],
-  description: "Mon portfolio personnel et professionnel.",
+  description:
+    "Découvrez le portfolio d'Alfred Mouelle, développeur web et mobile. Explorez ses projets, compétences et expériences professionnelles.",
+  keywords: [
+    "Alfred Mouelle",
+    "portfolio",
+    "développeur fullstack",
+    "développeur web",
+    "développeur mobile",
+    "freelance",
+  ],
+  openGraph: {
+    title: "Alfred Mouelle | Portfolio - Développeur Web et Mobile",
+    description:
+      "Découvrez le portfolio d'Alfred Mouelle, développeur web et mobile. Explorez ses projets, compétences et expériences professionnelles.",
+    url: "https://alfredmouelle.vercel.app",
+    type: "website",
+    images: [
+      {
+        width: 800,
+        height: 800,
+        alt: "Logo Alfred Mouelle",
+        url: "/assets/images/og-main.webp",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@alfredmouelle",
+    title: "Alfred Mouelle | Portfolio - Développeur Web et Mobile",
+    description:
+      "Découvrez le portfolio d'Alfred Mouelle, développeur web et mobile. Explorez ses projets, compétences et expériences professionnelles.",
+    images: ["/assets/images/og-main.webp"],
+  },
 };
 
 export default function RootLayout({

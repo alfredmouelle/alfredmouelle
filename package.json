@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "postbuild": "next-sitemap",
     "prisma:seed": "prisma db seed",
     "vercel-build": "next build"
   },
@@ -39,6 +40,7 @@
     "next": "14.2.7",
     "next-mdx-remote": "^5.0.0",
     "next-safe-action": "7.8.1",
+    "next-sitemap": "^4.2.3",
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
