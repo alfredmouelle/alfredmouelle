@@ -5,7 +5,7 @@ import Image from "next/image";
 export const SectionScholarship = () => {
   return (
     <Section id="scholarship">
-      <SectionTitle>Parcours scolaire</SectionTitle>
+      <SectionTitle>Parcours Académique</SectionTitle>
 
       <div className="grid md:grid-cols-2">
         <Image

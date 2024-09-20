@@ -1,5 +1,5 @@
 import { Job } from "@/jobs-helper";
-import { formatDate } from "@/lib/utils";
+import { cn, formatDate } from "@/lib/utils";
 import { Icons } from "./icons";
 import {
   Card,
@@ -12,11 +12,31 @@ import {
 
 export const JobCard = ({ job }: { job: Job }) => {
   return (
-    <Card className="min-h-56 transition delay-0 duration-200 hover:scale-[1.02] hover:border-primary hover:bg-accent">
+    <Card
+      className={cn(
+        "min-h-48 transition delay-0 duration-200 hover:scale-[1.02] hover:border-primary hover:bg-accent",
+        {
+          "border-yellow-500 hover:border-yellow-600": job.featured,
+        },
+      )}
+    >
       <CardHeader>
-        <CardTitle className="flex items-center gap-x-2 text-primary">
+        <CardTitle
+          className={cn("flex items-center gap-x-2 text-primary", {
+            "text-yellow-500": job.featured,
+          })}
+        >
           {job.company}{" "}
-          {job.siteUrl ? <Icons.link className="h-4 w-4 text-primary" /> : null}
+          {job.siteUrl ? (
+            <Icons.link
+              className={cn("h-4 w-4 text-primary", {
+                "text-yellow-500": job.featured,
+              })}
+            />
+          ) : null}
+          <span className="text-xs text-muted-foreground">
+            {job.readTime} mins de lecture
+          </span>
         </CardTitle>
         <CardDescription className="line-clamp-3">
           {job.description}
@@ -26,25 +46,25 @@ export const JobCard = ({ job }: { job: Job }) => {
       <CardContent>{job.published}</CardContent>
 
       <CardFooter>
-        {jobDate({ startDate: job.startDate, endDate: job.endDate })}
+        <JobDate startDate={job.startDate} endDate={job.endDate} />
       </CardFooter>
     </Card>
   );
 };
 
-const jobDate = function ({
+export const JobDate = function ({
   startDate,
   endDate,
 }: Pick<Job, "endDate" | "startDate">) {
   if (!endDate)
     return (
-      <span className="text-sm text-muted-foreground">
-        Depuis <span>{formatDate(startDate)}</span>
+      <span className="text-xs text-muted-foreground">
+        Depuis le <span>{formatDate(startDate)}</span>
       </span>
     );
 
   return (
-    <span className="text-sm text-muted-foreground">
+    <span className="text-xs text-muted-foreground">
       Du <span>{formatDate(startDate)}</span> au
       <span> {formatDate(endDate)}</span>
     </span>

@@ -5,7 +5,7 @@ import { ContactForm } from "./contact.form";
 export const SectionContact = () => {
   return (
     <Section id="contact">
-      <SectionTitle>Contactez moi</SectionTitle>
+      <SectionTitle>Contactez Moi</SectionTitle>
 
       <div>
         <p className="text-center text-gray-500">Contact Rapide</p>
@@ -15,7 +15,7 @@ export const SectionContact = () => {
             className="flex flex-col items-center justify-center gap-y-1.5 text-xs text-gray-500 md:text-sm"
             target="_blank"
           >
-            <Icons.github className="h-10 w-10 text-blue-500" />
+            <Icons.github className="h-10 w-10 text-blue-300" />
             @alfredmouelle
           </a>
 
@@ -24,7 +24,7 @@ export const SectionContact = () => {
             className="flex flex-col items-center justify-center gap-y-1.5 text-xs text-gray-500 md:text-sm"
             target="_blank"
           >
-            <Icons.twitter className="h-10 w-10 text-blue-500" />
+            <Icons.twitter className="h-10 w-10 text-blue-300" />
             @kali47_
           </a>
 
@@ -33,7 +33,7 @@ export const SectionContact = () => {
             className="flex flex-col items-center justify-center gap-y-1.5 text-xs text-gray-500 md:text-sm"
             target="_blank"
           >
-            <Icons.linkedin className="h-10 w-10 text-blue-500" />
+            <Icons.linkedin className="h-10 w-10 text-blue-300" />
             LinkedIn
           </a>
 
@@ -42,7 +42,7 @@ export const SectionContact = () => {
             className="flex flex-col items-center justify-center gap-y-1.5 text-xs text-gray-500 md:text-sm"
             target="_blank"
           >
-            <Icons.mail className="h-10 w-10 text-blue-500" />
+            <Icons.mail className="h-10 w-10 text-blue-300" />
             Email
           </a>
 
@@ -51,7 +51,7 @@ export const SectionContact = () => {
             className="flex flex-col items-center justify-center gap-y-1.5 text-xs text-gray-500 md:text-sm"
             target="_blank"
           >
-            <Icons.website className="h-10 w-10 text-blue-500" />
+            <Icons.website className="h-10 w-10 text-blue-300" />
             ComeUp
           </a>
 
@@ -60,7 +60,7 @@ export const SectionContact = () => {
             className="flex flex-col items-center justify-center gap-y-1.5 text-xs text-gray-500 md:text-sm"
             target="_blank"
           >
-            <Icons.phone className="h-10 w-10 text-blue-500" />
+            <Icons.phone className="h-10 w-10 text-blue-300" />
             +237 693 69 27 21
           </a>
         </div>

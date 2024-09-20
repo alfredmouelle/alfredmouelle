@@ -1,5 +1,6 @@
 "use client";
 
+import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 
 export const DownloadCvButton = () => {
@@ -8,7 +9,11 @@ export const DownloadCvButton = () => {
     downloadLink.click();
   };
 
-  return <Button onClick={download}>Télécharger mon CV</Button>;
+  return (
+    <Button onClick={download}>
+      Télécharger mon CV <Icons.download className="ml-2 h-4 w-4" />
+    </Button>
+  );
 };
 
 const getDownloadLink = function () {

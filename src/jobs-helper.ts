@@ -12,6 +12,7 @@ export const JobSchema = z.object({
     description: z.string(),
     position: z.string(),
     siteUrl: z.string(),
+    readTime: z.number(),
     featured: z.boolean().default(false),
     stacks: z.array(z.string()),
     published: z.boolean(),
@@ -47,7 +48,9 @@ export const getJobs = async () => {
 
     jobs.sort((a, b) => new Date(b.endDate || b.startDate).getTime() - new Date(a.endDate || a.startDate).getTime());
 
-    return jobs;
+    return jobs.sort(
+        (a, b) => Number(b.featured) - Number(a.featured),
+      );
 }
 
 export const getJob = async (slug: string) => {

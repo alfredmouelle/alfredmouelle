@@ -8,13 +8,13 @@ import Link from "next/link";
 
 export const SectionJobs = async () => {
   const jobsAll = await getJobs();
-  const jobs = jobsAll.splice(0, 2);
   const featuredJob = jobsAll.find((j) => j.featured)!;
+  const jobs = jobsAll.filter((j) => !j.featured).splice(0, 2);
 
   return (
     <Section id="jobs">
-      <SectionTitle>Parcours professionnel</SectionTitle>
-      <div>
+      <SectionTitle>Parcours Professionnel</SectionTitle>
+      <div className="flex flex-col items-end">
         <ul className="grid gap-4 md:grid-cols-2">
           <li key={featuredJob.id} className="col-span-2">
             <Link href={`/jobs/${featuredJob.id}`}>
