@@ -39,7 +39,7 @@ export const metadata: Metadata = {
         width: 800,
         height: 800,
         alt: "Logo Alfred Mouelle",
-        url: "/assets/images/og-main.webp",
+        url: "/assets/logo.svg",
       },
     ],
   },
