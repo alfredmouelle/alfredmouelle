@@ -6,6 +6,7 @@ export const SectionScholarship = () => {
   return (
     <Section id="scholarship">
       <SectionTitle>Parcours scolaire</SectionTitle>
+
       <div className="grid md:grid-cols-2">
         <Image
           src="/assets/images/education-man.svg"
@@ -13,6 +14,7 @@ export const SectionScholarship = () => {
           height={500}
           alt="Mascotte"
         />
+
         <div className="relative">
           <div className="absolute left-1/2 h-full -translate-x-1/2 transform border-l-2 border-gray-300"></div>
           <div className="space-y-8">
@@ -34,6 +36,7 @@ export const SectionScholarship = () => {
                 <p className="text-gray-500">Douala - Cameroun</p>
               </div>
             </div>
+
             <div className="flex w-full items-center">
               <div className="w-1/2 pr-8 text-right">
                 <h3 className="text-lg font-semibold">Baccalauréat</h3>
@@ -48,6 +51,7 @@ export const SectionScholarship = () => {
                 <p className="text-gray-500">Kribi - Cameroun</p>
               </div>
             </div>
+
             <div className="flex w-full items-center">
               <div className="w-1/2 pr-8 text-right">
                 <h3 className="text-lg font-semibold">Probatoire</h3>
