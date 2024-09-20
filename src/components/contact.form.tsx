@@ -4,7 +4,8 @@ import { contactAction } from "@/actions/contact.action";
 import { cn } from "@/lib/utils";
 import { ContactRequest, contactSchema } from "@/schemas/contact.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { useAction } from "next-safe-action/hooks";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Icons } from "./icons";
@@ -23,32 +24,32 @@ import { Textarea } from "./ui/textarea";
 export function ContactForm() {
   const form = useForm<ContactRequest>({
     resolver: zodResolver(contactSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      message: "",
-    },
+    defaultValues: { name: "", email: "", message: "" },
   });
 
-  const { mutate: contactMe, isPending } = useMutation({
-    mutationKey: ["contact"],
-    mutationFn: async (data: ContactRequest) => {
-      const res = await contactAction(data);
-      if (!res || res?.data?.error) throw new Error(res?.data?.error);
-      toast.success("Votre message a bien été envoyé.");
+  const { execute: contactMe, status, result } = useAction(contactAction);
+
+  useEffect(() => {
+    if (status === "idle" || !result.data) return;
+
+    if (status === "hasErrored") {
+      toast.error(result.data.error);
+      return;
+    }
+
+    if (status === "hasSucceeded") {
       form.reset();
-    },
-    onError: (e) => {
-      toast.error(e.message || "Une erreur est survenue, veuillez réessayer.");
-    },
-  });
+      toast.success("Votre message a bien été envoyé.");
+      return;
+    }
+  }, [form, result.data, status]);
 
   return (
     <Form {...form}>
       <form
         id="contact-form"
         className="mt-10 flex flex-col gap-y-4"
-        onSubmit={form.handleSubmit((data) => contactMe(data))}
+        onSubmit={form.handleSubmit(contactMe)}
       >
         <div className="grid items-center gap-4 md:grid-cols-2">
           <FormField
@@ -115,11 +116,13 @@ export function ContactForm() {
 
         <Button
           type="submit"
-          isLoading={isPending}
+          isLoading={status === "executing"}
           className="self-stretch md:self-end"
         >
           Envoyer
-          {isPending ? null : <Icons.send className="ml-2 h-4 w-4" />}
+          {status === "executing" ? null : (
+            <Icons.send className="ml-2 h-4 w-4" />
+          )}
         </Button>
       </form>
     </Form>
