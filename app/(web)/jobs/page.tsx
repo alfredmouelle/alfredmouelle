@@ -1,6 +1,5 @@
 import { JobCard } from "@/components/job-card";
-import { Section } from "@/components/page-wrapper";
-import { SectionTitle } from "@/components/section-title";
+import { Section, SectionTitle } from "@/components/section";
 import { getJobs } from "@/jobs-helper";
 import Link from "next/link";
 

@@ -1,5 +1,4 @@
 import { SpinningLoader } from "@/components/spinning-loader";
-import { APP_ROUTES } from "@/routes";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -11,7 +10,7 @@ export const Header = () => {
     <header className="h-20 py-4">
       <nav className="container flex items-center rounded-full bg-[#F5F5F6] py-2 shadow-sm dark:bg-[#0D1324] md:gap-10">
         <div className="flex items-center justify-center">
-          <Link href={APP_ROUTES.web.home}>
+          <Link href="/">
             <Image src="/assets/logo.svg" alt="Logo" width={40} height={40} />
           </Link>
 
@@ -30,5 +29,3 @@ export const Header = () => {
     </header>
   );
 };
-
-export default Header;

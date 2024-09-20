@@ -1,10 +1,10 @@
 import { Icons } from "@/components/icons";
-import { MdxJob } from "@/components/mdx-job";
-import { Section } from "@/components/page-wrapper";
+import { Section } from "@/components/section";
 import { buttonVariants } from "@/components/ui/button";
 import { getJob, getJobs } from "@/jobs-helper";
 import { cn } from "@/lib/utils";
 import { notFound } from "next/navigation";
+import { MdxJob } from "../_components/mdx-job";
 
 interface PageProps {
   params: { slug: string };

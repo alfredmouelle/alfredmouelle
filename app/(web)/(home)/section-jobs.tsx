@@ -1,7 +1,6 @@
 import { Icons } from "@/components/icons";
 import { JobCard } from "@/components/job-card";
-import { Section } from "@/components/page-wrapper";
-import { SectionTitle } from "@/components/section-title";
+import { Section, SectionTitle } from "@/components/section";
 import { buttonVariants } from "@/components/ui/button";
 import { getJobs } from "@/jobs-helper";
 import { cn } from "@/lib/utils";

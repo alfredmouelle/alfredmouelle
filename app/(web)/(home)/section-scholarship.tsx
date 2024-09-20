@@ -1,6 +1,5 @@
 import { Icons } from "@/components/icons";
-import { Section } from "@/components/page-wrapper";
-import { SectionTitle } from "@/components/section-title";
+import { Section, SectionTitle } from "@/components/section";
 import Image from "next/image";
 
 export const SectionScholarship = () => {

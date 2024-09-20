@@ -8,8 +8,8 @@ import { useAction } from "next-safe-action/hooks";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { Icons } from "./icons";
-import { Button } from "./ui/button";
+import { Icons } from "../../../src/components/icons";
+import { Button } from "../../../src/components/ui/button";
 import {
   Form,
   FormControl,
@@ -17,9 +17,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
+} from "../../../src/components/ui/form";
+import { Input } from "../../../src/components/ui/input";
+import { Textarea } from "../../../src/components/ui/textarea";
 
 export function ContactForm() {
   const form = useForm<ContactRequest>({

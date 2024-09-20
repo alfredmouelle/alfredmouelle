@@ -1,7 +1,6 @@
-import { ContactForm } from "@/components/contact.form";
 import { Icons } from "@/components/icons";
-import { Section } from "@/components/page-wrapper";
-import { SectionTitle } from "@/components/section-title";
+import { Section, SectionTitle } from "@/components/section";
+import { ContactForm } from "./contact.form";
 
 export const SectionContact = () => {
   return (

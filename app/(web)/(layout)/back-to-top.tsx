@@ -2,8 +2,8 @@
 
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import { Icons } from "./icons";
-import { Button } from "./ui/button";
+import { Icons } from "../../../src/components/icons";
+import { Button } from "../../../src/components/ui/button";
 
 export const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);

@@ -1,6 +1,6 @@
 'use server';
 
-import { ContactEmail } from '@/components/emails/contact.email';
+import { ContactEmail } from '@/emails/contact.email';
 import { action } from '@/lib/next-safe-action';
 import { resend } from '@/lib/resend';
 import { contactSchema } from '@/schemas/contact.schema';

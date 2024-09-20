@@ -73,36 +73,11 @@
     }
 }
 
-.gradient {
-    padding: 8px;
-    width: fit-content;
-    background: linear-gradient(#17142c, #17142c) /** padding box**/,
-    linear-gradient(var(--gradient-rotate, 120deg), #9c60d7, #17142c00) /** border box **/ ;
-
-    border: 4px solid transparent;
-    border-radius: 20px;
-    background-clip: padding-box, border-box;
-    background-origin: border-box;
+.hero {
+    z-index: 1;
 }
 
-.grainy-background::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    background-image: radial-gradient(rgba(0, 0, 0, 0.03) 10%, transparent 10%);
-    background-size: 3px 3px;
-    z-index: 0;
-  }
-
-  .hero {
-    z-index: 1;
-  }
-
-  .hero::before {
+.hero::before {
     content: '';
     position: absolute;
     top: 0;
@@ -114,9 +89,9 @@
     background: url("/assets/images/hero-background.webp") no-repeat;
     background-size: contain;
     opacity: var(--hero-opacity);
-  }
+}
 
-  .hero-brand::before {
+.hero-brand::before {
     content: '';
     position: absolute;
     z-index: -1;
@@ -126,4 +101,4 @@
     background: url("/assets/images/shape.webp") no-repeat;
     opacity: var(--hero-opacity);
     animation: spin linear infinite normal 15s;
-  }
+}

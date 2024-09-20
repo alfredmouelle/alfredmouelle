@@ -1,8 +1,8 @@
-import { ContactButton } from "@/components/contact-button";
-import { DownloadCvButton } from "@/components/download-cv-button";
-import { Section } from "@/components/page-wrapper";
+import { Section } from "@/components/section";
 import TypewriterText from "@/components/typewritter-text";
 import Image from "next/image";
+import { ContactButton } from "./contact-button";
+import { DownloadCvButton } from "./download-cv-button";
 
 export const SectionHero = () => {
   return (
