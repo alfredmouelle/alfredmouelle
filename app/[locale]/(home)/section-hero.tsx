@@ -37,8 +37,8 @@ export const SectionHero = async () => {
             src="/assets/images/hero-avatar.webp"
             className="rounded-full shadow-lg"
             alt="Photo de moi"
-            width={1920}
-            height={1080}
+            width={500}
+            height={500}
           />
         </div>
       </div>
