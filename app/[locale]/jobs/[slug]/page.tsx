@@ -74,7 +74,7 @@ export default async function JobPage({ params }: PageProps) {
         <div className="flex flex-col items-center justify-center gap-x-4 gap-y-2 md:flex-row">
           <JobDate startDate={job.startDate} endDate={job.endDate} />
 
-          <div className="flex items-center justify-center gap-x-4">
+          <div className="flex items-center justify-center md:gap-x-4">
             <p className="text-xs text-muted-foreground">
               {job.readTime} {t("job.readTime")}
             </p>
