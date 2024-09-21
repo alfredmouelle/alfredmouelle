@@ -4,6 +4,7 @@ import { ContactEmail } from '@/emails/contact.email';
 import { action } from '@/lib/next-safe-action';
 import { resend } from '@/lib/resend';
 import { contactSchema } from '@/schemas/contact.schema';
+import { getScopedI18n } from '@locales/server';
 import { } from 'next-safe-action';
 
 export const contactAction = action
@@ -20,6 +21,7 @@ export const contactAction = action
     return { success: true };
   } catch (error) {
     console.error(error);
-    return { success: false, error: 'Erreur lors de l\envoi de l\'email' };
+    const t = await getScopedI18n("section_contact.form");
+    return { success: false, error: t('messages.error') };
   }
 });

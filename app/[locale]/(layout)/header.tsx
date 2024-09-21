@@ -2,6 +2,7 @@ import { SpinningLoader } from "@/components/spinning-loader";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
+import { LocaleToggle } from "./locale-toggle";
 import { MobileNav, NavLinks } from "./navlinks";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -22,6 +23,7 @@ export const Header = () => {
         </div>
 
         <div className="flex flex-1 items-center justify-end gap-x-1.5">
+          <LocaleToggle />
           <ThemeToggle />
           <MobileNav />
         </div>

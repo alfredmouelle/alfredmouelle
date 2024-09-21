@@ -1,9 +1,12 @@
+import { getCurrentLocale } from '@locales/server';
 import matter from 'gray-matter';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { z } from 'zod';
 
-const jobsRootDir = path.join(process.cwd(), '/content/jobs');
+const jobsRootDir = function (locale: string) {
+    return path.join(process.cwd(), `/content/jobs/${locale}`);
+}
 
 export const JobSchema = z.object({
     startDate: z.coerce.date(),
@@ -23,14 +26,14 @@ export const JobSchema = z.object({
 
 export type Job = z.infer<typeof JobSchema> & { id: string; content: string }
 
-export const getJobs = async () => {
-    let fileNames = await fs.readdir(jobsRootDir);
+export const getJobs = async (locale: ReturnType<typeof getCurrentLocale>) => {
+    let fileNames = await fs.readdir(jobsRootDir(locale));
     fileNames = fileNames.filter(f => f.endsWith('.mdx'));
 
     const jobs: Job[] = [];
 
     for await (const fileName of fileNames) {
-        const jobFile = await fs.readFile(path.join(jobsRootDir, fileName), 'utf-8');
+        const jobFile = await fs.readFile(path.join(jobsRootDir(locale), fileName), 'utf-8');
         const { content, data } = matter(jobFile);
         
         const job = JobSchema.parse(data);
@@ -53,7 +56,7 @@ export const getJobs = async () => {
       );
 }
 
-export const getJob = async (slug: string) => {
-    const jobs = await getJobs();
+export const getJob = async (slug: string, locale: ReturnType<typeof getCurrentLocale>) => {
+    const jobs = await getJobs(locale);
     return jobs.find(j => j.id === slug);
 }

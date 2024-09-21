@@ -12,21 +12,23 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 import { getJob, getJobs } from "@/jobs-helper";
 import { cn } from "@/lib/utils";
+import { getCurrentLocale, getI18n } from "@locales/server";
 import { Metadata } from "next";
+import { setStaticParamsLocale } from "next-international/server";
 import { notFound } from "next/navigation";
 import { MdxJob } from "../_components/mdx-job";
 
 interface PageProps {
-  params: { slug: string };
+  params: { slug: string; locale: ReturnType<typeof getCurrentLocale> };
 }
 
-export async function generateStaticParams() {
-  const files = await getJobs();
-  return files.map((job) => ({ slug: job.id }));
+export async function generateStaticParams({ params }: PageProps) {
+  const files = await getJobs(params.locale);
+  return files.map((job) => ({ slug: job.id })).concat();
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const job = await getJob(params.slug);
+  const job = await getJob(params.slug, params.locale);
 
   if (!job) return notFound();
 
@@ -46,7 +48,9 @@ export async function generateMetadata({ params }: PageProps) {
 export const dynamic = "force-static";
 
 export default async function JobPage({ params }: PageProps) {
-  const job = (await getJob(params.slug))!;
+  setStaticParamsLocale(params.locale);
+  const job = (await getJob(params.slug, params.locale as any))!;
+  const t = await getI18n();
 
   return (
     <Section className="hero">
@@ -54,12 +58,12 @@ export default async function JobPage({ params }: PageProps) {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/">Accueil</BreadcrumbLink>
+              <BreadcrumbLink href="/">{t("breadcrumb.home")}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbLink href="/jobs">
-                Parcours professionnel
+                {t("breadcrumb.jobs")}
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
@@ -74,7 +78,7 @@ export default async function JobPage({ params }: PageProps) {
 
           <div className="flex items-center justify-center gap-x-4">
             <p className="text-xs text-muted-foreground">
-              {job.readTime} mins de lecture
+              {job.readTime} {t("job.readTime")}
             </p>
 
             <a
@@ -83,7 +87,7 @@ export default async function JobPage({ params }: PageProps) {
               className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
             >
               <Icons.link className="h-4 w-4" />
-              <span className="sr-only">Visiter le site web</span>
+              <span className="sr-only">{t("job.visitWebsite")}</span>
             </a>
           </div>
         </div>
@@ -100,7 +104,7 @@ export default async function JobPage({ params }: PageProps) {
             buttonVariants({ variant: "outline" }),
           )}
         >
-          Visiter le site web
+          {t("job.visitWebsite")}
           <Icons.link className="ml-2 h-4 w-4" />
         </a>
       </div>

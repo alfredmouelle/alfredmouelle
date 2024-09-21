@@ -9,26 +9,30 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { getJobs } from "@/jobs-helper";
+import { getCurrentLocale, getI18n } from "@locales/server";
 import Link from "next/link";
 
 export default async function JobsPage() {
-  const jobs = await getJobs();
+  const locale = getCurrentLocale();
+
+  const jobs = await getJobs(locale);
+  const t = await getI18n();
 
   return (
     <Section className="hero">
       <Breadcrumb className="mb-4">
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">Accueil</BreadcrumbLink>
+            <BreadcrumbLink href="/">{t("breadcrumb.home")}</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Parcours professionnel</BreadcrumbPage>
+            <BreadcrumbPage>{t("breadcrumb.jobs")}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
 
-      <SectionTitle>Parcours professionnel</SectionTitle>
+      <SectionTitle>{t("section_jobs.title")}</SectionTitle>
 
       <ul className="grid gap-4 md:grid-cols-2">
         {jobs.map((job) => (

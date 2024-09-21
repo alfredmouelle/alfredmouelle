@@ -1,15 +1,8 @@
 "use client";
 
 import { contactAction } from "@/actions/contact.action";
-import { cn } from "@/lib/utils";
-import { ContactRequest, contactSchema } from "@/schemas/contact.schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useAction } from "next-safe-action/hooks";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { Icons } from "../../../src/components/icons";
-import { Button } from "../../../src/components/ui/button";
+import { Icons } from "@/components/icons";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -17,11 +10,21 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../../../src/components/ui/form";
-import { Input } from "../../../src/components/ui/input";
-import { Textarea } from "../../../src/components/ui/textarea";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
+import { ContactRequest, contactSchema } from "@/schemas/contact.schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useScopedI18n } from "@locales/client";
+import { useAction } from "next-safe-action/hooks";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 export function ContactForm() {
+  const t = useScopedI18n("section_contact.form");
+
   const form = useForm<ContactRequest>({
     resolver: zodResolver(contactSchema),
     defaultValues: { name: "", email: "", message: "" },
@@ -57,7 +60,7 @@ export function ContactForm() {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nom Prénom</FormLabel>
+                <FormLabel>{t("fields.name")}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Alfred Mouelle"
@@ -77,7 +80,7 @@ export function ContactForm() {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>{t("fields.email")}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="alfredmouelle@gmail.com"
@@ -98,7 +101,7 @@ export function ContactForm() {
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>{t("fields.message")}</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Message"
@@ -119,7 +122,7 @@ export function ContactForm() {
           isLoading={status === "executing"}
           className="self-stretch md:self-end"
         >
-          Envoyer
+          {t("fields.submit")}
           {status === "executing" ? null : (
             <Icons.send className="ml-2 h-4 w-4" />
           )}

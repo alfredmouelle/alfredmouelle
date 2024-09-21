@@ -12,18 +12,29 @@ import { useMounted } from "@/hooks/use-mounted";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 
-const Item = function ({ label, theme }: { label: string; theme: string }) {
+const Item = function ({
+  label,
+  theme,
+  icon,
+}: {
+  label: string;
+  theme: string;
+  icon: React.ReactNode;
+}) {
   const { setTheme, theme: activeTheme } = useTheme();
 
   return (
     <DropdownMenuItem
       onClick={() => setTheme(theme)}
       className={cn(
-        "flex items-center justify-between",
+        "flex cursor-pointer items-center justify-between",
         activeTheme === theme ? "bg-accent text-accent-foreground" : "",
       )}
     >
-      <span>{label}</span>
+      <span className="flex items-center gap-x-2">
+        {icon}
+        {label}
+      </span>
       {activeTheme === theme && <Icons.check className="ml-2 h-4 w-4" />}
     </DropdownMenuItem>
   );
@@ -40,9 +51,9 @@ export const ThemeToggle = () => {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="">
           {theme === "dark" ? (
-            <Icons.sunMedium className="h-5 w-5 text-yellow-300" />
+            <Icons.sunMedium className="h-5 w-5 text-blue-500" />
           ) : theme === "light" ? (
-            <Icons.moon className="h-5 w-5 text-blue-300" />
+            <Icons.moon className="h-5 w-5 text-yellow-500" />
           ) : (
             <Icons.sunMoon className="h-5 w-5" />
           )}
@@ -51,9 +62,21 @@ export const ThemeToggle = () => {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end">
-        <Item theme="light" label="Clair" />
-        <Item theme="dark" label="Sombre" />
-        <Item theme="system" label="Système" />
+        <Item
+          theme="light"
+          label="Clair"
+          icon={<Icons.moon className="h-5 w-5 text-yellow-500" />}
+        />
+        <Item
+          theme="dark"
+          label="Sombre"
+          icon={<Icons.sunMedium className="h-5 w-5 text-blue-500" />}
+        />
+        <Item
+          theme="system"
+          label="Système"
+          icon={<Icons.sunMoon className="h-5 w-5" />}
+        />
       </DropdownMenuContent>
     </DropdownMenu>
   );

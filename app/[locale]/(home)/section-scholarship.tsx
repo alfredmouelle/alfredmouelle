@@ -1,11 +1,14 @@
 import { Icons } from "@/components/icons";
 import { Section, SectionTitle } from "@/components/section";
+import { getScopedI18n } from "@locales/server";
 import Image from "next/image";
 
-export const SectionScholarship = () => {
+export const SectionScholarship = async () => {
+  const t = await getScopedI18n("section_scholarship");
+
   return (
     <Section id="scholarship">
-      <SectionTitle>Parcours Académique</SectionTitle>
+      <SectionTitle>{t("title")}</SectionTitle>
 
       <div className="grid md:grid-cols-2">
         <Image
@@ -20,50 +23,49 @@ export const SectionScholarship = () => {
           <div className="space-y-8">
             <div className="flex w-full items-center">
               <div className="w-1/2 pr-8 text-right">
-                <h3 className="text-lg font-semibold">
-                  Brevet de Technicien Supérieur
-                </h3>
-                <p className="text-blue-500">Génie Logiciel</p>
+                <h3 className="text-lg font-semibold">{t("bts.title")}</h3>
+                <p className="text-blue-500">{t("bts.specialty")}</p>
                 <p className="text-gray-500">2018 - 2020</p>
               </div>
+
               <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-blue-500">
                 <Icons.check className="text-white" />
               </div>
               <div className="w-1/2 pl-8">
-                <p className="text-gray-500">
-                  Institut Universitaire des Grandes Ecoles des Tropiques
-                </p>
-                <p className="text-gray-500">Douala - Cameroun</p>
+                <p className="text-gray-500">{t("bts.academy")}</p>
+                <p className="text-gray-500">{t("bts.location")}</p>
               </div>
             </div>
 
             <div className="flex w-full items-center">
               <div className="w-1/2 pr-8 text-right">
-                <h3 className="text-lg font-semibold">Baccalauréat</h3>
-                <p className="text-blue-500">Technologie de l’information</p>
+                <h3 className="text-lg font-semibold">{t("bac.title")}</h3>
+                <p className="text-blue-500">{t("bac.specialty")}</p>
                 <p className="text-gray-500">2017 - 2018</p>
               </div>
               <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-blue-500">
                 <Icons.check className="text-white" />
               </div>
               <div className="w-1/2 pl-8">
-                <p className="text-gray-500">Lycée Bilingue de Kribi</p>
-                <p className="text-gray-500">Kribi - Cameroun</p>
+                <p className="text-gray-500">{t("bac.location1")}</p>
+                <p className="text-gray-500">{t("bac.location2")}</p>
               </div>
             </div>
 
             <div className="flex w-full items-center">
               <div className="w-1/2 pr-8 text-right">
-                <h3 className="text-lg font-semibold">Probatoire</h3>
-                <p className="text-blue-500">Technologie de l’information</p>
+                <h3 className="text-lg font-semibold">
+                  {t("probatoire.title")}
+                </h3>
+                <p className="text-blue-500">{t("bac.specialty")}</p>
                 <p className="text-gray-500">2016 - 2017</p>
               </div>
               <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-blue-500">
                 <Icons.check className="text-white" />
               </div>
               <div className="w-1/2 pl-8">
-                <p className="text-gray-500">Lycée Bilingue de Kribi</p>
-                <p className="text-gray-500">Kribi - Cameroun</p>
+                <p className="text-gray-500">{t("bac.location1")}</p>
+                <p className="text-gray-500">{t("bac.location2")}</p>
               </div>
             </div>
           </div>

@@ -1,5 +1,8 @@
 import { Job } from "@/jobs-helper";
-import { cn, formatDate } from "@/lib/utils";
+import { cn } from "@/lib/utils";
+import { getCurrentLocale, getScopedI18n } from "@locales/server";
+import { format } from "date-fns";
+import { enUS, fr } from "date-fns/locale";
 import { Icons } from "./icons";
 import {
   Card,
@@ -52,21 +55,27 @@ export const JobCard = ({ job }: { job: Job }) => {
   );
 };
 
-export const JobDate = function ({
+export const JobDate = async function ({
   startDate,
   endDate,
 }: Pick<Job, "endDate" | "startDate">) {
+  const locale = getCurrentLocale();
+  const f = (date: Date) =>
+    format(date, "dd MMMM yyy", { locale: locale === "fr" ? fr : enUS });
+
+  const t = await getScopedI18n("job.period");
+
   if (!endDate)
     return (
       <span className="text-xs text-muted-foreground">
-        Depuis le <span>{formatDate(startDate)}</span>
+        {t("elapsed")} <span>{f(startDate)}</span>
       </span>
     );
 
   return (
     <span className="text-xs text-muted-foreground">
-      Du <span>{formatDate(startDate)}</span> au
-      <span> {formatDate(endDate)}</span>
+      {t("from")} <span>{f(startDate)}</span> {t("to")}
+      <span> {f(endDate)}</span>
     </span>
   );
 };

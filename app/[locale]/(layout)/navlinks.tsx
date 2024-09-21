@@ -10,17 +10,20 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { useScopedI18n } from "@locales/client";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 const NavLink = ({
   text,
+  icon,
   anchor,
   closeMenu,
 }: {
   text: string;
   anchor: string;
+  icon: React.ReactNode;
   closeMenu?: () => void;
 }) => {
   const router = useRouter();
@@ -46,6 +49,7 @@ const NavLink = ({
           "font-bold text-primary": active,
         })}
       >
+        {icon}
         {text}
       </Button>
     </li>
@@ -53,19 +57,30 @@ const NavLink = ({
 };
 
 export const NavLinks = ({ closeMenu }: { closeMenu?: () => void }) => {
+  const t = useScopedI18n("navbar.links");
+
   return (
     <>
       <NavLink
-        text="Parcours Académique"
+        text={t("scholarship")}
         closeMenu={closeMenu}
         anchor="scholarship"
+        icon={<Icons.graduation className="mr-2 h-5 w-5" />}
       />
+
       <NavLink
-        text="Parcours Professionnel"
+        text={t("job")}
         closeMenu={closeMenu}
         anchor="jobs"
+        icon={<Icons.briefcase className="mr-2 h-5 w-5" />}
       />
-      <NavLink text="Me contacter" closeMenu={closeMenu} anchor="contact" />
+
+      <NavLink
+        text={t("contact")}
+        closeMenu={closeMenu}
+        anchor="contact"
+        icon={<Icons.contact className="mr-2 h-5 w-5" />}
+      />
     </>
   );
 };
@@ -91,6 +106,7 @@ export const MobileNav = () => {
             </div>
           </SheetTitle>
         </SheetHeader>
+
         <ul className="mt-8 flex flex-col gap-4 text-sm font-medium">
           <NavLinks closeMenu={() => setOpen(false)} />
         </ul>
