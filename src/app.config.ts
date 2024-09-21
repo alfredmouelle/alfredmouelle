@@ -31,8 +31,8 @@ export const AppConfig = {
         {
           width: 800,
           height: 800,
-          alt: "Logo Alfred Mouelle",
-          url: "/assets/images/og-main.webp",
+          alt: "Portfolio Alfred Mouelle",
+          url: "/assets/images/og.webp",
         },
       ],
     },
