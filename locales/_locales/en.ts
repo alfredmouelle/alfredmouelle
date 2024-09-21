@@ -2,7 +2,7 @@ export default {
   navbar: {
     links: {
       scholarship: 'Academic Path',
-      job: 'Career path',
+      job: 'Career Path',
       contact: 'Contact Me'
     },
     locales: {
