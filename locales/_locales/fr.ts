@@ -56,7 +56,7 @@ export default {
       },
       messages: {
         success: 'Votre message a bien été envoyé.',
-        error: ''
+        error: 'Une erreur est survenue lors de l\'envoi de votre message, veuillez réessayer.'
       }
     }
   },

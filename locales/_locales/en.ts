@@ -56,7 +56,7 @@ export default {
       },
       messages: {
         success: 'Your message has been sent successfully.',
-        error: 'Error sending the email, please try again.'
+        error: 'Error sending the message, please try again.'
       }
     }
   },

@@ -42,7 +42,7 @@ export function ContactForm() {
 
     if (status === "hasSucceeded") {
       form.reset();
-      toast.success("Votre message a bien été envoyé.");
+      toast.success(result.data.message);
       return;
     }
   }, [form, result.data, status]);

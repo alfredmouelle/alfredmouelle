@@ -10,6 +10,8 @@ import { } from 'next-safe-action';
 export const contactAction = action
 .schema(contactSchema)
 .action(async ({ parsedInput }) => {
+  const t = await getScopedI18n("section_contact.form");
+
   try {
     await resend.emails.send({
       to: 'alfredmouelle@gmail.com',
@@ -18,10 +20,9 @@ export const contactAction = action
       subject: 'Nouveau message de contact',
     });
 
-    return { success: true };
+    return { success: true, message: t('messages.success') };
   } catch (error) {
     console.error(error);
-    const t = await getScopedI18n("section_contact.form");
     return { success: false, error: t('messages.error') };
   }
 });
