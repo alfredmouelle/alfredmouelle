@@ -1,8 +1,9 @@
 import { AppConfig } from "@/app.config";
 import { cn } from "@/lib/utils";
+import { I18nProviderClient } from "@locales/client";
+import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
-import { I18nProviderClient } from "../../locales/client";
 import "../fonts.css";
 import "../globals.css";
 import { BackToTop } from "./(layout)/back-to-top";
@@ -41,6 +42,7 @@ export default function RootLayout({
           <Toaster richColors />
         </I18nProviderClient>
 
+        <Analytics />
         <SpeedInsights />
       </body>
     </html>
