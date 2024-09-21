@@ -13,7 +13,9 @@ import {
   CardTitle,
 } from "./ui/card";
 
-export const JobCard = ({ job }: { job: Job }) => {
+export const JobCard = async ({ job }: { job: Job }) => {
+  const t = await getScopedI18n("job");
+
   return (
     <Card
       className={cn(
@@ -38,7 +40,7 @@ export const JobCard = ({ job }: { job: Job }) => {
             />
           ) : null}
           <span className="text-xs text-muted-foreground">
-            {job.readTime} mins de lecture
+            {job.readTime} {t("readTime")}
           </span>
         </CardTitle>
         <CardDescription className="line-clamp-3">

@@ -21,7 +21,7 @@ export default {
   },
 
   section_scholarship: {
-    title: 'Academic Road',
+    title: 'Academic Path',
     bts: {
       title: 'Brevet de Technicien Supérieur',
       specialty: 'Software Engineering',
