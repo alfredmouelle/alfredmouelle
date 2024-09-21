@@ -1,5 +1,6 @@
 import { AppConfig } from "@/app.config";
 import { cn } from "@/lib/utils";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
 import { I18nProviderClient } from "../../locales/client";
 import "../fonts.css";
@@ -39,6 +40,8 @@ export default function RootLayout({
           <BackToTop />
           <Toaster richColors />
         </I18nProviderClient>
+
+        <SpeedInsights />
       </body>
     </html>
   );
