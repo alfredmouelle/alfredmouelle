@@ -1,14 +1,14 @@
 {
   "name": "@alfredmouelle/portfolio",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "description": "Alfred Mouelle's portfolio",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "postbuild": "next-sitemap",
-    "prisma:seed": "prisma db seed",
     "vercel-build": "next build"
   },
   "author": {

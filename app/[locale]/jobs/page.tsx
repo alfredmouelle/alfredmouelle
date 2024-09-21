@@ -9,10 +9,16 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { getJobs } from "@/jobs-helper";
-import { getCurrentLocale, getI18n } from "@locales/server";
+import { getCurrentLocale, getI18n, getStaticParams } from "@locales/server";
+import { setStaticParamsLocale } from "next-international/server";
 import Link from "next/link";
 
-export default async function JobsPage() {
+interface PageProps {
+  params: { locale: ReturnType<typeof getCurrentLocale> };
+}
+
+export default async function JobsPage({ params }: PageProps) {
+  setStaticParamsLocale(params.locale);
   const locale = getCurrentLocale();
 
   const jobs = await getJobs(locale);

@@ -45,8 +45,6 @@ export async function generateMetadata({ params }: PageProps) {
   } satisfies Metadata;
 }
 
-export const dynamic = "force-static";
-
 export default async function JobPage({ params }: PageProps) {
   setStaticParamsLocale(params.locale);
   const job = (await getJob(params.slug, params.locale as any))!;

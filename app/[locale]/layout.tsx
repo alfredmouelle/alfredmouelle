@@ -1,6 +1,7 @@
 import { AppConfig } from "@/app.config";
 import { cn } from "@/lib/utils";
 import { I18nProviderClient } from "@locales/client";
+import { getStaticParams } from "@locales/server";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
@@ -12,6 +13,10 @@ import { Header } from "./(layout)/header";
 import { Provider } from "./provider";
 
 export const metadata = AppConfig.metadata;
+
+export function generateStaticParams() {
+  return getStaticParams();
+}
 
 export default function RootLayout({
   params: { locale },
