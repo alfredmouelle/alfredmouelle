@@ -6,8 +6,8 @@ import {
   Html,
   Preview,
   Text,
-} from "@react-email/components";
-import { Tailwind } from "@react-email/tailwind";
+} from '@react-email/components';
+import { Tailwind } from '@react-email/tailwind';
 
 interface ContactEmailProps {
   name: string;

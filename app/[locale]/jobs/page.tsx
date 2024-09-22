@@ -1,5 +1,10 @@
-import { JobCard } from "@/components/job-card";
-import { Section, SectionTitle } from "@/components/section";
+import Link from 'next/link';
+
+import { getCurrentLocale, getI18n } from '@locales/server';
+import { setStaticParamsLocale } from 'next-international/server';
+
+import { JobCard } from '@/components/job-card';
+import { Section, SectionTitle } from '@/components/section';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,11 +12,9 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { getJobs } from "@/jobs-helper";
-import { getCurrentLocale, getI18n, getStaticParams } from "@locales/server";
-import { setStaticParamsLocale } from "next-international/server";
-import Link from "next/link";
+} from '@/components/ui/breadcrumb';
+
+import { getJobs } from '@/jobs-helper';
 
 interface PageProps {
   params: { locale: ReturnType<typeof getCurrentLocale> };
@@ -29,16 +32,16 @@ export default async function JobsPage({ params }: PageProps) {
       <Breadcrumb className="mb-4">
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">{t("breadcrumb.home")}</BreadcrumbLink>
+            <BreadcrumbLink href="/">{t('breadcrumb.home')}</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>{t("breadcrumb.jobs")}</BreadcrumbPage>
+            <BreadcrumbPage>{t('breadcrumb.jobs')}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
 
-      <SectionTitle>{t("section_jobs.title")}</SectionTitle>
+      <SectionTitle>{t('section_jobs.title')}</SectionTitle>
 
       <ul className="grid gap-4 md:grid-cols-2">
         {jobs.map((job) => (

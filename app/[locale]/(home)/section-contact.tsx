@@ -1,17 +1,19 @@
-import { Icons } from "@/components/icons";
-import { Section, SectionTitle } from "@/components/section";
-import { getScopedI18n } from "@locales/server";
-import { ContactForm } from "./contact.form";
+import { getScopedI18n } from '@locales/server';
+
+import { Icons } from '@/components/icons';
+import { Section, SectionTitle } from '@/components/section';
+
+import { ContactForm } from './contact.form';
 
 export const SectionContact = async () => {
-  const t = await getScopedI18n("section_contact");
+  const t = await getScopedI18n('section_contact');
 
   return (
     <Section id="contact">
-      <SectionTitle>{t("title")}</SectionTitle>
+      <SectionTitle>{t('title')}</SectionTitle>
 
       <div>
-        <p className="text-center text-gray-500">{t("quickContact")}</p>
+        <p className="text-center text-gray-500">{t('quickContact')}</p>
         <div className="mt-8 grid grid-cols-3 items-center justify-center gap-1 gap-y-4 md:grid-cols-6">
           <a
             href="https://github.com/alfredmouelle"

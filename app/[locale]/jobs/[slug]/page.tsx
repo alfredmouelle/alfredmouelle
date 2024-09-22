@@ -1,6 +1,12 @@
-import { Icons } from "@/components/icons";
-import { JobDate } from "@/components/job-card";
-import { Section } from "@/components/section";
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+
+import { getCurrentLocale, getI18n } from '@locales/server';
+import { setStaticParamsLocale } from 'next-international/server';
+
+import { Icons } from '@/components/icons';
+import { JobDate } from '@/components/job-card';
+import { Section } from '@/components/section';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,15 +14,13 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { buttonVariants } from "@/components/ui/button";
-import { getJob, getJobs } from "@/jobs-helper";
-import { cn } from "@/lib/utils";
-import { getCurrentLocale, getI18n } from "@locales/server";
-import { Metadata } from "next";
-import { setStaticParamsLocale } from "next-international/server";
-import { notFound } from "next/navigation";
-import { MdxJob } from "../_components/mdx-job";
+} from '@/components/ui/breadcrumb';
+import { buttonVariants } from '@/components/ui/button';
+
+import { getJob, getJobs } from '@/jobs-helper';
+import { cn } from '@/lib/utils';
+
+import { MdxJob } from '../_components/mdx-job';
 
 interface PageProps {
   params: { slug: string; locale: ReturnType<typeof getCurrentLocale> };
@@ -39,8 +43,8 @@ export async function generateMetadata({ params }: PageProps) {
     openGraph: {
       title: `Alfred Mouelle | ${job.position} at ${job.company}`,
       description: job.description,
-      type: "article",
-      authors: "Alfred Mouelle",
+      type: 'article',
+      authors: 'Alfred Mouelle',
     },
   } satisfies Metadata;
 }
@@ -56,12 +60,12 @@ export default async function JobPage({ params }: PageProps) {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/">{t("breadcrumb.home")}</BreadcrumbLink>
+              <BreadcrumbLink href="/">{t('breadcrumb.home')}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbLink href="/jobs">
-                {t("breadcrumb.jobs")}
+                {t('breadcrumb.jobs')}
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
@@ -76,16 +80,16 @@ export default async function JobPage({ params }: PageProps) {
 
           <div className="flex items-center justify-center md:gap-x-4">
             <p className="text-xs text-muted-foreground">
-              {job.readTime} {t("job.readTime")}
+              {job.readTime} {t('job.readTime')}
             </p>
 
             <a
               target="_blank"
               href={job.siteUrl}
-              className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
+              className={cn(buttonVariants({ variant: 'ghost', size: 'icon' }))}
             >
               <Icons.link className="h-4 w-4" />
-              <span className="sr-only">{t("job.visitWebsite")}</span>
+              <span className="sr-only">{t('job.visitWebsite')}</span>
             </a>
           </div>
         </div>
@@ -98,11 +102,11 @@ export default async function JobPage({ params }: PageProps) {
           target="_blank"
           href={job.siteUrl}
           className={cn(
-            "w-full md:w-auto",
-            buttonVariants({ variant: "outline" }),
+            'w-full md:w-auto',
+            buttonVariants({ variant: 'outline' })
           )}
         >
-          {t("job.visitWebsite")}
+          {t('job.visitWebsite')}
           <Icons.link className="ml-2 h-4 w-4" />
         </a>
       </div>

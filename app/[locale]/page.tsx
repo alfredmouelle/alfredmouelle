@@ -1,9 +1,10 @@
-import { getCurrentLocale } from "@locales/server";
-import { setStaticParamsLocale } from "next-international/server";
-import { SectionContact } from "./(home)/section-contact";
-import { SectionHero } from "./(home)/section-hero";
-import { SectionJobs } from "./(home)/section-jobs";
-import { SectionScholarship } from "./(home)/section-scholarship";
+import { getCurrentLocale } from '@locales/server';
+import { setStaticParamsLocale } from 'next-international/server';
+
+import { SectionContact } from './(home)/section-contact';
+import { SectionHero } from './(home)/section-hero';
+import { SectionJobs } from './(home)/section-jobs';
+import { SectionScholarship } from './(home)/section-scholarship';
 
 interface PageProps {
   params: { locale: ReturnType<typeof getCurrentLocale> };

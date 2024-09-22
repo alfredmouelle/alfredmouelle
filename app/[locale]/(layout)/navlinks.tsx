@@ -1,19 +1,22 @@
-"use client";
+'use client';
 
-import { Icons } from "@/components/icons";
-import { Button } from "@/components/ui/button";
+import Image from 'next/image';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useState } from 'react';
+
+import { useScopedI18n } from '@locales/client';
+
+import { Icons } from '@/components/icons';
+import { Button } from '@/components/ui/button';
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import { cn } from "@/lib/utils";
-import { useScopedI18n } from "@locales/client";
-import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+} from '@/components/ui/sheet';
+
+import { cn } from '@/lib/utils';
 
 const NavLink = ({
   text,
@@ -29,13 +32,13 @@ const NavLink = ({
   const router = useRouter();
   const params = useSearchParams();
 
-  const active = params.get("anchor") === anchor;
+  const active = params.get('anchor') === anchor;
 
   const jumpToAnchor = () => {
     closeMenu && closeMenu();
     const element = document.getElementById(anchor);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
     router.push(`/?anchor=${anchor}`, { scroll: false });
   };
@@ -45,8 +48,8 @@ const NavLink = ({
       <Button
         onClick={jumpToAnchor}
         variant="link"
-        className={cn("text-muted-foreground", {
-          "font-bold text-primary": active,
+        className={cn('text-muted-foreground', {
+          'font-bold text-primary': active,
         })}
       >
         {icon}
@@ -57,26 +60,26 @@ const NavLink = ({
 };
 
 export const NavLinks = ({ closeMenu }: { closeMenu?: () => void }) => {
-  const t = useScopedI18n("navbar.links");
+  const t = useScopedI18n('navbar.links');
 
   return (
     <>
       <NavLink
-        text={t("scholarship")}
+        text={t('scholarship')}
         closeMenu={closeMenu}
         anchor="scholarship"
         icon={<Icons.graduation className="mr-2 h-5 w-5" />}
       />
 
       <NavLink
-        text={t("job")}
+        text={t('job')}
         closeMenu={closeMenu}
         anchor="jobs"
         icon={<Icons.briefcase className="mr-2 h-5 w-5" />}
       />
 
       <NavLink
-        text={t("contact")}
+        text={t('contact')}
         closeMenu={closeMenu}
         anchor="contact"
         icon={<Icons.contact className="mr-2 h-5 w-5" />}

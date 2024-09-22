@@ -1,6 +1,8 @@
-import { Button } from "@/components/ui/button";
-import { Job } from "@/jobs-helper";
-import { MDXRemote } from "next-mdx-remote/rsc";
+import { MDXRemote } from 'next-mdx-remote/rsc';
+
+import { Button } from '@/components/ui/button';
+
+import { Job } from '@/jobs-helper';
 
 export const jobsMdxComponents = { Button: Button };
 

@@ -1,8 +1,18 @@
-"use client";
+'use client';
 
-import { contactAction } from "@/actions/contact.action";
-import { Icons } from "@/components/icons";
-import { Button } from "@/components/ui/button";
+import { useEffect } from 'react';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useScopedI18n } from '@locales/client';
+import { useAction } from 'next-safe-action/hooks';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+
+import { contactAction } from '@/actions/contact.action';
+import { ContactRequest, contactSchema } from '@/schemas/contact.schema';
+
+import { Icons } from '@/components/icons';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -10,37 +20,31 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { cn } from "@/lib/utils";
-import { ContactRequest, contactSchema } from "@/schemas/contact.schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useScopedI18n } from "@locales/client";
-import { useAction } from "next-safe-action/hooks";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+
+import { cn } from '@/lib/utils';
 
 export function ContactForm() {
-  const t = useScopedI18n("section_contact.form");
+  const t = useScopedI18n('section_contact.form');
 
   const form = useForm<ContactRequest>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { name: "", email: "", message: "" },
+    defaultValues: { name: '', email: '', message: '' },
   });
 
   const { execute: contactMe, status, result } = useAction(contactAction);
 
   useEffect(() => {
-    if (status === "idle" || !result.data) return;
+    if (status === 'idle' || !result.data) return;
 
-    if (status === "hasErrored") {
+    if (status === 'hasErrored') {
       toast.error(result.data.error);
       return;
     }
 
-    if (status === "hasSucceeded") {
+    if (status === 'hasSucceeded') {
       form.reset();
       toast.success(result.data.message);
       return;
@@ -60,13 +64,13 @@ export function ContactForm() {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t("fields.name")}</FormLabel>
+                <FormLabel>{t('fields.name')}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Alfred Mouelle"
                     {...field}
-                    className={cn("", {
-                      "border-destructive": !!form.formState.errors.name,
+                    className={cn('', {
+                      'border-destructive': !!form.formState.errors.name,
                     })}
                   />
                 </FormControl>
@@ -80,13 +84,13 @@ export function ContactForm() {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t("fields.email")}</FormLabel>
+                <FormLabel>{t('fields.email')}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="alfredmouelle@gmail.com"
                     {...field}
-                    className={cn("", {
-                      "border-destructive": !!form.formState.errors.email,
+                    className={cn('', {
+                      'border-destructive': !!form.formState.errors.email,
                     })}
                   />
                 </FormControl>
@@ -101,14 +105,14 @@ export function ContactForm() {
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t("fields.message")}</FormLabel>
+              <FormLabel>{t('fields.message')}</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Message"
                   rows={7}
                   {...field}
-                  className={cn("", {
-                    "border-destructive": !!form.formState.errors.message,
+                  className={cn('', {
+                    'border-destructive': !!form.formState.errors.message,
                   })}
                 />
               </FormControl>
@@ -119,11 +123,11 @@ export function ContactForm() {
 
         <Button
           type="submit"
-          isLoading={status === "executing"}
+          isLoading={status === 'executing'}
           className="self-stretch md:self-end"
         >
-          {t("fields.submit")}
-          {status === "executing" ? null : (
+          {t('fields.submit')}
+          {status === 'executing' ? null : (
             <Icons.send className="ml-2 h-4 w-4" />
           )}
         </Button>

@@ -5,58 +5,66 @@ import path from 'node:path';
 import { z } from 'zod';
 
 const jobsRootDir = function (locale: string) {
-    return path.join(process.cwd(), `/content/jobs/${locale}`);
-}
+  return path.join(process.cwd(), `/content/jobs/${locale}`);
+};
 
 export const JobSchema = z.object({
-    startDate: z.coerce.date(),
-    endDate: z.coerce.date().nullish(),
-    company: z.string(),
-    description: z.string(),
-    position: z.string(),
-    siteUrl: z.string(),
-    readTime: z.number(),
-    featured: z.boolean().default(false),
-    stacks: z.array(z.string()),
-    published: z.boolean(),
-    meta: z.object({
-        keywords: z.array(z.string())
-    })
+  startDate: z.coerce.date(),
+  endDate: z.coerce.date().nullish(),
+  company: z.string(),
+  description: z.string(),
+  position: z.string(),
+  siteUrl: z.string(),
+  readTime: z.number(),
+  featured: z.boolean().default(false),
+  stacks: z.array(z.string()),
+  published: z.boolean(),
+  meta: z.object({
+    keywords: z.array(z.string()),
+  }),
 });
 
-export type Job = z.infer<typeof JobSchema> & { id: string; content: string }
+export type Job = z.infer<typeof JobSchema> & { id: string; content: string };
 
 export const getJobs = async (locale: ReturnType<typeof getCurrentLocale>) => {
-    let fileNames = await fs.readdir(jobsRootDir(locale));
-    fileNames = fileNames.filter(f => f.endsWith('.mdx'));
+  let fileNames = await fs.readdir(jobsRootDir(locale));
+  fileNames = fileNames.filter((f) => f.endsWith('.mdx'));
 
-    const jobs: Job[] = [];
+  const jobs: Job[] = [];
 
-    for await (const fileName of fileNames) {
-        const jobFile = await fs.readFile(path.join(jobsRootDir(locale), fileName), 'utf-8');
-        const { content, data } = matter(jobFile);
-        
-        const job = JobSchema.parse(data);
+  for await (const fileName of fileNames) {
+    const jobFile = await fs.readFile(
+      path.join(jobsRootDir(locale), fileName),
+      'utf-8'
+    );
+    const { content, data } = matter(jobFile);
 
-        if (process.env.NODE_ENV === 'production' && !data.published) {
-            continue;
-        }
+    const job = JobSchema.parse(data);
 
-        jobs.push({
-            id: fileName.replace('.mdx', ''),
-            content,
-            ...job
-        })
+    if (process.env.NODE_ENV === 'production' && !data.published) {
+      continue;
     }
 
-    jobs.sort((a, b) => new Date(b.endDate || b.startDate).getTime() - new Date(a.endDate || a.startDate).getTime());
+    jobs.push({
+      id: fileName.replace('.mdx', ''),
+      content,
+      ...job,
+    });
+  }
 
-    return jobs.sort(
-        (a, b) => Number(b.featured) - Number(a.featured),
-      );
-}
+  jobs.sort(
+    (a, b) =>
+      new Date(b.endDate || b.startDate).getTime() -
+      new Date(a.endDate || a.startDate).getTime()
+  );
 
-export const getJob = async (slug: string, locale: ReturnType<typeof getCurrentLocale>) => {
-    const jobs = await getJobs(locale);
-    return jobs.find(j => j.id === slug);
-}
+  return jobs.sort((a, b) => Number(b.featured) - Number(a.featured));
+};
+
+export const getJob = async (
+  slug: string,
+  locale: ReturnType<typeof getCurrentLocale>
+) => {
+  const jobs = await getJobs(locale);
+  return jobs.find((j) => j.id === slug);
+};

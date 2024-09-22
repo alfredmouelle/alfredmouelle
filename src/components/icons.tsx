@@ -2,7 +2,7 @@ import {
   GitHubLogoIcon,
   LinkedInLogoIcon,
   TwitterLogoIcon,
-} from "@radix-ui/react-icons";
+} from '@radix-ui/react-icons';
 import {
   ArrowRight,
   ArrowUp,
@@ -23,7 +23,7 @@ import {
   SunMedium,
   SunMoon,
   UserPen,
-} from "lucide-react";
+} from 'lucide-react';
 
 export const Icons = {
   sunMedium: SunMedium,

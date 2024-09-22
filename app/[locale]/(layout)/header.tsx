@@ -1,10 +1,12 @@
-import { SpinningLoader } from "@/components/spinning-loader";
-import Image from "next/image";
-import Link from "next/link";
-import { Suspense } from "react";
-import { LocaleToggle } from "./locale-toggle";
-import { MobileNav, NavLinks } from "./navlinks";
-import { ThemeToggle } from "./theme-toggle";
+import Image from 'next/image';
+import Link from 'next/link';
+import { Suspense } from 'react';
+
+import { SpinningLoader } from '@/components/spinning-loader';
+
+import { LocaleToggle } from './locale-toggle';
+import { MobileNav, NavLinks } from './navlinks';
+import { ThemeToggle } from './theme-toggle';
 
 export const Header = () => {
   return (

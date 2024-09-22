@@ -1,9 +1,11 @@
-import { Job } from "@/jobs-helper";
-import { cn } from "@/lib/utils";
-import { getCurrentLocale, getScopedI18n } from "@locales/server";
-import { format } from "date-fns";
-import { enUS, fr } from "date-fns/locale";
-import { Icons } from "./icons";
+import { getCurrentLocale, getScopedI18n } from '@locales/server';
+import { format } from 'date-fns';
+import { enUS, fr } from 'date-fns/locale';
+
+import { Job } from '@/jobs-helper';
+import { cn } from '@/lib/utils';
+
+import { Icons } from './icons';
 import {
   Card,
   CardContent,
@@ -11,36 +13,36 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./ui/card";
+} from './ui/card';
 
 export const JobCard = async ({ job }: { job: Job }) => {
-  const t = await getScopedI18n("job");
+  const t = await getScopedI18n('job');
 
   return (
     <Card
       className={cn(
-        "min-h-48 transition delay-0 duration-200 hover:scale-[1.02] hover:border-primary hover:bg-accent",
+        'min-h-48 transition delay-0 duration-200 hover:scale-[1.02] hover:border-primary hover:bg-accent',
         {
-          "border-yellow-500 hover:border-yellow-600": job.featured,
-        },
+          'border-yellow-500 hover:border-yellow-600': job.featured,
+        }
       )}
     >
       <CardHeader>
         <CardTitle
-          className={cn("flex items-center gap-x-2 text-primary", {
-            "text-yellow-500": job.featured,
+          className={cn('flex items-center gap-x-2 text-primary', {
+            'text-yellow-500': job.featured,
           })}
         >
-          {job.company}{" "}
+          {job.company}{' '}
           {job.siteUrl ? (
             <Icons.link
-              className={cn("h-4 w-4 text-primary", {
-                "text-yellow-500": job.featured,
+              className={cn('h-4 w-4 text-primary', {
+                'text-yellow-500': job.featured,
               })}
             />
           ) : null}
           <span className="text-xs text-muted-foreground">
-            {job.readTime} {t("readTime")}
+            {job.readTime} {t('readTime')}
           </span>
         </CardTitle>
         <CardDescription className="line-clamp-3">
@@ -60,23 +62,23 @@ export const JobCard = async ({ job }: { job: Job }) => {
 export const JobDate = async function ({
   startDate,
   endDate,
-}: Pick<Job, "endDate" | "startDate">) {
+}: Pick<Job, 'endDate' | 'startDate'>) {
   const locale = getCurrentLocale();
   const f = (date: Date) =>
-    format(date, "dd MMMM yyy", { locale: locale === "fr" ? fr : enUS });
+    format(date, 'dd MMMM yyy', { locale: locale === 'fr' ? fr : enUS });
 
-  const t = await getScopedI18n("job.period");
+  const t = await getScopedI18n('job.period');
 
   if (!endDate)
     return (
       <span className="text-xs text-muted-foreground">
-        {t("elapsed")} <span>{f(startDate)}</span>
+        {t('elapsed')} <span>{f(startDate)}</span>
       </span>
     );
 
   return (
     <span className="text-xs text-muted-foreground">
-      {t("from")} <span>{f(startDate)}</span> {t("to")}
+      {t('from')} <span>{f(startDate)}</span> {t('to')}
       <span> {f(endDate)}</span>
     </span>
   );

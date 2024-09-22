@@ -1,4 +1,9 @@
-"use client";
+'use client';
+
+import React, { PropsWithChildren } from 'react';
+
+import { useMediaQuery } from '@mantine/hooks';
+import { Drawer as DrawerPrimitive } from 'vaul';
 
 import {
   Dialog,
@@ -8,7 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 import {
   Drawer,
   DrawerContent,
@@ -17,13 +22,11 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer";
-import { cn } from "@/lib/utils";
-import { useMediaQuery } from "@mantine/hooks";
-import React, { PropsWithChildren } from "react";
-import { Drawer as DrawerPrimitive } from "vaul";
+} from '@/components/ui/drawer';
 
-const useIsMobile = () => useMediaQuery("(max-width: 768px)");
+import { cn } from '@/lib/utils';
+
+const useIsMobile = () => useMediaQuery('(max-width: 768px)');
 
 export const Modal = ({
   children,
@@ -61,7 +64,7 @@ export const ModalContent = React.forwardRef<
     <DrawerContent
       {...props}
       ref={ref}
-      className={cn("max-h-[80vh]", className)}
+      className={cn('max-h-[80vh]', className)}
     >
       <div className="mx-auto w-full max-w-sm overflow-y-auto">{children}</div>
     </DrawerContent>
@@ -69,13 +72,13 @@ export const ModalContent = React.forwardRef<
     <DialogContent
       {...props}
       ref={ref}
-      className={cn("max-h-[80vh] overflow-y-auto md:min-w-[35%]", className)}
+      className={cn('max-h-[80vh] overflow-y-auto md:min-w-[35%]', className)}
     >
       <div className="mx-auto w-full overflow-y-auto">{children}</div>
     </DialogContent>
   );
 });
-ModalContent.displayName = "ModalContent";
+ModalContent.displayName = 'ModalContent';
 
 export const ModalHeader = ({
   children,
@@ -89,7 +92,7 @@ export const ModalHeader = ({
     <DialogHeader {...props}>{children}</DialogHeader>
   );
 };
-ModalHeader.displayName = "ModalHeader";
+ModalHeader.displayName = 'ModalHeader';
 
 export const ModalFooter = ({
   children,
@@ -103,7 +106,7 @@ export const ModalFooter = ({
     <DialogFooter {...props}>{children}</DialogFooter>
   );
 };
-ModalFooter.displayName = "ModalFooter";
+ModalFooter.displayName = 'ModalFooter';
 
 export const ModalTitle = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Title>,
@@ -121,7 +124,7 @@ export const ModalTitle = React.forwardRef<
     </DialogTitle>
   );
 });
-ModalTitle.displayName = "ModalTitle";
+ModalTitle.displayName = 'ModalTitle';
 
 export const ModalDescription = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Title>,
@@ -139,13 +142,13 @@ export const ModalDescription = React.forwardRef<
     </DialogDescription>
   );
 });
-ModalDescription.displayName = "ModalDescription";
+ModalDescription.displayName = 'ModalDescription';
 
 export const ModalContentWrapper = ({ children }: PropsWithChildren<{}>) => {
   const isMobile = useIsMobile();
 
   return (
-    <div className={cn("", { "px-4 py-2": isMobile, "py-4": !isMobile })}>
+    <div className={cn('', { 'px-4 py-2': isMobile, 'py-4': !isMobile })}>
       {children}
     </div>
   );

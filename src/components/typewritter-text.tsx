@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import Typewriter from "typewriter-effect";
+import Typewriter from 'typewriter-effect';
 
 const TypewriterText = ({
   className,

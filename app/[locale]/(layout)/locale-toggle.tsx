@@ -1,26 +1,28 @@
-"use client";
+'use client';
 
-import { Icons } from "@/components/icons";
-import { Button } from "@/components/ui/button";
+import {
+  useChangeLocale,
+  useCurrentLocale,
+  useScopedI18n,
+} from '@locales/client';
+
+import { Icons } from '@/components/icons';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { cn } from "@/lib/utils";
-import {
-  useChangeLocale,
-  useCurrentLocale,
-  useScopedI18n,
-} from "@locales/client";
+} from '@/components/ui/dropdown-menu';
+
+import { cn } from '@/lib/utils';
 
 const Item = function ({
   label,
   locale,
 }: {
   label: string;
-  locale: "en" | "fr";
+  locale: 'en' | 'fr';
 }) {
   const changeLocale = useChangeLocale();
   const currentLocale = useCurrentLocale();
@@ -29,8 +31,8 @@ const Item = function ({
     <DropdownMenuItem
       onClick={() => changeLocale(locale)}
       className={cn(
-        "flex items-center justify-between",
-        locale === currentLocale ? "bg-accent text-accent-foreground" : "",
+        'flex items-center justify-between',
+        locale === currentLocale ? 'bg-accent text-accent-foreground' : ''
       )}
     >
       <span>{label}</span>
@@ -40,20 +42,20 @@ const Item = function ({
 };
 
 export const LocaleToggle = () => {
-  const t = useScopedI18n("navbar.locales");
+  const t = useScopedI18n('navbar.locales');
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="">
           <Icons.language className="h-5 w-5" />
-          <span className="sr-only">{t("label")}</span>
+          <span className="sr-only">{t('label')}</span>
         </Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end">
-        <Item locale="fr" label={t("fr")} />
-        <Item locale="en" label={t("en")} />
+        <Item locale="fr" label={t('fr')} />
+        <Item locale="en" label={t('en')} />
       </DropdownMenuContent>
     </DropdownMenu>
   );

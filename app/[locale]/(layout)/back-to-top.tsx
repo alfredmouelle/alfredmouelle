@@ -1,9 +1,11 @@
-"use client";
+'use client';
 
-import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
-import { Icons } from "../../../src/components/icons";
-import { Button } from "../../../src/components/ui/button";
+import { useEffect, useState } from 'react';
+
+import { cn } from '@/lib/utils';
+
+import { Icons } from '../../../src/components/icons';
+import { Button } from '../../../src/components/ui/button';
 
 export const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,14 +19,14 @@ export const BackToTop = () => {
       }
     };
 
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    window.addEventListener('scroll', toggleVisibility);
+    return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
@@ -33,10 +35,10 @@ export const BackToTop = () => {
       variant="outline"
       onClick={scrollToTop}
       className={cn(
-        "fixed bottom-4 right-4 h-auto rounded-full p-3 opacity-0 shadow-lg transition md:bottom-8 md:right-8",
+        'fixed bottom-4 right-4 h-auto rounded-full p-3 opacity-0 shadow-lg transition md:bottom-8 md:right-8',
         {
-          "opacity-100": isVisible,
-        },
+          'opacity-100': isVisible,
+        }
       )}
     >
       <Icons.arrowUp className="h-7 w-7" />
