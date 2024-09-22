@@ -45,5 +45,10 @@ export const AppConfig = {
         "Découvrez le portfolio d'Alfred Mouelle, développeur web et mobile. Explorez ses projets, compétences et expériences professionnelles.",
       images: ['/assets/images/og.webp'],
     },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { follow: true, index: true }
+    }
   } satisfies Metadata,
 };
