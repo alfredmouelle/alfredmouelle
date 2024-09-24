@@ -2,13 +2,13 @@ import { Metadata } from 'next';
 
 export const AppConfig = {
   metadata: {
-    metadataBase: new URL('https://alfredmouelle.vercel.app'),
+    metadataBase: new URL('https://alfredmouelle.com'),
     creator: 'Alfred Mouelle',
     category: 'Portfolio',
     title: 'Alfred Mouelle - Développeur Web et Mobile',
     authors: {
       name: 'Alfred Mouelle',
-      url: 'https://alfredmouelle.vercel.app',
+      url: 'https://alfredmouelle.com',
     },
     icons: ['/assets/logo.svg'],
     description:
@@ -25,7 +25,7 @@ export const AppConfig = {
       title: 'Alfred Mouelle - Développeur Web et Mobile',
       description:
         "Découvrez le portfolio d'Alfred Mouelle, développeur web et mobile. Explorez ses projets, compétences et expériences professionnelles.",
-      url: 'https://alfredmouelle.vercel.app',
+      url: 'https://alfredmouelle.com',
       type: 'website',
       siteName: 'Portfolio Alfred Mouelle',
       images: [

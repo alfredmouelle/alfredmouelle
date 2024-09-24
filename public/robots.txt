@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://alfredmouelle.vercel.app
+Host: https://alfredmouelle.com
 
 # Sitemaps
-Sitemap: https://alfredmouelle.vercel.app/sitemap.xml
+Sitemap: https://alfredmouelle.com/sitemap.xml
