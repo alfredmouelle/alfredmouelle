@@ -48,7 +48,10 @@ export const AppConfig = {
     robots: {
       index: true,
       follow: true,
-      googleBot: { follow: true, index: true }
-    }
+      googleBot: { follow: true, index: true },
+    },
+    other: {
+      'google-site-verification': '1UkBQgE4Mk9e9-dhGk1NiHAzu5d80bPt3NKUaqoUyDM',
+    },
   } satisfies Metadata,
 };

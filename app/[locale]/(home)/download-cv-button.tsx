@@ -2,6 +2,7 @@
 
 import { useCurrentLocale, useScopedI18n } from '@locales/client';
 
+import { GradientBorder } from '@/components/gradient-border';
 import { Icons } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 
@@ -15,9 +16,14 @@ export const DownloadCvButton = () => {
   };
 
   return (
-    <Button onClick={download}>
-      {t('downloadCvBtn')} <Icons.download className="ml-2 h-4 w-4" />
-    </Button>
+    <GradientBorder>
+      <Button
+        onClick={download}
+        className="gradient is-blue dark:text-slate-300 text-gray-700 hover:text-white transition-colors duration-200 ease-in"
+      >
+        {t('downloadCvBtn')} <Icons.download className="ml-2 h-4 w-4" />
+      </Button>
+    </GradientBorder>
   );
 };
 

@@ -112,3 +112,15 @@
   background-clip: padding-box, border-box;
   background-origin: border-box;
 }
+
+.gradient.is-blue {
+  width: fit-content;
+  background:
+    linear-gradient(transparent, transparent) /** padding box**/,
+    linear-gradient(var(--gradient-rotation, 120deg), #2464ec, transparent)
+      /** border box **/;
+
+  border: 4px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+}
