@@ -9,7 +9,10 @@ export const SectionScholarship = async () => {
   const t = await getScopedI18n('section_scholarship');
 
   return (
-    <Section id="scholarship">
+    <Section
+      id="scholarship"
+      className="bg-gradient-to-b from-blue-500/25 via-transparent to-transparent"
+    >
       <SectionTitle>{t('title')}</SectionTitle>
 
       <div className="grid md:grid-cols-2">
@@ -18,6 +21,7 @@ export const SectionScholarship = async () => {
           width={500}
           height={500}
           alt="Mascotte"
+          className="hover:scale-[1.01] transition-transform duration-300 ease-out"
         />
 
         <div className="relative">

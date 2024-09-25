@@ -21,7 +21,7 @@ export const JobCard = async ({ job }: { job: Job }) => {
   return (
     <Card
       className={cn(
-        'min-h-48 transition delay-0 duration-200 hover:scale-[1.02] hover:border-primary hover:bg-accent',
+        'min-h-48 transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent',
         {
           'border-yellow-500 hover:border-yellow-600': job.featured,
         }
@@ -65,7 +65,7 @@ export const JobDate = async function ({
 }: Pick<Job, 'endDate' | 'startDate'>) {
   const locale = getCurrentLocale();
   const f = (date: Date) =>
-    format(date, 'dd MMMM yyy', { locale: locale === 'fr' ? fr : enUS });
+    format(date, 'MMMM yyy', { locale: locale === 'fr' ? fr : enUS });
 
   const t = await getScopedI18n('job.period');
 

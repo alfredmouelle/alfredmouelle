@@ -70,9 +70,9 @@ export default {
     visitWebsite: 'Visiter le site web',
     readTime: 'mins de lecture',
     period: {
-      elapsed: 'Depuis le',
-      from: 'Du',
-      to: 'au'
+      elapsed: 'Depuis',
+      from: 'De',
+      to: 'à'
     }
   },
 
