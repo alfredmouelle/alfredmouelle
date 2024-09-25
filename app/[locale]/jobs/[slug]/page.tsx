@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { getCurrentLocale, getI18n } from '@locales/server';
@@ -10,7 +11,6 @@ import { Section } from '@/components/section';
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -60,13 +60,21 @@ export default async function JobPage({ params }: PageProps) {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/">{t('breadcrumb.home')}</BreadcrumbLink>
+              <Link
+                href="/"
+                className="hover:text-foreground transition-colors duration-200 ease-in"
+              >
+                {t('breadcrumb.home')}
+              </Link>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href="/jobs">
+              <Link
+                href="/jobs"
+                className="hover:text-foreground transition-colors duration-150 ease-in"
+              >
                 {t('breadcrumb.jobs')}
-              </BreadcrumbLink>
+              </Link>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>

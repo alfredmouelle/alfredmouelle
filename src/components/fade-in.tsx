@@ -17,21 +17,22 @@ export function FadeInSection({
   const domRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const currentRef = domRef.current;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => setVisible(entry.isIntersecting));
     });
 
-    if (domRef.current) {
-      observer.observe(domRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
-    if (isVisible && domRef.current) {
-      observer.unobserve(domRef.current);
+    if (isVisible && currentRef) {
+      observer.unobserve(currentRef);
     }
 
     return () => {
-      if (domRef.current) {
-        observer.unobserve(domRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [isVisible]);

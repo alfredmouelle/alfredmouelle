@@ -8,7 +8,6 @@ import { Section, SectionTitle } from '@/components/section';
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -32,7 +31,12 @@ export default async function JobsPage({ params }: PageProps) {
       <Breadcrumb className="mb-4">
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">{t('breadcrumb.home')}</BreadcrumbLink>
+            <Link
+              href="/"
+              className="hover:text-foreground transition-colors duration-150 ease-in"
+            >
+              {t('breadcrumb.home')}
+            </Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
