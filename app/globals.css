@@ -100,3 +100,15 @@
   opacity: var(--hero-opacity);
   animation: spin linear infinite normal 15s;
 }
+
+.gradient {
+  width: fit-content;
+  background:
+    linear-gradient(#020916, #020916) /** padding box**/,
+    linear-gradient(var(--gradient-rotation, 0deg), #9c60d7, #02091600)
+      /** border box **/;
+
+  border: 4px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+}
