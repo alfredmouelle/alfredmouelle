@@ -67,7 +67,7 @@ async function SkillCard({ skill }: { skill: Skill }) {
   const t = await getScopedI18n('section_skills');
 
   return (
-    <Card className="h-full flex flex-col transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent cursor-pointer">
+    <Card className="group h-full flex flex-col transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent cursor-pointer">
       <CardHeader className="flex-grow">
         <CardTitle className="flex items-center gap-x-2 text-primary">
           <skill.icon className="w-5 h-5 mr-2" />
@@ -80,7 +80,11 @@ async function SkillCard({ skill }: { skill: Skill }) {
         <ul className="flex flex-wrap gap-2">
           {skill.mainSkills.map((skillItem, index) => (
             <li key={index}>
-              <Button size="sm" variant="outline">
+              <Button
+                size="sm"
+                variant="outline"
+                className="group-hover:bg-primary group-hover:text-white transition-colors ease-in duration-150"
+              >
                 {skillItem}
               </Button>
             </li>

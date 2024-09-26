@@ -20,16 +20,16 @@ export const SectionContact = async () => {
             className="group flex flex-col items-center justify-center gap-y-1.5 text-xs text-gray-500 transition delay-0 duration-200 hover:scale-[1.03] hover:text-primary md:text-sm"
             target="_blank"
           >
-            <Icons.github className="h-10 w-10 text-blue-300 group-hover:text-primary" />
+            <Icons.github className="h-8 w-8 text-muted-foreground group-hover:text-primary" />
             @alfredmouelle
           </a>
 
           <a
             href="https://twitter.com/kali47_"
-            className="group flex flex-col items-center justify-center gap-y-1.5 text-xs text-gray-500 transition delay-0 duration-200 hover:scale-[1.03] hover:text-primary md:text-sm"
+            className="group flex flex-col items-center justify-center gap-y-1.5 text-xs text-muted-foreground transition delay-0 duration-200 hover:scale-[1.03] hover:text-primary md:text-sm"
             target="_blank"
           >
-            <Icons.twitter className="h-10 w-10 text-blue-300 group-hover:text-primary" />
+            <Icons.twitter className="h-8 w-8 text-muted-foreground group-hover:text-primary" />
             @kali47_
           </a>
 
@@ -38,7 +38,7 @@ export const SectionContact = async () => {
             className="group flex flex-col items-center justify-center gap-y-1.5 text-xs text-gray-500 transition delay-0 duration-200 hover:scale-[1.03] hover:text-primary md:text-sm"
             target="_blank"
           >
-            <Icons.linkedin className="h-10 w-10 text-blue-300 group-hover:text-primary" />
+            <Icons.linkedin className="h-8 w-8 text-muted-foreground group-hover:text-primary" />
             LinkedIn
           </a>
 
@@ -47,7 +47,7 @@ export const SectionContact = async () => {
             className="group flex flex-col items-center justify-center gap-y-1.5 text-xs text-gray-500 transition delay-0 duration-200 hover:scale-[1.03] hover:text-primary md:text-sm"
             target="_blank"
           >
-            <Icons.mail className="h-10 w-10 text-blue-300 group-hover:text-primary" />
+            <Icons.mail className="h-8 w-8 text-muted-foreground group-hover:text-primary" />
             Email
           </a>
 
@@ -56,7 +56,7 @@ export const SectionContact = async () => {
             className="group flex flex-col items-center justify-center gap-y-1.5 text-xs text-gray-500 transition delay-0 duration-200 hover:scale-[1.03] hover:text-primary md:text-sm"
             target="_blank"
           >
-            <Icons.website className="h-10 w-10 text-blue-300 group-hover:text-primary" />
+            <Icons.website className="h-8 w-8 text-muted-foreground group-hover:text-primary" />
             ComeUp
           </a>
 
@@ -65,7 +65,7 @@ export const SectionContact = async () => {
             className="group flex flex-col items-center justify-center gap-y-1.5 text-xs text-gray-500 transition delay-0 duration-200 hover:scale-[1.03] hover:text-primary md:text-sm"
             target="_blank"
           >
-            <Icons.phone className="h-10 w-10 text-blue-300 group-hover:text-primary" />
+            <Icons.phone className="h-8 w-8 text-muted-foreground group-hover:text-primary" />
             +237 693 69 27 21
           </a>
         </div>
