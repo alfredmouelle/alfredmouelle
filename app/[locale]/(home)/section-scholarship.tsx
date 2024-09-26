@@ -17,7 +17,6 @@ export const SectionScholarship = async () => {
 
       <div className="grid md:grid-cols-2">
         <Image
-          priority
           width={500}
           height={500}
           quality={85}

@@ -34,7 +34,6 @@ const BeVietnamPro = localFont({
       style: 'normal',
     },
   ],
-  preload: true,
   display: 'swap',
   variable: '--font-main',
 });
@@ -47,7 +46,6 @@ const TiltPrism = localFont({
       style: 'normal',
     },
   ],
-  preload: true,
   display: 'swap',
   variable: '--font-brand',
 });
