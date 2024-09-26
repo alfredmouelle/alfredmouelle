@@ -18,6 +18,8 @@ import {
 
 import { cn } from '@/lib/utils';
 
+import { TiltPrism } from './fonts';
+
 const NavLink = ({
   text,
   icon,
@@ -48,7 +50,7 @@ const NavLink = ({
       <Button
         onClick={jumpToAnchor}
         variant="link"
-        className={cn('text-muted-foreground', {
+        className={cn('text-foreground', {
           'font-bold text-primary': active,
         })}
       >
@@ -102,7 +104,12 @@ export const MobileNav = () => {
 
       <SheetContent side="left" aria-describedby="app-menu">
         <SheetHeader>
-          <SheetTitle className="font-brand text-2xl font-semibold md:text-3xl">
+          <SheetTitle
+            className={cn(
+              'text-2xl font-semibold md:text-3xl',
+              TiltPrism.className
+            )}
+          >
             <div className="flex items-center justify-center gap-x-2">
               <Image src="/assets/logo.svg" alt="Logo" width={25} height={25} />
               Portfolio

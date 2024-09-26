@@ -7,9 +7,9 @@ import { Toaster } from 'sonner';
 import { AppConfig } from '@/app.config';
 import { cn } from '@/lib/utils';
 
-import '../fonts.css';
 import '../globals.css';
 import { BackToTop } from './(layout)/back-to-top';
+import { BeVietnamPro } from './(layout)/fonts';
 import { Footer } from './(layout)/footer';
 import { Header } from './(layout)/header';
 import { Provider } from './provider';
@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className="h-full scroll-smooth antialiased"
+      className={cn('h-full scroll-smooth antialiased', BeVietnamPro.className)}
       suppressHydrationWarning
     >
       <body

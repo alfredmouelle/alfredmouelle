@@ -122,10 +122,6 @@ const config = {
           },
         },
     }),
-      fontFamily: {
-        global: ['BeVietnamPro', 'sans-serif'],
-        brand: ['TiltPrism', 'sans-serif']
-      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
