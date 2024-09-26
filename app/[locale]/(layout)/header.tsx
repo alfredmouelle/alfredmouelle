@@ -6,6 +6,7 @@ import { SpinningLoader } from '@/components/spinning-loader';
 
 import { LocaleToggle } from './locale-toggle';
 import { MobileNav, NavLinks } from './navlinks';
+import { SkeletonNav } from './skeleton-nav';
 import { ThemeToggle } from './theme-toggle';
 
 export const Header = () => {
@@ -18,7 +19,7 @@ export const Header = () => {
           </Link>
 
           <ul className="ml-10 hidden items-center gap-10 justify-self-start text-sm font-medium md:flex">
-            <Suspense fallback={<SpinningLoader />}>
+            <Suspense fallback={<SkeletonNav />}>
               <NavLinks />
             </Suspense>
           </ul>
@@ -26,7 +27,9 @@ export const Header = () => {
 
         <div className="flex flex-1 items-center justify-end gap-x-1.5">
           <LocaleToggle />
-          <ThemeToggle />
+          <Suspense fallback={<SpinningLoader />}>
+            <ThemeToggle />
+          </Suspense>
           <MobileNav />
         </div>
       </nav>
