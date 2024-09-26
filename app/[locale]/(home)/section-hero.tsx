@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import { getScopedI18n } from '@locales/server';
 
 import { GradientBorder } from '@/components/gradient-border';
@@ -8,6 +6,7 @@ import TypewriterText from '@/components/typewritter-text';
 
 import { ContactButton } from './contact-button';
 import { DownloadCvButton } from './download-cv-button';
+import { HeroImage } from './hero-image';
 
 export const SectionHero = async () => {
   const t = await getScopedI18n('section_hero');
@@ -40,16 +39,7 @@ export const SectionHero = async () => {
 
         <GradientBorder>
           <div className="order-1 md:order-none gradient rounded-full">
-            <Image
-              src="/assets/images/hero-avatar.webp"
-              className="rounded-full shadow-lg hover:scale-[1.01] transition-transform duration-300 ease-in"
-              alt="Photo de moi"
-              width={500}
-              height={500}
-              priority
-              loading="eager"
-              sizes="(max-width: 768px) 100vw, 500px"
-            />
+            <HeroImage />
           </div>
         </GradientBorder>
       </div>
