@@ -29,7 +29,7 @@ export const SectionScholarship = async () => {
           <div className="space-y-8">
             <div className="flex w-full items-center">
               <div className="w-1/2 pr-8 text-right">
-                <h3 className="text-lg font-semibold">{t('bts.title')}</h3>
+                <h2 className="text-lg font-semibold">{t('bts.title')}</h2>
                 <p className="text-blue-500">{t('bts.specialty')}</p>
                 <p className="text-gray-500">2018 - 2020</p>
               </div>
@@ -45,7 +45,7 @@ export const SectionScholarship = async () => {
 
             <div className="flex w-full items-center">
               <div className="w-1/2 pr-8 text-right">
-                <h3 className="text-lg font-semibold">{t('bac.title')}</h3>
+                <h2 className="text-lg font-semibold">{t('bac.title')}</h2>
                 <p className="text-blue-500">{t('bac.specialty')}</p>
                 <p className="text-gray-500">2017 - 2018</p>
               </div>
@@ -60,9 +60,9 @@ export const SectionScholarship = async () => {
 
             <div className="flex w-full items-center">
               <div className="w-1/2 pr-8 text-right">
-                <h3 className="text-lg font-semibold">
+                <h2 className="text-lg font-semibold">
                   {t('probatoire.title')}
-                </h3>
+                </h2>
                 <p className="text-blue-500">{t('bac.specialty')}</p>
                 <p className="text-gray-500">2016 - 2017</p>
               </div>
