@@ -17,11 +17,14 @@ export const SectionScholarship = async () => {
 
       <div className="grid md:grid-cols-2">
         <Image
-          src="/assets/images/education-man.svg"
+          priority
           width={500}
           height={500}
+          quality={85}
           alt="Mascotte"
-          className="hover:scale-[1.01] transition-transform duration-300 ease-out"
+          src="/assets/images/education-man.svg"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
+          className="hover:scale-[1.01] transition-transform duration-300 ease-in"
         />
 
         <div className="relative">

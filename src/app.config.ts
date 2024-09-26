@@ -10,7 +10,14 @@ export const AppConfig = {
       name: 'Alfred Mouelle',
       url: 'https://alfredmouelle.com',
     },
-    icons: ['/assets/logo.svg'],
+    icons: {
+      icon: [
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/assets/logo.svg', type: 'image/svg+xml' },
+      ],
+      apple: '/apple-touch-icon.webp',
+    },
+    manifest: '/manifest.webmanifest',
     description:
       "Découvrez le portfolio d'Alfred Mouelle, développeur web et mobile. Explorez ses projets, compétences et expériences professionnelles.",
     keywords: [
