@@ -74,6 +74,13 @@ export const NavLinks = ({ closeMenu }: { closeMenu?: () => void }) => {
       />
 
       <NavLink
+        text={t('skills')}
+        closeMenu={closeMenu}
+        anchor="skills"
+        icon={<Icons.skill className="mr-2 h-5 w-5" />}
+      />
+
+      <NavLink
         text={t('job')}
         closeMenu={closeMenu}
         anchor="jobs"

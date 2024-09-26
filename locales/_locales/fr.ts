@@ -3,21 +3,35 @@ export default {
     links: {
       scholarship: 'Parcours Académique',
       job: 'Parcours Professionnel',
-      contact: 'Me contacter'
+      contact: 'Me contacter',
+      skills: 'Compétences',
     },
     locales: {
       label: 'Changer de langue',
       fr: '🇫🇷 Français',
-      en: '🇬🇧 Anglais'
-    }
+      en: '🇬🇧 Anglais',
+    },
+  },
+
+  section_skills: {
+    title: 'Compétences',
+    backend_desc:
+      'Expertise en Node.js, PHP (Laravel, Symfony) et Java Spring Boot pour des applications serveur robustes.',
+    frontend_desc:
+      "Création d'interfaces modernes avec Next.js, Nuxt et Angular pour des applications web réactives et dynamiques.",
+    mobile_desc:
+      "Développement d'applications mobiles multi-plateformes avec Flutter et React Native pour iOS et Android.",
+    node_code_desc:
+      'Maîtrise de Webflow pour la création de sites Web sans code, permettant un prototypage rapide et une mise en œuvre de la conception.',
   },
 
   section_hero: {
     greetings: 'Salut, je suis',
     position: 'Développeur FullStack',
-    description: 'Basé au Cameroun avec 5 ans d’expérience dans le développement web et la conception d’applications. Passionné et autodidacte, j’ai acquis des compétences solides en ingénierie logicielle à travers de nombreux projets. Mon objectif est de maîtriser les nouvelles technologies pour non seulement enrichir mes connaissances, mais surtout pour offrir des solutions adaptées et de grande qualité à ceux qui en ont besoin. En tant que freelance, je suis dévoué à fournir un service efficace et à contribuer activement à la réussite des projets qui me sont confiés.',
+    description:
+      'Basé au Cameroun avec 5 ans d’expérience dans le développement web et la conception d’applications. Passionné et autodidacte, j’ai acquis des compétences solides en ingénierie logicielle à travers de nombreux projets. Mon objectif est de maîtriser les nouvelles technologies pour non seulement enrichir mes connaissances, mais surtout pour offrir des solutions adaptées et de grande qualité à ceux qui en ont besoin. En tant que freelance, je suis dévoué à fournir un service efficace et à contribuer activement à la réussite des projets qui me sont confiés.',
     downloadCvBtn: 'Télécharger mon CV',
-    contact: 'Me contacter'
+    contact: 'Me contacter',
   },
 
   section_scholarship: {
@@ -26,22 +40,22 @@ export default {
       title: 'Brevet de Technicien Supérieur',
       specialty: 'Génie Logiciel',
       location: 'Douala - Cameroun',
-      academy: 'Institut Universitaire des Grandes Ecoles des Tropiques'
+      academy: 'Institut Universitaire des Grandes Ecoles des Tropiques',
     },
     bac: {
       title: 'Baccalauréat',
-      specialty: 'Technologie de l\'information',
+      specialty: "Technologie de l'information",
       location1: 'Lycée Bilingue de Kribi',
-      location2: 'Kribi - Cameroun'
+      location2: 'Kribi - Cameroun',
     },
     probatoire: {
-      title: 'Probatoire'
-    }
+      title: 'Probatoire',
+    },
   },
 
   section_jobs: {
     title: 'Parcours Professionnel',
-    showJobs: 'Voir tout'
+    showJobs: 'Voir tout',
   },
 
   section_contact: {
@@ -57,18 +71,19 @@ export default {
       errors: {
         email: 'Veuillez fournir une adresse email valide.',
         name: 'Le nom doit comporter au moins 2 caractères.',
-        message: 'Le message doit comporter au moins 10 caractères.'
+        message: 'Le message doit comporter au moins 10 caractères.',
       },
       messages: {
         success: 'Votre message a bien été envoyé.',
-        error: 'Une erreur est survenue lors de l\'envoi de votre message, veuillez réessayer.'
-      }
-    }
+        error:
+          "Une erreur est survenue lors de l'envoi de votre message, veuillez réessayer.",
+      },
+    },
   },
 
   breadcrumb: {
     home: 'Accueil',
-    jobs: 'Parcours professionnel'
+    jobs: 'Parcours professionnel',
   },
 
   job: {
@@ -77,11 +92,11 @@ export default {
     period: {
       elapsed: 'Depuis',
       from: 'De',
-      to: 'à'
-    }
+      to: 'à',
+    },
   },
 
   footer: {
-    text: 'Conception et intégration par Alfred Mouelle. Tous droits réservés.'
-  }
+    text: 'Conception et intégration par Alfred Mouelle. Tous droits réservés.',
+  },
 } as const;
