@@ -13,7 +13,10 @@ export const SectionHero = async () => {
   const t = await getScopedI18n('section_hero');
 
   return (
-    <Section className="bg-gradient-to-b from-transparent via-transparent to-blue-500/25">
+    <Section
+      skipFadeIn={true}
+      className="bg-gradient-to-b from-transparent via-transparent to-blue-500/25"
+    >
       <div className="hero grid min-h-[calc(100vh-14rem)] items-center gap-4 md:grid-cols-3">
         <div className="hero-brand relative order-2 flex flex-col gap-y-2 text-center md:order-none md:col-span-2 md:text-left">
           <p className="text-muted-foreground">{t('greetings')}</p>

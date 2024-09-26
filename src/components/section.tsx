@@ -6,19 +6,27 @@ import { FadeInSection } from './fade-in';
 
 interface PageWrapperProps extends HTMLAttributes<HTMLElement> {
   innerWrapperClassName?: string;
+  skipFadeIn?: boolean;
 }
 
 export const Section = ({
   children,
   className,
+  skipFadeIn,
   innerWrapperClassName,
   ...props
 }: PropsWithChildren<PageWrapperProps>) => {
   return (
     <section className={cn('py-10 md:py-24', className)} {...props}>
-      <FadeInSection>
+      {skipFadeIn ? (
         <div className={cn('container', innerWrapperClassName)}>{children}</div>
-      </FadeInSection>
+      ) : (
+        <FadeInSection>
+          <div className={cn('container', innerWrapperClassName)}>
+            {children}
+          </div>
+        </FadeInSection>
+      )}
     </section>
   );
 };

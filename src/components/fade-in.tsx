@@ -40,7 +40,7 @@ export function FadeInSection({
   return (
     <div
       className={cn(
-        'transition-opacity duration-100 ease-in',
+        'transition-opacity duration-200 ease-in',
         {
           'opacity-0': !isVisible,
           'opacity-100': isVisible,
