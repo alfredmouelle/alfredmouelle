@@ -19,7 +19,6 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -74,7 +73,12 @@ export function ContactForm() {
                     })}
                   />
                 </FormControl>
-                <FormMessage />
+
+                {form.formState.errors.name ? (
+                  <p className="text-[0.8rem] font-medium text-destructive">
+                    {t('errors.name')}
+                  </p>
+                ) : null}
               </FormItem>
             )}
           />
@@ -94,7 +98,12 @@ export function ContactForm() {
                     })}
                   />
                 </FormControl>
-                <FormMessage />
+
+                {form.formState.errors.email ? (
+                  <p className="text-[0.8rem] font-medium text-destructive">
+                    {t('errors.email')}
+                  </p>
+                ) : null}
               </FormItem>
             )}
           />
@@ -116,7 +125,12 @@ export function ContactForm() {
                   })}
                 />
               </FormControl>
-              <FormMessage />
+
+              {form.formState.errors.message ? (
+                <p className="text-[0.8rem] font-medium text-destructive">
+                  {t('errors.message')}
+                </p>
+              ) : null}
             </FormItem>
           )}
         />

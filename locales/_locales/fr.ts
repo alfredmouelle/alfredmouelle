@@ -54,6 +54,11 @@ export default {
         name: 'Votre nom et prénom',
         submit: 'Envoyer',
       },
+      errors: {
+        email: 'Veuillez fournir une adresse email valide.',
+        name: 'Le nom doit comporter au moins 2 caractères.',
+        message: 'Le message doit comporter au moins 10 caractères.'
+      },
       messages: {
         success: 'Votre message a bien été envoyé.',
         error: 'Une erreur est survenue lors de l\'envoi de votre message, veuillez réessayer.'
@@ -77,6 +82,6 @@ export default {
   },
 
   footer: {
-    copy: 'Tous droits réservés.'
+    text: 'Conception et intégration par Alfred Mouelle. Tous droits réservés.'
   }
 } as const;
