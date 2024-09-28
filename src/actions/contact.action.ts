@@ -18,7 +18,7 @@ export const contactAction = action
       await resend.emails.send({
         to: 'alfredmouelle@gmail.com',
         react: ContactEmail(parsedInput),
-        from: 'Portfolio <infos@resend.dev>',
+        from: 'Mon Portfolio <infos@resend.dev>',
         subject: 'Nouveau message de contact',
       });
 

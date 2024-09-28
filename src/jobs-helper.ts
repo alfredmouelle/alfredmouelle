@@ -24,7 +24,7 @@ export const JobSchema = z.object({
   }),
 });
 
-export type Job = z.infer<typeof JobSchema> & { id: string; content: string };
+export type Job = z.infer<typeof JobSchema> & { slug: string; content: string };
 
 export const getJobs = async (locale: ReturnType<typeof getCurrentLocale>) => {
   let fileNames = await fs.readdir(jobsRootDir(locale));
@@ -46,7 +46,7 @@ export const getJobs = async (locale: ReturnType<typeof getCurrentLocale>) => {
     }
 
     jobs.push({
-      id: fileName.replace('.mdx', ''),
+      slug: fileName.replace(/^\d+-/, "").replace(".mdx", ""),
       content,
       ...job,
     });
@@ -66,5 +66,5 @@ export const getJob = async (
   locale: ReturnType<typeof getCurrentLocale>
 ) => {
   const jobs = await getJobs(locale);
-  return jobs.find((j) => j.id === slug);
+  return jobs.find((j) => j.slug === slug);
 };

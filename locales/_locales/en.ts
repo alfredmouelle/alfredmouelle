@@ -63,19 +63,24 @@ export default {
     quickContact: 'Quick Links',
     form: {
       fields: {
-        email: 'Your email',
+        email: 'Your email address',
         message: 'Your message',
-        name: 'Your name and surname',
-        submit: 'Send',
+        name: 'Your full name',
+        subject: 'Your message subject',
+        submit: 'Submit',
       },
       errors: {
-        email: 'Please provide a valid email address.',
-        name: 'The name must be at least 2 characters long.',
-        message: 'The message must be at least 10 characters long.',
+        email: 'Please enter a valid email address.',
+        name: 'Your name must be at least two characters long.',
+        subject: 'The subject line must be at least two characters long.',
+        message: 'Your message must be at least ten characters long.',
+      },
+      placeholders: {
+        subject: 'Proposal for a service of...'
       },
       messages: {
-        success: 'Your message has been sent successfully.',
-        error: 'Error sending the message, please try again.',
+        success: 'Your message has been successfully transmitted.',
+        error: 'An error occurred while sending your message. Please try again.',
       },
     },
   },

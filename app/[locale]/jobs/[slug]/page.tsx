@@ -28,7 +28,7 @@ interface PageProps {
 
 export async function generateStaticParams({ params }: PageProps) {
   const files = await getJobs(params.locale);
-  return files.map((job) => ({ slug: job.id })).concat();
+  return files.map((job) => ({ slug: job.slug })).concat();
 }
 
 export async function generateMetadata({ params }: PageProps) {
@@ -36,15 +36,29 @@ export async function generateMetadata({ params }: PageProps) {
 
   if (!job) return notFound();
 
+  const title = `${job.position} at ${job.company}`;
+
   return {
-    title: `Alfred Mouelle | ${job.position} at ${job.company}`,
+    title,
     description: job.description,
     keywords: job.meta.keywords,
+    authors: [
+      {
+        name: 'Alfred Mouelle',
+        url: 'https://alfredmouelle.com',
+      },
+    ],
     openGraph: {
-      title: `Alfred Mouelle | ${job.position} at ${job.company}`,
+      title,
       description: job.description,
       type: 'article',
       authors: 'Alfred Mouelle',
+      url: `https://alfredmouelle.com/jobs/${params.slug}`,
+    },
+    twitter: {
+      title,
+      description: job.description,
+      card: 'summary_large_image',
     },
   } satisfies Metadata;
 }

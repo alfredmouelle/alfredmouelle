@@ -30,7 +30,7 @@ export function ContactForm() {
 
   const form = useForm<ContactRequest>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { name: '', email: '', message: '' },
+    defaultValues: { name: '', email: '', message: '', subject: '' },
   });
 
   const { execute: contactMe, status, result } = useAction(contactAction);
@@ -57,7 +57,7 @@ export function ContactForm() {
         className="mt-10 flex flex-col gap-y-4"
         onSubmit={form.handleSubmit(contactMe)}
       >
-        <div className="grid items-center gap-4 md:grid-cols-2">
+        <div className="grid items-center gap-4 md:grid-cols-3">
           <FormField
             name="name"
             control={form.control}
@@ -102,6 +102,31 @@ export function ContactForm() {
                 {form.formState.errors.email ? (
                   <p className="text-[0.8rem] font-medium text-destructive">
                     {t('errors.email')}
+                  </p>
+                ) : null}
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            name="subject"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{t('fields.subject')}</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder={t('placeholders.subject')}
+                    {...field}
+                    className={cn('', {
+                      'border-destructive': !!form.formState.errors.subject,
+                    })}
+                  />
+                </FormControl>
+
+                {form.formState.errors.subject ? (
+                  <p className="text-[0.8rem] font-medium text-destructive">
+                    {t('errors.subject')}
                   </p>
                 ) : null}
               </FormItem>

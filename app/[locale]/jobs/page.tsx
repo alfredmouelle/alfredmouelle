@@ -49,8 +49,8 @@ export default async function JobsPage({ params }: PageProps) {
 
       <ul className="grid gap-4 md:grid-cols-2">
         {jobs.map((job) => (
-          <li key={job.id}>
-            <Link href={`/jobs/${job.id}`}>
+          <li key={job.slug}>
+            <Link href={`/jobs/${job.slug}`}>
               <JobCard job={job} />
             </Link>
           </li>

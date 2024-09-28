@@ -40,18 +40,4 @@ const BeVietnamPro = localFont({
   fallback: ['sans-serif'],
 });
 
-const TiltPrism = localFont({
-  src: [
-    {
-      path: '../../../public/fonts/TiltPrism-Regular.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-  ],
-  preload: false,
-  display: 'swap',
-  fallback: ['cursive'],
-  variable: '--font-brand',
-});
-
-export { BeVietnamPro, TiltPrism };
+export { BeVietnamPro };

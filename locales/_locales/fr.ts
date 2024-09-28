@@ -63,20 +63,25 @@ export default {
     quickContact: 'Liens Rapides',
     form: {
       fields: {
-        email: 'Votre email',
+        email: 'Adresse électronique',
         message: 'Votre message',
-        name: 'Votre nom et prénom',
+        name: 'Nom et prénom',
+        subject: 'Objet du message',
         submit: 'Envoyer',
       },
       errors: {
-        email: 'Veuillez fournir une adresse email valide.',
-        name: 'Le nom doit comporter au moins 2 caractères.',
-        message: 'Le message doit comporter au moins 10 caractères.',
+        email: 'Veuillez saisir une adresse électronique valide.',
+        name: 'Le nom doit contenir au moins 2 caractères.',
+        message: 'Le message doit contenir au moins 10 caractères.',
+        subject: 'L’objet doit contenir au moins 2 caractères.'
+      },
+      placeholders: {
+        subject: 'Proposition pour un service de...'
       },
       messages: {
-        success: 'Votre message a bien été envoyé.',
+        success: 'Votre message a été transmis avec succès.',
         error:
-          "Une erreur est survenue lors de l'envoi de votre message, veuillez réessayer.",
+          'Une erreur s’est produite lors de l’envoi de votre message. Veuillez réessayer.',
       },
     },
   },

@@ -24,15 +24,15 @@ export const SectionJobs = async () => {
 
       <div className="flex flex-col items-end">
         <ul className="grid gap-4 md:grid-cols-2">
-          <li key={featuredJob.id} className="col-span-2">
-            <Link href={`/jobs/${featuredJob.id}`}>
+          <li key={featuredJob.slug} className="col-span-2">
+            <Link href={`/jobs/${featuredJob.slug}`}>
               <JobCard job={featuredJob} />
             </Link>
           </li>
 
           {jobs.map((job) => (
-            <li key={job.id} className="col-span-2 md:col-span-1">
-              <Link href={`/jobs/${job.id}`}>
+            <li key={job.slug} className="col-span-2 md:col-span-1">
+              <Link href={`/jobs/${job.slug}`}>
                 <JobCard job={job} />
               </Link>
             </li>

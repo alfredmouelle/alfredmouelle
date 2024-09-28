@@ -35,7 +35,7 @@ export default function RootLayout({
     >
       <body
         className={cn(
-          'flex h-full min-h-screen flex-col bg-background font-global'
+          'flex h-full min-h-screen flex-col bg-background font-global relative'
         )}
       >
         <I18nProviderClient locale={locale}>
