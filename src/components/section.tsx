@@ -2,7 +2,7 @@ import { HTMLAttributes, PropsWithChildren } from 'react';
 
 import { cn } from '@/lib/utils';
 
-import { FadeInSection } from './fade-in';
+import { FadeInSection } from './animations/fade-in';
 
 interface PageWrapperProps extends HTMLAttributes<HTMLElement> {
   innerWrapperClassName?: string;

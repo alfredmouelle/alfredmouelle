@@ -2,9 +2,9 @@ import Image from 'next/image';
 
 import { getScopedI18n } from '@locales/server';
 
-import { GradientBorder } from '@/components/gradient-border';
+import { GradientBorder } from '@/components/animations/gradient-border';
+import TypewriterText from '@/components/animations/typewritter-text';
 import { Section } from '@/components/section';
-import TypewriterText from '@/components/typewritter-text';
 
 import { ContactButton } from './contact-button';
 import { DownloadCvButton } from './download-cv-button';
@@ -52,7 +52,7 @@ export const SectionHero = async () => {
               alt="Photo de moi"
               src="/assets/images/hero-avatar.webp"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
-              className="rounded-full shadow-lg hover:scale-[1.01] transition-transform duration-300 ease-in"
+              className="rounded-full shadow-lg hover:scale-[1.01] transition-transform duration-150 ease-in"
             />
           </div>
         </GradientBorder>

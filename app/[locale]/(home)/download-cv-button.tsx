@@ -2,7 +2,7 @@
 
 import { useCurrentLocale, useScopedI18n } from '@locales/client';
 
-import { GradientBorder } from '@/components/gradient-border';
+import { GradientBorder } from '@/components/animations/gradient-border';
 import { Icons } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 

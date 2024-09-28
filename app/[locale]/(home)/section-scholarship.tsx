@@ -26,7 +26,7 @@ export const SectionScholarship = async () => {
             alt="Mascotte"
             src="/assets/images/education-man.svg"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
-            className="hover:scale-[1.01] transition-transform duration-300 ease-in"
+            className="hover:scale-[1.02] transition-transform duration-100 ease-in"
           />
         </ScaleWhenView>
 

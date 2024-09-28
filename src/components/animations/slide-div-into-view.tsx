@@ -19,8 +19,8 @@ export function SlideDivIntoView({
   return (
     <motion.div
       className={cn(className)}
-      initial={{ opacity: 0, x: offset }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: offset }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{
         type: 'spring',
