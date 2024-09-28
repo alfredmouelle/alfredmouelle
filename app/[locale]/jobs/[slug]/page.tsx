@@ -69,7 +69,7 @@ export default async function JobPage({ params }: PageProps) {
   const t = await getI18n();
 
   return (
-    <Section className="hero">
+    <Section className="hero mt-20">
       <div className="mb-5 flex flex-col items-center gap-4 md:flex-row md:justify-between">
         <Breadcrumb>
           <BreadcrumbList>

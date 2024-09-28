@@ -27,7 +27,7 @@ export default async function JobsPage({ params }: PageProps) {
   const t = await getI18n();
 
   return (
-    <Section className="hero">
+    <Section className="hero mt-20">
       <Breadcrumb className="mb-4">
         <BreadcrumbList>
           <BreadcrumbItem>

@@ -1,5 +1,6 @@
 import { getScopedI18n } from '@locales/server';
 
+import { SlideLiIntoView } from '@/components/animations/slide-li-into-view';
 import { Icons } from '@/components/icons';
 import { Section, SectionTitle } from '@/components/section';
 import { Button } from '@/components/ui/button';
@@ -54,9 +55,9 @@ export async function SectionSkills() {
 
       <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {skills.map((skill, index) => (
-          <li key={index} className="col-span-4 md:col-span-1">
+          <SlideLiIntoView key={index} index={index}>
             <SkillCard skill={skill} />
-          </li>
+          </SlideLiIntoView>
         ))}
       </ul>
     </Section>
