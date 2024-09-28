@@ -8,7 +8,7 @@ export function GradientBorder({ children }: PropsWithChildren<{}>) {
   const ref = useGradientBorder();
 
   return (
-    <div ref={ref} className="rounded-full">
+    <div ref={ref} className="rounded-full flex items-center justify-center">
       {children}
     </div>
   );

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getCurrentLocale, getI18n } from '@locales/server';
 import { setStaticParamsLocale } from 'next-international/server';
 
+import { SlideLiIntoView } from '@/components/animations/slide-li-into-view';
 import { JobCard } from '@/components/job-card';
 import { Section, SectionTitle } from '@/components/section';
 import {
@@ -48,12 +49,12 @@ export default async function JobsPage({ params }: PageProps) {
       <SectionTitle>{t('section_jobs.title')}</SectionTitle>
 
       <ul className="grid gap-4 md:grid-cols-2">
-        {jobs.map((job) => (
-          <li key={job.slug}>
+        {jobs.map((job, index) => (
+          <SlideLiIntoView index={index} key={index}>
             <Link href={`/jobs/${job.slug}`}>
               <JobCard job={job} />
             </Link>
-          </li>
+          </SlideLiIntoView>
         ))}
       </ul>
     </Section>

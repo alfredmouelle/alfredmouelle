@@ -11,14 +11,14 @@ import { ThemeToggle } from './theme-toggle';
 
 export const Header = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 h-20 py-4 z-50 backdrop-blur-sm">
+    <header className="fixed top-0 left-0 right-0 h-20 py-4 z-50 backdrop-blur-sm ">
       <nav className="container flex items-center rounded-full bg-card py-2 shadow-xl border md:gap-10">
         <div className="flex items-center justify-center">
           <Link href="/">
             <Image src="/assets/logo.svg" alt="Logo" width={40} height={40} />
           </Link>
 
-          <ul className="ml-10 hidden items-center gap-10 justify-self-start text-sm font-medium md:flex">
+          <ul className="ml-10 hidden items-center lg:gap-10 justify-self-start text-sm font-medium md:flex">
             <Suspense fallback={<SkeletonNav />}>
               <NavLinks />
             </Suspense>

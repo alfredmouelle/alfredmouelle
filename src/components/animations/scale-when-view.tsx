@@ -2,7 +2,12 @@ import { PropsWithChildren } from 'react';
 
 import * as motion from 'framer-motion/client';
 
-export function ScaleWhenView({ children }: PropsWithChildren<{}>) {
+import { cn } from '@/lib/utils';
+
+export function ScaleWhenView({
+  children,
+  className,
+}: PropsWithChildren<{ className?: string }>) {
   return (
     <motion.div
       viewport={{ once: true }}
@@ -13,6 +18,7 @@ export function ScaleWhenView({ children }: PropsWithChildren<{}>) {
         stiffness: 100,
         damping: 12,
       }}
+      className={cn(className)}
     >
       {children}
     </motion.div>

@@ -17,8 +17,8 @@ export const SectionScholarship = async () => {
     >
       <SectionTitle>{t('title')}</SectionTitle>
 
-      <div className="grid md:grid-cols-2">
-        <ScaleWhenView>
+      <div className="grid lg:grid-cols-2">
+        <ScaleWhenView className="flex items-center justify-center">
           <Image
             width={500}
             height={500}

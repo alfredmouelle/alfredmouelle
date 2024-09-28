@@ -17,7 +17,7 @@ export function SlideLiIntoView({
   return (
     <motion.li
       key={index}
-      className={cn('col-span-4 md:col-span-1', className)}
+      className={cn(className)}
       initial={{ opacity: 0, x: 100 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}

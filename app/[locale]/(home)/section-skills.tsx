@@ -55,7 +55,11 @@ export async function SectionSkills() {
 
       <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {skills.map((skill, index) => (
-          <SlideLiIntoView key={index} index={index}>
+          <SlideLiIntoView
+            key={index}
+            index={index}
+            className="col-span-4 md:col-span-1"
+          >
             <SkillCard skill={skill} />
           </SlideLiIntoView>
         ))}
