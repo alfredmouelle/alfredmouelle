@@ -76,11 +76,12 @@ export default {
         message: 'Your message must be at least ten characters long.',
       },
       placeholders: {
-        subject: 'Proposal for a service of...'
+        subject: 'Proposal for a service of...',
       },
       messages: {
         success: 'Your message has been successfully transmitted.',
-        error: 'An error occurred while sending your message. Please try again.',
+        error:
+          'An error occurred while sending your message. Please try again.',
       },
     },
   },
@@ -93,6 +94,12 @@ export default {
       from: 'From',
       to: 'to',
     },
+  },
+
+  notFound: {
+    title: '404 - Page Not Found',
+    message: "Oops! The page you're looking for doesn't exist.",
+    backHome: 'Back to Home',
   },
 
   breadcrumb: {

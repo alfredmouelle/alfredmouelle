@@ -13,6 +13,7 @@ import {
   Download,
   Globe,
   GraduationCap,
+  Home,
   Languages,
   Layout,
   Link,
@@ -58,4 +59,6 @@ export const Icons = {
   layout: Layout,
   server: Server,
   smartphone: Smartphone,
+
+  home: Home,
 };

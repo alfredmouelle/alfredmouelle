@@ -73,10 +73,10 @@ export default {
         email: 'Veuillez saisir une adresse électronique valide.',
         name: 'Le nom doit contenir au moins 2 caractères.',
         message: 'Le message doit contenir au moins 10 caractères.',
-        subject: 'L’objet doit contenir au moins 2 caractères.'
+        subject: 'L’objet doit contenir au moins 2 caractères.',
       },
       placeholders: {
-        subject: 'Proposition pour un service de...'
+        subject: 'Proposition pour un service de...',
       },
       messages: {
         success: 'Votre message a été transmis avec succès.',
@@ -84,6 +84,12 @@ export default {
           'Une erreur s’est produite lors de l’envoi de votre message. Veuillez réessayer.',
       },
     },
+  },
+
+  notFound: {
+    title: '404 - Page Non Trouvée',
+    message: "Oups ! La page que vous recherchez n'existe pas.",
+    backHome: "Retour à l'Accueil",
   },
 
   breadcrumb: {

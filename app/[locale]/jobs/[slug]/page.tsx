@@ -65,7 +65,9 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function JobPage({ params }: PageProps) {
   setStaticParamsLocale(params.locale);
-  const job = (await getJob(params.slug, params.locale as any))!;
+  const job = await getJob(params.slug, params.locale);
+  if (!job) notFound();
+
   const t = await getI18n();
 
   return (
