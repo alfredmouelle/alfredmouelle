@@ -15,7 +15,7 @@ export async function NotFound() {
   return (
     <Section
       skipFadeIn={true}
-      className="hero flex flex-col items-center justify-center min-h-[calc(100vh-20rem)] text-center mt-20"
+      className="hero flex flex-col items-center justify-center flex-1 h-full text-center mt-20"
     >
       <h1 className="text-4xl font-bold mb-4">{t('title')}</h1>
       <p className="text-xl mb-8 text-muted-foreground">{t('message')}</p>
