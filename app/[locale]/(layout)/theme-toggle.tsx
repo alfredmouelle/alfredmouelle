@@ -1,5 +1,6 @@
 'use client';
 
+import { useScopedI18n } from '@locales/client';
 import { useTheme } from 'next-themes';
 
 import { Icons } from '@/components/icons';
@@ -44,6 +45,7 @@ const Item = function ({
 
 export const ThemeToggle = () => {
   const { theme } = useTheme();
+  const t = useScopedI18n('theme_toggle');
 
   const mounted = useMounted();
   if (!mounted) return null;
@@ -53,9 +55,9 @@ export const ThemeToggle = () => {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="">
           {theme === 'dark' ? (
-            <Icons.sunMedium className="h-5 w-5 text-blue-500" />
+            <Icons.moon className="h-5 w-5 text-blue-500" />
           ) : theme === 'light' ? (
-            <Icons.moon className="h-5 w-5 text-yellow-500" />
+            <Icons.sunMedium className="h-5 w-5 text-yellow-500" />
           ) : (
             <Icons.sunMoon className="h-5 w-5" />
           )}
@@ -66,18 +68,20 @@ export const ThemeToggle = () => {
       <DropdownMenuContent align="end" className="space-y-1">
         <Item
           theme="light"
-          label="Clair"
-          icon={<Icons.moon className="h-5 w-5 text-yellow-500" />}
+          label={t('light')}
+          icon={<Icons.sunMedium className="h-5 w-5 text-yellow-500" />}
         />
+
         <Item
           theme="dark"
-          label="Sombre"
-          icon={<Icons.sunMedium className="h-5 w-5 text-blue-500" />}
+          label={t('dark')}
+          icon={<Icons.moon className="h-5 w-5 text-blue-500" />}
         />
+
         <Item
           theme="system"
-          label="Système"
-          icon={<Icons.computer className="h-5 w-5" />}
+          label={t('system')}
+          icon={<Icons.sunMoon className="h-5 w-5" />}
         />
       </DropdownMenuContent>
     </DropdownMenu>

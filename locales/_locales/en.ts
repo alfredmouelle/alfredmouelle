@@ -13,6 +13,13 @@ export default {
     },
   },
 
+
+  theme_toggle: {
+    light: 'Light',
+    dark: 'Dark',
+    system: 'System',
+  },
+
   section_skills: {
     title: 'Skills',
     backend_desc:

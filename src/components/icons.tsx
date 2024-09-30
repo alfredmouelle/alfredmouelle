@@ -15,7 +15,6 @@ import {
   GraduationCap,
   Home,
   Languages,
-  Laptop,
   Layout,
   Link,
   Loader2,
@@ -59,7 +58,6 @@ export const Icons = {
   code: Code2,
   layout: Layout,
   server: Server,
-  computer: Laptop,
   smartphone: Smartphone,
 
   home: Home,

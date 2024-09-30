@@ -13,6 +13,12 @@ export default {
     },
   },
 
+  theme_toggle: {
+    light: 'Clair',
+    dark: 'Sombre',
+    system: 'Système',
+  },
+
   section_skills: {
     title: 'Compétences',
     backend_desc:
