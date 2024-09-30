@@ -11,6 +11,7 @@
     "no-trailing-spaces": "warn",
     "eol-last": ["error", "always"],
     "no-extra-boolean-cast": "warn",
+    "react/no-unescaped-entities": "off",
     "check-file/filename-naming-convention": [
       "error",
       { "**/*.{ts,tsx}": "KEBAB_CASE" },

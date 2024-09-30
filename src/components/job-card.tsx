@@ -65,7 +65,7 @@ export const JobDate = async function ({
 }: Pick<Job, 'endDate' | 'startDate'>) {
   const locale = getCurrentLocale();
   const f = (date: Date) =>
-    format(date, 'MMMM yyy', { locale: locale === 'fr' ? fr : enUS });
+    format(date, 'MMM yyy', { locale: locale === 'fr' ? fr : enUS });
 
   const t = await getScopedI18n('job.period');
 
