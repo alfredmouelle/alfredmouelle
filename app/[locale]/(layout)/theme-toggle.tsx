@@ -63,7 +63,7 @@ export const ThemeToggle = () => {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="space-y-1">
         <Item
           theme="light"
           label="Clair"
@@ -77,7 +77,7 @@ export const ThemeToggle = () => {
         <Item
           theme="system"
           label="Système"
-          icon={<Icons.sunMoon className="h-5 w-5" />}
+          icon={<Icons.computer className="h-5 w-5" />}
         />
       </DropdownMenuContent>
     </DropdownMenu>

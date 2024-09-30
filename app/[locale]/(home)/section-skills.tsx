@@ -51,7 +51,10 @@ export async function SectionSkills() {
 
   return (
     <Section id="skills">
-      <SectionTitle>{t('title')}</SectionTitle>
+      <SectionTitle className="flex items-center">
+        <Icons.skill className="w-7 h-7 mr-2" />
+        {t('title')}
+      </SectionTitle>
 
       <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {skills.map((skill, index) => (

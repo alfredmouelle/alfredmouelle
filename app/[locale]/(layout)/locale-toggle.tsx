@@ -53,7 +53,7 @@ export const LocaleToggle = () => {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="space-y-1">
         <Item locale="fr" label={t('fr')} />
         <Item locale="en" label={t('en')} />
       </DropdownMenuContent>

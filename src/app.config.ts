@@ -47,7 +47,7 @@ export const AppConfig = {
     twitter: {
       card: 'summary_large_image',
       site: '@alfredmouelle',
-      title: 'Alfred Mouelle | Portfolio - Développeur Web et Mobile',
+      title: 'Alfred Mouelle - Développeur Web et Mobile',
       description:
         "Découvrez le portfolio d'Alfred Mouelle, développeur web et mobile. Explorez ses projets, compétences et expériences professionnelles.",
       images: ['/assets/images/og.webp'],

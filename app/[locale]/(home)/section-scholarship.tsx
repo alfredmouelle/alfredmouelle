@@ -15,7 +15,10 @@ export const SectionScholarship = async () => {
       id="scholarship"
       className="bg-gradient-to-b from-blue-500/25 via-transparent to-transparent"
     >
-      <SectionTitle>{t('title')}</SectionTitle>
+      <SectionTitle className="flex items-center">
+        <Icons.graduation className="w-7 h-7 mr-2" />
+        {t('title')}
+      </SectionTitle>
 
       <div className="grid lg:grid-cols-2">
         <ScaleWhenView className="flex items-center justify-center">

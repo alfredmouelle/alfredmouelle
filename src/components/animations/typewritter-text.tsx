@@ -12,12 +12,12 @@ const TypewriterText = ({
   return (
     <Typewriter
       options={{
+        cursor: '_',
         strings: [text],
         autoStart: true,
         loop: true,
         delay: 75,
         deleteSpeed: 50,
-        // pauseFor: 2000,
         wrapperClassName: className,
       }}
     />

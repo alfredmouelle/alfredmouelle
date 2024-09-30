@@ -48,7 +48,10 @@ export const SectionContact = async () => {
 
   return (
     <Section id="contact">
-      <SectionTitle>{t('title')}</SectionTitle>
+      <SectionTitle className="flex items-center">
+        <Icons.contact className="w-7 h-7 mr-2" />
+        {t('title')}
+      </SectionTitle>
 
       <div>
         <p className="text-center text-gray-500">{t('quickContact')}</p>

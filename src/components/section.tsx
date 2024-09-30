@@ -31,6 +31,11 @@ export const Section = ({
   );
 };
 
-export const SectionTitle = ({ children }: PropsWithChildren<{}>) => {
-  return <h1 className="mb-10 text-3xl font-bold">{children}</h1>;
+export const SectionTitle = ({
+  children,
+  className,
+}: PropsWithChildren<{ className?: string }>) => {
+  return (
+    <h1 className={cn('mb-10 text-3xl font-bold', className)}>{children}</h1>
+  );
 };

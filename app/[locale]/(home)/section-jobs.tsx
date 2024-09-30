@@ -21,7 +21,10 @@ export const SectionJobs = async () => {
 
   return (
     <Section id="jobs">
-      <SectionTitle>{t('title')}</SectionTitle>
+      <SectionTitle className="flex items-center">
+        <Icons.briefcase className="w-7 h-7 mr-2" />
+        {t('title')}
+      </SectionTitle>
 
       <div className="flex flex-col items-end">
         <ul className="grid gap-4 md:grid-cols-3">
