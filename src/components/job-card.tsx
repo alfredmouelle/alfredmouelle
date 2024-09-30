@@ -23,21 +23,21 @@ export const JobCard = async ({ job }: { job: Job }) => {
       className={cn(
         'min-h-48 transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent',
         {
-          'border-yellow-500 hover:border-yellow-600': job.featured,
+          'border-primary bg-accent': job.featured,
         }
       )}
     >
       <CardHeader>
         <CardTitle
           className={cn('flex items-center gap-x-2 text-primary', {
-            'text-yellow-500': job.featured,
+            'text-primary': job.featured,
           })}
         >
           {job.company}{' '}
           {job.siteUrl ? (
             <Icons.link
               className={cn('h-4 w-4 text-primary', {
-                'text-yellow-500': job.featured,
+                'text-primary': job.featured,
               })}
             />
           ) : null}
