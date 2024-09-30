@@ -72,7 +72,7 @@ async function SkillCard({ skill }: { skill: Skill }) {
   const t = await getScopedI18n('section_skills');
 
   return (
-    <Card className="group h-full flex flex-col transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent cursor-pointer">
+    <Card className="group h-full flex flex-col transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent cursor-pointer shadow-lg">
       <CardHeader className="flex-grow">
         <CardTitle className="flex items-center gap-x-2 text-primary">
           <skill.icon className="w-5 h-5 mr-2" />

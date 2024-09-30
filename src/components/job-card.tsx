@@ -21,7 +21,7 @@ export const JobCard = async ({ job }: { job: Job }) => {
   return (
     <Card
       className={cn(
-        'min-h-48 transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent',
+        'min-h-48 transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent shadow-lg',
         {
           'border-primary bg-accent': job.featured,
         }
