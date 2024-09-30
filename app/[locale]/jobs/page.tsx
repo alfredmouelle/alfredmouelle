@@ -4,6 +4,7 @@ import { getCurrentLocale, getI18n } from '@locales/server';
 import { setStaticParamsLocale } from 'next-international/server';
 
 import { SlideLiIntoView } from '@/components/animations/slide-li-into-view';
+import { Icons } from '@/components/icons';
 import { JobCard } from '@/components/job-card';
 import { Section, SectionTitle } from '@/components/section';
 import {
@@ -46,7 +47,10 @@ export default async function JobsPage({ params }: PageProps) {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <SectionTitle>{t('section_jobs.title')}</SectionTitle>
+      <SectionTitle className="flex items-center">
+        <Icons.briefcase className="w-7 h-7 mr-2" />
+        {t('section_jobs.title')}
+      </SectionTitle>
 
       <ul className="grid gap-4 md:grid-cols-2">
         {jobs.map((job, index) => (
