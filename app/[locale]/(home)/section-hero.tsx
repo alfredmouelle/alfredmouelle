@@ -51,7 +51,6 @@ export const SectionHero = async () => {
               src={HeroImage}
               alt="Photo de moi"
               placeholder="blur"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
               className="rounded-full shadow-lg hover:scale-[1.01] transition-transform duration-150 ease-in"
             />
           </div>
