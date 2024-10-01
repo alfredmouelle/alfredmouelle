@@ -47,7 +47,7 @@ export const LocaleToggle = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="">
+        <Button variant="ghost" size="icon" className="rounded-full">
           <Icons.language className="h-5 w-5" />
           <span className="sr-only">{t('label')}</span>
         </Button>

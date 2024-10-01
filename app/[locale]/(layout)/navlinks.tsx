@@ -18,6 +18,8 @@ import {
 
 import { cn } from '@/lib/utils';
 
+import LogoSvg from '../../../public/assets/logo.svg';
+
 const NavLink = ({
   text,
   icon,
@@ -101,7 +103,12 @@ export const MobileNav = () => {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild className="md:hidden">
-        <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
+        <Button
+          variant="outline"
+          size="icon"
+          className="rounded-full"
+          onClick={() => setOpen(true)}
+        >
           <Icons.menu className="h-5 w-5" />
           <span className="sr-only">Toggle menu</span>
         </Button>
@@ -111,13 +118,13 @@ export const MobileNav = () => {
         <SheetHeader>
           <SheetTitle className="text-2xl font-semibold md:text-3xl font-mono">
             <div className="flex items-center justify-center gap-x-2">
-              <Image src="/assets/logo.svg" alt="Logo" width={25} height={25} />
-              Portfolio
+              <Image src={LogoSvg} alt="Logo" width={25} height={25} />
+              PORTFOLIO
             </div>
           </SheetTitle>
         </SheetHeader>
 
-        <ul className="mt-8 flex flex-col gap-4 text-sm font-medium">
+        <ul className="mt-8 flex flex-col gap-y-4 text-sm font-medium">
           <NavLinks closeMenu={() => setOpen(false)} />
         </ul>
       </SheetContent>

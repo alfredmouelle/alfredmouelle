@@ -53,7 +53,7 @@ export const ThemeToggle = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="">
+        <Button variant="ghost" size="icon" className="rounded-full">
           {theme === 'dark' ? (
             <Icons.moon className="h-5 w-5 text-blue-500" />
           ) : theme === 'light' ? (
