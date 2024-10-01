@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 
 import { SpinningLoader } from '@/components/spinning-loader';
 
+import LogoSvg from '../../../public/assets/logo.svg';
 import { LocaleToggle } from './locale-toggle';
 import { MobileNav, NavLinks } from './navlinks';
 import { SkeletonNav } from './skeleton-nav';
@@ -15,7 +16,7 @@ export const Header = () => {
       <nav className="container flex items-center rounded-full bg-card py-2 shadow-xl border md:gap-10">
         <div className="flex items-center justify-center">
           <Link href="/">
-            <Image src="/assets/logo.svg" alt="Logo" width={40} height={40} />
+            <Image src={LogoSvg} alt="Logo" width={40} height={40} priority />
           </Link>
 
           <ul className="ml-10 hidden items-center lg:gap-10 justify-self-start text-sm font-medium md:flex">
