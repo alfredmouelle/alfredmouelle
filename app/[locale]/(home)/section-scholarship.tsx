@@ -7,6 +7,8 @@ import { SlideDivIntoView } from '@/components/animations/slide-div-into-view';
 import { Icons } from '@/components/icons';
 import { Section, SectionTitle } from '@/components/section';
 
+import SectionImage from '../../../public/assets/images/education-man.svg';
+
 export const SectionScholarship = async () => {
   const t = await getScopedI18n('section_scholarship');
 
@@ -25,10 +27,8 @@ export const SectionScholarship = async () => {
           <Image
             width={500}
             height={500}
-            quality={85}
             alt="Mascotte"
-            src="/assets/images/education-man.svg"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
+            src={SectionImage}
             className="hover:scale-[1.02] transition-transform duration-100 ease-in"
           />
         </ScaleWhenView>

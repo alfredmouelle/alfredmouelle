@@ -6,6 +6,7 @@ import { GradientBorder } from '@/components/animations/gradient-border';
 import TypewriterText from '@/components/animations/typewritter-text';
 import { Section } from '@/components/section';
 
+import HeroImage from '../../../public/assets/images/hero-avatar.webp';
 import { ContactButton } from './contact-button';
 import { DownloadCvButton } from './download-cv-button';
 
@@ -47,11 +48,10 @@ export const SectionHero = async () => {
               priority
               width={500}
               height={500}
-              quality={85}
-              loading="eager"
+              src={HeroImage}
               alt="Photo de moi"
-              src="/assets/images/hero-avatar.webp"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
+              placeholder="blur"
+              // sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
               className="rounded-full shadow-lg hover:scale-[1.01] transition-transform duration-150 ease-in"
             />
           </div>
