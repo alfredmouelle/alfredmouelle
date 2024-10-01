@@ -67,6 +67,7 @@ export default {
   section_contact: {
     title: 'Contactez Moi',
     quickContact: 'Liens Rapides',
+    description: "Besoin de plus d'informations, d'un devis personnalisé ou d'un rendez-vous ? N'hésitez pas à me contacter via le formulaire ci-dessous. Je serai ravi de répondre à toutes vos questions et de discuter de votre projet en détail.",
     form: {
       fields: {
         email: 'Adresse électronique',

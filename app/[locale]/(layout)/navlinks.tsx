@@ -40,7 +40,14 @@ const NavLink = ({
     closeMenu && closeMenu();
     const element = document.getElementById(anchor);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const navbarHeight = window.innerWidth < 768 ? 50 : 0;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - navbarHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
     }
     router.push(`/?anchor=${anchor}`, { scroll: false });
   };

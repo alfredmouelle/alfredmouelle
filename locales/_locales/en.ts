@@ -68,6 +68,7 @@ export default {
   section_contact: {
     title: 'Contact Me',
     quickContact: 'Quick Links',
+    description: "Need more information, a personalized quote, or an appointment? Don't hesitate to contact me via the form below. I'll be happy to answer all your questions and discuss your project in detail.",
     form: {
       fields: {
         email: 'Your email address',

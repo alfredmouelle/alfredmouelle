@@ -70,6 +70,13 @@ export const SectionContact = async () => {
           ))}
         </ul>
 
+        <div className="my-12 flex flex-col items-center">
+          <div className="mb-8 h-px w-full bg-muted-foreground max-w-3xl" />
+          <p className="text-center text-sm max-w-2xl text-muted-foreground">
+            {t('description')}
+          </p>
+        </div>
+
         <ContactForm />
       </div>
     </Section>
