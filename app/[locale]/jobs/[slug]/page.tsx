@@ -60,6 +60,9 @@ export async function generateMetadata({ params }: PageProps) {
     },
     twitter: {
       title,
+      site: domain,
+      creatorId: '@kali47_',
+      creator: 'Alfred Mouelle',
       description: job.description,
       card: 'summary_large_image',
     },
@@ -109,18 +112,21 @@ export default async function JobPage({ params }: PageProps) {
           </BreadcrumbList>
         </Breadcrumb>
 
-        <div className="flex flex-col items-center justify-center gap-x-4 gap-y-2 md:flex-row">
+        <div className="flex items-center justify-center gap-x-2 gap-y-2 flex-row text-muted-foreground">
           <JobDate startDate={job.startDate} endDate={job.endDate} />
-
-          <div className="flex items-center justify-center md:gap-x-4">
-            <p className="text-xs text-muted-foreground">
+          <span className="text-muted-foreground">-</span>
+          <div className="flex items-center justify-center gap-x-2">
+            <p className="text-xs">
               {job.readTime} {t('job.readTime')}
             </p>
 
             <a
               target="_blank"
               href={job.siteUrl}
-              className={cn(buttonVariants({ variant: 'ghost', size: 'icon' }))}
+              className={cn(
+                'text-foreground',
+                buttonVariants({ variant: 'ghost', size: 'icon' })
+              )}
             >
               <Icon name="link" className="size-4" />
               <span className="sr-only">{t('job.visitWebsite')}</span>

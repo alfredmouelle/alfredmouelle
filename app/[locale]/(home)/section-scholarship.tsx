@@ -34,22 +34,22 @@ export const SectionScholarship = async () => {
         </ScaleWhenView>
 
         <div className="relative">
-          <div className="absolute left-1/2 h-full -translate-x-1/2 transform border-l-2 border-gray-300"></div>
+          <div className="absolute left-1/2 h-full -translate-x-1/2 transform border-l-2 border-foreground"></div>
           <div className="space-y-8">
             <div className="flex w-full items-center">
               <SlideDivIntoView className="w-1/2 pr-8 text-right" offset={-100}>
                 <h2 className="text-lg font-semibold">{t('bts.title')}</h2>
-                <p className="text-blue-500">{t('bts.specialty')}</p>
-                <p className="text-gray-500">2018 - 2020</p>
+                <p className="text-primary">{t('bts.specialty')}</p>
+                <p className="text-muted-foreground">2018 - 2020</p>
               </SlideDivIntoView>
 
-              <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-blue-500">
-                <Icon name="check" className="text-white" />
+              <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-primary">
+                <Icon name="check" className="text-foreground" />
               </div>
 
               <SlideDivIntoView className="w-1/2 pl-8" offset={100}>
-                <p className="text-gray-500">{t('bts.academy')}</p>
-                <p className="text-gray-500">{t('bts.location')}</p>
+                <p className="text-muted-foreground">{t('bts.academy')}</p>
+                <p className="text-muted-foreground">{t('bts.location')}</p>
               </SlideDivIntoView>
             </div>
 
@@ -60,12 +60,12 @@ export const SectionScholarship = async () => {
                 className="w-1/2 pr-8 text-right"
               >
                 <h2 className="text-lg font-semibold">{t('bac.title')}</h2>
-                <p className="text-blue-500">{t('bac.specialty')}</p>
-                <p className="text-gray-500">2017 - 2018</p>
+                <p className="text-primary">{t('bac.specialty')}</p>
+                <p className="text-muted-foreground">2017 - 2018</p>
               </SlideDivIntoView>
 
-              <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-blue-500">
-                <Icon name="check" className="text-white" />
+              <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-primary">
+                <Icon name="check" className="text-foreground" />
               </div>
 
               <SlideDivIntoView
@@ -73,8 +73,8 @@ export const SectionScholarship = async () => {
                 offset={100}
                 delay={0.05}
               >
-                <p className="text-gray-500">{t('bac.location1')}</p>
-                <p className="text-gray-500">{t('bac.location2')}</p>
+                <p className="text-muted-foreground">{t('bac.location1')}</p>
+                <p className="text-muted-foreground">{t('bac.location2')}</p>
               </SlideDivIntoView>
             </div>
 
@@ -87,12 +87,12 @@ export const SectionScholarship = async () => {
                 <h2 className="text-lg font-semibold">
                   {t('probatoire.title')}
                 </h2>
-                <p className="text-blue-500">{t('bac.specialty')}</p>
-                <p className="text-gray-500">2016 - 2017</p>
+                <p className="text-primary">{t('bac.specialty')}</p>
+                <p className="text-muted-foreground">2016 - 2017</p>
               </SlideDivIntoView>
 
-              <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-blue-500">
-                <Icon name="check" className="text-white" />
+              <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-primary">
+                <Icon name="check" className="text-foreground" />
               </div>
 
               <SlideDivIntoView
@@ -100,8 +100,8 @@ export const SectionScholarship = async () => {
                 offset={100}
                 delay={0.08}
               >
-                <p className="text-gray-500">{t('bac.location1')}</p>
-                <p className="text-gray-500">{t('bac.location2')}</p>
+                <p className="text-muted-foreground">{t('bac.location1')}</p>
+                <p className="text-muted-foreground">{t('bac.location2')}</p>
               </SlideDivIntoView>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+
 import { getDomain } from './utils/domain';
 
 const domain = getDomain();
@@ -25,26 +26,26 @@ export const AppConfig = {
       "Découvrez le portfolio d'Alfred Mouelle, développeur web et mobile. Explorez ses projets, compétences et expériences professionnelles.",
     keywords: [
       'portfolio développeur fullstack',
-    'Alfred Mouelle',
-    'développeur web freelance',
-    'développeur mobile freelance',
-    'React',
-    'Node.js',
-    'TypeScript',
-    'Next.js',
-    'React Native',
-    'JavaScript',
-    'développeur frontend',
-    'développeur backend',
-    'intégration d’API',
-    'développement web sur mesure',
-    'création d’applications mobiles',
-    'optimisation des performances web',
-    'développement responsive',
-    'SEO technique',
-    'freelance fullstack',
-    'freelance en développement web',
-    'création de solutions web'
+      'Alfred Mouelle',
+      'développeur web freelance',
+      'développeur mobile freelance',
+      'React',
+      'Node.js',
+      'TypeScript',
+      'Next.js',
+      'React Native',
+      'JavaScript',
+      'développeur frontend',
+      'développeur backend',
+      'intégration d’API',
+      'développement web sur mesure',
+      'création d’applications mobiles',
+      'optimisation des performances web',
+      'développement responsive',
+      'SEO technique',
+      'freelance fullstack',
+      'freelance en développement web',
+      'création de solutions web',
     ],
     openGraph: {
       title: 'Alfred Mouelle - Développeur Web et Mobile',
@@ -63,8 +64,10 @@ export const AppConfig = {
       ],
     },
     twitter: {
+      site: domain,
+      creatorId: '@kali47_',
+      creator: 'Alfred Mouelle',
       card: 'summary_large_image',
-      site: '@alfredmouelle',
       title: 'Alfred Mouelle - Développeur Web et Mobile',
       description:
         "Découvrez le portfolio d'Alfred Mouelle, développeur web et mobile. Explorez ses projets, compétences et expériences professionnelles.",
@@ -81,9 +84,9 @@ export const AppConfig = {
     alternates: {
       canonical: `${domain}/fr`,
       languages: {
-        'fr': `${domain}/fr`,
-        'en': `${domain}/en`,
+        fr: `${domain}/fr`,
+        en: `${domain}/en`,
       },
-    }
+    },
   } satisfies Metadata,
 } as const;

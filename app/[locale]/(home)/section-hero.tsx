@@ -23,7 +23,7 @@ export const SectionHero = async () => {
           <p className="text-muted-foreground">{t('greetings')}</p>
           <h1 className="text-3xl font-bold text-primary">Alfred Mouelle</h1>
 
-          <div className="flex items-center justify-center gap-x-0.5 md:justify-start bg-card border shadow-lg w-fit px-2 rounded-sm mx-auto md:mx-0">
+          <div className="flex items-center justify-center gap-x-0.5 md:justify-start bg-card/10 border shadow-lg w-fit px-4 rounded-sm mx-auto md:mx-0">
             <span className="text-xl font-medium">{'<'}</span>
             <TypewriterText
               text={t('position')}

@@ -53,13 +53,20 @@ const NavLink = ({
   };
 
   return (
-    <li onClick={closeMenu}>
+    <li
+      onClick={jumpToAnchor}
+      className={cn('cursor-pointer rounded-md', {
+        'bg-primary/10': active,
+      })}
+    >
       <Button
-        onClick={jumpToAnchor}
-        variant="link"
-        className={cn('text-foreground', {
-          'font-bold text-primary': active,
-        })}
+        variant="outline"
+        className={cn(
+          'text-foreground w-full text-start flex items-start justify-start bg-transparent border-none',
+          {
+            'font-bold text-primary border-2': active,
+          }
+        )}
       >
         {icon}
         {text}
