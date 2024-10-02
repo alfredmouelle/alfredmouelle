@@ -1,7 +1,7 @@
 import { getScopedI18n } from '@locales/server';
 
 import { SlideLiIntoView } from '@/components/animations/slide-li-into-view';
-import { Icons } from '@/components/icons';
+import { Icon, Icons } from '@/components/icons';
 import { Section, SectionTitle } from '@/components/section';
 import { Button } from '@/components/ui/button';
 import {
@@ -52,7 +52,7 @@ export async function SectionSkills() {
   return (
     <Section id="skills">
       <SectionTitle className="flex items-center">
-        <Icons.skill className="w-7 h-7 mr-2" />
+        <Icon name="skill" className="size-8 mr-2" />
         {t('title')}
       </SectionTitle>
 

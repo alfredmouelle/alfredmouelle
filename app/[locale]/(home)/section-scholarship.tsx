@@ -4,7 +4,7 @@ import { getScopedI18n } from '@locales/server';
 
 import { ScaleWhenView } from '@/components/animations/scale-when-view';
 import { SlideDivIntoView } from '@/components/animations/slide-div-into-view';
-import { Icons } from '@/components/icons';
+import { Icon } from '@/components/icons';
 import { Section, SectionTitle } from '@/components/section';
 
 import SectionImage from '../../../public/assets/images/education-man.svg';
@@ -18,7 +18,7 @@ export const SectionScholarship = async () => {
       className="bg-gradient-to-b from-blue-500/25 via-transparent to-transparent"
     >
       <SectionTitle className="flex items-center">
-        <Icons.graduation className="w-7 h-7 mr-2" />
+        <Icon name="graduation" className="size-8 mr-2" />
         {t('title')}
       </SectionTitle>
 
@@ -44,7 +44,7 @@ export const SectionScholarship = async () => {
               </SlideDivIntoView>
 
               <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-blue-500">
-                <Icons.check className="text-white" />
+                <Icon name="check" className="text-white" />
               </div>
 
               <SlideDivIntoView className="w-1/2 pl-8" offset={100}>
@@ -65,7 +65,7 @@ export const SectionScholarship = async () => {
               </SlideDivIntoView>
 
               <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-blue-500">
-                <Icons.check className="text-white" />
+                <Icon name="check" className="text-white" />
               </div>
 
               <SlideDivIntoView
@@ -92,7 +92,7 @@ export const SectionScholarship = async () => {
               </SlideDivIntoView>
 
               <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-blue-500">
-                <Icons.check className="text-white" />
+                <Icon name="check" className="text-white" />
               </div>
 
               <SlideDivIntoView

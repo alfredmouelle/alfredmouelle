@@ -11,7 +11,7 @@ import { toast } from 'sonner';
 import { contactAction } from '@/actions/contact.action';
 import { ContactRequest, contactSchema } from '@/schemas/contact.schema';
 
-import { Icons } from '@/components/icons';
+import { Icon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -167,7 +167,7 @@ export function ContactForm() {
         >
           {t('fields.submit')}
           {status === 'executing' ? null : (
-            <Icons.send className="ml-2 h-4 w-4" />
+            <Icon name="send" className="ml-2" />
           )}
         </Button>
       </form>

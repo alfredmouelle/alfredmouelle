@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getCurrentLocale, getScopedI18n } from '@locales/server';
 import { setStaticParamsLocale } from 'next-international/server';
 
-import { Icons } from '@/components/icons';
+import { Icon } from '@/components/icons';
 import { Section } from '@/components/section';
 import { Button } from '@/components/ui/button';
 
@@ -21,7 +21,7 @@ export async function NotFound() {
       <p className="text-xl mb-8 text-muted-foreground">{t('message')}</p>
       <Link href="/">
         <Button>
-          <Icons.home className="w-4 h-4 mr-2" />
+          <Icon name="home" className="size-4 mr-2" />
           {t('backHome')}
         </Button>
       </Link>

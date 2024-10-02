@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getCurrentLocale, getScopedI18n } from '@locales/server';
 
 import { SlideLiIntoView } from '@/components/animations/slide-li-into-view';
-import { Icons } from '@/components/icons';
+import { Icon } from '@/components/icons';
 import { JobCard } from '@/components/job-card';
 import { Section, SectionTitle } from '@/components/section';
 import { buttonVariants } from '@/components/ui/button';
@@ -22,7 +22,7 @@ export const SectionJobs = async () => {
   return (
     <Section id="jobs">
       <SectionTitle className="flex items-center">
-        <Icons.briefcase className="w-7 h-7 mr-2" />
+        <Icon name="briefcase" className="size-8 mr-2" />
         {t('title')}
       </SectionTitle>
 
@@ -46,7 +46,7 @@ export const SectionJobs = async () => {
           className={cn('mt-4', buttonVariants({ variant: 'outline' }))}
         >
           {t('showJobs')}
-          <Icons.arrowRight className="ml-1.5 h-5 w-5" />
+          <Icon name="arrowRight" className="ml-1.5" />
         </Link>
       </div>
     </Section>

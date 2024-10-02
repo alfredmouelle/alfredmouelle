@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 import { useScopedI18n } from '@locales/client';
 
-import { Icons } from '@/components/icons';
+import { Icon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -77,28 +77,28 @@ export const NavLinks = ({ closeMenu }: { closeMenu?: () => void }) => {
         text={t('scholarship')}
         closeMenu={closeMenu}
         anchor="scholarship"
-        icon={<Icons.graduation className="mr-2 h-5 w-5" />}
+        icon={<Icon name="graduation" className="mr-2" />}
       />
 
       <NavLink
         text={t('skills')}
         closeMenu={closeMenu}
         anchor="skills"
-        icon={<Icons.skill className="mr-2 h-5 w-5" />}
+        icon={<Icon name="skill" className="mr-2" />}
       />
 
       <NavLink
         text={t('job')}
         closeMenu={closeMenu}
         anchor="jobs"
-        icon={<Icons.briefcase className="mr-2 h-5 w-5" />}
+        icon={<Icon name="briefcase" className="mr-2" />}
       />
 
       <NavLink
         text={t('contact')}
         closeMenu={closeMenu}
         anchor="contact"
-        icon={<Icons.contact className="mr-2 h-5 w-5" />}
+        icon={<Icon name="contact" className="mr-2" />}
       />
     </>
   );
@@ -116,7 +116,7 @@ export const MobileNav = () => {
           className="rounded-full"
           onClick={() => setOpen(true)}
         >
-          <Icons.menu className="h-5 w-5" />
+          <Icon name="menu" />
           <span className="sr-only">Toggle menu</span>
         </Button>
       </SheetTrigger>

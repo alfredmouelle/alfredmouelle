@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { getCurrentLocale, getI18n } from '@locales/server';
 import { setStaticParamsLocale } from 'next-international/server';
 
-import { Icons } from '@/components/icons';
+import { Icon } from '@/components/icons';
 import { JobDate } from '@/components/job-card';
 import { Section } from '@/components/section';
 import {
@@ -112,7 +112,7 @@ export default async function JobPage({ params }: PageProps) {
               href={job.siteUrl}
               className={cn(buttonVariants({ variant: 'ghost', size: 'icon' }))}
             >
-              <Icons.link className="h-4 w-4" />
+              <Icon name="link" className="size-4" />
               <span className="sr-only">{t('job.visitWebsite')}</span>
             </a>
           </div>
@@ -131,7 +131,7 @@ export default async function JobPage({ params }: PageProps) {
           )}
         >
           {t('job.visitWebsite')}
-          <Icons.link className="ml-2 h-4 w-4" />
+          <Icon name="link" className="ml-2 size-4" />
         </a>
       </div>
     </Section>

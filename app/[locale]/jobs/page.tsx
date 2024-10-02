@@ -4,7 +4,7 @@ import { getCurrentLocale, getI18n } from '@locales/server';
 import { setStaticParamsLocale } from 'next-international/server';
 
 import { SlideLiIntoView } from '@/components/animations/slide-li-into-view';
-import { Icons } from '@/components/icons';
+import { Icon } from '@/components/icons';
 import { JobCard } from '@/components/job-card';
 import { Section, SectionTitle } from '@/components/section';
 import {
@@ -48,7 +48,7 @@ export default async function JobsPage({ params }: PageProps) {
       </Breadcrumb>
 
       <SectionTitle className="flex items-center">
-        <Icons.briefcase className="w-7 h-7 mr-2" />
+        <Icon name="briefcase" className="size-8 mr-2" />
         {t('section_jobs.title')}
       </SectionTitle>
 

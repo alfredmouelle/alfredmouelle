@@ -5,7 +5,7 @@ import { enUS, fr } from 'date-fns/locale';
 import { Job } from '@/jobs-helper';
 import { cn } from '@/lib/utils';
 
-import { Icons } from './icons';
+import { Icon } from './icons';
 import {
   Card,
   CardContent,
@@ -35,11 +35,7 @@ export const JobCard = async ({ job }: { job: Job }) => {
         >
           {job.company}{' '}
           {job.siteUrl ? (
-            <Icons.link
-              className={cn('h-4 w-4 text-primary', {
-                'text-primary': job.featured,
-              })}
-            />
+            <Icon name="link" className="size-4 text-primary" />
           ) : null}
           <span className="text-xs text-muted-foreground">
             {job.readTime} {t('readTime')}

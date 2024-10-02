@@ -1,7 +1,7 @@
 import { getScopedI18n } from '@locales/server';
 
 import { SlideLiIntoView } from '@/components/animations/slide-li-into-view';
-import { Icons } from '@/components/icons';
+import { Icon, Icons } from '@/components/icons';
 import { Section, SectionTitle } from '@/components/section';
 
 import { ContactForm } from './contact.form';
@@ -49,7 +49,7 @@ export const SectionContact = async () => {
   return (
     <Section id="contact">
       <SectionTitle className="flex items-center">
-        <Icons.contact className="w-7 h-7 mr-2" />
+        <Icon name="contact" className="size-8 mr-2" />
         {t('title')}
       </SectionTitle>
 

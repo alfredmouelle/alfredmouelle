@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react';
 
-import { cn } from '@/lib/utils';
+import { Icon } from '@/components/icons';
+import { Button } from '@/components/ui/button';
 
-import { Icons } from '../../../src/components/icons';
-import { Button } from '../../../src/components/ui/button';
+import { cn } from '@/lib/utils';
 
 export const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -41,7 +41,7 @@ export const BackToTop = () => {
         }
       )}
     >
-      <Icons.arrowUp className="h-7 w-7" />
+      <Icon name="arrowUp" className="size-7" />
       <span className="sr-only">Back to top</span>
     </Button>
   );

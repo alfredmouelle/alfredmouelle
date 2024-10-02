@@ -31,6 +31,8 @@ import {
   UserPen,
 } from 'lucide-react';
 
+import { cn } from '@/lib/utils';
+
 export const Icons = {
   sunMedium: SunMedium,
   moon: Moon,
@@ -61,4 +63,14 @@ export const Icons = {
   smartphone: Smartphone,
 
   home: Home,
-};
+} as const;
+
+interface IconProps {
+  name: keyof typeof Icons;
+  className?: string;
+}
+
+export function Icon({ name, className }: IconProps) {
+  const IconComponent = Icons[name];
+  return <IconComponent className={cn('size-5', className)} />;
+}

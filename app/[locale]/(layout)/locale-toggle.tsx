@@ -6,7 +6,7 @@ import {
   useScopedI18n,
 } from '@locales/client';
 
-import { Icons } from '@/components/icons';
+import { Icon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -36,7 +36,9 @@ const Item = function ({
       )}
     >
       <span>{label}</span>
-      {locale === currentLocale && <Icons.check className="ml-2 h-4 w-4" />}
+      {locale === currentLocale && (
+        <Icon name="check" className="ml-2 size-4" />
+      )}
     </DropdownMenuItem>
   );
 };
@@ -48,7 +50,7 @@ export const LocaleToggle = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="rounded-full">
-          <Icons.language className="h-5 w-5" />
+          <Icon name="language" />
           <span className="sr-only">{t('label')}</span>
         </Button>
       </DropdownMenuTrigger>
