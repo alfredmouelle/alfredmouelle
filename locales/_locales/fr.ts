@@ -36,7 +36,7 @@ export default {
     position: 'Développeur FullStack',
     description:
       'Basé au Cameroun avec 5 ans d’expérience dans le développement web et la conception d’applications. Passionné et autodidacte, j’ai acquis des compétences solides en ingénierie logicielle à travers de nombreux projets. Mon objectif est de maîtriser les nouvelles technologies pour non seulement enrichir mes connaissances, mais surtout pour offrir des solutions adaptées et de grande qualité à ceux qui en ont besoin. En tant que freelance, je suis dévoué à fournir un service efficace et à contribuer activement à la réussite des projets qui me sont confiés.',
-    downloadCvBtn: 'Télécharger mon CV',
+    downloadCvBtn: 'Télécharger Mon CV',
     contact: 'Me contacter',
   },
 
@@ -67,7 +67,8 @@ export default {
   section_contact: {
     title: 'Contactez Moi',
     quickContact: 'Liens Rapides',
-    description: "Besoin de plus d'informations, d'un devis personnalisé ou d'un rendez-vous ? N'hésitez pas à me contacter via le formulaire ci-dessous. Je serai ravi de répondre à toutes vos questions et de discuter de votre projet en détail.",
+    description:
+      "Besoin de plus d'informations, d'un devis personnalisé ou d'un rendez-vous ? N'hésitez pas à me contacter via le formulaire ci-dessous. Je serai ravi de répondre à toutes vos questions et de discuter de votre projet en détail.",
     form: {
       fields: {
         email: 'Adresse électronique',

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
+import LogoSvg from '@assets/logo.svg';
 import { useScopedI18n } from '@locales/client';
 
 import { Icon } from '@/components/icons';
@@ -17,8 +18,6 @@ import {
 } from '@/components/ui/sheet';
 
 import { cn } from '@/lib/utils';
-
-import LogoSvg from '../../../public/assets/logo.svg';
 
 const NavLink = ({
   text,

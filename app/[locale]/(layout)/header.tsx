@@ -2,9 +2,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
+import LogoSvg from '@assets/logo.svg';
+
 import { SpinningLoader } from '@/components/spinning-loader';
 
-import LogoSvg from '../../../public/assets/logo.svg';
 import { LocaleToggle } from './locale-toggle';
 import { MobileNav, NavLinks } from './navlinks';
 import { SkeletonNav } from './skeleton-nav';
