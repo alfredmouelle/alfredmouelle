@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 
 import { getCurrentLocale, getI18n } from '@locales/server';
@@ -16,10 +17,23 @@ import {
 } from '@/components/ui/breadcrumb';
 
 import { getJobs } from '@/jobs-helper';
+import { getDomain } from '@/utils/domain';
 
 interface PageProps {
   params: { locale: ReturnType<typeof getCurrentLocale> };
 }
+
+const domain = getDomain();
+
+export const metadata = {
+  alternates: {
+    canonical: `${domain}/fr/jobs`,
+    languages: {
+      fr: `${domain}/fr/jobs`,
+      en: `${domain}/en/jobs`,
+    },
+  },
+} satisfies Metadata;
 
 export default async function JobsPage({ params }: PageProps) {
   setStaticParamsLocale(params.locale);

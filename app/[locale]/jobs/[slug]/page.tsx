@@ -19,8 +19,11 @@ import { buttonVariants } from '@/components/ui/button';
 
 import { getJob, getJobs } from '@/jobs-helper';
 import { cn } from '@/lib/utils';
+import { getDomain } from '@/utils/domain';
 
 import { MdxJob } from '../_components/mdx-job';
+
+const domain = getDomain();
 
 interface PageProps {
   params: { slug: string; locale: ReturnType<typeof getCurrentLocale> };
@@ -44,8 +47,8 @@ export async function generateMetadata({ params }: PageProps) {
     keywords: job.meta.keywords,
     authors: [
       {
+        url: domain,
         name: 'Alfred Mouelle',
-        url: 'https://alfredmouelle.com',
       },
     ],
     openGraph: {
@@ -53,12 +56,19 @@ export async function generateMetadata({ params }: PageProps) {
       description: job.description,
       type: 'article',
       authors: 'Alfred Mouelle',
-      url: `https://alfredmouelle.com/jobs/${params.slug}`,
+      url: `${domain}/jobs/${params.slug}`,
     },
     twitter: {
       title,
       description: job.description,
       card: 'summary_large_image',
+    },
+    alternates: {
+      canonical: `${domain}/fr/jobs/${params.slug}`,
+      languages: {
+        fr: `${domain}/fr/jobs/${params.slug}`,
+        en: `${domain}/en/jobs/${params.slug}`,
+      },
     },
   } satisfies Metadata;
 }
