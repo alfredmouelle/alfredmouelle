@@ -38,7 +38,7 @@ export const SectionHero = async () => {
             {t('description')}
           </p>
 
-          <div className="mt-4 flex flex-col gap-2 md:flex-row z-10 items-center">
+          <div className="mt-4 flex flex-wrap flex-col gap-2 md:flex-row z-10 items-center">
             <DownloadCvButton />
             <ContactButton />
 

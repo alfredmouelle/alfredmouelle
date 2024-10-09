@@ -14,7 +14,14 @@ import { Footer } from './(layout)/footer';
 import { Header } from './(layout)/header';
 import { Provider } from './provider';
 
-export const metadata = AppConfig.metadata;
+interface PageProps {
+  params: { locale: string };
+  children: React.ReactNode;
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  return AppConfig.metadata[params.locale as 'fr' | 'en'];
+}
 
 export function generateStaticParams() {
   return getStaticParams();
@@ -23,10 +30,7 @@ export function generateStaticParams() {
 export default function RootLayout({
   params: { locale },
   children,
-}: {
-  params: { locale: string };
-  children: React.ReactNode;
-}) {
+}: PageProps) {
   return (
     <html
       lang="fr"
