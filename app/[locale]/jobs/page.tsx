@@ -27,7 +27,7 @@ const domain = getDomain();
 
 export const metadata = {
   alternates: {
-    canonical: `${domain}/fr/jobs`,
+    canonical: `${domain}/en/jobs`,
     languages: {
       fr: `${domain}/fr/jobs`,
       en: `${domain}/en/jobs`,

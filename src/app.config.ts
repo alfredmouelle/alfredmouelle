@@ -84,7 +84,7 @@ export const AppConfig = {
           '1UkBQgE4Mk9e9-dhGk1NiHAzu5d80bPt3NKUaqoUyDM',
       },
       alternates: {
-        canonical: `${domain}/fr`,
+        canonical: `${domain}/en`,
         languages: {
           fr: `${domain}/fr`,
           en: `${domain}/en`,
