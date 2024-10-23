@@ -18,7 +18,7 @@ export function ScaleWhenView({
         stiffness: 100,
         damping: 12,
       }}
-      className={cn(className)}
+      custom={{ className: cn(className) }}
     >
       {children}
     </motion.div>

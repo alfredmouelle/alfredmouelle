@@ -5,9 +5,7 @@ export const contactSchema = z
     name: z.string().min(2),
     subject: z.string().min(5),
     email: z.string().email(),
-    message: z
-      .string()
-      .min(10),
+    message: z.string().min(10),
   })
   .required();
 

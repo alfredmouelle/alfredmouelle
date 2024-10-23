@@ -20,7 +20,7 @@ import { getJobs } from '@/jobs-helper';
 import { getDomain } from '@/utils/domain';
 
 interface PageProps {
-  params: { locale: ReturnType<typeof getCurrentLocale> };
+  params: Promise<{ locale: ReturnType<typeof getCurrentLocale> }>;
 }
 
 const domain = getDomain();
@@ -33,9 +33,15 @@ export const metadata = {
       en: `${domain}/en/jobs`,
     },
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
 } satisfies Metadata;
 
-export default async function JobsPage({ params }: PageProps) {
+export default async function JobsPage(props: PageProps) {
+  const params = await props.params;
   setStaticParamsLocale(params.locale);
   const locale = getCurrentLocale();
 
@@ -43,7 +49,7 @@ export default async function JobsPage({ params }: PageProps) {
   const t = await getI18n();
 
   return (
-    <Section className="hero mt-20">
+    <Section className="hero mt-20" skipFadeIn={true}>
       <Breadcrumb className="mb-4">
         <BreadcrumbList>
           <BreadcrumbItem>

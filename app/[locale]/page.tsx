@@ -8,10 +8,11 @@ import { SectionScholarship } from './(home)/section-scholarship';
 import { SectionSkills } from './(home)/section-skills';
 
 interface PageProps {
-  params: { locale: ReturnType<typeof getCurrentLocale> };
+  params: Promise<{ locale: ReturnType<typeof getCurrentLocale> }>;
 }
 
-export default async function Home({ params }: PageProps) {
+export default async function Home(props: PageProps) {
+  const params = await props.params;
   setStaticParamsLocale(params.locale);
 
   return (

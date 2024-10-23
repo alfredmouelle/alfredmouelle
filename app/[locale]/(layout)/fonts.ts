@@ -22,7 +22,7 @@ const BeVietnamPro = localFont({
       path: '../../../public/fonts/BeVietnamPro-Regular.woff2',
       weight: '400',
       style: 'normal',
-    }
+    },
   ],
   preload: false,
   display: 'swap',

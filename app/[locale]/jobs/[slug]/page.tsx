@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { getCurrentLocale, getI18n } from '@locales/server';
 import { setStaticParamsLocale } from 'next-international/server';
 
+import { FadeInSection } from '@/components/animations/fade-in';
 import { Icon } from '@/components/icons';
 import { JobDate } from '@/components/job-card';
 import { Section } from '@/components/section';
@@ -26,15 +27,19 @@ import { MdxJob } from '../_components/mdx-job';
 const domain = getDomain();
 
 interface PageProps {
-  params: { slug: string; locale: ReturnType<typeof getCurrentLocale> };
+  params: Promise<{
+    slug: string;
+    locale: ReturnType<typeof getCurrentLocale>;
+  }>;
 }
 
 export async function generateStaticParams({ params }: PageProps) {
-  const files = await getJobs(params.locale);
+  const files = await getJobs((await params).locale);
   return files.map((job) => ({ slug: job.slug })).concat();
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata(props: PageProps) {
+  const params = await props.params;
   const job = await getJob(params.slug, params.locale);
 
   if (!job) return notFound();
@@ -45,6 +50,11 @@ export async function generateMetadata({ params }: PageProps) {
     title,
     description: job.description,
     keywords: job.meta.keywords,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true },
+    },
     authors: [
       {
         url: domain,
@@ -76,15 +86,17 @@ export async function generateMetadata({ params }: PageProps) {
   } satisfies Metadata;
 }
 
-export default async function JobPage({ params }: PageProps) {
+export default async function JobPage(props: PageProps) {
+  const params = await props.params;
   setStaticParamsLocale(params.locale);
+
   const job = await getJob(params.slug, params.locale);
   if (!job) notFound();
 
   const t = await getI18n();
 
   return (
-    <Section className="hero mt-20">
+    <Section className="hero mt-20" skipFadeIn={true}>
       <div className="mb-5 flex flex-col items-center gap-4 md:flex-row md:justify-between">
         <Breadcrumb>
           <BreadcrumbList>
@@ -96,7 +108,9 @@ export default async function JobPage({ params }: PageProps) {
                 {t('breadcrumb.home')}
               </Link>
             </BreadcrumbItem>
+
             <BreadcrumbSeparator />
+
             <BreadcrumbItem>
               <Link
                 href="/jobs"
@@ -105,7 +119,9 @@ export default async function JobPage({ params }: PageProps) {
                 {t('breadcrumb.jobs')}
               </Link>
             </BreadcrumbItem>
+
             <BreadcrumbSeparator />
+
             <BreadcrumbItem>
               <BreadcrumbPage>{job.company}</BreadcrumbPage>
             </BreadcrumbItem>
@@ -135,21 +151,23 @@ export default async function JobPage({ params }: PageProps) {
         </div>
       </div>
 
-      <MdxJob job={job} />
+      <FadeInSection>
+        <MdxJob job={job} />
 
-      <div className="mt-10 flex w-full items-center md:justify-center">
-        <a
-          target="_blank"
-          href={job.siteUrl}
-          className={cn(
-            'w-full md:w-auto',
-            buttonVariants({ variant: 'outline' })
-          )}
-        >
-          {t('job.visitWebsite')}
-          <Icon name="link" className="ml-2 size-4" />
-        </a>
-      </div>
+        <div className="mt-10 flex w-full items-center md:justify-center">
+          <a
+            target="_blank"
+            href={job.siteUrl}
+            className={cn(
+              'w-full md:w-auto',
+              buttonVariants({ variant: 'outline' })
+            )}
+          >
+            {t('job.visitWebsite')}
+            <Icon name="link" className="ml-2 size-4" />
+          </a>
+        </div>
+      </FadeInSection>
     </Section>
   );
 }

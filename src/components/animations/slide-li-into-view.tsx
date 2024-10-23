@@ -17,7 +17,7 @@ export function SlideLiIntoView({
   return (
     <motion.li
       key={index}
-      className={cn(className)}
+      custom={{ className: cn(className) }}
       initial={{ opacity: 0, y: 100 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}

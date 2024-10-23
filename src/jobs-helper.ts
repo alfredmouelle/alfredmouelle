@@ -46,7 +46,7 @@ export const getJobs = async (locale: ReturnType<typeof getCurrentLocale>) => {
     }
 
     jobs.push({
-      slug: fileName.replace(/^\d+-/, "").replace(".mdx", ""),
+      slug: fileName.replace(/^\d+-/, '').replace('.mdx', ''),
       content,
       ...job,
     });

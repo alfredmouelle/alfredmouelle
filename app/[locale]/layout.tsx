@@ -15,11 +15,12 @@ import { Header } from './(layout)/header';
 import { Provider } from './provider';
 
 interface PageProps {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
   children: React.ReactNode;
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata(props: PageProps) {
+  const params = await props.params;
   return AppConfig.metadata[params.locale as 'fr' | 'en'];
 }
 
@@ -27,10 +28,9 @@ export function generateStaticParams() {
   return getStaticParams();
 }
 
-export default function RootLayout({
-  params: { locale },
-  children,
-}: PageProps) {
+export default async function RootLayout(props: PageProps) {
+  const params = await props.params;
+
   return (
     <html
       lang="fr"
@@ -42,10 +42,10 @@ export default function RootLayout({
           'flex h-full min-h-screen flex-col bg-background font-global relative'
         )}
       >
-        <I18nProviderClient locale={locale}>
+        <I18nProviderClient locale={params.locale}>
           <Provider>
             <Header />
-            <main className="grow">{children}</main>
+            <main className="grow">{props.children}</main>
             <Footer />
           </Provider>
 
