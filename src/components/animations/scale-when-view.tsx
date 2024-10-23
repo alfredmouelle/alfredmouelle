@@ -9,18 +9,19 @@ export function ScaleWhenView({
   className,
 }: PropsWithChildren<{ className?: string }>) {
   return (
-    <motion.div
-      viewport={{ once: true }}
-      initial={{ opacity: 0, scale: 0 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      transition={{
-        type: 'spring',
-        stiffness: 100,
-        damping: 12,
-      }}
-      custom={{ className: cn(className) }}
-    >
-      {children}
-    </motion.div>
+    <div className={cn(className)}>
+      <motion.div
+        viewport={{ once: true }}
+        initial={{ opacity: 0, scale: 0 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{
+          type: 'spring',
+          stiffness: 100,
+          damping: 12,
+        }}
+      >
+        {children}
+      </motion.div>
+    </div>
   );
 }

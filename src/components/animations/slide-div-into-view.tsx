@@ -17,19 +17,20 @@ export function SlideDivIntoView({
   offset,
 }: SlideDivIntoViewProps) {
   return (
-    <motion.div
-      custom={{ className: cn(className) }}
-      initial={{ opacity: 0, y: offset }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{
-        type: 'spring',
-        stiffness: 100,
-        damping: 12,
-        delay: delay,
-      }}
-    >
-      {children}
-    </motion.div>
+    <div className={cn(className)}>
+      <motion.div
+        initial={{ opacity: 0, y: offset }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{
+          type: 'spring',
+          stiffness: 100,
+          damping: 12,
+          delay: delay,
+        }}
+      >
+        {children}
+      </motion.div>
+    </div>
   );
 }
