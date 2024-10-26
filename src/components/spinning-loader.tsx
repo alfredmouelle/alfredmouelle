@@ -8,6 +8,6 @@ interface SpinningLoaderProps {
 
 export const SpinningLoader = ({ className }: SpinningLoaderProps) => {
   return (
-    <Icon name="loader" className={cn('h-5 w-5 animate-spin', className)} />
+    <Icon name="loader" className={cn('size-5 animate-spin', className)} />
   );
 };
