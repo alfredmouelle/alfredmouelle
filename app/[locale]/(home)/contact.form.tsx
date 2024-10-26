@@ -62,7 +62,7 @@ export function ContactForm() {
             name="name"
             control={form.control}
             render={({ field }) => (
-              <FormItem className="flex flex-col items-start justify-start h-full h-full">
+              <FormItem className="flex flex-col items-start justify-start h-full">
                 <FormLabel>{t('fields.name')}</FormLabel>
                 <FormControl>
                   <Input
