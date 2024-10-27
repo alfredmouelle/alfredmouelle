@@ -15,12 +15,19 @@ export const ContactButton = () => {
   const jumpToAnchor = () => {
     const element = document.getElementById(anchor);
     if (element) element.scrollIntoView({ behavior: 'smooth' });
-    router.push(`/?anchor=${anchor}`, { scroll: false });
+    router.replace(`/?anchor=${anchor}`, { scroll: false });
   };
 
   return (
-    <Button variant="link" onClick={jumpToAnchor}>
-      {t('contact')}
+    <Button
+      variant="link"
+      onClick={jumpToAnchor}
+      className="hover:no-underline"
+    >
+      <div className="text-xs font-medium text-green-700 dark:text-green-500 flex items-center gap-x-1">
+        <div className="size-2 rounded-full bg-green-700 dark:bg-green-500 animate-pulse" />
+        <p>{t('availability')}</p>
+      </div>
     </Button>
   );
 };

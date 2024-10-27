@@ -38,7 +38,6 @@ export default {
     description:
       'Based in Cameroon with 5 years of experience in web development and application design. Passionate and self-taught, I have acquired strong skills in software engineering through numerous projects. My goal is to master new technologies to not only enrich my knowledge, but also to offer tailored and high-quality solutions to those who need them. As a freelancer, I am dedicated to providing efficient service and actively contributing to the success of the projects entrusted to me.',
     downloadCvBtn: 'Download Resume',
-    contact: 'Contact me',
   },
 
   section_scholarship: {

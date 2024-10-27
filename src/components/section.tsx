@@ -3,6 +3,7 @@ import { HTMLAttributes, PropsWithChildren } from 'react';
 import { cn } from '@/lib/utils';
 
 import { FadeInSection } from './animations/fade-in';
+import { WatchedSection } from './watched-section';
 
 interface PageWrapperProps extends HTMLAttributes<HTMLElement> {
   innerWrapperClassName?: string;
@@ -17,7 +18,7 @@ export const Section = ({
   ...props
 }: PropsWithChildren<PageWrapperProps>) => {
   return (
-    <section className={cn('py-10 md:py-24', className)} {...props}>
+    <WatchedSection className={className} {...props}>
       {skipFadeIn ? (
         <div className={cn('container', innerWrapperClassName)}>{children}</div>
       ) : (
@@ -27,7 +28,7 @@ export const Section = ({
           </div>
         </FadeInSection>
       )}
-    </section>
+    </WatchedSection>
   );
 };
 
