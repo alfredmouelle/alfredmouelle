@@ -35,7 +35,7 @@ export const SectionHero = async () => {
             <span className="text-xl font-medium">{'/>'}</span>
           </div>
 
-          <p className="text-balance text-muted-foreground">
+          <p className="text-justify text-muted-foreground">
             {t('description')}
           </p>
 
