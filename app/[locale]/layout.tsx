@@ -1,6 +1,5 @@
 import { I18nProviderClient } from '@locales/client';
 import { getStaticParams } from '@locales/server';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Toaster } from 'sonner';
 
 import { AppConfig } from '@/app.config';
@@ -53,9 +52,6 @@ export default async function RootLayout(props: PageProps) {
             <BackToTop />
             <Toaster richColors />
           </I18nProviderClient>
-
-          {/* <Analytics /> */}
-          <SpeedInsights />
         </body>
       </CSPostHogProvider>
     </html>
