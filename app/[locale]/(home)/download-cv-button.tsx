@@ -1,6 +1,7 @@
 'use client';
 
 import { useCurrentLocale, useScopedI18n } from '@locales/client';
+import posthog from 'posthog-js';
 
 import { GradientBorder } from '@/components/animations/gradient-border';
 import { Icon } from '@/components/icons';
@@ -11,6 +12,7 @@ export const DownloadCvButton = () => {
   const t = useScopedI18n('section_hero');
 
   const download = () => {
+    posthog.capture('CV Downloaded', { locale: currentLocale });
     const downloadLink = getDownloadLink(currentLocale);
     downloadLink.click();
   };

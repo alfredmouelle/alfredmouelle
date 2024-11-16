@@ -1,5 +1,16 @@
 ## <mark>Author</mark> : Alfred MOUELLE | FullStack Developer
 
+### 🚧 Roadmap
+
+- [ ] 📝 Create a blog
+- [ ] 📝 Add project sections
+- [ ] 📝 Add freelance statistics (comeup)
+- [x] 📝 Create a resume
+- [x] 📝 Create logo
+- [x] 📝 Add jobs section
+- [x] 📝 Add contact form
+- [x] 📝 Create a roadmap
+
 ### Meet me on
 
 [![ComeUp](https://img.shields.io/static/v1?style=for-the-badge&label=&message=ComeUp&color=yellow)](https://comeup.com/@alfredmouelle)
