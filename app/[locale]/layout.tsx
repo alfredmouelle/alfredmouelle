@@ -2,6 +2,8 @@ import { I18nProviderClient } from '@locales/client';
 import { getStaticParams } from '@locales/server';
 import { Toaster } from 'sonner';
 
+import { DynamicPostHogPageView } from '@/components/analytics/dynamic-ph-page-view';
+
 import { AppConfig } from '@/app.config';
 import { cn } from '@/lib/utils';
 
@@ -50,6 +52,8 @@ export default async function RootLayout(props: PageProps) {
             </Provider>
 
             <BackToTop />
+
+            <DynamicPostHogPageView />
             <Toaster richColors />
           </I18nProviderClient>
         </body>

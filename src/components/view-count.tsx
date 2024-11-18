@@ -10,9 +10,7 @@ import { SpinningLoader } from './spinning-loader';
 export const ViewCount = ({ slug }: { slug: string }) => {
   const { data: viewCount, isLoading } = useSWR(
     `/view-count/${slug}`,
-    async () => {
-      return incrementViewsAction(slug);
-    }
+    async () => incrementViewsAction(slug)
   );
 
   if (isLoading) return <SpinningLoader className="text-muted-foreground" />;

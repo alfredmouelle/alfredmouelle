@@ -15,13 +15,14 @@ export function CSPostHogProvider({ children }: { children: React.ReactNode }) {
       posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
         api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
         person_profiles: 'always',
+        capture_pageview: false,
         debug: process.env.NODE_ENV === 'development',
       });
     }
 
-    return () => {
-      posthog.reset();
-    };
+    // return () => {
+    //   posthog.reset();
+    // };
   }, [mounted]);
 
   return <PostHogProvider client={posthog}>{children}</PostHogProvider>;
