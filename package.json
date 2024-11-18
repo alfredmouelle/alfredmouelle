@@ -44,7 +44,7 @@
     "next-safe-action": "7.8.1",
     "next-sitemap": "^4.2.3",
     "next-themes": "^0.3.0",
-    "posthog-js": "^1.181.0",
+    "posthog-js": "^1.186.3",
     "react": "19.0.0-rc-69d4b800-20241021",
     "react-dom": "19.0.0-rc-69d4b800-20241021",
     "react-hook-form": "7.52.2",
