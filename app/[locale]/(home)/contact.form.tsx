@@ -62,7 +62,7 @@ export function ContactForm() {
             name="name"
             control={form.control}
             render={({ field }) => (
-              <FormItem className="flex flex-col items-start justify-start h-full">
+              <FormItem className="flex h-full flex-col items-start justify-start">
                 <FormLabel>{t('fields.name')}</FormLabel>
                 <FormControl>
                   <Input
@@ -87,7 +87,7 @@ export function ContactForm() {
             name="email"
             control={form.control}
             render={({ field }) => (
-              <FormItem className="flex flex-col items-start justify-start h-full">
+              <FormItem className="flex h-full flex-col items-start justify-start">
                 <FormLabel>{t('fields.email')}</FormLabel>
                 <FormControl>
                   <Input
@@ -112,7 +112,7 @@ export function ContactForm() {
             name="subject"
             control={form.control}
             render={({ field }) => (
-              <FormItem className="flex flex-col items-start justify-start h-full">
+              <FormItem className="flex h-full flex-col items-start justify-start">
                 <FormLabel>{t('fields.subject')}</FormLabel>
                 <FormControl>
                   <Input
@@ -138,7 +138,7 @@ export function ContactForm() {
           name="message"
           control={form.control}
           render={({ field }) => (
-            <FormItem className="flex flex-col items-start justify-start h-full">
+            <FormItem className="flex h-full flex-col items-start justify-start">
               <FormLabel>{t('fields.message')}</FormLabel>
               <FormControl>
                 <Textarea

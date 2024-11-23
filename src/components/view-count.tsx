@@ -18,7 +18,7 @@ export const ViewCount = ({ slug }: { slug: string }) => {
   if (!viewCount) return null;
 
   return (
-    <p className="rounded-full flex flex-row items-center gap-x-1 text-muted-foreground">
+    <p className="flex flex-row items-center gap-x-1 rounded-full text-muted-foreground">
       {viewCount.views} <Icon name="eye" />
     </p>
   );

@@ -24,8 +24,8 @@ export const ContactButton = () => {
       onClick={jumpToAnchor}
       className="hover:no-underline"
     >
-      <div className="text-xs font-medium text-green-700 dark:text-green-500 flex items-center gap-x-1">
-        <div className="size-2 rounded-full bg-green-700 dark:bg-green-500 animate-pulse" />
+      <div className="flex items-center gap-x-1 text-xs font-medium text-green-700 dark:text-green-500">
+        <div className="size-2 animate-pulse rounded-full bg-green-700 dark:bg-green-500" />
         <p>{t('availability')}</p>
       </div>
     </Button>

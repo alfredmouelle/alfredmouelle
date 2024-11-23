@@ -17,16 +17,16 @@ export const SectionHero = async () => {
     <Section
       id="section_hero"
       skipFadeIn={true}
-      className="bg-gradient-to-b from-transparent via-transparent to-blue-500/25 mt-20"
+      className="mt-20 bg-gradient-to-b from-transparent via-transparent to-blue-500/25"
     >
       <div className="hero grid min-h-[calc(100vh-20rem)] items-center gap-4 md:grid-cols-3">
         <div className="hero-brand relative order-2 flex flex-col gap-y-2 text-center md:order-none md:col-span-2 md:text-left">
           <p className="text-muted-foreground">{t('greetings')}</p>
-          <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r to-[#9c60d7] from-primary via-primary">
+          <h1 className="bg-gradient-to-r from-primary via-primary to-[#9c60d7] bg-clip-text text-3xl font-bold text-transparent">
             Alfred Mouelle
           </h1>
 
-          <div className="flex items-center justify-center gap-x-0.5 md:justify-start bg-card/10 border shadow-lg w-fit px-4 rounded-sm mx-auto md:mx-0">
+          <div className="mx-auto flex w-fit items-center justify-center gap-x-0.5 rounded-sm border bg-card/10 px-4 shadow-lg md:mx-0 md:justify-start">
             <span className="text-xl font-medium">{'<'}</span>
             <TypewriterText
               text={t('position')}
@@ -39,14 +39,14 @@ export const SectionHero = async () => {
             {t('description')}
           </p>
 
-          <div className="mt-4 flex flex-wrap flex-col gap-2 md:flex-row z-10 items-center">
+          <div className="z-10 mt-4 flex flex-col flex-wrap items-center gap-2 md:flex-row">
             <DownloadCvButton />
             <ContactButton />
           </div>
         </div>
 
         <GradientBorder>
-          <div className="order-1 md:order-none gradient rounded-full">
+          <div className="gradient order-1 rounded-full md:order-none">
             <Image
               priority
               width={500}
@@ -54,7 +54,7 @@ export const SectionHero = async () => {
               src={HeroImage}
               alt="Photo de moi"
               placeholder="blur"
-              className="rounded-full shadow-lg hover:scale-[1.01] transition-transform duration-150 ease-in"
+              className="rounded-full shadow-lg transition-transform duration-150 ease-in hover:scale-[1.01]"
             />
           </div>
         </GradientBorder>

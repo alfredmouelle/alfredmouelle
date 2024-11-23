@@ -61,9 +61,9 @@ const NavLink = ({
       <Button
         variant="outline"
         className={cn(
-          'text-foreground w-full text-start flex items-start justify-start bg-transparent border-none',
+          'flex w-full items-start justify-start border-none bg-transparent text-start text-foreground',
           {
-            'font-bold text-primary border-2': active,
+            'border-2 font-bold text-primary': active,
           }
         )}
       >
@@ -129,7 +129,7 @@ export const MobileNav = () => {
 
       <SheetContent side="left" aria-describedby="app-menu">
         <SheetHeader>
-          <SheetTitle className="text-2xl font-semibold md:text-3xl font-mono">
+          <SheetTitle className="font-mono text-2xl font-semibold md:text-3xl">
             <div className="flex items-center justify-center gap-x-2">
               <Image src={LogoSvg} alt="Logo" width={25} height={25} />
               PORTFOLIO

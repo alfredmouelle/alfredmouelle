@@ -52,7 +52,7 @@ export async function SectionSkills() {
   return (
     <Section id="skills">
       <SectionTitle className="flex items-center">
-        <Icon name="skill" className="size-8 mr-2" />
+        <Icon name="skill" className="mr-2 size-8" />
         {t('title')}
       </SectionTitle>
 
@@ -75,10 +75,10 @@ async function SkillCard({ skill }: { skill: Skill }) {
   const t = await getScopedI18n('section_skills');
 
   return (
-    <Card className="group h-full flex flex-col transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent cursor-pointer shadow-lg">
+    <Card className="group flex h-full cursor-pointer flex-col shadow-lg transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent">
       <CardHeader className="flex-grow">
         <CardTitle className="flex items-center text-primary">
-          <skill.icon className="size-5 mr-2" />
+          <skill.icon className="mr-2 size-5" />
           {skill.title}
         </CardTitle>
         <CardDescription className="mt-2">{t(skill.details)}</CardDescription>
@@ -91,7 +91,7 @@ async function SkillCard({ skill }: { skill: Skill }) {
               <Button
                 size="sm"
                 variant="outline"
-                className="group-hover:bg-primary group-hover:text-white transition-colors ease-in duration-150"
+                className="transition-colors duration-150 ease-in group-hover:bg-primary group-hover:text-white"
               >
                 {skillItem}
               </Button>

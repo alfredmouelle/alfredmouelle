@@ -21,7 +21,7 @@ export const DownloadCvButton = () => {
     <GradientBorder>
       <Button
         onClick={download}
-        className="gradient is-blue dark:text-slate-300 text-gray-700 hover:text-white transition-colors duration-200 ease-in"
+        className="gradient is-blue text-gray-700 transition-colors duration-200 ease-in hover:text-white dark:text-slate-300"
       >
         {t('downloadCvBtn')} <Icon name="download" className="ml-2" />
       </Button>

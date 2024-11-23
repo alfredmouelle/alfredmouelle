@@ -41,7 +41,7 @@ export default async function RootLayout(props: PageProps) {
       <CSPostHogProvider>
         <body
           className={cn(
-            'flex h-full min-h-screen flex-col bg-background font-global relative'
+            'font-global relative flex h-full min-h-screen flex-col bg-background'
           )}
         >
           <I18nProviderClient locale={params.locale}>

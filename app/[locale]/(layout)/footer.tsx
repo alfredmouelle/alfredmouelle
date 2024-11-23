@@ -6,7 +6,7 @@ export const Footer = async () => {
   return (
     <footer className="py-4">
       <div className="container">
-        <p className="text-center text-xs md:text-sm text-gray-500">
+        <p className="text-center text-xs text-gray-500 md:text-sm">
           &copy; {new Date().getFullYear()} {t('text')}
         </p>
       </div>

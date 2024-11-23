@@ -17,7 +17,7 @@ export const SectionScholarship = async () => {
       className="bg-gradient-to-b from-blue-500/25 via-transparent to-transparent"
     >
       <SectionTitle className="flex items-center">
-        <Icon name="graduation" className="size-8 mr-2" />
+        <Icon name="graduation" className="mr-2 size-8" />
         {t('title')}
       </SectionTitle>
 
@@ -28,7 +28,7 @@ export const SectionScholarship = async () => {
             height={500}
             alt="Mascotte"
             src={SectionSvg}
-            className="hover:scale-[1.02] transition-transform duration-100 ease-in"
+            className="transition-transform duration-100 ease-in hover:scale-[1.02]"
           />
         </ScaleWhenView>
 
@@ -39,7 +39,7 @@ export const SectionScholarship = async () => {
               <SlideDivIntoView className="w-1/2 pr-8 text-right" offset={-100}>
                 <h2 className="text-lg font-semibold">{t('bts.title')}</h2>
                 <p className="text-primary">{t('bts.specialty')}</p>
-                <p className="text-muted-foreground text-sm">2018 - 2020</p>
+                <p className="text-sm text-muted-foreground">2018 - 2020</p>
               </SlideDivIntoView>
 
               <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-b from-primary via-primary to-[#9c60d7]">
@@ -48,7 +48,7 @@ export const SectionScholarship = async () => {
 
               <SlideDivIntoView className="w-1/2 pl-8" offset={100}>
                 <p className="text-muted-foreground">{t('bts.academy')}</p>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-sm text-muted-foreground">
                   {t('bts.location')}
                 </p>
               </SlideDivIntoView>
@@ -62,10 +62,10 @@ export const SectionScholarship = async () => {
               >
                 <h2 className="text-lg font-semibold">{t('bac.title')}</h2>
                 <p className="text-primary">{t('bac.specialty')}</p>
-                <p className="text-muted-foreground text-sm">2017 - 2018</p>
+                <p className="text-sm text-muted-foreground">2017 - 2018</p>
               </SlideDivIntoView>
 
-              <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-b from-primary via-primary to-[#9c60d7] bg-primary">
+              <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-primary bg-gradient-to-b from-primary via-primary to-[#9c60d7]">
                 <Icon name="check" className="text-white" />
               </div>
 
@@ -75,7 +75,7 @@ export const SectionScholarship = async () => {
                 delay={0.05}
               >
                 <p className="text-muted-foreground">{t('bac.location1')}</p>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-sm text-muted-foreground">
                   {t('bac.location2')}
                 </p>
               </SlideDivIntoView>
@@ -91,10 +91,10 @@ export const SectionScholarship = async () => {
                   {t('probatoire.title')}
                 </h2>
                 <p className="text-primary">{t('bac.specialty')}</p>
-                <p className="text-muted-foreground text-sm">2016 - 2017</p>
+                <p className="text-sm text-muted-foreground">2016 - 2017</p>
               </SlideDivIntoView>
 
-              <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-b from-primary via-primary to-[#9c60d7] bg-primary">
+              <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-primary bg-gradient-to-b from-primary via-primary to-[#9c60d7]">
                 <Icon name="check" className="text-white" />
               </div>
 
@@ -104,7 +104,7 @@ export const SectionScholarship = async () => {
                 delay={0.08}
               >
                 <p className="text-muted-foreground">{t('bac.location1')}</p>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-sm text-muted-foreground">
                   {t('bac.location2')}
                 </p>
               </SlideDivIntoView>

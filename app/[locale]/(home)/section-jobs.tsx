@@ -22,7 +22,7 @@ export const SectionJobs = async () => {
   return (
     <Section id="jobs">
       <SectionTitle className="flex items-center">
-        <Icon name="briefcase" className="size-8 mr-2" />
+        <Icon name="briefcase" className="mr-2 size-8" />
         {t('title')}
       </SectionTitle>
 

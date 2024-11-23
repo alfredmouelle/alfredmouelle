@@ -55,7 +55,7 @@ export default async function JobsPage(props: PageProps) {
           <BreadcrumbItem>
             <Link
               href="/"
-              className="hover:text-foreground transition-colors duration-150 ease-in"
+              className="transition-colors duration-150 ease-in hover:text-foreground"
             >
               {t('breadcrumb.home')}
             </Link>
@@ -68,7 +68,7 @@ export default async function JobsPage(props: PageProps) {
       </Breadcrumb>
 
       <SectionTitle className="flex items-center">
-        <Icon name="briefcase" className="size-8 mr-2" />
+        <Icon name="briefcase" className="mr-2 size-8" />
         {t('section_jobs.title')}
       </SectionTitle>
 

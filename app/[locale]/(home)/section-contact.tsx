@@ -49,7 +49,7 @@ export const SectionContact = async () => {
   return (
     <Section id="contact">
       <SectionTitle className="flex items-center">
-        <Icon name="contact" className="size-8 mr-2" />
+        <Icon name="contact" className="mr-2 size-8" />
         {t('title')}
       </SectionTitle>
 
@@ -71,8 +71,8 @@ export const SectionContact = async () => {
         </ul>
 
         <div className="my-12 flex flex-col items-center">
-          <div className="mb-8 h-px w-full bg-muted-foreground max-w-3xl" />
-          <p className="text-center text-sm max-w-2xl text-muted-foreground">
+          <div className="mb-8 h-px w-full max-w-3xl bg-muted-foreground" />
+          <p className="max-w-2xl text-center text-sm text-muted-foreground">
             {t('description')}
           </p>
         </div>

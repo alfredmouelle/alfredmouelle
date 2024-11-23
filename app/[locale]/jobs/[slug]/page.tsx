@@ -98,13 +98,13 @@ export default async function JobPage(props: PageProps) {
 
   return (
     <Section className="hero mt-20" skipFadeIn={true}>
-      <div className="mb-5 flex flex-col md:items-center gap-4 md:flex-row md:justify-between">
+      <div className="mb-5 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
               <Link
                 href="/"
-                className="hover:text-foreground transition-colors duration-200 ease-in"
+                className="transition-colors duration-200 ease-in hover:text-foreground"
               >
                 {t('breadcrumb.home')}
               </Link>
@@ -115,7 +115,7 @@ export default async function JobPage(props: PageProps) {
             <BreadcrumbItem>
               <Link
                 href="/jobs"
-                className="hover:text-foreground transition-colors duration-150 ease-in"
+                className="transition-colors duration-150 ease-in hover:text-foreground"
               >
                 {t('breadcrumb.jobs')}
               </Link>
@@ -133,7 +133,7 @@ export default async function JobPage(props: PageProps) {
           </BreadcrumbList>
         </Breadcrumb>
 
-        <div className="flex items-center gap-x-2 gap-y-2 flex-row text-muted-foreground">
+        <div className="flex flex-row items-center gap-x-2 gap-y-2 text-muted-foreground">
           <JobDate startDate={job.startDate} endDate={job.endDate} />
           <span className="text-muted-foreground">-</span>
           <div className="flex items-center justify-center gap-x-2">

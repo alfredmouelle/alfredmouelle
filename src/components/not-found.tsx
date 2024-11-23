@@ -15,13 +15,13 @@ export async function NotFound() {
   return (
     <Section
       skipFadeIn={true}
-      className="hero flex flex-col items-center justify-center flex-1 h-full text-center mt-20"
+      className="hero mt-20 flex h-full flex-1 flex-col items-center justify-center text-center"
     >
-      <h1 className="text-4xl font-bold mb-4">{t('title')}</h1>
-      <p className="text-xl mb-8 text-muted-foreground">{t('message')}</p>
+      <h1 className="mb-4 text-4xl font-bold">{t('title')}</h1>
+      <p className="mb-8 text-xl text-muted-foreground">{t('message')}</p>
       <Link href="/">
         <Button>
-          <Icon name="home" className="size-4 mr-2" />
+          <Icon name="home" className="mr-2 size-4" />
           {t('backHome')}
         </Button>
       </Link>
