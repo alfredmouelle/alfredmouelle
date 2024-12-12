@@ -20,10 +20,12 @@ interface PageProps {
   children: React.ReactNode;
 }
 
-export async function generateMetadata(props: PageProps) {
-  const params = await props.params;
-  return AppConfig.metadata[params.locale as 'fr' | 'en'];
-}
+export const metadata = AppConfig.metadata[AppConfig.defaultMetadataLocale];
+
+// export async function generateMetadata(props: PageProps) {
+//   const params = await props.params;
+//   return AppConfig.metadata[params.locale as 'fr' | 'en'];
+// }
 
 export function generateStaticParams() {
   return getStaticParams();

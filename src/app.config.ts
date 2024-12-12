@@ -5,6 +5,7 @@ import { getDomain } from './utils/domain';
 const domain = getDomain();
 
 export const AppConfig = {
+  defaultMetadataLocale: 'en',
   metadata: {
     fr: {
       metadataBase: new URL(domain),

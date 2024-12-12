@@ -19,6 +19,7 @@ import {
 import { buttonVariants } from '@/components/ui/button';
 import { ViewCount } from '@/components/view-count';
 
+import { AppConfig } from '@/app.config';
 import { getJob, getJobs } from '@/jobs-helper';
 import { cn } from '@/lib/utils';
 import { getDomain } from '@/utils/domain';
@@ -41,7 +42,7 @@ export async function generateStaticParams({ params }: PageProps) {
 
 export async function generateMetadata(props: PageProps) {
   const params = await props.params;
-  const job = await getJob(params.slug, params.locale);
+  const job = await getJob(params.slug, AppConfig.defaultMetadataLocale);
 
   if (!job) return notFound();
 
