@@ -3,14 +3,14 @@
 import { getScopedI18n } from '@locales/server';
 import 'next-safe-action';
 
-import { contactSchema } from '@/schemas/contact.schema';
+import { CONTACT_SCHEMA } from '@/schemas/contact.schema';
 
 import { ContactEmail } from '@/emails/contact.email';
 import { action } from '@/lib/next-safe-action';
 import { resend } from '@/lib/resend';
 
 export const contactAction = action
-  .schema(contactSchema)
+  .schema(CONTACT_SCHEMA)
   .action(async ({ parsedInput }) => {
     const t = await getScopedI18n('section_contact.form');
 

@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
 import { contactAction } from '@/actions/contact.action';
-import { ContactRequest, contactSchema } from '@/schemas/contact.schema';
+import { CONTACT_SCHEMA, ContactRequest } from '@/schemas/contact.schema';
 
 import { Icon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
@@ -29,7 +29,7 @@ export function ContactForm() {
   const t = useScopedI18n('section_contact.form');
 
   const form = useForm<ContactRequest>({
-    resolver: zodResolver(contactSchema),
+    resolver: zodResolver(CONTACT_SCHEMA),
     defaultValues: { name: '', email: '', message: '', subject: '' },
   });
 

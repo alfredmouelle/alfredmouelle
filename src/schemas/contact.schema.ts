@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const contactSchema = z
+export const CONTACT_SCHEMA = z
   .object({
     name: z.string().min(2),
     subject: z.string().min(5),
@@ -9,4 +9,4 @@ export const contactSchema = z
   })
   .required();
 
-export type ContactRequest = z.infer<typeof contactSchema>;
+export type ContactRequest = z.infer<typeof CONTACT_SCHEMA>;

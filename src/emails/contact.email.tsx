@@ -9,12 +9,9 @@ import {
 } from '@react-email/components';
 import { Tailwind } from '@react-email/tailwind';
 
-interface ContactEmailProps {
-  name: string;
-  email: string;
-  message: string;
-  subject: string;
-}
+import { ContactRequest } from '@/schemas/contact.schema';
+
+interface ContactEmailProps extends ContactRequest {}
 
 export const ContactEmail = ({
   name,
