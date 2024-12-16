@@ -79,7 +79,7 @@ export async function generateMetadata(props: PageProps) {
       card: 'summary_large_image',
     },
     alternates: {
-      canonical: `${domain}/en/jobs/${params.slug}`,
+      canonical: `${domain}/jobs/${params.slug}`,
       languages: {
         fr: `${domain}/fr/jobs/${params.slug}`,
         en: `${domain}/en/jobs/${params.slug}`,
