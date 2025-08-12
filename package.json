@@ -50,7 +50,6 @@
     "react-hook-form": "7.52.2",
     "resend": "^4.0.0",
     "sonner": "^1.7.1",
-    "swr": "^2.2.5",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "typewriter-effect": "^2.21.0",

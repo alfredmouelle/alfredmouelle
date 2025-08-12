@@ -13,11 +13,9 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import { buttonVariants } from '@/components/ui/button';
-import { ViewCount } from '@/components/view-count';
 
 import { AppConfig } from '@/app.config';
 import { getJob, getJobs } from '@/jobs-helper';
@@ -120,16 +118,6 @@ export default async function JobPage(props: PageProps) {
               >
                 {t('breadcrumb.jobs')}
               </Link>
-            </BreadcrumbItem>
-
-            <BreadcrumbSeparator />
-
-            <BreadcrumbItem>
-              <BreadcrumbPage>
-                <span className="flex items-center gap-x-2">
-                  {job.company} <ViewCount slug={job.slug} />
-                </span>
-              </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
