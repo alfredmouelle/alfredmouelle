@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import { getCurrentLocale, getScopedI18n } from '@locales/server';
 import { setStaticParamsLocale } from 'next-international/server';
 
@@ -8,7 +7,7 @@ import { Section } from '@/components/section';
 import { Button } from '@/components/ui/button';
 
 export async function NotFound() {
-  const locale = getCurrentLocale();
+  const locale = await getCurrentLocale();
   setStaticParamsLocale(locale);
   const t = await getScopedI18n('notFound');
 

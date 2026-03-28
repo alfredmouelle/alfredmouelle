@@ -1,4 +1,4 @@
-import { getCurrentLocale } from '@locales/server';
+import type { Locale } from '@locales/server';
 import { setStaticParamsLocale } from 'next-international/server';
 
 import { SectionContact } from './(home)/section-contact';
@@ -8,7 +8,7 @@ import { SectionScholarship } from './(home)/section-scholarship';
 import { SectionSkills } from './(home)/section-skills';
 
 interface PageProps {
-  params: Promise<{ locale: ReturnType<typeof getCurrentLocale> }>;
+  params: Promise<{ locale: Locale }>;
 }
 
 export default async function Home(props: PageProps) {

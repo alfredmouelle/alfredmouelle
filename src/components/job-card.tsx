@@ -55,11 +55,11 @@ export const JobCard = async ({ job }: { job: Job }) => {
   );
 };
 
-export const JobDate = async function ({
+export const JobDate = async ({
   startDate,
   endDate,
-}: Pick<Job, 'endDate' | 'startDate'>) {
-  const locale = getCurrentLocale();
+}: Pick<Job, 'endDate' | 'startDate'>) => {
+  const locale = await getCurrentLocale();
   const f = (date: Date) => {
     const d = format(date, 'MMM yyy', { locale: locale === 'fr' ? fr : enUS });
     return (d.charAt(0).toUpperCase() + d.slice(1)).replace('.', '');

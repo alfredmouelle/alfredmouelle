@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-
-import { getCurrentLocale, getI18n } from '@locales/server';
+import type { Locale } from '@locales/server';
+import { getI18n } from '@locales/server';
 import { setStaticParamsLocale } from 'next-international/server';
 
 import { FadeInSection } from '@/components/animations/fade-in';
@@ -29,12 +29,20 @@ const domain = getDomain();
 interface PageProps {
   params: Promise<{
     slug: string;
-    locale: ReturnType<typeof getCurrentLocale>;
+    locale: Locale;
   }>;
 }
 
-export async function generateStaticParams({ params }: PageProps) {
-  const files = await getJobs((await params).locale);
+interface GenerateStaticParamsProps {
+  params: {
+    locale: Locale;
+  };
+}
+
+export async function generateStaticParams({
+  params,
+}: GenerateStaticParamsProps) {
+  const files = await getJobs(params.locale);
   return files.map((job) => ({ slug: job.slug })).concat();
 }
 
