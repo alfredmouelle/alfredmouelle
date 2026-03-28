@@ -1,5 +1,4 @@
 import Image from 'next/image';
-
 import HeroImage from '@assets/images/hero-avatar.webp';
 import { getScopedI18n } from '@locales/server';
 
@@ -54,7 +53,7 @@ export const SectionHero = async () => {
               src={HeroImage}
               alt="Photo de moi"
               placeholder="blur"
-              className="rounded-full shadow-lg transition-transform duration-150 ease-in hover:scale-[1.01]"
+              className="rounded-full shadow-lg transition-transform duration-150 ease-in hover:scale-[1.01] bg-background"
             />
           </div>
         </GradientBorder>
