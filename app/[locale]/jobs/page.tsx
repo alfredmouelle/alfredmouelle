@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import type { Locale } from '@locales/server';
-import { getI18n } from '@locales/server';
+import { notFound } from 'next/navigation';
+import { getI18n, isLocale } from '@locales/server';
 import { setStaticParamsLocale } from 'next-international/server';
 
 import { SlideLiIntoView } from '@/components/animations/slide-li-into-view';
@@ -20,7 +20,7 @@ import { getJobs } from '@/jobs-helper';
 import { getDomain } from '@/utils/domain';
 
 interface PageProps {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }
 
 const domain = getDomain();
@@ -42,6 +42,7 @@ export const metadata = {
 
 export default async function JobsPage(props: PageProps) {
   const params = await props.params;
+  if (!isLocale(params.locale)) notFound();
   setStaticParamsLocale(params.locale);
 
   const jobs = await getJobs(params.locale);
