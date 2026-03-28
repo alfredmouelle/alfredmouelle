@@ -29,7 +29,7 @@ export const DownloadCvButton = () => {
   );
 };
 
-const getDownloadLink = function (locale: ReturnType<typeof useCurrentLocale>) {
+const getDownloadLink = (locale: ReturnType<typeof useCurrentLocale>) => {
   const downloadLink = document.createElement('a');
 
   downloadLink.href = `/assets/cv/CV_MOUELLE_${locale.toUpperCase()}.pdf`;

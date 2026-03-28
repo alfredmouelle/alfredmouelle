@@ -15,7 +15,7 @@ import {
 import { useMounted } from '@/hooks/use-mounted';
 import { cn } from '@/lib/utils';
 
-const Item = function ({
+const Item = ({
   label,
   theme,
   icon,
@@ -23,7 +23,7 @@ const Item = function ({
   label: string;
   theme: string;
   icon: React.ReactNode;
-}) {
+}) => {
   const { setTheme, theme: activeTheme } = useTheme();
 
   return (

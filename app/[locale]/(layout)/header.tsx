@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react';
-
 import LogoSvg from '@assets/logo.svg';
 
 import { SpinningLoader } from '@/components/spinning-loader';

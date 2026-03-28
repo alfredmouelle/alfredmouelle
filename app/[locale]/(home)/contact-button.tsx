@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-
 import { useScopedI18n } from '@locales/client';
 
 import { Button } from '@/components/ui/button';

@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import { HTMLAttributes, PropsWithChildren, useEffect } from 'react';
-
 import { useIntersection } from '@mantine/hooks';
 
 import { cn } from '@/lib/utils';

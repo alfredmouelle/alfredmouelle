@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
-
 import LogoSvg from '@assets/logo.svg';
 import { useScopedI18n } from '@locales/client';
 

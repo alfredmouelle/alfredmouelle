@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import { getCurrentLocale, getScopedI18n } from '@locales/server';
 
 import { SlideLiIntoView } from '@/components/animations/slide-li-into-view';

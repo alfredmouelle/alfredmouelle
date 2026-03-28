@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect } from 'react';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useScopedI18n } from '@locales/client';
 import { useAction } from 'next-safe-action/hooks';

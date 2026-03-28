@@ -1,5 +1,4 @@
 import Image from 'next/image';
-
 import SectionSvg from '@assets/images/education-man.svg';
 import { getScopedI18n } from '@locales/server';
 

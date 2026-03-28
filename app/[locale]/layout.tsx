@@ -8,6 +8,7 @@ import { AppConfig } from '@/app.config';
 import { cn } from '@/lib/utils';
 
 import '../globals.css';
+
 import { BackToTop } from './(layout)/back-to-top';
 import { BeVietnamPro } from './(layout)/fonts';
 import { Footer } from './(layout)/footer';

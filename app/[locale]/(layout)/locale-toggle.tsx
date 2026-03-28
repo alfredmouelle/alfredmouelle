@@ -17,13 +17,7 @@ import {
 
 import { cn } from '@/lib/utils';
 
-const Item = function ({
-  label,
-  locale,
-}: {
-  label: string;
-  locale: 'en' | 'fr';
-}) {
+const Item = ({ label, locale }: { label: string; locale: 'en' | 'fr' }) => {
   const changeLocale = useChangeLocale();
   const currentLocale = useCurrentLocale();
 
