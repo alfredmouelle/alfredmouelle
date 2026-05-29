@@ -1,15 +1,15 @@
-import {
-  Body,
-  Container,
-  Head,
-  Heading,
-  Html,
-  Preview,
-  Text,
-} from '@react-email/components';
-import { Tailwind } from '@react-email/tailwind';
+import { Link } from '@react-email/components';
 
 import type { ContactRequest } from '~/schemas/contact.schema';
+
+import {
+  EMAIL_COLORS,
+  EmailBlockquote,
+  EmailDivider,
+  EmailField,
+  EmailHeading,
+  EmailLayout,
+} from './_components/email-layout';
 
 interface ContactEmailProps extends ContactRequest {}
 
@@ -19,36 +19,61 @@ export const ContactEmail = ({
   message,
   subject,
 }: ContactEmailProps) => (
-  <Html>
-    <Head />
-    <Preview>Nouveau message de contact de {name}</Preview>
-    <Tailwind>
-      <Body className="bg-gray-100 font-sans">
-        <Container className="mx-auto my-8 max-w-2xl rounded-lg border border-gray-200 bg-white p-8 shadow-lg">
-          <Heading className="mb-4 text-2xl font-bold text-gray-800">
-            {subject}
-          </Heading>
-          <Text className="mb-4 text-gray-700">
-            {name} (
-            <a href={`mailto:${email}`} className="text-blue-500 underline">
-              {email}
-            </a>
-            ) vient de laisser un message.
-          </Text>
-          <Container className="mb-4 rounded border border-gray-200 bg-gray-50 p-4">
-            <Text className="whitespace-pre-wrap text-gray-700">{message}</Text>
-          </Container>
-          <Text className="text-sm text-gray-500">
-            Ce mail provient de mon formulaire de contact depuis mon{' '}
-            <a
-              href="https://alfredmouelle.com"
-              className="text-blue-500 underline"
-            >
-              portfolio
-            </a>
-          </Text>
-        </Container>
-      </Body>
-    </Tailwind>
-  </Html>
+  <EmailLayout preview={`${name} : ${subject}`}>
+    <EmailHeading kicker="Nouveau message">{subject}</EmailHeading>
+
+    <EmailField label="De">
+      <span style={{ color: EMAIL_COLORS.fgStrong, fontWeight: 600 }}>
+        {name}
+      </span>{' '}
+      <Link
+        href={`mailto:${email}`}
+        style={{
+          color: EMAIL_COLORS.primary,
+          textDecoration: 'underline',
+          textUnderlineOffset: 2,
+        }}
+      >
+        &lt;{email}&gt;
+      </Link>
+    </EmailField>
+
+    <EmailField label="Message">
+      <EmailBlockquote>{message}</EmailBlockquote>
+    </EmailField>
+
+    <EmailDivider />
+
+    <Link
+      href={`mailto:${email}?subject=Re:%20${encodeURIComponent(subject)}`}
+      style={{
+        backgroundColor: EMAIL_COLORS.fgStrong,
+        borderRadius: 9999,
+        color: '#FFFFFF',
+        display: 'inline-block',
+        fontSize: 14,
+        fontWeight: 500,
+        marginTop: 20,
+        padding: '11px 22px',
+        textDecoration: 'none',
+      }}
+    >
+      Répondre à {name.split(' ')[0]} →
+    </Link>
+  </EmailLayout>
 );
+
+export default function ContactEmailPreview() {
+  return (
+    <ContactEmail
+      name="Jane Doe"
+      email="jane.doe@example.com"
+      subject="Proposition de mission freelance"
+      message={
+        "Bonjour Alfred,\n\nJ'aurais besoin d'un développeur fullstack pour " +
+        "construire un MVP en 6 semaines (Next.js + Postgres). Tu serais " +
+        'disponible pour un appel cette semaine ?\n\nMerci !'
+      }
+    />
+  );
+}
