@@ -1,5 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "astro",
+  "buildCommand": "astro build",
   "headers": [
     {
       "source": "/(.*)\\.(woff2|svg|webp|pdf)",
