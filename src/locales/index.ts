@@ -35,16 +35,6 @@ type Paths<T, D extends number = 5> = [D] extends [never]
 
 type Prev = [never, 0, 1, 2, 3, 4, 5];
 
-type PathValue<T, P extends string> = P extends `${infer K}.${infer R}`
-  ? K extends keyof T
-    ? PathValue<T[K], R>
-    : never
-  : P extends keyof T
-    ? T[P]
-    : never;
-
-type Leaf<T, P extends string> = PathValue<T, P> extends string ? P : never;
-
 export type TranslationKey = Paths<Dictionary>;
 
 export function getDictionary(locale: Locale): Dictionary {
@@ -56,26 +46,14 @@ const getByPath = (obj: unknown, path: string): unknown => {
     .split('.')
     .reduce<unknown>(
       (acc, key) =>
-        acc && typeof acc === 'object' && key in (acc as Record<string, unknown>)
+        acc &&
+        typeof acc === 'object' &&
+        key in (acc as Record<string, unknown>)
           ? (acc as Record<string, unknown>)[key]
           : undefined,
       obj
     );
 };
-
-export function createTranslator(locale: Locale) {
-  const dict = getDictionary(locale);
-  return function t<K extends TranslationKey>(
-    key: Leaf<Dictionary, K> & K
-  ): string {
-    const value = getByPath(dict, key);
-    if (typeof value !== 'string') {
-      console.warn(`Missing translation for "${key}" in locale "${locale}"`);
-      return key;
-    }
-    return value;
-  };
-}
 
 export function createScopedTranslator<S extends TranslationKey>(
   locale: Locale,
