@@ -24,9 +24,7 @@ export default defineConfig({
     routing: {
       prefixDefaultLocale: true,
       redirectToDefaultLocale: true,
-      fallbackType: 'redirect',
     },
-    fallback: { en: 'fr' },
   },
   vite: {
     plugins: [tailwindcss()],
