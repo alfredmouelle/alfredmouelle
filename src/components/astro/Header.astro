@@ -42,14 +42,20 @@ const logoSrc = '/assets/logo.svg';
   >
     <div class="flex items-center justify-center gap-x-4 lg:gap-x-10">
       <a href={homePath} class="shrink-0">
-        <img src={logoSrc} alt="Logo" width={35} height={35} />
+        <img
+          src={logoSrc}
+          alt="Logo"
+          width={35}
+          height={35}
+          decoding="async"
+        />
       </a>
 
       <ul
         class="hidden items-center gap-x-1 justify-self-start text-sm font-medium md:flex lg:gap-10"
       >
         <NavLinks
-          client:load
+          client:idle
           labels={navLabels}
           homePath={homePath}
         />
@@ -58,13 +64,13 @@ const logoSrc = '/assets/logo.svg';
 
     <div class="flex flex-1 items-center justify-end gap-x-1.5">
       <LocaleToggle
-        client:load
+        client:idle
         labels={localeLabels}
         currentLocale={locale}
       />
-      <ThemeToggle client:load labels={themeLabels} />
+      <ThemeToggle client:idle labels={themeLabels} />
       <MobileNav
-        client:load
+        client:idle
         labels={navLabels}
         homePath={homePath}
         logoSrc={logoSrc}

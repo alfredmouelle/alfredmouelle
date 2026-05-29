@@ -31,6 +31,21 @@ const locale = normalizeLocale(Astro.currentLocale);
   <head>
     <Head {...Astro.props} locale={locale} pathname={Astro.url.pathname} />
 
+    <link
+      rel="preload"
+      href="/fonts/BeVietnamPro-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/BeVietnamPro-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
     <ClientRouter />
 
     <script is:inline>
@@ -77,17 +92,18 @@ const locale = normalizeLocale(Astro.currentLocale);
     <script>
       const HERO = 'section_hero';
       const ANCHOR_EVENT = 'app:anchor-change';
-      let observer: IntersectionObserver | null = null;
+      let sectionObserver: IntersectionObserver | null = null;
+      let revealObserver: IntersectionObserver | null = null;
 
       const setupSectionObserver = () => {
-        observer?.disconnect();
+        sectionObserver?.disconnect();
         const sections = document.querySelectorAll<HTMLElement>(
           'section[data-watched][id]'
         );
         if (sections.length === 0 || !('IntersectionObserver' in window))
           return;
         const base = window.location.pathname.replace(/\?.*$/, '');
-        observer = new IntersectionObserver(
+        sectionObserver = new IntersectionObserver(
           (entries) => {
             for (const entry of entries) {
               if (!entry.isIntersecting) continue;
@@ -101,15 +117,8 @@ const locale = normalizeLocale(Astro.currentLocale);
           },
           { threshold: 0.85 }
         );
-        for (const section of sections) observer.observe(section);
+        for (const section of sections) sectionObserver.observe(section);
       };
-
-      setupSectionObserver();
-      document.addEventListener('astro:page-load', setupSectionObserver);
-    </script>
-
-    <script>
-      let revealObserver: IntersectionObserver | null = null;
 
       const setupReveal = () => {
         revealObserver?.disconnect();
@@ -124,7 +133,6 @@ const locale = normalizeLocale(Astro.currentLocale);
         const viewportHeight = window.innerHeight;
         const toObserve: HTMLElement[] = [];
         for (const el of items) {
-          // Above-the-fold: reveal at load; threshold IO won't fire for tall items on mobile.
           if (el.getBoundingClientRect().top < viewportHeight) {
             el.classList.add('is-revealed');
           } else {
@@ -145,11 +153,6 @@ const locale = normalizeLocale(Astro.currentLocale);
         for (const el of toObserve) revealObserver.observe(el);
       };
 
-      setupReveal();
-      document.addEventListener('astro:page-load', setupReveal);
-    </script>
-
-    <script>
       const updateGradientBorders = (e: MouseEvent) => {
         const els = document.querySelectorAll<HTMLElement>(
           '[data-gradient-border]'
@@ -162,6 +165,13 @@ const locale = normalizeLocale(Astro.currentLocale);
           el.style.setProperty('--gradient-rotation', `${deg + 77}deg`);
         }
       };
+
+      setupSectionObserver();
+      setupReveal();
+      document.addEventListener('astro:page-load', () => {
+        setupSectionObserver();
+        setupReveal();
+      });
       document.addEventListener('mousemove', updateGradientBorders, {
         passive: true,
       });
