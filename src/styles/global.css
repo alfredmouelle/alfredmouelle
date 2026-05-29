@@ -176,8 +176,7 @@
   }
 }
 
-/* Reveal-on-scroll: opacity + transform start state, transitioned away
- * when .is-revealed is set by the global IntersectionObserver in BaseLayout. */
+/* Reveal-on-scroll, toggled by the IntersectionObserver in BaseLayout. */
 [data-reveal] {
   opacity: 0;
   transition:
@@ -241,9 +240,7 @@
   }
 }
 
-/* Outside @layer so its specificity (.gradient.is-blue = 2) wins over
- * Tailwind utilities like .bg-primary (1). In v4 the utilities layer
- * would otherwise override component-layer rules regardless. */
+/* Outside @layer so specificity beats Tailwind utilities (v4 utility layer wins otherwise). */
 .gradient {
   width: fit-content;
   background:

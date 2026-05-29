@@ -65,7 +65,7 @@ const locale = normalizeLocale(Astro.currentLocale);
     )}
   >
     <Header transition:persist />
-    <main class="grow">
+    <main class="grow" transition:animate="none">
       <slot />
     </main>
     <Footer transition:persist />
@@ -121,6 +121,17 @@ const locale = normalizeLocale(Astro.currentLocale);
           for (const el of items) el.classList.add('is-revealed');
           return;
         }
+        const viewportHeight = window.innerHeight;
+        const toObserve: HTMLElement[] = [];
+        for (const el of items) {
+          // Above-the-fold: reveal at load; threshold IO won't fire for tall items on mobile.
+          if (el.getBoundingClientRect().top < viewportHeight) {
+            el.classList.add('is-revealed');
+          } else {
+            toObserve.push(el);
+          }
+        }
+        if (toObserve.length === 0) return;
         revealObserver = new IntersectionObserver(
           (entries) => {
             for (const entry of entries) {
@@ -129,9 +140,9 @@ const locale = normalizeLocale(Astro.currentLocale);
               revealObserver?.unobserve(entry.target);
             }
           },
-          { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+          { threshold: 0.1, rootMargin: '0px 0px -10% 0px' }
         );
-        for (const el of items) revealObserver.observe(el);
+        for (const el of toObserve) revealObserver.observe(el);
       };
 
       setupReveal();

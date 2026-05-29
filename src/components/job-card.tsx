@@ -27,7 +27,7 @@ export const JobCard = ({ job, locale, labels }: JobCardProps) => {
     <Card
       className={cn(
         'flex h-full min-h-48 flex-col shadow-lg transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent',
-        { 'border-primary bg-accent': job.featured }
+        { 'border-primary': job.featured }
       )}
     >
       <CardHeader className="grow">

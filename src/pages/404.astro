@@ -8,8 +8,7 @@ import en from '~/locales/dictionaries/en';
 import fr from '~/locales/dictionaries/fr';
 import { LOCALES, type Locale } from '~/locales';
 
-// Static 404: Astro.url.pathname is '/404' at build, so locale is unknown.
-// Render default (fr); inline script swaps strings using the runtime URL.
+// Static 404 has no build-time locale; render default + swap strings at runtime.
 const dicts = { fr: fr.notFound, en: en.notFound } as const;
 const labels = dicts.fr;
 ---
