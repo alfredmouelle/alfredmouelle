@@ -75,7 +75,7 @@ const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, '/jobs')}`;
             as="li"
             type="slide-up"
             distance={100}
-            delay={index * 100}
+            delay={index * 50}
           >
             <a href={getRelativeLocaleUrl(locale, `/jobs/${getJobSlug(job)}`)}>
               <JobCard job={job.data} locale={locale} labels={labels} />

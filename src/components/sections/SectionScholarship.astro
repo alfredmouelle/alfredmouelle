@@ -16,7 +16,6 @@ const entries = [
     period: '2018 - 2020',
     right1: t('bts.academy'),
     right2: t('bts.location'),
-    delay: 0,
   },
   {
     title: t('bac.title'),
@@ -24,7 +23,6 @@ const entries = [
     period: '2017 - 2018',
     right1: t('bac.location1'),
     right2: t('bac.location2'),
-    delay: 50,
   },
   {
     title: t('probatoire.title'),
@@ -32,7 +30,6 @@ const entries = [
     period: '2016 - 2017',
     right1: t('bac.location1'),
     right2: t('bac.location2'),
-    delay: 80,
   },
 ] as const;
 ---
@@ -57,7 +54,7 @@ const entries = [
       />
     </Reveal>
 
-    <div class="relative">
+    <Reveal type="slide-up" distance={60} class="relative">
       <div
         class="absolute left-1/2 h-full -translate-x-1/2 transform border-l-2 border-gray-300"
       >
@@ -66,34 +63,24 @@ const entries = [
         {
           entries.map((entry) => (
             <div class="flex w-full items-center">
-              <Reveal
-                type="slide-down"
-                distance={100}
-                delay={entry.delay}
-                class="w-1/2 pr-8 text-right"
-              >
+              <div class="w-1/2 pr-8 text-right">
                 <h2 class="text-lg font-semibold">{entry.title}</h2>
                 <p class="text-primary">{entry.specialty}</p>
                 <p class="text-sm text-muted-foreground">{entry.period}</p>
-              </Reveal>
+              </div>
 
               <div class="relative flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-b from-primary via-primary to-[#9c60d7]">
                 <Icon name="check" className="text-white" />
               </div>
 
-              <Reveal
-                type="slide-up"
-                distance={100}
-                delay={entry.delay}
-                class="w-1/2 pl-8"
-              >
+              <div class="w-1/2 pl-8">
                 <p class="text-muted-foreground">{entry.right1}</p>
                 <p class="text-sm text-muted-foreground">{entry.right2}</p>
-              </Reveal>
+              </div>
             </div>
           ))
         }
       </div>
-    </div>
+    </Reveal>
   </div>
 </Section>

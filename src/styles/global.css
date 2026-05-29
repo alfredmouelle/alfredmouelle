@@ -172,7 +172,6 @@
     height: 91px;
     background: url("/assets/images/shape.webp") no-repeat;
     opacity: var(--hero-opacity);
-    animation: spin linear infinite normal 15s;
   }
 }
 

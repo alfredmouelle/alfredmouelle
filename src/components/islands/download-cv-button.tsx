@@ -20,17 +20,9 @@ export const DownloadCvButton = ({
   };
 
   return (
-    <div
-      data-gradient-border
-      className="flex items-center justify-center rounded-full"
-    >
-      <Button
-        onClick={download}
-        className="gradient is-blue text-gray-700 transition-colors duration-200 ease-in hover:text-white dark:text-slate-300"
-      >
-        {label}
-        <Icon name="download" />
-      </Button>
-    </div>
+    <Button onClick={download}>
+      {label}
+      <Icon name="download" />
+    </Button>
   );
 };

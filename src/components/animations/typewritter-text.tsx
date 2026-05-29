@@ -1,25 +1,35 @@
+import { useEffect, useState } from 'react';
 
-import Typewriter from 'typewriter-effect';
-
-const TypewriterText = ({
-  className,
-  text,
-}: {
-  className: string;
+interface Props {
+  className?: string;
   text: string;
-}) => {
+  delay?: number;
+}
+
+const TypewriterText = ({ className, text, delay = 75 }: Props) => {
+  const [typed, setTyped] = useState('');
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    setTyped('');
+    setDone(false);
+    let i = 0;
+    const tick = window.setInterval(() => {
+      i++;
+      setTyped(text.slice(0, i));
+      if (i >= text.length) {
+        window.clearInterval(tick);
+        setDone(true);
+      }
+    }, delay);
+    return () => window.clearInterval(tick);
+  }, [text, delay]);
+
   return (
-    <Typewriter
-      options={{
-        cursor: '_',
-        strings: [text],
-        autoStart: true,
-        loop: true,
-        delay: 75,
-        deleteSpeed: 50,
-        wrapperClassName: className,
-      }}
-    />
+    <span className={className}>
+      {typed}
+      <span aria-hidden="true" className={done ? 'animate-pulse' : ''}>_</span>
+    </span>
   );
 };
 
