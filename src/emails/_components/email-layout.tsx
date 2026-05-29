@@ -8,7 +8,7 @@ import {
   Preview,
   Section,
   Text,
-} from '@react-email/components';
+} from 'react-email';
 
 export const EMAIL_COLORS = {
   pageBg: '#F6F7F9',
