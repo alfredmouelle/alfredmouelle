@@ -153,21 +153,20 @@ const locale = normalizeLocale(Astro.currentLocale);
         for (const el of toObserve) revealObserver.observe(el);
       };
 
-      const setupNavbar = () => {
+      const syncNavbar = () => {
         const header = document.getElementById('site-header');
-        if (!header) return;
-        const onScroll = () =>
-          header.classList.toggle('is-scrolled', window.scrollY > 8);
-        onScroll();
-        window.addEventListener('scroll', onScroll, { passive: true });
+        if (header) header.classList.toggle('is-scrolled', window.scrollY > 8);
       };
+
+      window.addEventListener('scroll', syncNavbar, { passive: true });
 
       setupSectionObserver();
       setupReveal();
-      setupNavbar();
+      syncNavbar();
       document.addEventListener('astro:page-load', () => {
         setupSectionObserver();
         setupReveal();
+        syncNavbar();
       });
     </script>
 
