@@ -8,11 +8,14 @@ import { cn } from '~/lib/utils';
 import { Icon } from './icons';
 import {
   Card,
+  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from './ui/card';
+
+const MAX_STACKS = 4;
 
 interface JobCardProps {
   job: JobEntry['data'];
@@ -21,14 +24,16 @@ interface JobCardProps {
 }
 
 export const JobCard = ({ job, locale, labels }: JobCardProps) => {
+  const stacks = job.stacks.slice(0, MAX_STACKS);
+
   return (
     <Card
       className={cn(
-        'min-h-48 shadow-lg transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent',
+        'flex h-full min-h-48 flex-col shadow-lg transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent',
         { 'border-primary bg-accent': job.featured }
       )}
     >
-      <CardHeader>
+      <CardHeader className="grow">
         <CardTitle
           className={cn('flex items-center gap-x-2 text-primary', {
             'text-primary': job.featured,
@@ -46,6 +51,19 @@ export const JobCard = ({ job, locale, labels }: JobCardProps) => {
           {job.description}
         </CardDescription>
       </CardHeader>
+
+      {stacks.length > 0 ? (
+        <CardContent className="flex items-center gap-1.5 overflow-hidden whitespace-nowrap">
+          {stacks.map((stack) => (
+            <span
+              key={stack}
+              className="shrink-0 rounded-md border bg-secondary/40 px-2 py-0.5 text-xs text-muted-foreground"
+            >
+              {stack}
+            </span>
+          ))}
+        </CardContent>
+      ) : null}
 
       <CardFooter>
         <JobDate
