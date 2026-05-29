@@ -8,7 +8,6 @@ import { cn } from '~/lib/utils';
 import { Icon } from './icons';
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -47,19 +46,6 @@ export const JobCard = ({ job, locale, labels }: JobCardProps) => {
           {job.description}
         </CardDescription>
       </CardHeader>
-
-      {job.stacks.length > 0 ? (
-        <CardContent className="flex flex-wrap gap-1.5">
-          {job.stacks.slice(0, 5).map((stack) => (
-            <span
-              key={stack}
-              className="rounded-md border bg-secondary/40 px-2 py-0.5 text-xs text-muted-foreground"
-            >
-              {stack}
-            </span>
-          ))}
-        </CardContent>
-      ) : null}
 
       <CardFooter>
         <JobDate
