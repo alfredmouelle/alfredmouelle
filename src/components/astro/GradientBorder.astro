@@ -1,0 +1,13 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<div
+  data-gradient-border
+  class:list={['flex items-center justify-center rounded-full', className]}
+>
+  <slot />
+</div>

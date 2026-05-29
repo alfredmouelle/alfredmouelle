@@ -1,9 +1,8 @@
 ---
 import Section from '~/components/astro/Section.astro';
 import SectionTitle from '~/components/astro/SectionTitle.astro';
-import { SlideLiIntoView } from '~/components/animations/slide-li-into-view';
+import Reveal from '~/components/astro/Reveal.astro';
 import { Icon, Icons } from '~/components/icons';
-import { Button } from '~/components/ui/button';
 import {
   Card,
   CardDescription,
@@ -40,7 +39,7 @@ const skills = [
     title: 'No Code',
     Icon: Icons.code,
     details: t('node_code_desc'),
-    mainSkills: ['Webflow'],
+    mainSkills: ['Webflow', 'Wordpress'],
   },
 ] as const;
 ---
@@ -54,10 +53,12 @@ const skills = [
   <ul class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
     {
       skills.map((skill, index) => (
-        <SlideLiIntoView
-          client:visible
-          index={index}
-          className="col-span-4 md:col-span-1"
+        <Reveal
+          as="li"
+          type="slide-up"
+          distance={100}
+          delay={index * 100}
+          class="col-span-4 md:col-span-1"
         >
           <Card className="group flex h-full cursor-pointer flex-col shadow-lg transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent">
             <CardHeader className="flex-grow">
@@ -69,22 +70,16 @@ const skills = [
             </CardHeader>
 
             <CardFooter>
-              <ul class="flex flex-wrap gap-2">
+              <ul class="flex w-full items-center gap-1.5 overflow-hidden">
                 {skill.mainSkills.map((s) => (
-                  <li>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="transition-colors duration-150 ease-in group-hover:bg-primary group-hover:text-white"
-                    >
-                      {s}
-                    </Button>
+                  <li class="shrink-0 rounded-md border bg-background px-2.5 py-1 text-xs text-muted-foreground transition-colors duration-150 ease-in group-hover:border-primary group-hover:bg-primary group-hover:text-white">
+                    {s}
                   </li>
                 ))}
               </ul>
             </CardFooter>
           </Card>
-        </SlideLiIntoView>
+        </Reveal>
       ))
     }
   </ul>

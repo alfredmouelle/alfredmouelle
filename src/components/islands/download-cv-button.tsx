@@ -1,4 +1,3 @@
-import { GradientBorder } from '~/components/animations/gradient-border';
 import { Icon } from '~/components/icons';
 import { Button } from '~/components/ui/button';
 
@@ -21,14 +20,17 @@ export const DownloadCvButton = ({
   };
 
   return (
-    <GradientBorder>
+    <div
+      data-gradient-border
+      className="flex items-center justify-center rounded-full"
+    >
       <Button
         onClick={download}
         className="gradient is-blue text-gray-700 transition-colors duration-200 ease-in hover:text-white dark:text-slate-300"
       >
         {label}
-        <Icon name="download" className="" />
+        <Icon name="download" />
       </Button>
-    </GradientBorder>
+    </div>
   );
 };

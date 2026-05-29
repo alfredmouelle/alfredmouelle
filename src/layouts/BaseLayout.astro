@@ -108,5 +108,53 @@ const locale = normalizeLocale(Astro.currentLocale);
       document.addEventListener('astro:page-load', setupSectionObserver);
     </script>
 
+    <script>
+      let revealObserver: IntersectionObserver | null = null;
+
+      const setupReveal = () => {
+        revealObserver?.disconnect();
+        const items = document.querySelectorAll<HTMLElement>(
+          '[data-reveal]:not(.is-revealed)'
+        );
+        if (items.length === 0) return;
+        if (!('IntersectionObserver' in window)) {
+          for (const el of items) el.classList.add('is-revealed');
+          return;
+        }
+        revealObserver = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              entry.target.classList.add('is-revealed');
+              revealObserver?.unobserve(entry.target);
+            }
+          },
+          { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+        );
+        for (const el of items) revealObserver.observe(el);
+      };
+
+      setupReveal();
+      document.addEventListener('astro:page-load', setupReveal);
+    </script>
+
+    <script>
+      const updateGradientBorders = (e: MouseEvent) => {
+        const els = document.querySelectorAll<HTMLElement>(
+          '[data-gradient-border]'
+        );
+        for (const el of els) {
+          const rect = el.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const deg = (Math.atan2(y, x) * 180) / Math.PI + 180;
+          el.style.setProperty('--gradient-rotation', `${deg + 77}deg`);
+        }
+      };
+      document.addEventListener('mousemove', updateGradientBorders, {
+        passive: true,
+      });
+    </script>
+
   </body>
 </html>

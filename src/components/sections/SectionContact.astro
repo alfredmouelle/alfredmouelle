@@ -1,7 +1,7 @@
 ---
 import Section from '~/components/astro/Section.astro';
 import SectionTitle from '~/components/astro/SectionTitle.astro';
-import { SlideLiIntoView } from '~/components/animations/slide-li-into-view';
+import Reveal from '~/components/astro/Reveal.astro';
 import { Icon, Icons } from '~/components/icons';
 import { ContactForm } from '~/components/islands/contact-form';
 
@@ -80,7 +80,12 @@ const formLabels = {
     >
       {
         contacts.map((c, index) => (
-          <SlideLiIntoView client:visible index={index}>
+          <Reveal
+            as="li"
+            type="slide-up"
+            distance={100}
+            delay={index * 100}
+          >
             <a
               target="_blank"
               href={c.url}
@@ -90,7 +95,7 @@ const formLabels = {
               <c.Icon className="h-8 w-8 text-muted-foreground group-hover:text-primary" />
               {c.label}
             </a>
-          </SlideLiIntoView>
+          </Reveal>
         ))
       }
     </ul>

@@ -1,14 +1,40 @@
 ---
 import Section from '~/components/astro/Section.astro';
 import SectionTitle from '~/components/astro/SectionTitle.astro';
-import { ScaleWhenView } from '~/components/animations/scale-when-view';
-import { SlideDivIntoView } from '~/components/animations/slide-div-into-view';
+import Reveal from '~/components/astro/Reveal.astro';
 import { Icon } from '~/components/icons';
 
 import { createScopedTranslator, normalizeLocale } from '~/locales';
 
 const locale = normalizeLocale(Astro.currentLocale);
 const t = createScopedTranslator(locale, 'section_scholarship');
+
+const entries = [
+  {
+    title: t('bts.title'),
+    specialty: t('bts.specialty'),
+    period: '2018 - 2020',
+    right1: t('bts.academy'),
+    right2: t('bts.location'),
+    delay: 0,
+  },
+  {
+    title: t('bac.title'),
+    specialty: t('bac.specialty'),
+    period: '2017 - 2018',
+    right1: t('bac.location1'),
+    right2: t('bac.location2'),
+    delay: 50,
+  },
+  {
+    title: t('probatoire.title'),
+    specialty: t('bac.specialty'),
+    period: '2016 - 2017',
+    right1: t('bac.location1'),
+    right2: t('bac.location2'),
+    delay: 80,
+  },
+] as const;
 ---
 
 <Section
@@ -21,7 +47,7 @@ const t = createScopedTranslator(locale, 'section_scholarship');
   </SectionTitle>
 
   <div class="grid lg:grid-cols-2">
-    <ScaleWhenView client:visible className="flex items-center justify-center">
+    <Reveal type="scale" class="flex items-center justify-center">
       <img
         width={500}
         height={500}
@@ -29,7 +55,7 @@ const t = createScopedTranslator(locale, 'section_scholarship');
         src="/assets/images/education-man.svg"
         class="transition-transform duration-100 ease-in hover:scale-[1.02]"
       />
-    </ScaleWhenView>
+    </Reveal>
 
     <div class="relative">
       <div
@@ -37,90 +63,36 @@ const t = createScopedTranslator(locale, 'section_scholarship');
       >
       </div>
       <div class="space-y-8">
-        <div class="flex w-full items-center">
-          <SlideDivIntoView
-            client:visible
-            className="w-1/2 pr-8 text-right"
-            offset={-100}
-          >
-            <h2 class="text-lg font-semibold">{t('bts.title')}</h2>
-            <p class="text-primary">{t('bts.specialty')}</p>
-            <p class="text-sm text-muted-foreground">2018 - 2020</p>
-          </SlideDivIntoView>
+        {
+          entries.map((entry) => (
+            <div class="flex w-full items-center">
+              <Reveal
+                type="slide-down"
+                distance={100}
+                delay={entry.delay}
+                class="w-1/2 pr-8 text-right"
+              >
+                <h2 class="text-lg font-semibold">{entry.title}</h2>
+                <p class="text-primary">{entry.specialty}</p>
+                <p class="text-sm text-muted-foreground">{entry.period}</p>
+              </Reveal>
 
-          <div
-            class="relative flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-b from-primary via-primary to-[#9c60d7]"
-          >
-            <Icon name="check" className="text-white" />
-          </div>
+              <div class="relative flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-b from-primary via-primary to-[#9c60d7]">
+                <Icon name="check" className="text-white" />
+              </div>
 
-          <SlideDivIntoView
-            client:visible
-            className="w-1/2 pl-8"
-            offset={100}
-          >
-            <p class="text-muted-foreground">{t('bts.academy')}</p>
-            <p class="text-sm text-muted-foreground">{t('bts.location')}</p>
-          </SlideDivIntoView>
-        </div>
-
-        <div class="flex w-full items-center">
-          <SlideDivIntoView
-            client:visible
-            delay={0.05}
-            offset={-100}
-            className="w-1/2 pr-8 text-right"
-          >
-            <h2 class="text-lg font-semibold">{t('bac.title')}</h2>
-            <p class="text-primary">{t('bac.specialty')}</p>
-            <p class="text-sm text-muted-foreground">2017 - 2018</p>
-          </SlideDivIntoView>
-
-          <div
-            class="relative flex h-10 w-10 items-center justify-center rounded-full bg-primary bg-gradient-to-b from-primary via-primary to-[#9c60d7]"
-          >
-            <Icon name="check" className="text-white" />
-          </div>
-
-          <SlideDivIntoView
-            client:visible
-            className="w-1/2 pl-8"
-            offset={100}
-            delay={0.05}
-          >
-            <p class="text-muted-foreground">{t('bac.location1')}</p>
-            <p class="text-sm text-muted-foreground">{t('bac.location2')}</p>
-          </SlideDivIntoView>
-        </div>
-
-        <div class="flex w-full items-center">
-          <SlideDivIntoView
-            client:visible
-            delay={0.08}
-            offset={-100}
-            className="w-1/2 pr-8 text-right"
-          >
-            <h2 class="text-lg font-semibold">{t('probatoire.title')}</h2>
-            <p class="text-primary">{t('bac.specialty')}</p>
-            <p class="text-sm text-muted-foreground">2016 - 2017</p>
-          </SlideDivIntoView>
-
-          <div
-            class="relative flex h-10 w-10 items-center justify-center rounded-full bg-primary bg-gradient-to-b from-primary via-primary to-[#9c60d7]"
-          >
-            <Icon name="check" className="text-white" />
-          </div>
-
-          <SlideDivIntoView
-            client:visible
-            className="w-1/2 pl-8"
-            offset={100}
-            delay={0.08}
-          >
-            <p class="text-muted-foreground">{t('bac.location1')}</p>
-            <p class="text-sm text-muted-foreground">{t('bac.location2')}</p>
-          </SlideDivIntoView>
-        </div>
+              <Reveal
+                type="slide-up"
+                distance={100}
+                delay={entry.delay}
+                class="w-1/2 pl-8"
+              >
+                <p class="text-muted-foreground">{entry.right1}</p>
+                <p class="text-sm text-muted-foreground">{entry.right2}</p>
+              </Reveal>
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>

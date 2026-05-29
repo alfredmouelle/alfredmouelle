@@ -1,6 +1,3 @@
-import { format } from 'date-fns';
-import { enUS, fr } from 'date-fns/locale';
-
 import type { JobEntry } from '~/lib/jobs';
 import type { Locale } from '~/locales';
 import { cn } from '~/lib/utils';
@@ -84,9 +81,21 @@ interface JobDateProps {
   labels: { elapsed: string; from: string; to: string };
 }
 
+const monthYearFormatters: Partial<Record<Locale, Intl.DateTimeFormat>> = {};
+
+const getFormatter = (locale: Locale): Intl.DateTimeFormat => {
+  if (!monthYearFormatters[locale]) {
+    monthYearFormatters[locale] = new Intl.DateTimeFormat(locale, {
+      month: 'short',
+      year: 'numeric',
+    });
+  }
+  return monthYearFormatters[locale]!;
+};
+
 export const JobDate = ({ startDate, endDate, locale, labels }: JobDateProps) => {
   const f = (date: Date) => {
-    const d = format(date, 'MMM yyy', { locale: locale === 'fr' ? fr : enUS });
+    const d = getFormatter(locale).format(date);
     return (d.charAt(0).toUpperCase() + d.slice(1)).replace('.', '');
   };
 

@@ -174,7 +174,53 @@
     opacity: var(--hero-opacity);
     animation: spin linear infinite normal 15s;
   }
+}
 
+/* Reveal-on-scroll: opacity + transform start state, transitioned away
+ * when .is-revealed is set by the global IntersectionObserver in BaseLayout. */
+[data-reveal] {
+  opacity: 0;
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+[data-reveal="slide-up"] {
+  transform: translateY(var(--reveal-distance, 60px));
+}
+
+[data-reveal="slide-down"] {
+  transform: translateY(calc(var(--reveal-distance, 60px) * -1));
+}
+
+[data-reveal="slide-left"] {
+  transform: translateX(var(--reveal-distance, 60px));
+}
+
+[data-reveal="slide-right"] {
+  transform: translateX(calc(var(--reveal-distance, 60px) * -1));
+}
+
+[data-reveal="scale"] {
+  transform: scale(0);
+}
+
+[data-reveal="fade"] {
+  transform: none;
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 @keyframes accordion-down {

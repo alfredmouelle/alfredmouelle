@@ -1,5 +1,5 @@
 ---
-import { FadeInSection } from '~/components/animations/fade-in';
+import Reveal from '~/components/astro/Reveal.astro';
 import { cn } from '~/lib/utils';
 
 interface Props {
@@ -28,11 +28,13 @@ const {
         <slot />
       </div>
     ) : (
-      <FadeInSection client:visible>
-        <div class={cn('container', innerWrapperClassName)}>
-          <slot />
-        </div>
-      </FadeInSection>
+      <Reveal
+        type="slide-up"
+        distance={200}
+        class={cn('container', innerWrapperClassName)}
+      >
+        <slot />
+      </Reveal>
     )
   }
 </section>

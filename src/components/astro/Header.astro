@@ -40,13 +40,13 @@ const logoSrc = '/assets/logo.svg';
   <nav
     class="container flex items-center rounded-full border bg-card/90 py-2 shadow-xl md:gap-10"
   >
-    <div class="flex items-center justify-center">
+    <div class="flex items-center justify-center gap-x-4 lg:gap-x-10">
       <a href={homePath} class="shrink-0">
         <img src={logoSrc} alt="Logo" width={35} height={35} />
       </a>
 
       <ul
-        class="hidden items-center gap-x-1 justify-self-start text-sm font-medium md:flex lg:lg:gap-10"
+        class="hidden items-center gap-x-1 justify-self-start text-sm font-medium md:flex lg:gap-10"
       >
         <NavLinks
           client:load
