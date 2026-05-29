@@ -23,15 +23,19 @@ export default {
   section_skills: {
     title: 'Skills',
     eyebrow: 'Expertise',
-    description: 'The technologies I build with, from backend to mobile.',
+    description: 'The technologies I build with, from backend to infrastructure.',
     backend_desc:
-      'Expertise in Node.js, PHP (Laravel, Symfony) and Java Spring Boot for robust server-side applications.',
+      'Expertise in Node.js, PHP (Laravel) and Java Spring Boot for robust server-side applications.',
     frontend_desc:
-      'Creating modern interfaces with Next.js, Nuxt, and Angular for responsive and dynamic web applications.',
+      'Building modern interfaces with Next.js, TanStack Start, Astro and Angular, polished with Tailwind CSS and ShadcnUI.',
     mobile_desc:
       'Developing cross-platform mobile applications with Flutter and React Native for iOS and Android.',
-    node_code_desc:
-      'Mastery of Webflow for code-free website creation, enabling rapid prototyping and design implementation.',
+    database_desc:
+      'Data modeling and management with PostgreSQL, MongoDB and Redis, through Prisma and Drizzle.',
+    devops_desc:
+      'Containerization and continuous deployment with Docker, Vercel and GitHub Actions.',
+    tests_desc:
+      'End-to-end, unit and integration testing with Cypress, Vitest and Playwright.',
   },
 
   section_hero: {
@@ -75,6 +79,7 @@ export default {
     eyebrow: 'Work',
     description: 'A selection of projects I’ve designed, built and shipped.',
     showProjects: 'See all',
+    visitWebsite: 'Visit website',
   },
 
   section_contact: {

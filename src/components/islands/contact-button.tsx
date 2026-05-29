@@ -18,11 +18,11 @@ export const ContactButton = ({
 
   return (
     <Button variant="outline" onClick={jumpTo} className="group">
-      {label}
       <Icon
-        name="arrowRight"
-        className="size-4 transition-transform group-hover:translate-x-0.5"
+        name="mail"
+        className="size-4 transition-transform group-hover:-translate-y-0.5"
       />
+      {label}
     </Button>
   );
 };

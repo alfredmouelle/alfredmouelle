@@ -20,9 +20,12 @@ export const DownloadCvButton = ({
   };
 
   return (
-    <Button onClick={download}>
+    <Button onClick={download} className="group">
+      <Icon
+        name="download"
+        className="transition-transform group-hover:translate-y-0.5"
+      />
       {label}
-      <Icon name="download" />
     </Button>
   );
 };

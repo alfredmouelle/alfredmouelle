@@ -21,13 +21,13 @@ const skills = [
     title: 'Backend',
     Icon: Icons.server,
     details: t('backend_desc'),
-    mainSkills: ['Node.js', 'PHP', 'Spring Boot'],
+    mainSkills: ['Node.js', 'Spring Boot', 'Laravel'],
   },
   {
     title: 'Frontend',
     Icon: Icons.layout,
     details: t('frontend_desc'),
-    mainSkills: ['Next.js', 'Nuxt', 'Angular'],
+    mainSkills: ['Next.js', 'TanStack Start', 'Astro', 'Angular', 'Tailwind CSS'],
   },
   {
     title: 'Mobile',
@@ -36,10 +36,22 @@ const skills = [
     mainSkills: ['Flutter', 'React Native'],
   },
   {
-    title: 'No Code',
-    Icon: Icons.code,
-    details: t('node_code_desc'),
-    mainSkills: ['Webflow', 'Wordpress'],
+    title: 'Database',
+    Icon: Icons.database,
+    details: t('database_desc'),
+    mainSkills: ['PostgreSQL', 'MongoDB', 'Prisma', 'Drizzle', 'Redis'],
+  },
+  {
+    title: 'DevOps & Tools',
+    Icon: Icons.tools,
+    details: t('devops_desc'),
+    mainSkills: ['Docker', 'Vercel', 'GitHub Actions', 'AWS S3', 'Git'],
+  },
+  {
+    title: 'Testing',
+    Icon: Icons.tests,
+    details: t('tests_desc'),
+    mainSkills: ['Cypress', 'Vitest', 'Playwright'],
   },
 ] as const;
 ---
@@ -51,14 +63,14 @@ const skills = [
     description={t('description')}
   />
 
-  <ul class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+  <ul class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
     {
       skills.map((skill, index) => (
         <Reveal
           as="li"
           type="slide-up"
           delay={index * 60}
-          class="col-span-4 md:col-span-1"
+          class="col-span-full md:col-span-1"
         >
           <Card className="group flex h-full flex-col transition duration-300 ease-out hover:-translate-y-1 hover:border-primary/40 hover:shadow-float">
             <CardHeader className="flex-grow">

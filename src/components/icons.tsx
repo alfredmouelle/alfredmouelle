@@ -4,7 +4,9 @@ import {
   ArrowUp,
   Check,
   Code2,
+  Database,
   Download,
+  FlaskConical,
   Globe,
   Home,
   Languages,
@@ -18,6 +20,7 @@ import {
   Smartphone,
   SunMedium,
   SunMoon,
+  Wrench,
 } from 'lucide-react';
 
 import { cn } from '~/lib/utils';
@@ -67,6 +70,9 @@ export const Icons = {
   server: Server,
   smartphone: Smartphone,
   home: Home,
+  database: Database,
+  tools: Wrench,
+  tests: FlaskConical,
 } as const;
 
 interface IconProps {

@@ -20,9 +20,9 @@ const hasProjects = (await getProjects(locale)).length > 0;
 
 <BaseLayout>
   <SectionHero />
-  <SectionScholarship />
-  <SectionSkills />
-  <SectionJobs />
   {hasProjects && <SectionProjects />}
+  <SectionJobs />
+  <SectionSkills />
+  <SectionScholarship />
   <SectionContact />
 </BaseLayout>

@@ -94,9 +94,17 @@ export const NavLinks = ({
   closeMenu,
 }: NavLinksProps) => (
   <>
+    {showProjects && labels.projects ? (
+      <NavLink
+        text={labels.projects}
+        anchor="projects"
+        homePath={homePath}
+        closeMenu={closeMenu}
+      />
+    ) : null}
     <NavLink
-      text={labels.scholarship}
-      anchor="scholarship"
+      text={labels.job}
+      anchor="jobs"
       homePath={homePath}
       closeMenu={closeMenu}
     />
@@ -107,19 +115,11 @@ export const NavLinks = ({
       closeMenu={closeMenu}
     />
     <NavLink
-      text={labels.job}
-      anchor="jobs"
+      text={labels.scholarship}
+      anchor="scholarship"
       homePath={homePath}
       closeMenu={closeMenu}
     />
-    {showProjects && labels.projects ? (
-      <NavLink
-        text={labels.projects}
-        anchor="projects"
-        homePath={homePath}
-        closeMenu={closeMenu}
-      />
-    ) : null}
     <NavLink
       text={labels.contact}
       anchor="contact"

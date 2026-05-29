@@ -1,0 +1,75 @@
+---
+title: "SubsCopilot"
+description: "SaaS de gestion d'abonnements : tableau de bord multi-organisations, rappels automatiques par email et WhatsApp, et workflows de notification personnalisables."
+year: 2025
+role: "Créateur & Développeur Full Stack"
+stacks:
+  - Next.js
+  - TypeScript
+  - tRPC
+  - Prisma
+  - PostgreSQL
+  - Inngest
+  - Twilio
+  - Tailwind CSS
+url: "https://subs-copilot.vercel.app"
+cover: ../_assets/subscopilot.webp
+featured: false
+order: 4
+readTime: 3
+published: true
+meta:
+  keywords:
+    - subscopilot
+    - gestion d'abonnements
+    - subscriptions
+    - saas
+    - nextjs
+    - trpc
+    - prisma
+    - rappels
+    - whatsapp
+---
+
+# SubsCopilot — simplifiez la gestion de vos abonnements
+
+## Le produit
+
+**SubsCopilot** est une plateforme SaaS qui centralise, suit et automatise la gestion des abonnements. Que l'on gère ses propres souscriptions ou celles de plusieurs clients, l'outil offre une vue unifiée et ne laisse plus passer une échéance de renouvellement.
+
+## Fonctionnalités clés
+
+- **Gestion centralisée** — Tous les abonnements et services suivis depuis un tableau de bord unique.
+- **Rappels intelligents** — Notifications automatiques par **email** et **WhatsApp** avant chaque échéance.
+- **Multi-organisations** — Gestion de plusieurs organisations, services et clients depuis un même compte.
+- **Workflows personnalisables** — Modèles de notification adaptables aux besoins de chaque service.
+- **Suivi des échéances** — Compte à rebours des jours restants et dates de facturation en un coup d'œil.
+
+![Vue d'ensemble des abonnements](../_assets/sc-services.webp)
+
+## Gestion clients & services
+
+SubsCopilot distingue les **abonnements clients** des **abonnements services**, ce qui le rend pertinent aussi bien pour un usage personnel que pour une petite structure qui gère des souscriptions pour ses clients.
+
+![Gestion des clients](../_assets/sc-customers.webp)
+
+![Détail d'un service](../_assets/sc-service-detail.webp)
+
+## Modèle & tarification
+
+- **Gratuit** — Jusqu'à 10 services et 2 abonnés par service.
+- **Pro** — À partir de 10 000 XAF, avec organisations, services et abonnés illimités.
+
+## Stack technique
+
+- **Frontend & Backend** : Next.js (App Router) et TypeScript.
+- **API** : tRPC, pour une communication client-serveur typée de bout en bout.
+- **Base de données** : PostgreSQL (Neon serverless) via Prisma.
+- **Authentification** : better-auth.
+- **Rappels planifiés** : Inngest pour l'orchestration des notifications.
+- **Canaux de notification** : Twilio (WhatsApp) et Resend + React Email (email).
+- **UI** : Tailwind CSS et Radix UI.
+
+## Mon rôle
+
+Projet personnel que je conçois et développe de bout en bout : architecture, API typée tRPC, modélisation des données, orchestration des rappels planifiés (Inngest) et intégration des canaux de notification (email via Resend, WhatsApp via Twilio), ainsi que l'interface.

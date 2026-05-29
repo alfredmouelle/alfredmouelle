@@ -24,15 +24,19 @@ export default {
     title: 'Compétences',
     eyebrow: 'Expertise',
     description:
-      'Les technologies avec lesquelles je conçois, du back-end au mobile.',
+      'Les technologies avec lesquelles je conçois, du back-end à l’infrastructure.',
     backend_desc:
-      'Expertise en Node.js, PHP (Laravel, Symfony) et Java Spring Boot pour des applications serveur robustes.',
+      'Expertise en Node.js, PHP (Laravel) et Java Spring Boot pour des applications serveur robustes.',
     frontend_desc:
-      "Création d'interfaces modernes avec Next.js, Nuxt et Angular pour des applications web réactives et dynamiques.",
+      "Création d'interfaces modernes avec Next.js, TanStack Start, Astro et Angular, soignées avec Tailwind CSS et ShadcnUI.",
     mobile_desc:
       "Développement d'applications mobiles multi-plateformes avec Flutter et React Native pour iOS et Android.",
-    node_code_desc:
-      'Maîtrise de Webflow pour la création de sites Web sans code, permettant un prototypage rapide et une mise en œuvre de la conception.',
+    database_desc:
+      'Modélisation et gestion des données avec PostgreSQL, MongoDB et Redis, via Prisma et Drizzle.',
+    devops_desc:
+      'Conteneurisation et déploiement continu avec Docker, Vercel et GitHub Actions.',
+    tests_desc:
+      "Tests end-to-end, unitaires et d'intégration avec Cypress, Vitest et Playwright.",
   },
 
   section_hero: {
@@ -78,6 +82,7 @@ export default {
     description:
       'Une sélection de projets que j’ai conçus, développés et livrés.',
     showProjects: 'Voir tout',
+    visitWebsite: 'Visiter le site web',
   },
 
   section_contact: {

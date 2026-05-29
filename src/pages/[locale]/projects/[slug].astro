@@ -41,6 +41,7 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const locale = normalizeLocale(Astro.currentLocale);
 const tBC = createScopedTranslator(locale, 'breadcrumb');
+const tProj = createScopedTranslator(locale, 'section_projects');
 
 const { Content } = await render(project);
 
@@ -105,8 +106,11 @@ const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, `/projects/
                 href={project.data.url}
                 class={cn('group', buttonVariants({ variant: 'default' }))}
               >
-                {tBC('projects')}
-                <Icon name="link" className="size-4" />
+                <Icon
+                  name="website"
+                  className="size-4 transition-transform group-hover:-translate-y-0.5"
+                />
+                {tProj('visitWebsite')}
               </a>
             ) : null
           }
@@ -132,10 +136,10 @@ const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, `/projects/
             src={project.data.cover}
             alt={project.data.title}
             width={1280}
-            height={720}
+            height={800}
             loading="eager"
             decoding="async"
-            class="mb-10 w-full rounded-2xl border border-border/70 object-cover shadow-soft"
+            class="mb-10 w-full rounded-2xl border border-border/70 object-cover object-top shadow-soft"
           />
         ) : null
       }
