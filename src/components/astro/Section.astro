@@ -1,0 +1,40 @@
+---
+import Reveal from '~/components/astro/Reveal.astro';
+import { cn } from '~/lib/utils';
+
+interface Props {
+  class?: string;
+  id?: string;
+  skipFadeIn?: boolean;
+  innerWrapperClassName?: string;
+}
+
+const {
+  class: className,
+  id,
+  skipFadeIn = false,
+  innerWrapperClassName,
+} = Astro.props;
+---
+
+<section
+  id={id}
+  data-watched={id ? 'true' : undefined}
+  class={cn('py-10 md:py-24', className)}
+>
+  {
+    skipFadeIn ? (
+      <div class={cn('container', innerWrapperClassName)}>
+        <slot />
+      </div>
+    ) : (
+      <Reveal
+        type="slide-up"
+        distance={200}
+        class={cn('container', innerWrapperClassName)}
+      >
+        <slot />
+      </Reveal>
+    )
+  }
+</section>

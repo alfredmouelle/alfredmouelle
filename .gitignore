@@ -37,3 +37,10 @@ yarn-error.log*
 next-env.d.ts
 
 .idea/
+# Astro
+dist/
+.astro/
+.vercel/
+
+# pnpm 10+ auto-generates this; breaks Vercel pnpm 9 install
+pnpm-workspace.yaml

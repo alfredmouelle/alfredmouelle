@@ -1,0 +1,49 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Section from '~/components/astro/Section.astro';
+import { Icon } from '~/components/icons';
+import { Button } from '~/components/ui/button';
+
+import en from '~/locales/dictionaries/en';
+import fr from '~/locales/dictionaries/fr';
+import { LOCALES, type Locale } from '~/locales';
+
+// Static 404 has no build-time locale; render default + swap strings at runtime.
+const dicts = { fr: fr.notFound, en: en.notFound } as const;
+const labels = dicts.fr;
+---
+
+<BaseLayout title={labels.title} noindex>
+  <Section
+    skipFadeIn
+    class="hero mt-20 flex h-full flex-1 flex-col items-center justify-center text-center"
+  >
+    <h1 class="mb-4 text-4xl font-bold" data-i18n="title">{labels.title}</h1>
+    <p class="mb-8 text-xl text-muted-foreground" data-i18n="message">
+      {labels.message}
+    </p>
+    <a id="not-found-home" href="/">
+      <Button>
+        <Icon name="home" className="size-4" />
+        <span data-i18n="backHome">{labels.backHome}</span>
+      </Button>
+    </a>
+  </Section>
+</BaseLayout>
+
+<script is:inline define:vars={{ dicts, locales: LOCALES, defaultLocale: 'fr' }}>
+  (function () {
+    const segs = location.pathname.split('/').filter(Boolean);
+    const candidate = segs[0];
+    const locale = locales.includes(candidate) ? candidate : defaultLocale;
+    const dict = dicts[locale];
+    if (!dict) return;
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const key = el.getAttribute('data-i18n');
+      if (key && dict[key]) el.textContent = dict[key];
+    });
+    document.documentElement.lang = locale;
+    const home = document.getElementById('not-found-home');
+    if (home) home.setAttribute('href', `/${locale}/`);
+  })();
+</script>

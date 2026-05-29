@@ -1,0 +1,112 @@
+---
+import Section from '~/components/astro/Section.astro';
+import SectionTitle from '~/components/astro/SectionTitle.astro';
+import Reveal from '~/components/astro/Reveal.astro';
+import { Icon, Icons } from '~/components/icons';
+import { ContactForm } from '~/components/islands/contact-form';
+
+import { createScopedTranslator, normalizeLocale } from '~/locales';
+
+const locale = normalizeLocale(Astro.currentLocale);
+const t = createScopedTranslator(locale, 'section_contact');
+
+const contacts = [
+  {
+    Icon: Icons.github,
+    label: '@alfredmouelle',
+    url: 'https://github.com/alfredmouelle',
+  },
+  {
+    Icon: Icons.twitter,
+    label: '@kali47_',
+    url: 'https://twitter.com/kali47_',
+  },
+  {
+    Icon: Icons.linkedin,
+    label: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/alfred-mouelle-72a976228',
+  },
+  {
+    Icon: Icons.mail,
+    label: 'Email',
+    url: 'mailto:alfredmouelle@gmail.com',
+  },
+  {
+    Icon: Icons.website,
+    label: 'ComeUp',
+    url: 'https://comeup.com/fr/@alfredmouelle',
+  },
+  {
+    Icon: Icons.phone,
+    label: '+237 693 69 27 21',
+    url: 'https://api.whatsapp.com/send?phone=237693692721',
+  },
+] as const;
+
+const formLabels = {
+  fields: {
+    name: t('form.fields.name'),
+    email: t('form.fields.email'),
+    subject: t('form.fields.subject'),
+    message: t('form.fields.message'),
+    submit: t('form.fields.submit'),
+  },
+  errors: {
+    name: t('form.errors.name'),
+    email: t('form.errors.email'),
+    subject: t('form.errors.subject'),
+    message: t('form.errors.message'),
+  },
+  placeholders: {
+    subject: t('form.placeholders.subject'),
+  },
+  messages: {
+    success: t('form.messages.success'),
+    error: t('form.messages.error'),
+  },
+};
+---
+
+<Section id="contact">
+  <SectionTitle class="flex items-center gap-x-2">
+    <Icon name="contact" className="size-8" />
+    {t('title')}
+  </SectionTitle>
+
+  <div>
+    <p class="text-center text-gray-500">{t('quickContact')}</p>
+    <ul
+      class="mt-8 grid grid-cols-3 items-center justify-center gap-1 gap-y-4 md:grid-cols-6"
+    >
+      {
+        contacts.map((c, index) => (
+          <Reveal
+            as="li"
+            type="slide-up"
+            distance={100}
+            delay={index * 100}
+          >
+            <a
+              target="_blank"
+              href={c.url}
+              rel="noopener noreferrer"
+              class="group flex flex-col items-center justify-center gap-y-1.5 text-xs text-gray-500 transition delay-0 duration-200 hover:scale-[1.03] hover:text-primary md:text-sm"
+            >
+              <c.Icon className="h-8 w-8 text-muted-foreground group-hover:text-primary" />
+              {c.label}
+            </a>
+          </Reveal>
+        ))
+      }
+    </ul>
+
+    <div class="my-12 flex flex-col items-center">
+      <div class="mb-8 h-px w-full max-w-3xl bg-muted-foreground"></div>
+      <p class="max-w-2xl text-center text-sm text-muted-foreground">
+        {t('description')}
+      </p>
+    </div>
+
+    <ContactForm client:visible labels={formLabels} />
+  </div>
+</Section>

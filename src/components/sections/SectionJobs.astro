@@ -1,0 +1,67 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import Section from '~/components/astro/Section.astro';
+import SectionTitle from '~/components/astro/SectionTitle.astro';
+import Reveal from '~/components/astro/Reveal.astro';
+import { Icon } from '~/components/icons';
+import { JobCard } from '~/components/job-card';
+import { buttonVariants } from '~/components/ui/button';
+
+import { getJobs, getJobSlug } from '~/lib/jobs';
+import { createScopedTranslator, normalizeLocale } from '~/locales';
+import { cn } from '~/lib/utils';
+
+const locale = normalizeLocale(Astro.currentLocale);
+const t = createScopedTranslator(locale, 'section_jobs');
+const tJob = createScopedTranslator(locale, 'job');
+const tPeriod = createScopedTranslator(locale, 'job.period');
+
+const labels = {
+  readTime: tJob('readTime'),
+  elapsed: tPeriod('elapsed'),
+  from: tPeriod('from'),
+  to: tPeriod('to'),
+};
+
+const all = await getJobs(locale);
+const featured = all.find((j) => j.data.featured);
+const display = featured
+  ? [featured, ...all.filter((j) => j !== featured).slice(0, 2)]
+  : all.slice(0, 3);
+---
+
+<Section id="jobs">
+  <SectionTitle class="flex items-center gap-x-2">
+    <Icon name="briefcase" className="size-8" />
+    {t('title')}
+  </SectionTitle>
+
+  <div class="flex flex-col items-end">
+    <ul class="grid gap-4 md:grid-cols-3">
+      {
+        display.map((job, index) => (
+          <Reveal
+            as="li"
+            type="slide-up"
+            distance={100}
+            delay={index * 100}
+            class="col-span-3 md:col-span-1"
+          >
+            <a href={getRelativeLocaleUrl(locale, `/jobs/${getJobSlug(job)}`)}>
+              <JobCard job={job.data} locale={locale} labels={labels} />
+            </a>
+          </Reveal>
+        ))
+      }
+    </ul>
+
+    <a
+      href={getRelativeLocaleUrl(locale, '/jobs')}
+      class={cn('mt-4', buttonVariants({ variant: 'outline' }))}
+    >
+      {t('showJobs')}
+      <Icon name="arrowRight" className="" />
+    </a>
+  </div>
+</Section>

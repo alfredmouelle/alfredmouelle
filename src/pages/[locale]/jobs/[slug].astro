@@ -1,0 +1,145 @@
+---
+import { render } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Section from '~/components/astro/Section.astro';
+import Reveal from '~/components/astro/Reveal.astro';
+import { Icon } from '~/components/icons';
+import { JobDate } from '~/components/job-card';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from '~/components/ui/breadcrumb';
+import { Button, buttonVariants } from '~/components/ui/button';
+
+import { getJobs, getJobSlug } from '~/lib/jobs';
+import { AppConfig } from '~/app.config';
+import {
+  LOCALES,
+  createScopedTranslator,
+  normalizeLocale,
+  type Locale,
+} from '~/locales';
+import { cn } from '~/lib/utils';
+
+export async function getStaticPaths() {
+  const paths = await Promise.all(
+    LOCALES.map(async (locale: Locale) => {
+      const jobs = await getJobs(locale);
+      return jobs.map((job) => ({
+        params: { locale, slug: getJobSlug(job) },
+        props: { job },
+      }));
+    })
+  );
+  return paths.flat();
+}
+
+const { job } = Astro.props;
+const locale = normalizeLocale(Astro.currentLocale);
+const tBC = createScopedTranslator(locale, 'breadcrumb');
+const tJob = createScopedTranslator(locale, 'job');
+const tPeriod = createScopedTranslator(locale, 'job.period');
+
+const labels = {
+  elapsed: tPeriod('elapsed'),
+  from: tPeriod('from'),
+  to: tPeriod('to'),
+};
+
+const { Content } = await render(job);
+
+const slug = getJobSlug(job);
+const title = `${job.data.position} at ${job.data.company}`;
+const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, `/jobs/${slug}`)}`;
+---
+
+<BaseLayout
+  title={title}
+  description={job.data.description}
+  keywords={job.data.meta.keywords}
+  canonical={canonical}
+  ogType="article"
+>
+  <Section class="hero mt-20" skipFadeIn>
+    <div
+      class="mb-5 flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
+    >
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <a
+              href={getRelativeLocaleUrl(locale, '/')}
+              class="transition-colors duration-200 ease-in hover:text-foreground"
+            >
+              {tBC('home')}
+            </a>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <a
+              href={getRelativeLocaleUrl(locale, '/jobs')}
+              class="transition-colors duration-150 ease-in hover:text-foreground"
+            >
+              {tBC('jobs')}
+            </a>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+
+      <div
+        class="flex flex-row items-center gap-x-2 gap-y-2 text-muted-foreground"
+      >
+        <JobDate
+          startDate={job.data.startDate}
+          endDate={job.data.endDate}
+          locale={locale}
+          labels={labels}
+        />
+        <span class="text-muted-foreground">-</span>
+        <div class="flex items-center justify-center gap-x-2">
+          <p class="text-xs">
+            {job.data.readTime}
+            {tJob('readTime')}
+          </p>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={job.data.siteUrl}
+            class={cn(
+              'text-foreground',
+              buttonVariants({ variant: 'ghost', size: 'icon' })
+            )}
+          >
+            <Icon name="link" className="size-4" />
+            <span class="sr-only">{tJob('visitWebsite')}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <Reveal type="slide-up" distance={200}>
+      <article class="prose w-full max-w-none dark:prose-invert">
+        <Content components={{ Button }} />
+      </article>
+
+      <div class="mt-10 flex w-full items-center md:justify-center">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={job.data.siteUrl}
+          class={cn(
+            'w-full md:w-auto',
+            buttonVariants({ variant: 'outline' })
+          )}
+        >
+          {tJob('visitWebsite')}
+          <Icon name="link" className="size-4" />
+        </a>
+      </div>
+    </Reveal>
+  </Section>
+</BaseLayout>

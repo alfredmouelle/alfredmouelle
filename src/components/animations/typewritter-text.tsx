@@ -1,4 +1,3 @@
-'use client';
 
 import Typewriter from 'typewriter-effect';
 

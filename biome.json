@@ -29,7 +29,7 @@
       "style": {
         "useFilenamingConvention": {
           "level": "error",
-          "options": { "filenameCases": ["kebab-case"] }
+          "options": { "filenameCases": ["kebab-case", "PascalCase"] }
         },
         "useBlockStatements": "off",
         "useConst": "warn",
@@ -67,14 +67,14 @@
           "level": "on",
           "options": {
             "groups": [
-              ["react", "react/**", "next", "next/**"],
+              ["react", "react/**", "astro:*"],
               ":PACKAGE:",
               ":BLANK_LINE:",
-              ["@/actions", "@/actions/**", "@/schemas", "@/schemas/**"],
+              ["~/actions", "~/actions/**", "~/schemas", "~/schemas/**"],
               ":BLANK_LINE:",
-              ["@/components", "@/components/**"],
+              ["~/components", "~/components/**"],
               ":BLANK_LINE:",
-              "@/**",
+              "~/**",
               ":BLANK_LINE:",
               ":PATH:"
             ]

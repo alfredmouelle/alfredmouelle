@@ -1,0 +1,99 @@
+---
+import Section from '~/components/astro/Section.astro';
+import SectionTitle from '~/components/astro/SectionTitle.astro';
+import Reveal from '~/components/astro/Reveal.astro';
+import { Icon } from '~/components/icons';
+
+import { createScopedTranslator, normalizeLocale } from '~/locales';
+
+const locale = normalizeLocale(Astro.currentLocale);
+const t = createScopedTranslator(locale, 'section_scholarship');
+
+const entries = [
+  {
+    title: t('bts.title'),
+    specialty: t('bts.specialty'),
+    period: '2018 - 2020',
+    right1: t('bts.academy'),
+    right2: t('bts.location'),
+    delay: 0,
+  },
+  {
+    title: t('bac.title'),
+    specialty: t('bac.specialty'),
+    period: '2017 - 2018',
+    right1: t('bac.location1'),
+    right2: t('bac.location2'),
+    delay: 50,
+  },
+  {
+    title: t('probatoire.title'),
+    specialty: t('bac.specialty'),
+    period: '2016 - 2017',
+    right1: t('bac.location1'),
+    right2: t('bac.location2'),
+    delay: 80,
+  },
+] as const;
+---
+
+<Section
+  id="scholarship"
+  class="bg-gradient-to-b from-blue-500/25 via-transparent to-transparent"
+>
+  <SectionTitle class="flex items-center gap-x-2">
+    <Icon name="graduation" className="size-8" />
+    {t('title')}
+  </SectionTitle>
+
+  <div class="grid lg:grid-cols-2">
+    <Reveal type="scale" class="flex items-center justify-center">
+      <img
+        width={500}
+        height={500}
+        alt="Mascotte"
+        src="/assets/images/education-man.svg"
+        class="transition-transform duration-100 ease-in hover:scale-[1.02]"
+      />
+    </Reveal>
+
+    <div class="relative">
+      <div
+        class="absolute left-1/2 h-full -translate-x-1/2 transform border-l-2 border-gray-300"
+      >
+      </div>
+      <div class="space-y-8">
+        {
+          entries.map((entry) => (
+            <div class="flex w-full items-center">
+              <Reveal
+                type="slide-down"
+                distance={100}
+                delay={entry.delay}
+                class="w-1/2 pr-8 text-right"
+              >
+                <h2 class="text-lg font-semibold">{entry.title}</h2>
+                <p class="text-primary">{entry.specialty}</p>
+                <p class="text-sm text-muted-foreground">{entry.period}</p>
+              </Reveal>
+
+              <div class="relative flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-b from-primary via-primary to-[#9c60d7]">
+                <Icon name="check" className="text-white" />
+              </div>
+
+              <Reveal
+                type="slide-up"
+                distance={100}
+                delay={entry.delay}
+                class="w-1/2 pl-8"
+              >
+                <p class="text-muted-foreground">{entry.right1}</p>
+                <p class="text-sm text-muted-foreground">{entry.right2}</p>
+              </Reveal>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Section>

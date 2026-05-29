@@ -1,0 +1,171 @@
+---
+import '~/styles/global.css';
+
+import { ClientRouter } from 'astro:transitions';
+
+import Head from '~/components/astro/Head.astro';
+import Footer from '~/components/astro/Footer.astro';
+import Header from '~/components/astro/Header.astro';
+import { BackToTop } from '~/components/islands/back-to-top';
+import { Toaster } from 'sonner';
+
+import { normalizeLocale } from '~/locales';
+import { cn } from '~/lib/utils';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  keywords?: string[];
+  ogType?: 'website' | 'article';
+  ogImage?: string;
+  noindex?: boolean;
+  bodyClass?: string;
+}
+
+const locale = normalizeLocale(Astro.currentLocale);
+---
+
+<!doctype html>
+<html lang={locale} class="h-full scroll-smooth antialiased">
+  <head>
+    <Head {...Astro.props} locale={locale} pathname={Astro.url.pathname} />
+
+    <ClientRouter />
+
+    <script is:inline>
+      (function () {
+        const isDark = () => {
+          try {
+            const stored = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia(
+              '(prefers-color-scheme: dark)'
+            ).matches;
+            return stored ? stored === 'dark' : prefersDark;
+          } catch (_) {
+            return false;
+          }
+        };
+        const apply = (root) => root.classList.toggle('dark', isDark());
+        apply(document.documentElement);
+        document.addEventListener('astro:before-swap', (e) =>
+          apply(e.newDocument.documentElement)
+        );
+        document.addEventListener('astro:after-swap', () =>
+          apply(document.documentElement)
+        );
+      })();
+    </script>
+  </head>
+
+  <body
+    class={cn(
+      'font-global relative flex h-full min-h-screen flex-col bg-background',
+      Astro.props.bodyClass
+    )}
+  >
+    <Header transition:persist />
+    <main class="grow" transition:animate="none">
+      <slot />
+    </main>
+    <Footer transition:persist />
+
+    <BackToTop client:idle transition:persist />
+
+    <Toaster client:idle richColors transition:persist />
+
+    <script>
+      const HERO = 'section_hero';
+      const ANCHOR_EVENT = 'app:anchor-change';
+      let observer: IntersectionObserver | null = null;
+
+      const setupSectionObserver = () => {
+        observer?.disconnect();
+        const sections = document.querySelectorAll<HTMLElement>(
+          'section[data-watched][id]'
+        );
+        if (sections.length === 0 || !('IntersectionObserver' in window))
+          return;
+        const base = window.location.pathname.replace(/\?.*$/, '');
+        observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              const id = entry.target.id;
+              const url = id === HERO ? base : `${base}?anchor=${id}`;
+              if (url === window.location.pathname + window.location.search)
+                continue;
+              window.history.replaceState(null, '', url);
+              window.dispatchEvent(new Event(ANCHOR_EVENT));
+            }
+          },
+          { threshold: 0.85 }
+        );
+        for (const section of sections) observer.observe(section);
+      };
+
+      setupSectionObserver();
+      document.addEventListener('astro:page-load', setupSectionObserver);
+    </script>
+
+    <script>
+      let revealObserver: IntersectionObserver | null = null;
+
+      const setupReveal = () => {
+        revealObserver?.disconnect();
+        const items = document.querySelectorAll<HTMLElement>(
+          '[data-reveal]:not(.is-revealed)'
+        );
+        if (items.length === 0) return;
+        if (!('IntersectionObserver' in window)) {
+          for (const el of items) el.classList.add('is-revealed');
+          return;
+        }
+        const viewportHeight = window.innerHeight;
+        const toObserve: HTMLElement[] = [];
+        for (const el of items) {
+          // Above-the-fold: reveal at load; threshold IO won't fire for tall items on mobile.
+          if (el.getBoundingClientRect().top < viewportHeight) {
+            el.classList.add('is-revealed');
+          } else {
+            toObserve.push(el);
+          }
+        }
+        if (toObserve.length === 0) return;
+        revealObserver = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              entry.target.classList.add('is-revealed');
+              revealObserver?.unobserve(entry.target);
+            }
+          },
+          { threshold: 0.1, rootMargin: '0px 0px -10% 0px' }
+        );
+        for (const el of toObserve) revealObserver.observe(el);
+      };
+
+      setupReveal();
+      document.addEventListener('astro:page-load', setupReveal);
+    </script>
+
+    <script>
+      const updateGradientBorders = (e: MouseEvent) => {
+        const els = document.querySelectorAll<HTMLElement>(
+          '[data-gradient-border]'
+        );
+        for (const el of els) {
+          const rect = el.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const deg = (Math.atan2(y, x) * 180) / Math.PI + 180;
+          el.style.setProperty('--gradient-rotation', `${deg + 77}deg`);
+        }
+      };
+      document.addEventListener('mousemove', updateGradientBorders, {
+        passive: true,
+      });
+    </script>
+
+  </body>
+</html>

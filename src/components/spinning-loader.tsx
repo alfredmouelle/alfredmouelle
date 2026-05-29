@@ -1,6 +1,6 @@
-import { Icon } from '@/components/icons';
+import { Icon } from '~/components/icons';
 
-import { cn } from '@/lib/utils';
+import { cn } from '~/lib/utils';
 
 interface SpinningLoaderProps {
   className?: string;

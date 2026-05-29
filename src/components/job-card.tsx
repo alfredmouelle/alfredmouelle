@@ -1,9 +1,6 @@
-import { getCurrentLocale, getScopedI18n } from '@locales/server';
-import { format } from 'date-fns';
-import { enUS, fr } from 'date-fns/locale';
-
-import { Job } from '@/jobs-helper';
-import { cn } from '@/lib/utils';
+import type { JobEntry } from '~/lib/jobs';
+import type { Locale } from '~/locales';
+import { cn } from '~/lib/utils';
 
 import { Icon } from './icons';
 import {
@@ -15,19 +12,25 @@ import {
   CardTitle,
 } from './ui/card';
 
-export const JobCard = async ({ job }: { job: Job }) => {
-  const t = await getScopedI18n('job');
+const MAX_STACKS = 4;
+
+interface JobCardProps {
+  job: JobEntry['data'];
+  locale: Locale;
+  labels: { readTime: string; elapsed: string; from: string; to: string };
+}
+
+export const JobCard = ({ job, locale, labels }: JobCardProps) => {
+  const stacks = job.stacks.slice(0, MAX_STACKS);
 
   return (
     <Card
       className={cn(
-        'min-h-48 shadow-lg transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent',
-        {
-          'border-primary bg-accent': job.featured,
-        }
+        'flex h-full min-h-48 flex-col shadow-lg transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent',
+        { 'border-primary': job.featured }
       )}
     >
-      <CardHeader>
+      <CardHeader className="grow">
         <CardTitle
           className={cn('flex items-center gap-x-2 text-primary', {
             'text-primary': job.featured,
@@ -38,7 +41,7 @@ export const JobCard = async ({ job }: { job: Job }) => {
             <Icon name="link" className="size-4 text-primary" />
           ) : null}
           <span className="text-xs text-muted-foreground">
-            {job.readTime} {t('readTime')}
+            {job.readTime} {labels.readTime}
           </span>
         </CardTitle>
         <CardDescription className="line-clamp-3">
@@ -46,37 +49,66 @@ export const JobCard = async ({ job }: { job: Job }) => {
         </CardDescription>
       </CardHeader>
 
-      <CardContent>{job.published}</CardContent>
+      {stacks.length > 0 ? (
+        <CardContent className="flex items-center gap-1.5 overflow-hidden whitespace-nowrap">
+          {stacks.map((stack) => (
+            <span
+              key={stack}
+              className="shrink-0 rounded-md border bg-secondary/40 px-2 py-0.5 text-xs text-muted-foreground"
+            >
+              {stack}
+            </span>
+          ))}
+        </CardContent>
+      ) : null}
 
       <CardFooter>
-        <JobDate startDate={job.startDate} endDate={job.endDate} />
+        <JobDate
+          startDate={job.startDate}
+          endDate={job.endDate}
+          locale={locale}
+          labels={labels}
+        />
       </CardFooter>
     </Card>
   );
 };
 
-export const JobDate = async ({
-  startDate,
-  endDate,
-}: Pick<Job, 'endDate' | 'startDate'>) => {
-  const locale = await getCurrentLocale();
+interface JobDateProps {
+  startDate: Date;
+  endDate?: Date | null;
+  locale: Locale;
+  labels: { elapsed: string; from: string; to: string };
+}
+
+const monthYearFormatters: Partial<Record<Locale, Intl.DateTimeFormat>> = {};
+
+const getFormatter = (locale: Locale): Intl.DateTimeFormat => {
+  if (!monthYearFormatters[locale]) {
+    monthYearFormatters[locale] = new Intl.DateTimeFormat(locale, {
+      month: 'short',
+      year: 'numeric',
+    });
+  }
+  return monthYearFormatters[locale]!;
+};
+
+export const JobDate = ({ startDate, endDate, locale, labels }: JobDateProps) => {
   const f = (date: Date) => {
-    const d = format(date, 'MMM yyy', { locale: locale === 'fr' ? fr : enUS });
+    const d = getFormatter(locale).format(date);
     return (d.charAt(0).toUpperCase() + d.slice(1)).replace('.', '');
   };
-
-  const t = await getScopedI18n('job.period');
 
   if (!endDate)
     return (
       <span className="text-xs text-muted-foreground">
-        {t('elapsed')} <span>{f(startDate)}</span>
+        {labels.elapsed} <span>{f(startDate)}</span>
       </span>
     );
 
   return (
     <span className="text-xs text-muted-foreground">
-      {t('from')} <span>{f(startDate)}</span> {t('to')}
+      {labels.from} <span>{f(startDate)}</span> {labels.to}
       <span> {f(endDate)}</span>
     </span>
   );

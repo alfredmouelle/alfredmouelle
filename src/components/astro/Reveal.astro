@@ -1,0 +1,37 @@
+---
+type RevealType =
+  | 'slide-up'
+  | 'slide-down'
+  | 'slide-left'
+  | 'slide-right'
+  | 'scale'
+  | 'fade';
+
+interface Props {
+  type?: RevealType;
+  delay?: number;
+  distance?: number;
+  as?: keyof HTMLElementTagNameMap;
+  class?: string;
+}
+
+const {
+  type = 'slide-up',
+  delay,
+  distance,
+  as = 'div',
+  class: className,
+} = Astro.props;
+
+const Tag = as as keyof HTMLElementTagNameMap;
+const style = [
+  delay != null ? `--reveal-delay:${delay}ms` : null,
+  distance != null ? `--reveal-distance:${distance}px` : null,
+]
+  .filter(Boolean)
+  .join(';');
+---
+
+<Tag class={className} data-reveal={type} style={style || undefined}>
+  <slot />
+</Tag>

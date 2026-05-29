@@ -1,0 +1,74 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import { LocaleToggle } from '~/components/islands/locale-toggle';
+import { MobileNav, NavLinks } from '~/components/islands/navlinks';
+import { ThemeToggle } from '~/components/islands/theme-toggle';
+
+import { createScopedTranslator, normalizeLocale } from '~/locales';
+
+const locale = normalizeLocale(Astro.currentLocale);
+const t = createScopedTranslator(locale, 'navbar');
+const tTheme = createScopedTranslator(locale, 'theme_toggle');
+
+const navLabels = {
+  scholarship: t('links.scholarship'),
+  skills: t('links.skills'),
+  job: t('links.job'),
+  contact: t('links.contact'),
+};
+
+const localeLabels = {
+  label: t('locales.label'),
+  fr: t('locales.fr'),
+  en: t('locales.en'),
+};
+
+const themeLabels = {
+  light: tTheme('light'),
+  dark: tTheme('dark'),
+  system: tTheme('system'),
+};
+
+const homePath = getRelativeLocaleUrl(locale, '/');
+const logoSrc = '/assets/logo.svg';
+---
+
+<header
+  class="fixed left-0 right-0 top-0 z-50 h-20 py-4 backdrop-blur-sm"
+>
+  <nav
+    class="container flex items-center rounded-full border bg-card/90 py-2 shadow-xl md:gap-10"
+  >
+    <div class="flex items-center justify-center gap-x-4 lg:gap-x-10">
+      <a href={homePath} class="shrink-0">
+        <img src={logoSrc} alt="Logo" width={35} height={35} />
+      </a>
+
+      <ul
+        class="hidden items-center gap-x-1 justify-self-start text-sm font-medium md:flex lg:gap-10"
+      >
+        <NavLinks
+          client:load
+          labels={navLabels}
+          homePath={homePath}
+        />
+      </ul>
+    </div>
+
+    <div class="flex flex-1 items-center justify-end gap-x-1.5">
+      <LocaleToggle
+        client:load
+        labels={localeLabels}
+        currentLocale={locale}
+      />
+      <ThemeToggle client:load labels={themeLabels} />
+      <MobileNav
+        client:load
+        labels={navLabels}
+        homePath={homePath}
+        logoSrc={logoSrc}
+      />
+    </div>
+  </nav>
+</header>
