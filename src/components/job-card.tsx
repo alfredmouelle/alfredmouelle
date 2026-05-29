@@ -1,9 +1,9 @@
-import { getCurrentLocale, getScopedI18n } from '@locales/server';
 import { format } from 'date-fns';
 import { enUS, fr } from 'date-fns/locale';
 
-import { Job } from '@/jobs-helper';
-import { cn } from '@/lib/utils';
+import type { JobEntry } from '~/lib/jobs';
+import type { Locale } from '~/locales';
+import { cn } from '~/lib/utils';
 
 import { Icon } from './icons';
 import {
@@ -15,16 +15,18 @@ import {
   CardTitle,
 } from './ui/card';
 
-export const JobCard = async ({ job }: { job: Job }) => {
-  const t = await getScopedI18n('job');
+interface JobCardProps {
+  job: JobEntry['data'];
+  locale: Locale;
+  labels: { readTime: string; elapsed: string; from: string; to: string };
+}
 
+export const JobCard = ({ job, locale, labels }: JobCardProps) => {
   return (
     <Card
       className={cn(
         'min-h-48 shadow-lg transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent',
-        {
-          'border-primary bg-accent': job.featured,
-        }
+        { 'border-primary bg-accent': job.featured }
       )}
     >
       <CardHeader>
@@ -38,7 +40,7 @@ export const JobCard = async ({ job }: { job: Job }) => {
             <Icon name="link" className="size-4 text-primary" />
           ) : null}
           <span className="text-xs text-muted-foreground">
-            {job.readTime} {t('readTime')}
+            {job.readTime} {labels.readTime}
           </span>
         </CardTitle>
         <CardDescription className="line-clamp-3">
@@ -49,34 +51,40 @@ export const JobCard = async ({ job }: { job: Job }) => {
       <CardContent>{job.published}</CardContent>
 
       <CardFooter>
-        <JobDate startDate={job.startDate} endDate={job.endDate} />
+        <JobDate
+          startDate={job.startDate}
+          endDate={job.endDate}
+          locale={locale}
+          labels={labels}
+        />
       </CardFooter>
     </Card>
   );
 };
 
-export const JobDate = async ({
-  startDate,
-  endDate,
-}: Pick<Job, 'endDate' | 'startDate'>) => {
-  const locale = await getCurrentLocale();
+interface JobDateProps {
+  startDate: Date;
+  endDate?: Date | null;
+  locale: Locale;
+  labels: { elapsed: string; from: string; to: string };
+}
+
+export const JobDate = ({ startDate, endDate, locale, labels }: JobDateProps) => {
   const f = (date: Date) => {
     const d = format(date, 'MMM yyy', { locale: locale === 'fr' ? fr : enUS });
     return (d.charAt(0).toUpperCase() + d.slice(1)).replace('.', '');
   };
 
-  const t = await getScopedI18n('job.period');
-
   if (!endDate)
     return (
       <span className="text-xs text-muted-foreground">
-        {t('elapsed')} <span>{f(startDate)}</span>
+        {labels.elapsed} <span>{f(startDate)}</span>
       </span>
     );
 
   return (
     <span className="text-xs text-muted-foreground">
-      {t('from')} <span>{f(startDate)}</span> {t('to')}
+      {labels.from} <span>{f(startDate)}</span> {labels.to}
       <span> {f(endDate)}</span>
     </span>
   );

@@ -1,0 +1,84 @@
+---
+import '~/styles/global.css';
+
+import Head from '~/components/astro/Head.astro';
+import Footer from '~/components/astro/Footer.astro';
+import Header from '~/components/astro/Header.astro';
+import { BackToTop } from '~/components/islands/back-to-top';
+import { Toaster } from 'sonner';
+
+import { normalizeLocale } from '~/locales';
+import { cn } from '~/lib/utils';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  keywords?: string[];
+  ogType?: 'website' | 'article';
+  ogImage?: string;
+  noindex?: boolean;
+  bodyClass?: string;
+}
+
+const locale = normalizeLocale(Astro.currentLocale);
+---
+
+<!doctype html>
+<html lang={locale} class="h-full scroll-smooth antialiased">
+  <head>
+    <Head {...Astro.props} locale={locale} />
+
+    <script is:inline>
+      (function () {
+        try {
+          const stored = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia(
+            '(prefers-color-scheme: dark)'
+          ).matches;
+          const dark = stored ? stored === 'dark' : prefersDark;
+          document.documentElement.classList.toggle('dark', dark);
+        } catch (_) {}
+      })();
+    </script>
+  </head>
+
+  <body
+    class={cn(
+      'font-global relative flex h-full min-h-screen flex-col bg-background',
+      Astro.props.bodyClass
+    )}
+  >
+    <Header />
+    <main class="grow">
+      <slot />
+    </main>
+    <Footer />
+
+    <BackToTop client:idle />
+
+    <Toaster client:idle richColors />
+
+    <script>
+      const sections = document.querySelectorAll<HTMLElement>(
+        'section[data-watched][id]'
+      );
+      if (sections.length > 0 && 'IntersectionObserver' in window) {
+        const base = window.location.pathname.replace(/\?.*$/, '');
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              const id = entry.target.id;
+              const url = id === 'section_hero' ? base : `${base}?anchor=${id}`;
+              window.history.replaceState(null, '', url);
+            }
+          },
+          { threshold: 0.85 }
+        );
+        for (const section of sections) observer.observe(section);
+      }
+    </script>
+
+  </body>
+</html>

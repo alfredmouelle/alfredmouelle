@@ -1,0 +1,66 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import Section from '~/components/astro/Section.astro';
+import SectionTitle from '~/components/astro/SectionTitle.astro';
+import { SlideLiIntoView } from '~/components/animations/slide-li-into-view';
+import { Icon } from '~/components/icons';
+import { JobCard } from '~/components/job-card';
+import { buttonVariants } from '~/components/ui/button';
+
+import { getJobs, getJobSlug } from '~/lib/jobs';
+import { createScopedTranslator, normalizeLocale } from '~/locales';
+import { cn } from '~/lib/utils';
+
+const locale = normalizeLocale(Astro.currentLocale);
+const t = createScopedTranslator(locale, 'section_jobs');
+const tJob = createScopedTranslator(locale, 'job');
+const tPeriod = createScopedTranslator(locale, 'job.period');
+
+const labels = {
+  readTime: tJob('readTime'),
+  elapsed: tPeriod('elapsed'),
+  from: tPeriod('from'),
+  to: tPeriod('to'),
+};
+
+const all = await getJobs(locale);
+const featured = all.find((j) => j.data.featured);
+const others = all.filter((j) => !j.data.featured).slice(0, 2);
+const display = [featured, ...others].filter(
+  (j): j is NonNullable<typeof featured> => Boolean(j)
+);
+---
+
+<Section id="jobs">
+  <SectionTitle class="flex items-center">
+    <Icon name="briefcase" className="mr-2 size-8" />
+    {t('title')}
+  </SectionTitle>
+
+  <div class="flex flex-col items-end">
+    <ul class="grid gap-4 md:grid-cols-3">
+      {
+        display.map((job, index) => (
+          <SlideLiIntoView
+            client:visible
+            index={index}
+            className="col-span-3 md:col-span-1"
+          >
+            <a href={getRelativeLocaleUrl(locale, `/jobs/${getJobSlug(job)}`)}>
+              <JobCard job={job.data} locale={locale} labels={labels} />
+            </a>
+          </SlideLiIntoView>
+        ))
+      }
+    </ul>
+
+    <a
+      href={getRelativeLocaleUrl(locale, '/jobs')}
+      class={cn('mt-4', buttonVariants({ variant: 'outline' }))}
+    >
+      {t('showJobs')}
+      <Icon name="arrowRight" className="ml-1.5" />
+    </a>
+  </div>
+</Section>

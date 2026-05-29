@@ -1,0 +1,83 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Section from '~/components/astro/Section.astro';
+import SectionTitle from '~/components/astro/SectionTitle.astro';
+import { SlideLiIntoView } from '~/components/animations/slide-li-into-view';
+import { Icon } from '~/components/icons';
+import { JobCard } from '~/components/job-card';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '~/components/ui/breadcrumb';
+
+import { getJobs, getJobSlug } from '~/lib/jobs';
+import { AppConfig } from '~/app.config';
+import {
+  LOCALES,
+  createScopedTranslator,
+  normalizeLocale,
+} from '~/locales';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const locale = normalizeLocale(Astro.currentLocale);
+const t = createScopedTranslator(locale, 'breadcrumb');
+const tSection = createScopedTranslator(locale, 'section_jobs');
+const tJob = createScopedTranslator(locale, 'job');
+const tPeriod = createScopedTranslator(locale, 'job.period');
+
+const labels = {
+  readTime: tJob('readTime'),
+  elapsed: tPeriod('elapsed'),
+  from: tPeriod('from'),
+  to: tPeriod('to'),
+};
+
+const jobs = await getJobs(locale);
+const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, '/jobs')}`;
+---
+
+<BaseLayout title={tSection('title')} canonical={canonical}>
+  <Section class="hero mt-20" skipFadeIn>
+    <Breadcrumb className="mb-4">
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <a
+            href={getRelativeLocaleUrl(locale, '/')}
+            class="transition-colors duration-150 ease-in hover:text-foreground"
+          >
+            {t('home')}
+          </a>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>{t('jobs')}</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+
+    <SectionTitle class="flex items-center">
+      <Icon name="briefcase" className="mr-2 size-8" />
+      {tSection('title')}
+    </SectionTitle>
+
+    <ul class="grid gap-4 md:grid-cols-2">
+      {
+        jobs.map((job, index) => (
+          <SlideLiIntoView client:visible index={index}>
+            <a href={getRelativeLocaleUrl(locale, `/jobs/${getJobSlug(job)}`)}>
+              <JobCard job={job.data} locale={locale} labels={labels} />
+            </a>
+          </SlideLiIntoView>
+        ))
+      }
+    </ul>
+  </Section>
+</BaseLayout>

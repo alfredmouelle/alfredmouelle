@@ -1,0 +1,91 @@
+---
+import Section from '~/components/astro/Section.astro';
+import SectionTitle from '~/components/astro/SectionTitle.astro';
+import { SlideLiIntoView } from '~/components/animations/slide-li-into-view';
+import { Icon, Icons } from '~/components/icons';
+import { Button } from '~/components/ui/button';
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '~/components/ui/card';
+
+import { createScopedTranslator, normalizeLocale } from '~/locales';
+
+const locale = normalizeLocale(Astro.currentLocale);
+const t = createScopedTranslator(locale, 'section_skills');
+
+const skills = [
+  {
+    title: 'Backend',
+    Icon: Icons.server,
+    details: t('backend_desc'),
+    mainSkills: ['Node.js', 'PHP', 'Spring Boot'],
+  },
+  {
+    title: 'Frontend',
+    Icon: Icons.layout,
+    details: t('frontend_desc'),
+    mainSkills: ['Next.js', 'Nuxt', 'Angular'],
+  },
+  {
+    title: 'Mobile',
+    Icon: Icons.smartphone,
+    details: t('mobile_desc'),
+    mainSkills: ['Flutter', 'React Native'],
+  },
+  {
+    title: 'No Code',
+    Icon: Icons.code,
+    details: t('node_code_desc'),
+    mainSkills: ['Webflow'],
+  },
+] as const;
+---
+
+<Section id="skills">
+  <SectionTitle class="flex items-center">
+    <Icon name="skill" className="mr-2 size-8" />
+    {t('title')}
+  </SectionTitle>
+
+  <ul class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+    {
+      skills.map((skill, index) => (
+        <SlideLiIntoView
+          client:visible
+          index={index}
+          className="col-span-4 md:col-span-1"
+        >
+          <Card className="group flex h-full cursor-pointer flex-col shadow-lg transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent">
+            <CardHeader className="flex-grow">
+              <CardTitle className="flex items-center text-primary">
+                <skill.Icon className="mr-2 size-5" />
+                {skill.title}
+              </CardTitle>
+              <CardDescription className="mt-2">{skill.details}</CardDescription>
+            </CardHeader>
+
+            <CardFooter>
+              <ul class="flex flex-wrap gap-2">
+                {skill.mainSkills.map((s) => (
+                  <li>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="transition-colors duration-150 ease-in group-hover:bg-primary group-hover:text-white"
+                    >
+                      {s}
+                    </Button>
+                  </li>
+                ))}
+              </ul>
+            </CardFooter>
+          </Card>
+        </SlideLiIntoView>
+      ))
+    }
+  </ul>
+</Section>

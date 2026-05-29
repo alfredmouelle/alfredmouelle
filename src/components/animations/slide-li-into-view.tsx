@@ -1,7 +1,7 @@
-import { PropsWithChildren } from 'react';
-import * as motion from 'framer-motion/client';
+import type { PropsWithChildren } from 'react';
+import { motion } from 'framer-motion';
 
-import { cn } from '@/lib/utils';
+import { cn } from '~/lib/utils';
 
 interface SlideLiIntoViewProps extends PropsWithChildren {
   index: number;

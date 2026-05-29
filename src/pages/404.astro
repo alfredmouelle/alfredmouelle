@@ -1,0 +1,38 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Section from '~/components/astro/Section.astro';
+import { Icon } from '~/components/icons';
+import { Button } from '~/components/ui/button';
+
+import {
+  createScopedTranslator,
+  isLocale,
+  normalizeLocale,
+} from '~/locales';
+
+const segments = Astro.url.pathname.split('/').filter(Boolean);
+const candidate = segments[0];
+const locale = isLocale(candidate)
+  ? candidate
+  : normalizeLocale(Astro.currentLocale);
+
+const t = createScopedTranslator(locale, 'notFound');
+---
+
+<BaseLayout title={t('title')} noindex>
+  <Section
+    skipFadeIn
+    class="hero mt-20 flex h-full flex-1 flex-col items-center justify-center text-center"
+  >
+    <h1 class="mb-4 text-4xl font-bold">{t('title')}</h1>
+    <p class="mb-8 text-xl text-muted-foreground">{t('message')}</p>
+    <a href={getRelativeLocaleUrl(locale, '/')}>
+      <Button>
+        <Icon name="home" className="mr-2 size-4" />
+        {t('backHome')}
+      </Button>
+    </a>
+  </Section>
+</BaseLayout>

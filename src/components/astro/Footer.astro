@@ -1,0 +1,15 @@
+---
+import { createScopedTranslator, normalizeLocale } from '~/locales';
+
+const locale = normalizeLocale(Astro.currentLocale);
+const t = createScopedTranslator(locale, 'footer');
+const year = new Date().getFullYear();
+---
+
+<footer class="py-4">
+  <div class="container">
+    <p class="text-center text-xs text-gray-500 md:text-sm">
+      &copy; {year} {t('text')}
+    </p>
+  </div>
+</footer>

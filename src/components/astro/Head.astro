@@ -1,0 +1,71 @@
+---
+import { AppConfig } from '~/app.config';
+import type { Locale } from '~/locales';
+
+interface Props {
+  locale: Locale;
+  title?: string;
+  description?: string;
+  canonical?: string;
+  keywords?: string[];
+  ogType?: 'website' | 'article';
+  ogImage?: string;
+  noindex?: boolean;
+}
+
+const meta = AppConfig.metadata[Astro.props.locale];
+const title = Astro.props.title ?? meta.title;
+const description = Astro.props.description ?? meta.description;
+const canonical = Astro.props.canonical ?? meta.canonical;
+const keywords = Astro.props.keywords ?? meta.keywords;
+const ogType = Astro.props.ogType ?? meta.ogType;
+const ogImage = new URL(
+  Astro.props.ogImage ?? meta.ogImage,
+  AppConfig.domain
+).toString();
+const noindex = Astro.props.noindex ?? !meta.robots.index;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords.join(', ')} />
+<meta name="author" content={AppConfig.author.name} />
+<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+<meta
+  name="google-site-verification"
+  content={meta.googleVerification}
+/>
+
+<link rel="canonical" href={canonical} />
+<link rel="alternate" hreflang="fr" href={`${AppConfig.domain}/fr`} />
+<link rel="alternate" hreflang="en" href={`${AppConfig.domain}/en`} />
+<link
+  rel="alternate"
+  hreflang="x-default"
+  href={`${AppConfig.domain}/${AppConfig.defaultMetadataLocale}`}
+/>
+
+<link rel="icon" href={meta.icons.favicon} sizes="any" />
+<link rel="icon" type="image/svg+xml" href={meta.icons.svg} />
+<link rel="apple-touch-icon" href={meta.icons.apple} />
+<link rel="manifest" href={meta.manifest} />
+
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonical} />
+<meta property="og:site_name" content={AppConfig.siteName} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="800" />
+<meta property="og:image:height" content="800" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:site" content={meta.twitter.site} />
+<meta name="twitter:creator" content={meta.twitter.creatorId} />

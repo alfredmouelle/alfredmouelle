@@ -1,0 +1,77 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import Section from '~/components/astro/Section.astro';
+import { GradientBorder } from '~/components/animations/gradient-border';
+import TypewriterText from '~/components/animations/typewritter-text';
+import { ContactButton } from '~/components/islands/contact-button';
+import { DownloadCvButton } from '~/components/islands/download-cv-button';
+
+import { createScopedTranslator, normalizeLocale } from '~/locales';
+
+const locale = normalizeLocale(Astro.currentLocale);
+const t = createScopedTranslator(locale, 'section_hero');
+const homePath = getRelativeLocaleUrl(locale, '/');
+---
+
+<Section
+  id="section_hero"
+  skipFadeIn
+  class="mt-20 bg-gradient-to-b from-transparent via-transparent to-blue-500/25"
+>
+  <div
+    class="hero grid min-h-[calc(100vh-20rem)] items-center gap-4 md:grid-cols-3"
+  >
+    <div
+      class="hero-brand relative order-2 flex flex-col gap-y-2 text-center md:order-none md:col-span-2 md:text-left"
+    >
+      <p class="text-muted-foreground">{t('greetings')}</p>
+      <h1
+        class="bg-gradient-to-r from-primary via-primary to-[#9c60d7] bg-clip-text text-3xl font-bold text-transparent"
+      >
+        Alfred Mouelle
+      </h1>
+
+      <div
+        class="mx-auto flex w-fit items-center justify-center gap-x-0.5 rounded-sm border bg-card/10 px-4 shadow-lg md:mx-0 md:justify-start"
+      >
+        <span class="text-xl font-medium">{'<'}</span>
+        <TypewriterText
+          client:idle
+          text={t('position')}
+          className="text-xl font-medium"
+        />
+        <span class="text-xl font-medium">{'/>'}</span>
+      </div>
+
+      <p class="text-justify text-muted-foreground">{t('description')}</p>
+
+      <div
+        class="z-10 mt-4 flex flex-col flex-wrap items-center gap-2 md:flex-row"
+      >
+        <DownloadCvButton
+          client:load
+          label={t('downloadCvBtn')}
+          locale={locale}
+        />
+        <ContactButton
+          client:load
+          label={t('availability')}
+          homePath={homePath}
+        />
+      </div>
+    </div>
+
+    <GradientBorder client:idle>
+      <div class="gradient order-1 rounded-full md:order-none">
+        <img
+          width={500}
+          height={500}
+          src="/assets/images/hero-avatar.webp"
+          alt="Photo de moi"
+          class="rounded-full shadow-lg transition-transform duration-150 ease-in hover:scale-[1.01] bg-background"
+        />
+      </div>
+    </GradientBorder>
+  </div>
+</Section>

@@ -9,7 +9,7 @@ import {
 } from '@react-email/components';
 import { Tailwind } from '@react-email/tailwind';
 
-import { ContactRequest } from '@/schemas/contact.schema';
+import type { ContactRequest } from '~/schemas/contact.schema';
 
 interface ContactEmailProps extends ContactRequest {}
 

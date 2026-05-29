@@ -1,5 +1,5 @@
-import { PropsWithChildren } from 'react';
-import * as motion from 'framer-motion/client';
+import type { PropsWithChildren } from 'react';
+import { motion } from 'framer-motion';
 
 interface FadeInSectionProps extends PropsWithChildren {
   children: React.ReactNode;
