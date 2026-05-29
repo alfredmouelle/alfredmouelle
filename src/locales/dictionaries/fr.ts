@@ -44,7 +44,7 @@ export default {
     position: 'Développeur FullStack',
     availability: 'Disponible pour de nouvelles opportunités',
     description:
-      'Développeur fullstack freelance basé au Cameroun. Depuis 5 ans, je conçois et développe des applications web et mobiles, du back-end à l’interface, avec une attention constante portée à la clarté, à la performance et à la qualité.',
+      'Développeur fullstack freelance basé au Cameroun. Depuis 6 ans, je conçois et développe des applications web et mobiles, du back-end à l’interface, avec une attention constante portée à la clarté, à la performance et à la qualité.',
     downloadCvBtn: 'Télécharger Mon CV',
   },
 

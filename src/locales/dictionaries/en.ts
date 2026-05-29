@@ -43,7 +43,7 @@ export default {
     position: 'FullStack Developer',
     availability: 'Available for new opportunities',
     description:
-      'Freelance fullstack developer based in Cameroon. For the past 5 years, I have designed and built web and mobile applications, from backend to interface, with a constant focus on clarity, performance and quality.',
+      'Freelance fullstack developer based in Cameroon. For the past 6 years, I have designed and built web and mobile applications, from backend to interface, with a constant focus on clarity, performance and quality.',
     downloadCvBtn: 'Download Resume',
   },
 
