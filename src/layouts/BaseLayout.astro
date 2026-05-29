@@ -1,6 +1,8 @@
 ---
 import '~/styles/global.css';
 
+import { ClientRouter } from 'astro:transitions';
+
 import Head from '~/components/astro/Head.astro';
 import Footer from '~/components/astro/Footer.astro';
 import Header from '~/components/astro/Header.astro';
@@ -29,16 +31,29 @@ const locale = normalizeLocale(Astro.currentLocale);
   <head>
     <Head {...Astro.props} locale={locale} pathname={Astro.url.pathname} />
 
+    <ClientRouter />
+
     <script is:inline>
       (function () {
-        try {
-          const stored = localStorage.getItem('theme');
-          const prefersDark = window.matchMedia(
-            '(prefers-color-scheme: dark)'
-          ).matches;
-          const dark = stored ? stored === 'dark' : prefersDark;
-          document.documentElement.classList.toggle('dark', dark);
-        } catch (_) {}
+        const isDark = () => {
+          try {
+            const stored = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia(
+              '(prefers-color-scheme: dark)'
+            ).matches;
+            return stored ? stored === 'dark' : prefersDark;
+          } catch (_) {
+            return false;
+          }
+        };
+        const apply = (root) => root.classList.toggle('dark', isDark());
+        apply(document.documentElement);
+        document.addEventListener('astro:before-swap', (e) =>
+          apply(e.newDocument.documentElement)
+        );
+        document.addEventListener('astro:after-swap', () =>
+          apply(document.documentElement)
+        );
       })();
     </script>
   </head>
@@ -49,25 +64,30 @@ const locale = normalizeLocale(Astro.currentLocale);
       Astro.props.bodyClass
     )}
   >
-    <Header />
+    <Header transition:persist />
     <main class="grow">
       <slot />
     </main>
-    <Footer />
+    <Footer transition:persist />
 
-    <BackToTop client:idle />
+    <BackToTop client:idle transition:persist />
 
-    <Toaster client:idle richColors />
+    <Toaster client:idle richColors transition:persist />
 
     <script>
-      const sections = document.querySelectorAll<HTMLElement>(
-        'section[data-watched][id]'
-      );
-      if (sections.length > 0 && 'IntersectionObserver' in window) {
+      const HERO = 'section_hero';
+      const ANCHOR_EVENT = 'app:anchor-change';
+      let observer: IntersectionObserver | null = null;
+
+      const setupSectionObserver = () => {
+        observer?.disconnect();
+        const sections = document.querySelectorAll<HTMLElement>(
+          'section[data-watched][id]'
+        );
+        if (sections.length === 0 || !('IntersectionObserver' in window))
+          return;
         const base = window.location.pathname.replace(/\?.*$/, '');
-        const HERO = 'section_hero';
-        const ANCHOR_EVENT = 'app:anchor-change';
-        const observer = new IntersectionObserver(
+        observer = new IntersectionObserver(
           (entries) => {
             for (const entry of entries) {
               if (!entry.isIntersecting) continue;
@@ -82,7 +102,10 @@ const locale = normalizeLocale(Astro.currentLocale);
           { threshold: 0.85 }
         );
         for (const section of sections) observer.observe(section);
-      }
+      };
+
+      setupSectionObserver();
+      document.addEventListener('astro:page-load', setupSectionObserver);
     </script>
 
   </body>
