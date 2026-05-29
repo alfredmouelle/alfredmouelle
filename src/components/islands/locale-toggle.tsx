@@ -38,12 +38,12 @@ const Item = ({
   <DropdownMenuItem
     onClick={() => swapLocale(locale)}
     className={cn(
-      'flex items-center justify-between',
+      'flex cursor-pointer items-center justify-between',
       locale === current ? 'bg-accent text-accent-foreground' : ''
     )}
   >
     <span>{label}</span>
-    {locale === current && <Icon name="check" className="ml-2 size-4" />}
+    {locale === current && <Icon name="check" className="size-4" />}
   </DropdownMenuItem>
 );
 

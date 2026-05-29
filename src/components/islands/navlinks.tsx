@@ -99,28 +99,28 @@ export const NavLinks = ({ labels, homePath, closeMenu }: NavLinksProps) => (
       anchor="scholarship"
       homePath={homePath}
       closeMenu={closeMenu}
-      icon={<Icon name="graduation" className="mr-2" />}
+      icon={<Icon name="graduation" className="" />}
     />
     <NavLink
       text={labels.skills}
       anchor="skills"
       homePath={homePath}
       closeMenu={closeMenu}
-      icon={<Icon name="skill" className="mr-2" />}
+      icon={<Icon name="skill" className="" />}
     />
     <NavLink
       text={labels.job}
       anchor="jobs"
       homePath={homePath}
       closeMenu={closeMenu}
-      icon={<Icon name="briefcase" className="mr-2" />}
+      icon={<Icon name="briefcase" className="" />}
     />
     <NavLink
       text={labels.contact}
       anchor="contact"
       homePath={homePath}
       closeMenu={closeMenu}
-      icon={<Icon name="contact" className="mr-2" />}
+      icon={<Icon name="contact" className="" />}
     />
   </>
 );

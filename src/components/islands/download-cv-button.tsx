@@ -27,7 +27,7 @@ export const DownloadCvButton = ({
         className="gradient is-blue text-gray-700 transition-colors duration-200 ease-in hover:text-white dark:text-slate-300"
       >
         {label}
-        <Icon name="download" className="ml-2" />
+        <Icon name="download" className="" />
       </Button>
     </GradientBorder>
   );

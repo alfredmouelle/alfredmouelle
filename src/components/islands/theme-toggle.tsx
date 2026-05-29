@@ -59,7 +59,7 @@ const Item = ({
       {icon}
       {label}
     </span>
-    {active && <Icon name="check" className="ml-2 size-4" />}
+    {active && <Icon name="check" className="size-4" />}
   </DropdownMenuItem>
 );
 

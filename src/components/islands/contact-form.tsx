@@ -175,7 +175,7 @@ export function ContactForm({ labels }: { labels: Labels }) {
           className="self-stretch md:self-end"
         >
           {labels.fields.submit}
-          {!submitting && <Icon name="send" className="ml-2" />}
+          {!submitting && <Icon name="send" className="" />}
         </Button>
       </form>
     </Form>
