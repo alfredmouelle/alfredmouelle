@@ -27,7 +27,7 @@ const locale = normalizeLocale(Astro.currentLocale);
 <!doctype html>
 <html lang={locale} class="h-full scroll-smooth antialiased">
   <head>
-    <Head {...Astro.props} locale={locale} />
+    <Head {...Astro.props} locale={locale} pathname={Astro.url.pathname} />
 
     <script is:inline>
       (function () {
@@ -65,13 +65,18 @@ const locale = normalizeLocale(Astro.currentLocale);
       );
       if (sections.length > 0 && 'IntersectionObserver' in window) {
         const base = window.location.pathname.replace(/\?.*$/, '');
+        const HERO = 'section_hero';
+        const ANCHOR_EVENT = 'app:anchor-change';
         const observer = new IntersectionObserver(
           (entries) => {
             for (const entry of entries) {
               if (!entry.isIntersecting) continue;
               const id = entry.target.id;
-              const url = id === 'section_hero' ? base : `${base}?anchor=${id}`;
+              const url = id === HERO ? base : `${base}?anchor=${id}`;
+              if (url === window.location.pathname + window.location.search)
+                continue;
               window.history.replaceState(null, '', url);
+              window.dispatchEvent(new Event(ANCHOR_EVENT));
             }
           },
           { threshold: 0.85 }

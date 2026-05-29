@@ -47,15 +47,20 @@ export function ContactForm({ labels }: { labels: Labels }) {
     fd.set('subject', values.subject);
     fd.set('message', values.message);
 
-    const { error } = await actions.contact(fd);
-    setSubmitting(false);
-
-    if (error) {
+    try {
+      const { error } = await actions.contact(fd);
+      if (error) {
+        toast.error(labels.messages.error);
+        return;
+      }
+      form.reset();
+      toast.success(labels.messages.success);
+    } catch (err) {
+      console.error(err);
       toast.error(labels.messages.error);
-      return;
+    } finally {
+      setSubmitting(false);
     }
-    form.reset();
-    toast.success(labels.messages.success);
   };
 
   return (

@@ -1,36 +1,26 @@
-import { ActionError, defineAction } from 'astro:actions';
-import * as v from 'valibot';
+import { defineAction, ActionError } from 'astro:actions';
+import { z } from 'astro/zod';
 
-import { CONTACT_SCHEMA } from '~/schemas/contact.schema';
 import { ContactEmail } from '~/emails/contact.email';
 import { getResend } from '~/lib/resend';
+
+const ContactInput = z.object({
+  name: z.string().min(2),
+  subject: z.string().min(2),
+  email: z.string().email(),
+  message: z.string().min(10),
+});
 
 export const server = {
   contact: defineAction({
     accept: 'form',
-    handler: async (formData) => {
-      const raw = Object.fromEntries(
-        Object.entries({
-          name: formData.get('name'),
-          email: formData.get('email'),
-          subject: formData.get('subject'),
-          message: formData.get('message'),
-        }).map(([k, val]) => [k, typeof val === 'string' ? val : ''])
-      );
-
-      const result = v.safeParse(CONTACT_SCHEMA, raw);
-      if (!result.success) {
-        throw new ActionError({
-          code: 'BAD_REQUEST',
-          message: 'Invalid form payload',
-        });
-      }
-
+    input: ContactInput,
+    handler: async (input) => {
       try {
         const resend = getResend();
         await resend.emails.send({
           to: 'alfredmouelle@gmail.com',
-          react: ContactEmail(result.output),
+          react: ContactEmail(input),
           from: 'Mon Portfolio <infos@resend.dev>',
           subject: 'Nouveau message de contact',
         });

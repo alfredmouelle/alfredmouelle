@@ -26,10 +26,9 @@ const labels = {
 
 const all = await getJobs(locale);
 const featured = all.find((j) => j.data.featured);
-const others = all.filter((j) => !j.data.featured).slice(0, 2);
-const display = [featured, ...others].filter(
-  (j): j is NonNullable<typeof featured> => Boolean(j)
-);
+const display = featured
+  ? [featured, ...all.filter((j) => j !== featured).slice(0, 2)]
+  : all.slice(0, 3);
 ---
 
 <Section id="jobs">

@@ -41,3 +41,6 @@ next-env.d.ts
 dist/
 .astro/
 .vercel/
+
+# pnpm 10+ auto-generates this; breaks Vercel pnpm 9 install
+pnpm-workspace.yaml

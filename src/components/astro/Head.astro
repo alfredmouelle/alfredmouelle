@@ -1,9 +1,10 @@
 ---
 import { AppConfig } from '~/app.config';
-import type { Locale } from '~/locales';
+import { LOCALES, type Locale } from '~/locales';
 
 interface Props {
   locale: Locale;
+  pathname: string;
   title?: string;
   description?: string;
   canonical?: string;
@@ -16,7 +17,6 @@ interface Props {
 const meta = AppConfig.metadata[Astro.props.locale];
 const title = Astro.props.title ?? meta.title;
 const description = Astro.props.description ?? meta.description;
-const canonical = Astro.props.canonical ?? meta.canonical;
 const keywords = Astro.props.keywords ?? meta.keywords;
 const ogType = Astro.props.ogType ?? meta.ogType;
 const ogImage = new URL(
@@ -24,6 +24,16 @@ const ogImage = new URL(
   AppConfig.domain
 ).toString();
 const noindex = Astro.props.noindex ?? !meta.robots.index;
+
+const localePathFor = (target: Locale): string => {
+  const segments = Astro.props.pathname.split('/').filter(Boolean);
+  segments[0] = target;
+  return `/${segments.join('/')}${Astro.props.pathname.endsWith('/') ? '/' : ''}`;
+};
+
+const canonical =
+  Astro.props.canonical ??
+  new URL(localePathFor(Astro.props.locale), AppConfig.domain).toString();
 ---
 
 <meta charset="utf-8" />
@@ -41,12 +51,22 @@ const noindex = Astro.props.noindex ?? !meta.robots.index;
 />
 
 <link rel="canonical" href={canonical} />
-<link rel="alternate" hreflang="fr" href={`${AppConfig.domain}/fr`} />
-<link rel="alternate" hreflang="en" href={`${AppConfig.domain}/en`} />
+{
+  LOCALES.map((alt) => (
+    <link
+      rel="alternate"
+      hreflang={alt}
+      href={new URL(localePathFor(alt), AppConfig.domain).toString()}
+    />
+  ))
+}
 <link
   rel="alternate"
   hreflang="x-default"
-  href={`${AppConfig.domain}/${AppConfig.defaultMetadataLocale}`}
+  href={new URL(
+    localePathFor(AppConfig.defaultMetadataLocale),
+    AppConfig.domain
+  ).toString()}
 />
 
 <link rel="icon" href={meta.icons.favicon} sizes="any" />

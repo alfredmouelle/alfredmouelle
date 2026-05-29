@@ -7,8 +7,10 @@ import {
   DropdownMenuTrigger,
 } from '~/components/ui/dropdown-menu';
 
-import type { Locale } from '~/locales';
+import { LOCALES, type Locale } from '~/locales';
 import { cn } from '~/lib/utils';
+
+const LOCALE_PREFIX_RE = new RegExp(`^/(${LOCALES.join('|')})(/|$)`);
 
 interface Labels {
   label: string;
@@ -18,7 +20,9 @@ interface Labels {
 
 const swapLocale = (target: Locale) => {
   const { pathname, search, hash } = window.location;
-  const next = pathname.replace(/^\/(fr|en)(\/|$)/, `/${target}$2`);
+  const next = LOCALE_PREFIX_RE.test(pathname)
+    ? pathname.replace(LOCALE_PREFIX_RE, `/${target}$2`)
+    : `/${target}${pathname.startsWith('/') ? pathname : `/${pathname}`}`;
   window.location.assign(next + search + hash);
 };
 

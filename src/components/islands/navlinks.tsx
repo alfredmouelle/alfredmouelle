@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Icon } from '~/components/icons';
 import { Button } from '~/components/ui/button';
@@ -27,6 +27,13 @@ interface NavLinkProps {
   closeMenu?: () => void;
 }
 
+const ANCHOR_CHANGE_EVENT = 'app:anchor-change';
+
+const readAnchor = (): string | null => {
+  if (typeof window === 'undefined') return null;
+  return new URLSearchParams(window.location.search).get('anchor');
+};
+
 const NavLink = ({
   text,
   icon,
@@ -36,11 +43,16 @@ const NavLink = ({
 }: NavLinkProps) => {
   const [active, setActive] = useState(false);
 
-  if (typeof window !== 'undefined') {
-    const params = new URLSearchParams(window.location.search);
-    const isActive = params.get('anchor') === anchor;
-    if (isActive !== active) setActive(isActive);
-  }
+  useEffect(() => {
+    const sync = () => setActive(readAnchor() === anchor);
+    sync();
+    window.addEventListener('popstate', sync);
+    window.addEventListener(ANCHOR_CHANGE_EVENT, sync);
+    return () => {
+      window.removeEventListener('popstate', sync);
+      window.removeEventListener(ANCHOR_CHANGE_EVENT, sync);
+    };
+  }, [anchor]);
 
   const jumpTo = () => {
     closeMenu?.();
@@ -52,6 +64,7 @@ const NavLink = ({
       window.scrollTo({ top, behavior: 'smooth' });
     }
     window.history.replaceState(null, '', `${homePath}?anchor=${anchor}`);
+    window.dispatchEvent(new Event(ANCHOR_CHANGE_EVENT));
   };
 
   return (
