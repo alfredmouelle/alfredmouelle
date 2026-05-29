@@ -1,0 +1,64 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import ProjectCard from '~/components/astro/ProjectCard.astro';
+import Reveal from '~/components/astro/Reveal.astro';
+import Section from '~/components/astro/Section.astro';
+import SectionHeader from '~/components/astro/SectionHeader.astro';
+import { Icon } from '~/components/icons';
+import { buttonVariants } from '~/components/ui/button';
+
+import { getProjectSlug, getProjects } from '~/lib/projects';
+import { cn } from '~/lib/utils';
+import { createScopedTranslator, normalizeLocale } from '~/locales';
+
+const locale = normalizeLocale(Astro.currentLocale);
+const t = createScopedTranslator(locale, 'section_projects');
+
+const all = await getProjects(locale);
+const display = all.slice(0, 3);
+const hasMore = all.length > display.length;
+---
+
+<Section id="projects" variant="muted">
+  <SectionHeader
+    eyebrow={t('eyebrow')}
+    title={t('title')}
+    description={t('description')}
+  />
+
+  <ul class="grid gap-4 md:grid-cols-3">
+    {
+      display.map((project, index) => (
+        <Reveal
+          as="li"
+          type="slide-up"
+          delay={index * 60}
+          class="col-span-3 md:col-span-1"
+        >
+          <ProjectCard
+            project={project.data}
+            href={getRelativeLocaleUrl(locale, `/projects/${getProjectSlug(project)}`)}
+          />
+        </Reveal>
+      ))
+    }
+  </ul>
+
+  {
+    hasMore ? (
+      <div class="mt-8 flex justify-center">
+        <a
+          href={getRelativeLocaleUrl(locale, '/projects')}
+          class={cn('group', buttonVariants({ variant: 'outline' }))}
+        >
+          {t('showProjects')}
+          <Icon
+            name="arrowRight"
+            className="size-4 transition-transform group-hover:translate-x-0.5"
+          />
+        </a>
+      </div>
+    ) : null
+  }
+</Section>

@@ -2,7 +2,6 @@ import type { JobEntry } from '~/lib/jobs';
 import type { Locale } from '~/locales';
 import { cn } from '~/lib/utils';
 
-import { Icon } from './icons';
 import {
   Card,
   CardContent,
@@ -26,35 +25,29 @@ export const JobCard = ({ job, locale, labels }: JobCardProps) => {
   return (
     <Card
       className={cn(
-        'flex h-full min-h-48 flex-col shadow-lg transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent',
-        { 'border-primary': job.featured }
+        'group flex h-full min-h-48 flex-col transition duration-300 ease-out hover:-translate-y-1 hover:shadow-float',
+        job.featured ? 'border-primary/40' : 'hover:border-primary/40'
       )}
     >
       <CardHeader className="grow">
-        <CardTitle
-          className={cn('flex items-center gap-x-2 text-primary', {
-            'text-primary': job.featured,
-          })}
-        >
-          {job.company}{' '}
-          {job.siteUrl ? (
-            <Icon name="link" className="size-4 text-primary" />
-          ) : null}
-          <span className="text-xs text-muted-foreground">
+        <div className="flex items-center justify-between gap-x-2">
+          <CardTitle className="text-base">{job.company}</CardTitle>
+          <span className="shrink-0 text-xs text-muted-foreground">
             {job.readTime} {labels.readTime}
           </span>
-        </CardTitle>
-        <CardDescription className="line-clamp-3">
+        </div>
+        <p className="text-sm font-medium text-primary">{job.position}</p>
+        <CardDescription className="mt-1 line-clamp-3 leading-relaxed">
           {job.description}
         </CardDescription>
       </CardHeader>
 
       {stacks.length > 0 ? (
-        <CardContent className="flex items-center gap-1.5 overflow-hidden whitespace-nowrap">
+        <CardContent className="flex flex-wrap items-center gap-1.5">
           {stacks.map((stack) => (
             <span
               key={stack}
-              className="shrink-0 rounded-md border bg-secondary/40 px-2 py-0.5 text-xs text-muted-foreground"
+              className="shrink-0 rounded-full border border-border/70 bg-background px-2.5 py-0.5 text-xs text-muted-foreground"
             >
               {stack}
             </span>
@@ -93,7 +86,12 @@ const getFormatter = (locale: Locale): Intl.DateTimeFormat => {
   return monthYearFormatters[locale]!;
 };
 
-export const JobDate = ({ startDate, endDate, locale, labels }: JobDateProps) => {
+export const JobDate = ({
+  startDate,
+  endDate,
+  locale,
+  labels,
+}: JobDateProps) => {
   const f = (date: Date) => {
     const d = getFormatter(locale).format(date);
     return (d.charAt(0).toUpperCase() + d.slice(1)).replace('.', '');

@@ -17,12 +17,12 @@ interface Labels {
   skills: string;
   job: string;
   contact: string;
+  projects?: string;
 }
 
 interface NavLinkProps {
   text: string;
   anchor: string;
-  icon: React.ReactNode;
   homePath: string;
   closeMenu?: () => void;
 }
@@ -34,13 +34,7 @@ const readAnchor = (): string | null => {
   return new URLSearchParams(window.location.search).get('anchor');
 };
 
-const NavLink = ({
-  text,
-  icon,
-  anchor,
-  homePath,
-  closeMenu,
-}: NavLinkProps) => {
+const NavLink = ({ text, anchor, homePath, closeMenu }: NavLinkProps) => {
   const [active, setActive] = useState(false);
 
   useEffect(() => {
@@ -68,20 +62,20 @@ const NavLink = ({
   };
 
   return (
-    <li
-      onClick={jumpTo}
-      className={cn('cursor-pointer rounded-md', { 'bg-primary/10': active })}
-    >
-      <Button
-        variant="outline"
+    <li>
+      <button
+        type="button"
+        onClick={jumpTo}
+        aria-current={active ? 'true' : undefined}
         className={cn(
-          'flex w-full items-start justify-start border-none bg-transparent text-start text-foreground',
-          { 'border-2 font-bold text-primary': active }
+          'flex w-full cursor-pointer items-center rounded-full px-3 py-1.5 text-sm font-medium transition-colors md:w-auto',
+          active
+            ? 'bg-primary/10 text-primary'
+            : 'text-muted-foreground hover:bg-muted hover:text-foreground'
         )}
       >
-        {icon}
         {text}
-      </Button>
+      </button>
     </li>
   );
 };
@@ -89,38 +83,48 @@ const NavLink = ({
 interface NavLinksProps {
   labels: Labels;
   homePath: string;
+  showProjects?: boolean;
   closeMenu?: () => void;
 }
 
-export const NavLinks = ({ labels, homePath, closeMenu }: NavLinksProps) => (
+export const NavLinks = ({
+  labels,
+  homePath,
+  showProjects = false,
+  closeMenu,
+}: NavLinksProps) => (
   <>
     <NavLink
       text={labels.scholarship}
       anchor="scholarship"
       homePath={homePath}
       closeMenu={closeMenu}
-      icon={<Icon name="graduation" className="" />}
     />
     <NavLink
       text={labels.skills}
       anchor="skills"
       homePath={homePath}
       closeMenu={closeMenu}
-      icon={<Icon name="skill" className="" />}
     />
     <NavLink
       text={labels.job}
       anchor="jobs"
       homePath={homePath}
       closeMenu={closeMenu}
-      icon={<Icon name="briefcase" className="" />}
     />
+    {showProjects && labels.projects ? (
+      <NavLink
+        text={labels.projects}
+        anchor="projects"
+        homePath={homePath}
+        closeMenu={closeMenu}
+      />
+    ) : null}
     <NavLink
       text={labels.contact}
       anchor="contact"
       homePath={homePath}
       closeMenu={closeMenu}
-      icon={<Icon name="contact" className="" />}
     />
   </>
 );
@@ -129,7 +133,12 @@ interface MobileNavProps extends NavLinksProps {
   logoSrc: string;
 }
 
-export const MobileNav = ({ labels, homePath, logoSrc }: MobileNavProps) => {
+export const MobileNav = ({
+  labels,
+  homePath,
+  logoSrc,
+  showProjects,
+}: MobileNavProps) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -160,6 +169,7 @@ export const MobileNav = ({ labels, homePath, logoSrc }: MobileNavProps) => {
           <NavLinks
             labels={labels}
             homePath={homePath}
+            showProjects={showProjects}
             closeMenu={() => setOpen(false)}
           />
         </ul>

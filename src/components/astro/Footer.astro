@@ -1,15 +1,93 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import { Icons } from '~/components/icons';
+
 import { createScopedTranslator, normalizeLocale } from '~/locales';
 
 const locale = normalizeLocale(Astro.currentLocale);
 const t = createScopedTranslator(locale, 'footer');
+const tNav = createScopedTranslator(locale, 'navbar');
 const year = new Date().getFullYear();
+
+const homePath = getRelativeLocaleUrl(locale, '/');
+
+const navLinks = [
+  { label: tNav('links.skills'), href: `${homePath}#skills` },
+  { label: tNav('links.scholarship'), href: `${homePath}#scholarship` },
+  { label: tNav('links.job'), href: getRelativeLocaleUrl(locale, '/jobs') },
+  { label: tNav('links.contact'), href: `${homePath}#contact` },
+];
+
+const socials = [
+  {
+    Icon: Icons.github,
+    label: 'GitHub',
+    url: 'https://github.com/alfredmouelle',
+  },
+  {
+    Icon: Icons.linkedin,
+    label: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/alfred-mouelle-72a976228',
+  },
+  {
+    Icon: Icons.twitter,
+    label: 'X / Twitter',
+    url: 'https://twitter.com/kali47_',
+  },
+  { Icon: Icons.mail, label: 'Email', url: 'mailto:alfredmouelle@gmail.com' },
+];
 ---
 
-<footer class="py-4">
-  <div class="container">
-    <p class="text-center text-xs text-gray-500 md:text-sm">
-      &copy; {year} {t('text')}
-    </p>
+<footer class="mt-10 border-t border-border/70">
+  <div class="container py-14">
+    <div class="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div class="flex flex-col gap-4">
+        <a href={homePath} class="flex w-fit items-center gap-2.5">
+          <img src="/assets/logo.svg" alt="Logo" width={32} height={32} decoding="async" />
+          <span class="font-display text-lg">Alfred Mouelle</span>
+        </a>
+        <p class="max-w-xs text-sm leading-relaxed text-muted-foreground">
+          {t('tagline')}
+        </p>
+      </div>
+
+      <nav class="flex flex-col gap-3">
+        <p class="eyebrow text-muted-foreground">{t('navTitle')}</p>
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="w-fit text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="flex flex-col gap-3">
+        <p class="eyebrow text-muted-foreground">{t('socialTitle')}</p>
+        {
+          socials.map((s) => (
+            <a
+              href={s.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex w-fit items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <s.Icon className="size-4 transition-colors group-hover:text-primary" />
+              {s.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="mt-12 border-t border-border/70 pt-6">
+      <p class="text-center text-xs text-muted-foreground">
+        &copy; {year} {t('text')}
+      </p>
+    </div>
   </div>
 </footer>

@@ -26,4 +26,31 @@ const jobs = defineCollection({
   }),
 });
 
-export const collections = { jobs };
+const projects = defineCollection({
+  loader: glob({
+    pattern: '**/[^_]*.mdx',
+    base: './src/content/projects',
+    generateId: ({ entry }) =>
+      entry.replace(/(?<=^[a-z]{2}\/)\d+-/, '').replace(/\.mdx$/, ''),
+  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      year: z.number(),
+      role: z.string().optional(),
+      stacks: z.array(z.string()).default([]),
+      url: z.string().optional(),
+      repo: z.string().optional(),
+      cover: image().optional(),
+      featured: z.boolean().default(false),
+      order: z.number().optional(),
+      readTime: z.number().optional(),
+      published: z.boolean().default(true),
+      meta: z
+        .object({ keywords: z.array(z.string()) })
+        .default({ keywords: [] }),
+    }),
+});
+
+export const collections = { jobs, projects };

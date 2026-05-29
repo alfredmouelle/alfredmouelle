@@ -1,8 +1,7 @@
 ---
 import Section from '~/components/astro/Section.astro';
-import SectionTitle from '~/components/astro/SectionTitle.astro';
+import SectionHeader from '~/components/astro/SectionHeader.astro';
 import Reveal from '~/components/astro/Reveal.astro';
-import { Icon } from '~/components/icons';
 
 import { createScopedTranslator, normalizeLocale } from '~/locales';
 
@@ -13,76 +12,57 @@ const entries = [
   {
     title: t('bts.title'),
     specialty: t('bts.specialty'),
-    period: '2018 - 2020',
-    right1: t('bts.academy'),
-    right2: t('bts.location'),
+    period: '2018 — 2020',
+    place: t('bts.academy'),
+    location: t('bts.location'),
   },
   {
     title: t('bac.title'),
     specialty: t('bac.specialty'),
-    period: '2017 - 2018',
-    right1: t('bac.location1'),
-    right2: t('bac.location2'),
+    period: '2017 — 2018',
+    place: t('bac.location1'),
+    location: t('bac.location2'),
   },
   {
     title: t('probatoire.title'),
     specialty: t('bac.specialty'),
-    period: '2016 - 2017',
-    right1: t('bac.location1'),
-    right2: t('bac.location2'),
+    period: '2016 — 2017',
+    place: t('bac.location1'),
+    location: t('bac.location2'),
   },
 ] as const;
 ---
 
-<Section
-  id="scholarship"
-  class="bg-gradient-to-b from-blue-500/25 via-transparent to-transparent"
->
-  <SectionTitle class="flex items-center gap-x-2">
-    <Icon name="graduation" className="size-8" />
-    {t('title')}
-  </SectionTitle>
+<Section id="scholarship" variant="muted">
+  <SectionHeader eyebrow={t('eyebrow')} title={t('title')} />
 
-  <div class="grid lg:grid-cols-2">
-    <Reveal type="scale" class="flex items-center justify-center">
-      <img
-        width={500}
-        height={500}
-        alt="Mascotte"
-        src="/assets/images/education-man.svg"
-        loading="lazy"
-        decoding="async"
-        class="transition-transform duration-100 ease-in hover:scale-[1.02]"
-      />
-    </Reveal>
+  <Reveal type="slide-up" class="relative max-w-2xl">
+    <div
+      class="absolute bottom-2 left-[7px] top-2 w-px bg-border"
+      aria-hidden="true"
+    >
+    </div>
 
-    <Reveal type="slide-up" distance={60} class="relative">
-      <div
-        class="absolute left-1/2 h-full -translate-x-1/2 transform border-l-2 border-gray-300"
-      >
-      </div>
-      <div class="space-y-8">
-        {
-          entries.map((entry) => (
-            <div class="flex w-full items-center">
-              <div class="w-1/2 pr-8 text-right">
-                <h2 class="text-lg font-semibold">{entry.title}</h2>
-                <p class="text-primary">{entry.specialty}</p>
-                <p class="text-sm text-muted-foreground">{entry.period}</p>
-              </div>
-
-              <div class="relative flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-b from-primary via-primary to-[#9c60d7]">
-                <Icon name="check" className="text-white" />
-              </div>
-
-              <div class="w-1/2 pl-8">
-                <p class="text-muted-foreground">{entry.right1}</p>
-                <p class="text-sm text-muted-foreground">{entry.right2}</p>
-              </div>
+    <ol class="space-y-10">
+      {
+        entries.map((entry, index) => (
+          <Reveal as="li" type="slide-up" delay={index * 80} class="relative pl-8">
+            <span
+              class="absolute left-0 top-1.5 size-3.5 rounded-full border-2 border-background bg-primary shadow-soft"
+              aria-hidden="true"
+            />
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <h3 class="font-display text-lg tracking-tight">{entry.title}</h3>
+              <span class="text-sm tabular-nums text-muted-foreground">
+                {entry.period}
+              </span>
             </div>
-          ))
-        }
-      </div>
-    </Reveal>
-  </div>
+            <p class="mt-0.5 text-sm font-medium text-primary">{entry.specialty}</p>
+            <p class="mt-2 text-sm text-muted-foreground">{entry.place}</p>
+            <p class="text-sm text-muted-foreground">{entry.location}</p>
+          </Reveal>
+        ))
+      }
+    </ol>
+  </Reveal>
 </Section>

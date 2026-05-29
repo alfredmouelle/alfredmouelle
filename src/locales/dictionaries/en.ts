@@ -5,6 +5,7 @@ export default {
       job: 'Career Path',
       contact: 'Contact Me',
       skills: 'Skills',
+      projects: 'Projects',
     },
     locales: {
       label: 'Change Language',
@@ -21,6 +22,8 @@ export default {
 
   section_skills: {
     title: 'Skills',
+    eyebrow: 'Expertise',
+    description: 'The technologies I build with, from backend to mobile.',
     backend_desc:
       'Expertise in Node.js, PHP (Laravel, Symfony) and Java Spring Boot for robust server-side applications.',
     frontend_desc:
@@ -36,12 +39,13 @@ export default {
     position: 'FullStack Developer',
     availability: 'Available for new opportunities',
     description:
-      'Based in Cameroon with 5 years of experience in web development and application design. Passionate and self-taught, I have acquired strong skills in software engineering through numerous projects. My goal is to master new technologies to not only enrich my knowledge, but also to offer tailored and high-quality solutions to those who need them. As a freelancer, I am dedicated to providing efficient service and actively contributing to the success of the projects entrusted to me.',
+      'Freelance fullstack developer based in Cameroon. For the past 5 years, I have designed and built web and mobile applications, from backend to interface, with a constant focus on clarity, performance and quality.',
     downloadCvBtn: 'Download Resume',
   },
 
   section_scholarship: {
     title: 'Academic Path',
+    eyebrow: 'Education',
     bts: {
       title: 'Brevet de Technicien Supérieur',
       specialty: 'Software Engineering',
@@ -61,14 +65,24 @@ export default {
 
   section_jobs: {
     title: 'Career path',
+    eyebrow: 'Experience',
+    description: 'A few companies and projects I’ve worked on over the years.',
     showJobs: 'See All',
   },
 
+  section_projects: {
+    title: 'Projects',
+    eyebrow: 'Work',
+    description: 'A selection of projects I’ve designed, built and shipped.',
+    showProjects: 'See all',
+  },
+
   section_contact: {
-    title: 'Contact Me',
+    title: "Let's work together",
+    eyebrow: 'Contact',
     quickContact: 'Quick Links',
     description:
-      "Need more information, a personalized quote, or an appointment? Don't hesitate to contact me via the form below. I'll be happy to answer all your questions and discuss your project in detail.",
+      'A project, a question or an opportunity? Send me a message through the form, I usually reply within 24 hours.',
     form: {
       fields: {
         email: 'Your email address',
@@ -113,9 +127,14 @@ export default {
   breadcrumb: {
     home: 'Home',
     jobs: 'Career path',
+    projects: 'Projects',
   },
 
   footer: {
     text: 'Designed and integrated by Alfred Mouelle. All rights reserved.',
+    tagline:
+      'Freelance fullstack developer. I craft polished web and mobile products.',
+    navTitle: 'Navigation',
+    socialTitle: 'Social',
   },
 } as const;

@@ -3,14 +3,19 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 import SectionContact from '~/components/sections/SectionContact.astro';
 import SectionHero from '~/components/sections/SectionHero.astro';
 import SectionJobs from '~/components/sections/SectionJobs.astro';
+import SectionProjects from '~/components/sections/SectionProjects.astro';
 import SectionScholarship from '~/components/sections/SectionScholarship.astro';
 import SectionSkills from '~/components/sections/SectionSkills.astro';
 
-import { LOCALES } from '~/locales';
+import { getProjects } from '~/lib/projects';
+import { LOCALES, normalizeLocale } from '~/locales';
 
 export function getStaticPaths() {
   return LOCALES.map((locale) => ({ params: { locale } }));
 }
+
+const locale = normalizeLocale(Astro.currentLocale);
+const hasProjects = (await getProjects(locale)).length > 0;
 ---
 
 <BaseLayout>
@@ -18,5 +23,6 @@ export function getStaticPaths() {
   <SectionScholarship />
   <SectionSkills />
   <SectionJobs />
+  {hasProjects && <SectionProjects />}
   <SectionContact />
 </BaseLayout>

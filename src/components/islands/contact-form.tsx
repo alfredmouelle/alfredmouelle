@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
-import { Icon } from '~/components/icons';
 import { Button } from '~/components/ui/button';
 import {
   Form,
@@ -67,15 +66,15 @@ export function ContactForm({ labels }: { labels: Labels }) {
     <Form {...form}>
       <form
         id="contact-form"
-        className="mt-10 flex flex-col gap-y-4"
+        className="flex flex-col gap-y-6"
         onSubmit={form.handleSubmit(onSubmit)}
       >
-        <div className="grid items-center gap-4 md:grid-cols-3">
+        <div className="grid gap-x-5 gap-y-6 md:grid-cols-2">
           <FormField
             name="name"
             control={form.control}
             render={({ field }) => (
-              <FormItem className="flex h-full flex-col items-start justify-start">
+              <FormItem className="flex flex-col items-start justify-start gap-y-2.5">
                 <FormLabel>{labels.fields.name}</FormLabel>
                 <FormControl>
                   <Input
@@ -99,7 +98,7 @@ export function ContactForm({ labels }: { labels: Labels }) {
             name="email"
             control={form.control}
             render={({ field }) => (
-              <FormItem className="flex h-full flex-col items-start justify-start">
+              <FormItem className="flex flex-col items-start justify-start gap-y-2.5">
                 <FormLabel>{labels.fields.email}</FormLabel>
                 <FormControl>
                   <Input
@@ -118,42 +117,42 @@ export function ContactForm({ labels }: { labels: Labels }) {
               </FormItem>
             )}
           />
-
-          <FormField
-            name="subject"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem className="flex h-full flex-col items-start justify-start">
-                <FormLabel>{labels.fields.subject}</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder={labels.placeholders.subject}
-                    {...field}
-                    className={cn({
-                      'border-destructive': !!form.formState.errors.subject,
-                    })}
-                  />
-                </FormControl>
-                {form.formState.errors.subject && (
-                  <p className="text-[0.8rem] font-medium text-destructive">
-                    {labels.errors.subject}
-                  </p>
-                )}
-              </FormItem>
-            )}
-          />
         </div>
+
+        <FormField
+          name="subject"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem className="flex flex-col items-start justify-start gap-y-2.5">
+              <FormLabel>{labels.fields.subject}</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder={labels.placeholders.subject}
+                  {...field}
+                  className={cn({
+                    'border-destructive': !!form.formState.errors.subject,
+                  })}
+                />
+              </FormControl>
+              {form.formState.errors.subject && (
+                <p className="text-[0.8rem] font-medium text-destructive">
+                  {labels.errors.subject}
+                </p>
+              )}
+            </FormItem>
+          )}
+        />
 
         <FormField
           name="message"
           control={form.control}
           render={({ field }) => (
-            <FormItem className="flex h-full flex-col items-start justify-start">
+            <FormItem className="flex flex-col items-start justify-start gap-y-2.5">
               <FormLabel>{labels.fields.message}</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Message"
-                  rows={7}
+                  rows={6}
                   {...field}
                   className={cn({
                     'border-destructive': !!form.formState.errors.message,
@@ -175,7 +174,6 @@ export function ContactForm({ labels }: { labels: Labels }) {
           className="self-stretch md:self-end"
         >
           {labels.fields.submit}
-          {!submitting && <Icon name="send" className="" />}
         </Button>
       </form>
     </Form>

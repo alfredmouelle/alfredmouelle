@@ -87,7 +87,7 @@ const locale = normalizeLocale(Astro.currentLocale);
 
     <BackToTop client:idle transition:persist />
 
-    <Toaster client:idle richColors transition:persist />
+    <Toaster client:idle richColors position="top-center" transition:persist />
 
     <script>
       const HERO = 'section_hero';
@@ -153,27 +153,21 @@ const locale = normalizeLocale(Astro.currentLocale);
         for (const el of toObserve) revealObserver.observe(el);
       };
 
-      const updateGradientBorders = (e: MouseEvent) => {
-        const els = document.querySelectorAll<HTMLElement>(
-          '[data-gradient-border]'
-        );
-        for (const el of els) {
-          const rect = el.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const deg = (Math.atan2(y, x) * 180) / Math.PI + 180;
-          el.style.setProperty('--gradient-rotation', `${deg + 77}deg`);
-        }
+      const setupNavbar = () => {
+        const header = document.getElementById('site-header');
+        if (!header) return;
+        const onScroll = () =>
+          header.classList.toggle('is-scrolled', window.scrollY > 8);
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
       };
 
       setupSectionObserver();
       setupReveal();
+      setupNavbar();
       document.addEventListener('astro:page-load', () => {
         setupSectionObserver();
         setupReveal();
-      });
-      document.addEventListener('mousemove', updateGradientBorders, {
-        passive: true,
       });
     </script>
 

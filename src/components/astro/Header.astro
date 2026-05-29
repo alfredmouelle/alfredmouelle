@@ -5,17 +5,21 @@ import { LocaleToggle } from '~/components/islands/locale-toggle';
 import { MobileNav, NavLinks } from '~/components/islands/navlinks';
 import { ThemeToggle } from '~/components/islands/theme-toggle';
 
+import { getProjects } from '~/lib/projects';
 import { createScopedTranslator, normalizeLocale } from '~/locales';
 
 const locale = normalizeLocale(Astro.currentLocale);
 const t = createScopedTranslator(locale, 'navbar');
 const tTheme = createScopedTranslator(locale, 'theme_toggle');
 
+const showProjects = (await getProjects(locale)).length > 0;
+
 const navLabels = {
   scholarship: t('links.scholarship'),
   skills: t('links.skills'),
   job: t('links.job'),
   contact: t('links.contact'),
+  projects: t('links.projects'),
 };
 
 const localeLabels = {
@@ -35,11 +39,10 @@ const logoSrc = '/assets/logo.svg';
 ---
 
 <header
-  class="fixed left-0 right-0 top-0 z-50 h-20 py-4 backdrop-blur-sm"
+  id="site-header"
+  class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-colors duration-300"
 >
-  <nav
-    class="container flex items-center rounded-full border bg-card/90 py-2 shadow-xl md:gap-10"
-  >
+  <nav class="container flex h-16 items-center md:gap-10">
     <div class="flex items-center justify-center gap-x-4 lg:gap-x-10">
       <a href={homePath} class="shrink-0">
         <img
@@ -58,6 +61,7 @@ const logoSrc = '/assets/logo.svg';
           client:idle
           labels={navLabels}
           homePath={homePath}
+          showProjects={showProjects}
         />
       </ul>
     </div>
@@ -74,6 +78,7 @@ const logoSrc = '/assets/logo.svg';
         labels={navLabels}
         homePath={homePath}
         logoSrc={logoSrc}
+        showProjects={showProjects}
       />
     </div>
   </nav>

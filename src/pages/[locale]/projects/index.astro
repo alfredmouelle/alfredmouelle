@@ -1,11 +1,10 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
-import BaseLayout from '~/layouts/BaseLayout.astro';
+import ProjectCard from '~/components/astro/ProjectCard.astro';
+import Reveal from '~/components/astro/Reveal.astro';
 import Section from '~/components/astro/Section.astro';
 import SectionHeader from '~/components/astro/SectionHeader.astro';
-import Reveal from '~/components/astro/Reveal.astro';
-import { JobCard } from '~/components/job-card';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -14,9 +13,10 @@ import {
   BreadcrumbSeparator,
 } from '~/components/ui/breadcrumb';
 
-import { getJobs, getJobSlug } from '~/lib/jobs';
 import { AppConfig } from '~/app.config';
-import { LOCALES, createScopedTranslator, normalizeLocale } from '~/locales';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { getProjectSlug, getProjects } from '~/lib/projects';
+import { createScopedTranslator, LOCALES, normalizeLocale } from '~/locales';
 
 export function getStaticPaths() {
   return LOCALES.map((locale) => ({ params: { locale } }));
@@ -24,19 +24,10 @@ export function getStaticPaths() {
 
 const locale = normalizeLocale(Astro.currentLocale);
 const t = createScopedTranslator(locale, 'breadcrumb');
-const tSection = createScopedTranslator(locale, 'section_jobs');
-const tJob = createScopedTranslator(locale, 'job');
-const tPeriod = createScopedTranslator(locale, 'job.period');
+const tSection = createScopedTranslator(locale, 'section_projects');
 
-const labels = {
-  readTime: tJob('readTime'),
-  elapsed: tPeriod('elapsed'),
-  from: tPeriod('from'),
-  to: tPeriod('to'),
-};
-
-const jobs = await getJobs(locale);
-const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, '/jobs')}`;
+const projects = await getProjects(locale);
+const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, '/projects')}`;
 ---
 
 <BaseLayout title={tSection('title')} canonical={canonical}>
@@ -53,7 +44,7 @@ const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, '/jobs')}`;
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbPage>{t('jobs')}</BreadcrumbPage>
+          <BreadcrumbPage>{t('projects')}</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
@@ -64,16 +55,14 @@ const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, '/jobs')}`;
       description={tSection('description')}
     />
 
-    <ul class="grid gap-4 md:grid-cols-2">
+    <ul class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {
-        jobs.map((job, index) => (
+        projects.map((project, index) => (
           <Reveal as="li" type="slide-up" delay={index * 60}>
-            <a
-              href={getRelativeLocaleUrl(locale, `/jobs/${getJobSlug(job)}`)}
-              class="block h-full"
-            >
-              <JobCard job={job.data} locale={locale} labels={labels} />
-            </a>
+            <ProjectCard
+              project={project.data}
+              href={getRelativeLocaleUrl(locale, `/projects/${getProjectSlug(project)}`)}
+            />
           </Reveal>
         ))
       }

@@ -18,8 +18,13 @@ const labels = dicts.fr;
     skipFadeIn
     class="hero mt-20 flex h-full flex-1 flex-col items-center justify-center text-center"
   >
-    <h1 class="mb-4 text-4xl font-bold" data-i18n="title">{labels.title}</h1>
-    <p class="mb-8 text-xl text-muted-foreground" data-i18n="message">
+    <p class="font-display text-[clamp(5rem,18vw,11rem)] leading-none text-primary/15">
+      404
+    </p>
+    <h1 class="mt-2 font-display text-2xl md:text-3xl" data-i18n="title">
+      {labels.title}
+    </h1>
+    <p class="mb-8 mt-3 max-w-md text-muted-foreground" data-i18n="message">
       {labels.message}
     </p>
     <a id="not-found-home" href="/">

@@ -1,0 +1,41 @@
+---
+import { cn } from '~/lib/utils';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  align?: 'left' | 'center';
+  class?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  align = 'left',
+  class: className,
+} = Astro.props;
+---
+
+<div
+  class={cn(
+    'mb-10 flex max-w-2xl flex-col gap-3 md:mb-14',
+    align === 'center' && 'mx-auto items-center text-center',
+    className
+  )}
+>
+  {eyebrow ? <span class="eyebrow">{eyebrow}</span> : null}
+
+  <h2
+    class="font-display text-[clamp(1.75rem,3vw,2.5rem)] text-foreground"
+  >
+    {title}
+  </h2>
+
+  {
+    description ? (
+      <p class="text-balance text-muted-foreground md:text-lg">{description}</p>
+    ) : null
+  }
+</div>

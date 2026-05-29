@@ -1,0 +1,150 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import Reveal from '~/components/astro/Reveal.astro';
+import Section from '~/components/astro/Section.astro';
+import { Icon } from '~/components/icons';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from '~/components/ui/breadcrumb';
+import { Button, buttonVariants } from '~/components/ui/button';
+
+import { AppConfig } from '~/app.config';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { getProjectSlug, getProjects } from '~/lib/projects';
+import { cn } from '~/lib/utils';
+import {
+  createScopedTranslator,
+  LOCALES,
+  type Locale,
+  normalizeLocale,
+} from '~/locales';
+
+export async function getStaticPaths() {
+  const paths = await Promise.all(
+    LOCALES.map(async (locale: Locale) => {
+      const projects = await getProjects(locale);
+      return projects.map((project) => ({
+        params: { locale, slug: getProjectSlug(project) },
+        props: { project },
+      }));
+    })
+  );
+  return paths.flat();
+}
+
+const { project } = Astro.props;
+const locale = normalizeLocale(Astro.currentLocale);
+const tBC = createScopedTranslator(locale, 'breadcrumb');
+
+const { Content } = await render(project);
+
+const slug = getProjectSlug(project);
+const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, `/projects/${slug}`)}`;
+---
+
+<BaseLayout
+  title={project.data.title}
+  description={project.data.description}
+  keywords={project.data.meta.keywords}
+  canonical={canonical}
+  ogType="article"
+>
+  <Section class="hero mt-20" skipFadeIn>
+    <Breadcrumb className="mb-6 text-sm text-muted-foreground">
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <a
+            href={getRelativeLocaleUrl(locale, '/')}
+            class="transition-colors hover:text-foreground"
+          >
+            {tBC('home')}
+          </a>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <a
+            href={getRelativeLocaleUrl(locale, '/projects')}
+            class="text-muted-foreground transition-colors hover:text-foreground"
+          >
+            {tBC('projects')}
+          </a>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+
+    <Reveal type="slide-up">
+      <header class="mb-8 flex flex-col gap-3">
+        <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+          <h1 class="font-display text-[clamp(1.75rem,4vw,2.75rem)]">
+            {project.data.title}
+          </h1>
+          <span class="text-sm tabular-nums text-muted-foreground">
+            {project.data.year}
+          </span>
+        </div>
+        {
+          project.data.role ? (
+            <p class="text-base font-medium text-primary">{project.data.role}</p>
+          ) : null
+        }
+        <p class="max-w-2xl text-pretty text-muted-foreground">
+          {project.data.description}
+        </p>
+        <div class="mt-2 flex flex-wrap items-center gap-3">
+          {
+            project.data.url ? (
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={project.data.url}
+                class={cn('group', buttonVariants({ variant: 'default' }))}
+              >
+                {tBC('projects')}
+                <Icon name="link" className="size-4" />
+              </a>
+            ) : null
+          }
+          {
+            project.data.repo ? (
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={project.data.repo}
+                class={cn('group', buttonVariants({ variant: 'outline' }))}
+              >
+                <Icon name="github" className="size-4" />
+                GitHub
+              </a>
+            ) : null
+          }
+        </div>
+      </header>
+
+      {
+        project.data.cover ? (
+          <Image
+            src={project.data.cover}
+            alt={project.data.title}
+            width={1280}
+            height={720}
+            loading="eager"
+            decoding="async"
+            class="mb-10 w-full rounded-2xl border border-border/70 object-cover shadow-soft"
+          />
+        ) : null
+      }
+
+      <article
+        class="prose w-full max-w-none dark:prose-invert prose-headings:font-display prose-headings:tracking-tight prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
+      >
+        <Content components={{ Button }} />
+      </article>
+    </Reveal>
+  </Section>
+</BaseLayout>

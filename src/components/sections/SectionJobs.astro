@@ -2,7 +2,7 @@
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
 import Section from '~/components/astro/Section.astro';
-import SectionTitle from '~/components/astro/SectionTitle.astro';
+import SectionHeader from '~/components/astro/SectionHeader.astro';
 import Reveal from '~/components/astro/Reveal.astro';
 import { Icon } from '~/components/icons';
 import { JobCard } from '~/components/job-card';
@@ -32,36 +32,42 @@ const display = featured
 ---
 
 <Section id="jobs">
-  <SectionTitle class="flex items-center gap-x-2">
-    <Icon name="briefcase" className="size-8" />
-    {t('title')}
-  </SectionTitle>
+  <SectionHeader
+    eyebrow={t('eyebrow')}
+    title={t('title')}
+    description={t('description')}
+  />
 
-  <div class="flex flex-col items-end">
-    <ul class="grid gap-4 md:grid-cols-3">
-      {
-        display.map((job, index) => (
-          <Reveal
-            as="li"
-            type="slide-up"
-            distance={100}
-            delay={index * 50}
-            class="col-span-3 md:col-span-1"
+  <ul class="grid gap-4 md:grid-cols-3">
+    {
+      display.map((job, index) => (
+        <Reveal
+          as="li"
+          type="slide-up"
+          delay={index * 60}
+          class="col-span-3 md:col-span-1"
+        >
+          <a
+            href={getRelativeLocaleUrl(locale, `/jobs/${getJobSlug(job)}`)}
+            class="block h-full"
           >
-            <a href={getRelativeLocaleUrl(locale, `/jobs/${getJobSlug(job)}`)}>
-              <JobCard job={job.data} locale={locale} labels={labels} />
-            </a>
-          </Reveal>
-        ))
-      }
-    </ul>
+            <JobCard job={job.data} locale={locale} labels={labels} />
+          </a>
+        </Reveal>
+      ))
+    }
+  </ul>
 
+  <div class="mt-8 flex justify-center">
     <a
       href={getRelativeLocaleUrl(locale, '/jobs')}
-      class={cn('mt-4', buttonVariants({ variant: 'outline' }))}
+      class={cn('group', buttonVariants({ variant: 'outline' }))}
     >
       {t('showJobs')}
-      <Icon name="arrowRight" className="" />
+      <Icon
+        name="arrowRight"
+        className="size-4 transition-transform group-hover:translate-x-0.5"
+      />
     </a>
   </div>
 </Section>

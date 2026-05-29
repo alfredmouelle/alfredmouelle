@@ -82,7 +82,7 @@ const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, `/jobs/${sl
           <BreadcrumbItem>
             <a
               href={getRelativeLocaleUrl(locale, '/jobs')}
-              class="transition-colors duration-150 ease-in hover:text-foreground"
+              class="text-muted-foreground transition-colors hover:text-foreground"
             >
               {tBC('jobs')}
             </a>
@@ -121,8 +121,10 @@ const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, `/jobs/${sl
       </div>
     </div>
 
-    <Reveal type="slide-up" distance={200}>
-      <article class="prose w-full max-w-none dark:prose-invert">
+    <Reveal type="slide-up">
+      <article
+        class="prose w-full max-w-none dark:prose-invert prose-headings:font-display prose-headings:tracking-tight prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
+      >
         <Content components={{ Button }} />
       </article>
 

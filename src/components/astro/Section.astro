@@ -1,11 +1,13 @@
 ---
 import Reveal from '~/components/astro/Reveal.astro';
+
 import { cn } from '~/lib/utils';
 
 interface Props {
   class?: string;
   id?: string;
   skipFadeIn?: boolean;
+  variant?: 'default' | 'muted';
   innerWrapperClassName?: string;
 }
 
@@ -13,6 +15,7 @@ const {
   class: className,
   id,
   skipFadeIn = false,
+  variant = 'default',
   innerWrapperClassName,
 } = Astro.props;
 ---
@@ -20,7 +23,11 @@ const {
 <section
   id={id}
   data-watched={id ? 'true' : undefined}
-  class={cn('py-10 md:py-24', className)}
+  class={cn(
+    'py-16 md:py-28',
+    variant === 'muted' && 'bg-muted/40',
+    className
+  )}
 >
   {
     skipFadeIn ? (

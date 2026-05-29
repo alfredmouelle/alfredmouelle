@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+
+import type { ProjectEntry } from '~/lib/projects';
+
+interface Props {
+  project: ProjectEntry['data'];
+  href: string;
+}
+
+const { project, href } = Astro.props;
+const stacks = project.stacks.slice(0, 4);
+---
+
+<a
+  href={href}
+  class="group flex h-full flex-col overflow-hidden rounded-2xl border border-border/70 bg-card shadow-soft transition duration-300 ease-out hover:-translate-y-1 hover:border-primary/40 hover:shadow-float"
+>
+  {
+    project.cover ? (
+      <div class="aspect-[16/10] overflow-hidden border-b border-border/70 bg-muted">
+        <Image
+          src={project.cover}
+          alt={project.title}
+          width={720}
+          height={450}
+          loading="lazy"
+          decoding="async"
+          class="size-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+        />
+      </div>
+    ) : null
+  }
+
+  <div class="flex flex-1 flex-col p-5">
+    <div class="flex items-center justify-between gap-x-2">
+      <h3 class="font-display text-base tracking-tight">{project.title}</h3>
+      <span class="shrink-0 text-xs tabular-nums text-muted-foreground">
+        {project.year}
+      </span>
+    </div>
+
+    {
+      project.role ? (
+        <p class="mt-1 text-sm font-medium text-primary">{project.role}</p>
+      ) : null
+    }
+
+    <p class="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+      {project.description}
+    </p>
+
+    {
+      stacks.length > 0 ? (
+        <ul class="mt-4 flex flex-wrap items-center gap-1.5">
+          {stacks.map((stack) => (
+            <li class="shrink-0 rounded-full border border-border/70 bg-background px-2.5 py-0.5 text-xs text-muted-foreground">
+              {stack}
+            </li>
+          ))}
+        </ul>
+      ) : null
+    }
+  </div>
+</a>

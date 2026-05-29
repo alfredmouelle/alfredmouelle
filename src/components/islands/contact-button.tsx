@@ -1,3 +1,4 @@
+import { Icon } from '~/components/icons';
 import { Button } from '~/components/ui/button';
 
 const ANCHOR = 'contact';
@@ -16,11 +17,12 @@ export const ContactButton = ({
   };
 
   return (
-    <Button variant="link" onClick={jumpTo} className="hover:no-underline">
-      <div className="flex items-center gap-x-1 text-xs font-medium text-green-700 dark:text-green-500">
-        <div className="size-2 animate-pulse rounded-full bg-green-700 dark:bg-green-500" />
-        <p>{label}</p>
-      </div>
+    <Button variant="outline" onClick={jumpTo} className="group">
+      {label}
+      <Icon
+        name="arrowRight"
+        className="size-4 transition-transform group-hover:translate-x-0.5"
+      />
     </Button>
   );
 };

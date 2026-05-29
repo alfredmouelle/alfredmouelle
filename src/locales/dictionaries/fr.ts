@@ -5,6 +5,7 @@ export default {
       job: 'Parcours Professionnel',
       contact: 'Me contacter',
       skills: 'Compétences',
+      projects: 'Réalisations',
     },
     locales: {
       label: 'Changer de langue',
@@ -21,6 +22,9 @@ export default {
 
   section_skills: {
     title: 'Compétences',
+    eyebrow: 'Expertise',
+    description:
+      'Les technologies avec lesquelles je conçois, du back-end au mobile.',
     backend_desc:
       'Expertise en Node.js, PHP (Laravel, Symfony) et Java Spring Boot pour des applications serveur robustes.',
     frontend_desc:
@@ -36,12 +40,13 @@ export default {
     position: 'Développeur FullStack',
     availability: 'Disponible pour de nouvelles opportunités',
     description:
-      'Basé au Cameroun avec 5 ans d’expérience dans le développement web et la conception d’applications. Passionné et autodidacte, j’ai acquis des compétences solides en ingénierie logicielle à travers de nombreux projets. Mon objectif est de maîtriser les nouvelles technologies pour non seulement enrichir mes connaissances, mais surtout pour offrir des solutions adaptées et de grande qualité à ceux qui en ont besoin. En tant que freelance, je suis dévoué à fournir un service efficace et à contribuer activement à la réussite des projets qui me sont confiés.',
+      'Développeur fullstack freelance basé au Cameroun. Depuis 5 ans, je conçois et développe des applications web et mobiles, du back-end à l’interface, avec une attention constante portée à la clarté, à la performance et à la qualité.',
     downloadCvBtn: 'Télécharger Mon CV',
   },
 
   section_scholarship: {
     title: 'Parcours Académique',
+    eyebrow: 'Formation',
     bts: {
       title: 'Brevet de Technicien Supérieur',
       specialty: 'Génie Logiciel',
@@ -61,14 +66,26 @@ export default {
 
   section_jobs: {
     title: 'Parcours Professionnel',
+    eyebrow: 'Expérience',
+    description:
+      'Quelques entreprises et projets sur lesquels j’ai travaillé ces dernières années.',
     showJobs: 'Voir tout',
   },
 
+  section_projects: {
+    title: 'Réalisations',
+    eyebrow: 'Projets',
+    description:
+      'Une sélection de projets que j’ai conçus, développés et livrés.',
+    showProjects: 'Voir tout',
+  },
+
   section_contact: {
-    title: 'Contactez Moi',
+    title: 'Travaillons ensemble',
+    eyebrow: 'Contact',
     quickContact: 'Liens Rapides',
     description:
-      "Besoin de plus d'informations, d'un devis personnalisé ou d'un rendez-vous ? N'hésitez pas à me contacter via le formulaire ci-dessous. Je serai ravi de répondre à toutes vos questions et de discuter de votre projet en détail.",
+      'Un projet, une question ou une opportunité ? Écrivez-moi via le formulaire, je réponds généralement sous 24 heures.',
     form: {
       fields: {
         email: 'Adresse électronique',
@@ -103,6 +120,7 @@ export default {
   breadcrumb: {
     home: 'Accueil',
     jobs: 'Parcours professionnel',
+    projects: 'Réalisations',
   },
 
   job: {
@@ -117,5 +135,9 @@ export default {
 
   footer: {
     text: 'Conception et intégration par Alfred Mouelle. Tous droits réservés.',
+    tagline:
+      'Développeur fullstack freelance. Je conçois des produits web et mobiles soignés.',
+    navTitle: 'Navigation',
+    socialTitle: 'Réseaux',
   },
 } as const;

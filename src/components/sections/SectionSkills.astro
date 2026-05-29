@@ -1,8 +1,8 @@
 ---
 import Section from '~/components/astro/Section.astro';
-import SectionTitle from '~/components/astro/SectionTitle.astro';
+import SectionHeader from '~/components/astro/SectionHeader.astro';
 import Reveal from '~/components/astro/Reveal.astro';
-import { Icon, Icons } from '~/components/icons';
+import { Icons } from '~/components/icons';
 import {
   Card,
   CardDescription,
@@ -45,10 +45,11 @@ const skills = [
 ---
 
 <Section id="skills">
-  <SectionTitle class="flex items-center gap-x-2">
-    <Icon name="skill" className="size-8" />
-    {t('title')}
-  </SectionTitle>
+  <SectionHeader
+    eyebrow={t('eyebrow')}
+    title={t('title')}
+    description={t('description')}
+  />
 
   <ul class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
     {
@@ -56,23 +57,24 @@ const skills = [
         <Reveal
           as="li"
           type="slide-up"
-          distance={100}
-          delay={index * 50}
+          delay={index * 60}
           class="col-span-4 md:col-span-1"
         >
-          <Card className="group flex h-full cursor-pointer flex-col shadow-lg transition delay-0 duration-300 ease-in hover:scale-[1.01] hover:border-primary hover:bg-accent">
+          <Card className="group flex h-full flex-col transition duration-300 ease-out hover:-translate-y-1 hover:border-primary/40 hover:shadow-float">
             <CardHeader className="flex-grow">
-              <CardTitle className="flex items-center gap-x-2 text-primary">
+              <div class="mb-3 flex size-11 items-center justify-center rounded-xl border border-border/70 bg-muted/60 text-primary transition-colors group-hover:border-primary/40 group-hover:bg-primary/10">
                 <skill.Icon className="size-5" />
-                {skill.title}
-              </CardTitle>
-              <CardDescription className="mt-2">{skill.details}</CardDescription>
+              </div>
+              <CardTitle className="text-base">{skill.title}</CardTitle>
+              <CardDescription className="mt-2 leading-relaxed">
+                {skill.details}
+              </CardDescription>
             </CardHeader>
 
             <CardFooter>
-              <ul class="flex w-full items-center gap-1.5 overflow-hidden">
+              <ul class="flex w-full flex-wrap items-center gap-1.5">
                 {skill.mainSkills.map((s) => (
-                  <li class="shrink-0 rounded-md border bg-background px-2.5 py-1 text-xs text-muted-foreground transition-colors duration-150 ease-in group-hover:border-primary group-hover:bg-primary group-hover:text-white">
+                  <li class="shrink-0 rounded-full border border-border/70 bg-background px-2.5 py-0.5 text-xs text-muted-foreground transition-colors group-hover:border-primary/30 group-hover:text-foreground">
                     {s}
                   </li>
                 ))}
