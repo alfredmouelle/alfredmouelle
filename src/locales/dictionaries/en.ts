@@ -23,7 +23,8 @@ export default {
   section_skills: {
     title: 'Skills',
     eyebrow: 'Expertise',
-    description: 'The technologies I build with, from backend to infrastructure.',
+    description:
+      'The technologies I build with, from backend to infrastructure.',
     backend_desc:
       'Expertise in Node.js, PHP (Laravel) and Java Spring Boot for robust server-side applications.',
     frontend_desc:
@@ -40,10 +41,10 @@ export default {
 
   section_hero: {
     greetings: 'Hello, I am',
-    position: 'FullStack Developer',
+    position: 'Full-Stack Developer',
     availability: 'Available for new opportunities',
     description:
-      'Freelance fullstack developer based in Cameroon. For the past 6 years, I have designed and built web and mobile applications, from backend to interface, with a constant focus on clarity, performance and quality.',
+      'Freelance full-stack developer based in Cameroon. For the past 6 years, I have designed and built web and mobile applications, from backend to interface, with a constant focus on clarity, performance and quality.',
     downloadCvBtn: 'Download Resume',
   },
 
@@ -138,7 +139,7 @@ export default {
   footer: {
     text: 'Designed and integrated by Alfred Mouelle. All rights reserved.',
     tagline:
-      'Freelance fullstack developer. I craft polished web and mobile products.',
+      'Freelance full-stack developer. I craft polished web and mobile products.',
     navTitle: 'Navigation',
     socialTitle: 'Social',
   },

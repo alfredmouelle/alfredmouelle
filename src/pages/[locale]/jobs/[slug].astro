@@ -17,6 +17,7 @@ import { Button, buttonVariants } from '~/components/ui/button';
 
 import { getJobs, getJobSlug } from '~/lib/jobs';
 import { AppConfig } from '~/app.config';
+import { breadcrumbSchema, creativeWorkSchema } from '~/lib/jsonld';
 import {
   LOCALES,
   createScopedTranslator,
@@ -55,6 +56,31 @@ const { Content } = await render(job);
 const slug = getJobSlug(job);
 const title = `${job.data.position} at ${job.data.company}`;
 const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, `/jobs/${slug}`)}`;
+const ogImage = `/og/${locale}/jobs/${slug}.png`;
+
+const jsonLd = [
+  breadcrumbSchema([
+    {
+      name: tBC('home'),
+      url: `${AppConfig.domain}${getRelativeLocaleUrl(locale, '/')}`,
+    },
+    {
+      name: tBC('jobs'),
+      url: `${AppConfig.domain}${getRelativeLocaleUrl(locale, '/jobs')}`,
+    },
+    { name: title, url: canonical },
+  ]),
+  creativeWorkSchema({
+    locale,
+    type: 'Article',
+    name: title,
+    description: job.data.description,
+    url: canonical,
+    image: ogImage,
+    datePublished: job.data.startDate.toISOString(),
+    keywords: job.data.meta.keywords,
+  }),
+];
 ---
 
 <BaseLayout
@@ -63,6 +89,10 @@ const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, `/jobs/${sl
   keywords={job.data.meta.keywords}
   canonical={canonical}
   ogType="article"
+  ogImage={ogImage}
+  ogImageWidth={1200}
+  ogImageHeight={630}
+  jsonLd={jsonLd}
 >
   <Section class="hero mt-20" skipFadeIn>
     <div

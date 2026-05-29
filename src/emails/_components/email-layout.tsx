@@ -69,7 +69,7 @@ export function EmailLayout({ preview, children }: EmailLayoutProps) {
               style={{
                 color: EMAIL_COLORS.fgStrong,
                 fontFamily:
-                  "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+                  'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
                 fontSize: 13,
                 fontWeight: 600,
                 letterSpacing: '0.18em',
@@ -97,7 +97,7 @@ export function EmailLayout({ preview, children }: EmailLayoutProps) {
                 margin: '6px 0 0',
               }}
             >
-              Portfolio · FullStack Developer
+              Portfolio · Full-Stack Developer
             </Text>
           </Section>
 

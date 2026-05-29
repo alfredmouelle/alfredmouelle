@@ -27,11 +27,11 @@ export interface SiteMetadata {
 
 const metadata: Record<Locale, SiteMetadata> = {
   fr: {
-    title: 'Alfred Mouelle - Développeur FullStack',
+    title: 'Alfred Mouelle - Développeur Full-Stack',
     description:
-      "Découvrez le portfolio d'Alfred Mouelle, développeur fullstack. Explorez ses projets, compétences et expériences professionnelles.",
+      "Découvrez le portfolio d'Alfred Mouelle, développeur full-stack. Explorez ses projets, compétences et expériences professionnelles.",
     keywords: [
-      'portfolio développeur fullstack',
+      'portfolio développeur full-stack',
       'Alfred Mouelle',
       'développeur web freelance',
       'développeur mobile freelance',
@@ -47,7 +47,7 @@ const metadata: Record<Locale, SiteMetadata> = {
       'optimisation des performances web',
       'développement responsive',
       'SEO technique',
-      'freelance fullstack',
+      'freelance full-stack',
     ],
     ogImage: '/assets/images/og.webp',
     ogType: 'website',
@@ -67,11 +67,11 @@ const metadata: Record<Locale, SiteMetadata> = {
     },
   },
   en: {
-    title: 'Alfred Mouelle - FullStack Developer',
+    title: 'Alfred Mouelle - Full-Stack Developer',
     description:
-      "Discover Alfred Mouelle's portfolio, fullstack developer. Explore his projects, skills, and professional experiences.",
+      "Discover Alfred Mouelle's portfolio, full-stack developer. Explore his projects, skills, and professional experiences.",
     keywords: [
-      'fullstack developer portfolio',
+      'full-stack developer portfolio',
       'Alfred Mouelle',
       'freelance web developer',
       'freelance mobile developer',
@@ -87,7 +87,7 @@ const metadata: Record<Locale, SiteMetadata> = {
       'web performance optimization',
       'responsive development',
       'technical SEO',
-      'fullstack freelance',
+      'full-stack freelance',
     ],
     ogImage: '/assets/images/og.webp',
     ogType: 'website',
@@ -112,6 +112,20 @@ export const AppConfig = {
   defaultMetadataLocale: 'fr' as Locale,
   domain,
   siteName: 'Portfolio Alfred Mouelle',
-  author: { name: 'Alfred Mouelle', url: domain },
+  author: {
+    name: 'Alfred Mouelle',
+    url: domain,
+    jobTitle: {
+      fr: 'Développeur Full-Stack',
+      en: 'Full-Stack Developer',
+    } as Record<Locale, string>,
+    email: 'alfredmouelle@gmail.com',
+    image: '/assets/images/og.webp',
+    sameAs: [
+      'https://github.com/alfredmouelle',
+      'https://www.linkedin.com/in/alfredmouelle',
+      'https://twitter.com/kali47_',
+    ],
+  },
   metadata,
 } as const;

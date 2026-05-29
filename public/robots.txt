@@ -6,4 +6,4 @@ Allow: /
 Host: https://alfredmouelle.com
 
 # Sitemaps
-Sitemap: https://alfredmouelle.com/sitemap.xml
+Sitemap: https://alfredmouelle.com/sitemap-index.xml

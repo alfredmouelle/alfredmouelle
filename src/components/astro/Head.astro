@@ -1,5 +1,8 @@
 ---
+import JsonLd from '~/components/astro/JsonLd.astro';
+
 import { AppConfig } from '~/app.config';
+import { personSchema, websiteSchema } from '~/lib/jsonld';
 import { LOCALES, type Locale } from '~/locales';
 
 interface Props {
@@ -11,7 +14,10 @@ interface Props {
   keywords?: string[];
   ogType?: 'website' | 'article';
   ogImage?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
   noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const meta = AppConfig.metadata[Astro.props.locale];
@@ -23,6 +29,8 @@ const ogImage = new URL(
   Astro.props.ogImage ?? meta.ogImage,
   AppConfig.domain
 ).toString();
+const ogImageWidth = Astro.props.ogImageWidth ?? 2400;
+const ogImageHeight = Astro.props.ogImageHeight ?? 1260;
 const noindex = Astro.props.noindex ?? !meta.robots.index;
 
 const localePathFor = (target: Locale): string => {
@@ -34,11 +42,37 @@ const localePathFor = (target: Locale): string => {
 const canonical =
   Astro.props.canonical ??
   new URL(localePathFor(Astro.props.locale), AppConfig.domain).toString();
+
+const baseSchemas = [
+  personSchema(Astro.props.locale),
+  websiteSchema(Astro.props.locale),
+];
+const extraSchemas = Astro.props.jsonLd
+  ? Array.isArray(Astro.props.jsonLd)
+    ? Astro.props.jsonLd
+    : [Astro.props.jsonLd]
+  : [];
+const schemas = [...baseSchemas, ...extraSchemas];
 ---
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
+
+<meta
+  name="theme-color"
+  content="#fdfdfc"
+  media="(prefers-color-scheme: light)"
+/>
+<meta
+  name="theme-color"
+  content="#0a0f1a"
+  media="(prefers-color-scheme: dark)"
+/>
+
+<link rel="preconnect" href="https://github.com" crossorigin />
+<link rel="dns-prefetch" href="https://github.com" />
+<link rel="dns-prefetch" href="https://www.linkedin.com" />
 
 <title>{title}</title>
 <meta name="description" content={description} />
@@ -80,8 +114,8 @@ const canonical =
 <meta property="og:url" content={canonical} />
 <meta property="og:site_name" content={AppConfig.siteName} />
 <meta property="og:image" content={ogImage} />
-<meta property="og:image:width" content="2400" />
-<meta property="og:image:height" content="1260" />
+<meta property="og:image:width" content={String(ogImageWidth)} />
+<meta property="og:image:height" content={String(ogImageHeight)} />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
@@ -89,3 +123,5 @@ const canonical =
 <meta name="twitter:image" content={ogImage} />
 <meta name="twitter:site" content={meta.twitter.site} />
 <meta name="twitter:creator" content={meta.twitter.creatorId} />
+
+<JsonLd schema={schemas} />

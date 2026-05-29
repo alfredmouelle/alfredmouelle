@@ -2,15 +2,15 @@
 import '~/styles/global.css';
 
 import { ClientRouter } from 'astro:transitions';
-
-import Head from '~/components/astro/Head.astro';
-import Footer from '~/components/astro/Footer.astro';
-import Header from '~/components/astro/Header.astro';
-import { BackToTop } from '~/components/islands/back-to-top';
 import { Toaster } from 'sonner';
 
-import { normalizeLocale } from '~/locales';
+import Footer from '~/components/astro/Footer.astro';
+import Head from '~/components/astro/Head.astro';
+import Header from '~/components/astro/Header.astro';
+import { BackToTop } from '~/components/islands/back-to-top';
+
 import { cn } from '~/lib/utils';
+import { normalizeLocale } from '~/locales';
 
 interface Props {
   title?: string;
@@ -19,7 +19,10 @@ interface Props {
   keywords?: string[];
   ogType?: 'website' | 'article';
   ogImage?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
   noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   bodyClass?: string;
 }
 

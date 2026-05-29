@@ -70,8 +70,8 @@ export default function ContactEmailPreview() {
       email="jane.doe@example.com"
       subject="Proposition de mission freelance"
       message={
-        "Bonjour Alfred,\n\nJ'aurais besoin d'un développeur fullstack pour " +
-        "construire un MVP en 6 semaines (Next.js + Postgres). Tu serais " +
+        "Bonjour Alfred,\n\nJ'aurais besoin d'un développeur full-stack pour " +
+        'construire un MVP en 6 semaines (Next.js + Postgres). Tu serais ' +
         'disponible pour un appel cette semaine ?\n\nMerci !'
       }
     />

@@ -8,9 +8,11 @@ import { ContactButton } from '~/components/islands/contact-button';
 import { DownloadCvButton } from '~/components/islands/download-cv-button';
 
 import heroAvatar from '~/assets/hero-avatar.webp';
+import { AppConfig } from '~/app.config';
 import { createScopedTranslator, normalizeLocale } from '~/locales';
 
 const locale = normalizeLocale(Astro.currentLocale);
+const avatarAlt = `${AppConfig.author.name} — ${AppConfig.author.jobTitle[locale]}`;
 const t = createScopedTranslator(locale, 'section_hero');
 const tNav = createScopedTranslator(locale, 'navbar');
 const homePath = getRelativeLocaleUrl(locale, '/');
@@ -83,7 +85,7 @@ const techs = [
         <div class="rounded-full bg-card p-2 shadow-soft ring-1 ring-border">
           <Image
             src={heroAvatar}
-            alt="Photo de moi"
+            alt={avatarAlt}
             width={500}
             height={500}
             widths={[320, 500, 800]}

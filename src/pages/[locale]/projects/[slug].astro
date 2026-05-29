@@ -15,6 +15,7 @@ import {
 import { Button, buttonVariants } from '~/components/ui/button';
 
 import { AppConfig } from '~/app.config';
+import { breadcrumbSchema, creativeWorkSchema } from '~/lib/jsonld';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import { getProjectSlug, getProjects } from '~/lib/projects';
 import { cn } from '~/lib/utils';
@@ -47,6 +48,29 @@ const { Content } = await render(project);
 
 const slug = getProjectSlug(project);
 const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, `/projects/${slug}`)}`;
+const ogImage = `/og/${locale}/projects/${slug}.png`;
+
+const jsonLd = [
+  breadcrumbSchema([
+    {
+      name: tBC('home'),
+      url: `${AppConfig.domain}${getRelativeLocaleUrl(locale, '/')}`,
+    },
+    {
+      name: tBC('projects'),
+      url: `${AppConfig.domain}${getRelativeLocaleUrl(locale, '/projects')}`,
+    },
+    { name: project.data.title, url: canonical },
+  ]),
+  creativeWorkSchema({
+    locale,
+    name: project.data.title,
+    description: project.data.description,
+    url: canonical,
+    image: ogImage,
+    keywords: project.data.meta.keywords,
+  }),
+];
 ---
 
 <BaseLayout
@@ -55,6 +79,10 @@ const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, `/projects/
   keywords={project.data.meta.keywords}
   canonical={canonical}
   ogType="article"
+  ogImage={ogImage}
+  ogImageWidth={1200}
+  ogImageHeight={630}
+  jsonLd={jsonLd}
 >
   <Section class="hero mt-20" skipFadeIn>
     <Breadcrumb className="mb-6 text-sm text-muted-foreground">

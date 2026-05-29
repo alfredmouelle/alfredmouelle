@@ -1,0 +1,19 @@
+---
+// Rend un ou plusieurs graphes Schema.org en <script type="application/ld+json">.
+interface Props {
+  schema: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { schema } = Astro.props;
+const payload = Array.isArray(schema) ? schema : [schema];
+---
+
+{
+  payload.map((entry) => (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(entry)}
+      is:inline
+    />
+  ))
+}

@@ -41,10 +41,10 @@ export default {
 
   section_hero: {
     greetings: 'Salut, je suis',
-    position: 'Développeur FullStack',
+    position: 'Développeur Full-Stack',
     availability: 'Disponible pour de nouvelles opportunités',
     description:
-      'Développeur fullstack freelance basé au Cameroun. Depuis 6 ans, je conçois et développe des applications web et mobiles, du back-end à l’interface, avec une attention constante portée à la clarté, à la performance et à la qualité.',
+      'Développeur full-stack freelance basé au Cameroun. Depuis 6 ans, je conçois et développe des applications web et mobiles, du back-end à l’interface, avec une attention constante portée à la clarté, à la performance et à la qualité.',
     downloadCvBtn: 'Télécharger Mon CV',
   },
 
@@ -141,7 +141,7 @@ export default {
   footer: {
     text: 'Conception et intégration par Alfred Mouelle. Tous droits réservés.',
     tagline:
-      'Développeur fullstack freelance. Je conçois des produits web et mobiles soignés.',
+      'Développeur full-stack freelance. Je conçois des produits web et mobiles soignés.',
     navTitle: 'Navigation',
     socialTitle: 'Réseaux',
   },
