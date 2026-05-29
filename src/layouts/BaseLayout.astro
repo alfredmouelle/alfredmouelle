@@ -148,7 +148,7 @@ const locale = normalizeLocale(Astro.currentLocale);
               revealObserver?.unobserve(entry.target);
             }
           },
-          { threshold: 0.1, rootMargin: '0px 0px -10% 0px' }
+          { threshold: 0, rootMargin: '0px 0px 12% 0px' }
         );
         for (const el of toObserve) revealObserver.observe(el);
       };
