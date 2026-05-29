@@ -11,18 +11,19 @@ import {
 } from 'react-email';
 
 export const EMAIL_COLORS = {
-  pageBg: '#F6F7F9',
+  // Aligné sur les tokens du site (global.css) — off-white chaud, navy profond,
+  // accent bleu unique. react-email impose des hex inline, d'où la conversion.
+  pageBg: '#FBFAF8',
   cardBg: '#FFFFFF',
-  fg: '#0F172A',
-  fgStrong: '#020617',
-  fgMuted: '#64748B',
-  fgFaint: '#94A3B8',
-  border: '#E2E8F0',
-  borderSubtle: '#F1F5F9',
-  surface: '#F8FAFC',
-  primary: '#3B82F6',
+  fg: '#1C1F28',
+  fgStrong: '#11141B',
+  fgMuted: '#6B7280',
+  fgFaint: '#9CA3AF',
+  border: '#E3E5EA',
+  borderSubtle: '#EFF0F3',
+  surface: '#F7F6F3',
+  primary: '#2563EB',
   primaryDark: '#1D4ED8',
-  accent: '#9C60D7',
 } as const;
 
 const PORTFOLIO_URL = 'https://alfredmouelle.com';
@@ -59,13 +60,14 @@ export function EmailLayout({ preview, children }: EmailLayoutProps) {
         >
           <Section
             style={{
-              background: `linear-gradient(135deg, ${EMAIL_COLORS.primary} 0%, ${EMAIL_COLORS.accent} 100%)`,
+              backgroundColor: EMAIL_COLORS.cardBg,
+              borderBottom: `1px solid ${EMAIL_COLORS.border}`,
               padding: '24px 32px',
             }}
           >
             <Text
               style={{
-                color: '#FFFFFF',
+                color: EMAIL_COLORS.fgStrong,
                 fontFamily:
                   "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
                 fontSize: 13,
@@ -75,13 +77,24 @@ export function EmailLayout({ preview, children }: EmailLayoutProps) {
                 textTransform: 'uppercase',
               }}
             >
+              <span
+                style={{
+                  backgroundColor: EMAIL_COLORS.primary,
+                  borderRadius: '50%',
+                  display: 'inline-block',
+                  height: 7,
+                  marginRight: 10,
+                  verticalAlign: 'middle',
+                  width: 7,
+                }}
+              />
               Alfred Mouelle
             </Text>
             <Text
               style={{
-                color: 'rgba(255, 255, 255, 0.85)',
+                color: EMAIL_COLORS.fgMuted,
                 fontSize: 12,
-                margin: '4px 0 0',
+                margin: '6px 0 0',
               }}
             >
               Portfolio · FullStack Developer
