@@ -15,6 +15,9 @@ export default defineConfig({
   output: 'static',
   adapter: vercel(),
   integrations: [react(), mdx(), sitemap()],
+  redirects: {
+    '/': '/fr/',
+  },
   i18n: {
     defaultLocale: 'fr',
     locales: ['fr', 'en'],
