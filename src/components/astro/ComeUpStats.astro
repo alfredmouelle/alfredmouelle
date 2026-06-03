@@ -21,13 +21,13 @@ const { stats, labels, class: className } = Astro.props;
   rel="noopener noreferrer nofollow"
   aria-label={labels.viewProfile}
   class:list={[
-    'group inline-flex w-fit items-center gap-x-2.5 rounded-full border border-border/70 bg-card px-4 py-1.5 text-xs font-medium text-foreground shadow-soft transition-colors hover:border-primary/40',
+    'group flex w-fit max-w-full flex-wrap items-center justify-center gap-x-2.5 gap-y-1 rounded-3xl border border-border/70 bg-card px-4 py-2 text-xs font-medium text-foreground shadow-soft transition-colors hover:border-primary/40 sm:flex-nowrap sm:rounded-full sm:py-1.5',
     className,
   ]}
 >
   {
     stats.isTopSeller && (
-      <span class="inline-flex items-center gap-1.5 text-primary">
+      <span class="inline-flex items-center gap-1.5 whitespace-nowrap text-primary">
         <svg
           viewBox="0 0 12 12"
           fill="currentColor"
@@ -41,14 +41,14 @@ const { stats, labels, class: className } = Astro.props;
     )
   }
 
-  <span class="text-border" aria-hidden="true">&middot;</span>
-  <span class="text-muted-foreground">
+  <span class="hidden text-border sm:inline" aria-hidden="true">&middot;</span>
+  <span class="whitespace-nowrap text-muted-foreground">
     <span class="font-semibold text-foreground">{stats.positiveReviews}</span>
     {' '}{labels.reviews}
   </span>
 
-  <span class="text-border" aria-hidden="true">&middot;</span>
-  <span class="text-muted-foreground">
+  <span class="hidden text-border sm:inline" aria-hidden="true">&middot;</span>
+  <span class="whitespace-nowrap text-muted-foreground">
     <span class="font-semibold text-foreground">{stats.positiveRate}%</span>
     {' '}{labels.positive}
   </span>
