@@ -115,6 +115,10 @@ async function scrapeComeUpStats(): Promise<ComeUpStats> {
     const positiveRate =
       total > 0 ? Math.round((positiveReviews / total) * 100) : 100;
 
+    console.info(
+      `[comeup] Live stats scraped: ${positiveReviews} reviews, ${positiveRate}% positive.`
+    );
+
     return {
       positiveReviews,
       positiveRate,
