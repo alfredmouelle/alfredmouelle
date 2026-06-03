@@ -1,0 +1,23 @@
+name: Refresh ComeUp stats
+
+# Re-triggers a Vercel build to refresh the ComeUp stats shown in the hero.
+# Stats are scraped at build time (src/lib/comeup.ts), so a rebuild = fresh stats.
+# They change slowly: a monthly refresh is plenty (deploys already re-scrape).
+
+on:
+  schedule:
+    # 1st of each month at 06:00 UTC.
+    - cron: '0 6 1 * *'
+  workflow_dispatch: {} # manual trigger from the Actions tab.
+
+jobs:
+  trigger-rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel deploy hook
+        run: |
+          if [ -z "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}" ]; then
+            echo "::error::Missing secret VERCEL_DEPLOY_HOOK_URL."
+            exit 1
+          fi
+          curl -fsS -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"

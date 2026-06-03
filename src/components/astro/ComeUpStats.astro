@@ -1,0 +1,68 @@
+---
+import type { ComeUpStats } from '~/lib/comeup';
+
+interface Props {
+  stats: ComeUpStats;
+  labels: {
+    badge: string;
+    reviews: string;
+    positive: string;
+    viewProfile: string;
+  };
+  class?: string;
+}
+
+const { stats, labels, class: className } = Astro.props;
+---
+
+<a
+  href={stats.profileUrl}
+  target="_blank"
+  rel="noopener noreferrer nofollow"
+  aria-label={labels.viewProfile}
+  class:list={[
+    'group inline-flex w-fit items-center gap-x-2.5 rounded-full border border-border/70 bg-card px-4 py-1.5 text-xs font-medium text-foreground shadow-soft transition-colors hover:border-primary/40',
+    className,
+  ]}
+>
+  {
+    stats.isTopSeller && (
+      <span class="inline-flex items-center gap-1.5 text-primary">
+        <svg
+          viewBox="0 0 12 12"
+          fill="currentColor"
+          aria-hidden="true"
+          class="size-3"
+        >
+          <path d="M11.471 4.49 9.835 9.187a.375.375 0 0 1-.354.25H2.52a.375.375 0 0 1-.354-.25L.529 4.49a.568.568 0 0 1 .792-.686L3.55 4.664 5.514 1.4a.568.568 0 0 1 .972 0l1.965 3.265 2.228-.86a.568.568 0 0 1 .792.685Z" />
+        </svg>
+        {labels.badge}
+      </span>
+    )
+  }
+
+  <span class="text-border" aria-hidden="true">&middot;</span>
+  <span class="text-muted-foreground">
+    <span class="font-semibold text-foreground">{stats.positiveReviews}</span>
+    {' '}{labels.reviews}
+  </span>
+
+  <span class="text-border" aria-hidden="true">&middot;</span>
+  <span class="text-muted-foreground">
+    <span class="font-semibold text-foreground">{stats.positiveRate}%</span>
+    {' '}{labels.positive}
+  </span>
+
+  <svg
+    viewBox="0 0 16 16"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+    class="size-3.5 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"
+  >
+    <path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6" />
+  </svg>
+</a>

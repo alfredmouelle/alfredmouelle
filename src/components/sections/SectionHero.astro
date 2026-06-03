@@ -2,13 +2,15 @@
 import { Image } from 'astro:assets';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
-import Section from '~/components/astro/Section.astro';
 import TypewriterText from '~/components/animations/typewritter-text';
+import ComeUpStats from '~/components/astro/ComeUpStats.astro';
+import Section from '~/components/astro/Section.astro';
 import { ContactButton } from '~/components/islands/contact-button';
 import { DownloadCvButton } from '~/components/islands/download-cv-button';
 
-import heroAvatar from '~/assets/hero-avatar.webp';
 import { AppConfig } from '~/app.config';
+import heroAvatar from '~/assets/hero-avatar.webp';
+import { getComeUpStats } from '~/lib/comeup';
 import { createScopedTranslator, normalizeLocale } from '~/locales';
 
 const locale = normalizeLocale(Astro.currentLocale);
@@ -16,6 +18,14 @@ const avatarAlt = `${AppConfig.author.name} — ${AppConfig.author.jobTitle[loca
 const t = createScopedTranslator(locale, 'section_hero');
 const tNav = createScopedTranslator(locale, 'navbar');
 const homePath = getRelativeLocaleUrl(locale, '/');
+
+const comeupStats = await getComeUpStats();
+const comeupLabels = {
+  badge: t('comeup.badge'),
+  reviews: t('comeup.reviews'),
+  positive: t('comeup.positive'),
+  viewProfile: t('comeup.viewProfile'),
+};
 
 const techs = [
   'Next.js',
@@ -66,6 +76,8 @@ const techs = [
         <ContactButton client:idle label={tNav('links.contact')} homePath={homePath} />
       </div>
 
+      <ComeUpStats stats={comeupStats} labels={comeupLabels} class="mt-1" />
+
       <ul
         class="mt-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-1.5 text-xs text-muted-foreground md:justify-start"
       >
@@ -80,7 +92,7 @@ const techs = [
       </ul>
     </div>
 
-    <div class="order-1 flex justify-center md:order-none md:col-span-2 md:justify-end">
+    <div class="order-1 flex justify-center md:order-0 md:col-span-2 md:justify-end">
       <div class="relative">
         <div class="rounded-full bg-card p-2 shadow-soft ring-1 ring-border">
           <Image

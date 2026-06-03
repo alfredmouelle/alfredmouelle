@@ -44,8 +44,14 @@ export default {
     position: 'Full-Stack Developer',
     availability: 'Available for new opportunities',
     description:
-      'Freelance full-stack developer based in Cameroon. For the past 6 years, I have designed and built web and mobile applications, from backend to interface, with a constant focus on clarity, performance and quality.',
+      'Freelance full-stack developer, I design, evolve and consolidate web applications and B2B/B2C SaaS products. For the past 6 years, I have helped founders, startups and companies turn an idea or an existing product into a reliable, maintainable solution. My goal is not just to move a project forward, but to deliver a solid foundation you can use, grow and rely on with confidence over time.',
     downloadCvBtn: 'Download Resume',
+    comeup: {
+      badge: 'Top-rated on ComeUp',
+      reviews: 'reviews',
+      positive: 'positive',
+      viewProfile: 'View ComeUp profile',
+    },
   },
 
   section_scholarship: {
