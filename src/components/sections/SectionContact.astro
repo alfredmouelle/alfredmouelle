@@ -1,7 +1,7 @@
 ---
+import Reveal from '~/components/astro/Reveal.astro';
 import Section from '~/components/astro/Section.astro';
 import SectionHeader from '~/components/astro/SectionHeader.astro';
-import Reveal from '~/components/astro/Reveal.astro';
 import { Icon, Icons } from '~/components/icons';
 import { ContactForm } from '~/components/islands/contact-form';
 
@@ -9,9 +9,6 @@ import { createScopedTranslator, normalizeLocale } from '~/locales';
 
 const locale = normalizeLocale(Astro.currentLocale);
 const t = createScopedTranslator(locale, 'section_contact');
-const tHero = createScopedTranslator(locale, 'section_hero');
-
-const email = 'alfredmouelle@gmail.com';
 
 const socials = [
   {
@@ -72,7 +69,7 @@ const formLabels = {
       />
 
       <a
-        href={`mailto:${email}`}
+        data-contact-email
         class="group mt-8 flex w-fit items-center gap-3 text-lg font-medium"
       >
         <span
@@ -80,23 +77,11 @@ const formLabels = {
         >
           <Icon name="mail" className="size-4" />
         </span>
-        <span class="break-all transition-colors group-hover:text-primary">
-          {email}
-        </span>
+        <span
+          data-email-label
+          class="break-all transition-colors group-hover:text-primary"
+        ></span>
       </a>
-
-      <div
-        class="mt-5 inline-flex items-center gap-2 rounded-full border border-border/70 bg-card px-3.5 py-1.5 text-sm text-muted-foreground shadow-soft"
-      >
-        <span class="relative flex size-2">
-          <span
-            class="absolute inline-flex size-full animate-ping rounded-full bg-green-500/60"
-          ></span>
-          <span class="relative inline-flex size-2 rounded-full bg-green-500"
-          ></span>
-        </span>
-        {tHero('availability')}
-      </div>
 
       <ul class="mt-8 flex flex-wrap items-center gap-2.5">
         {
@@ -126,3 +111,14 @@ const formLabels = {
     </Reveal>
   </div>
 </Section>
+
+<script>
+  const address = ['alfredmouelle', 'gmail.com'].join('@');
+  const link = document.querySelector<HTMLAnchorElement>('[data-contact-email]');
+
+  if (link) {
+    link.href = `mailto:${address}`;
+    const label = link.querySelector<HTMLElement>('[data-email-label]');
+    if (label) label.textContent = address;
+  }
+</script>
