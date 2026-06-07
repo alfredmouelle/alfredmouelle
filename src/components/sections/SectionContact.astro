@@ -59,7 +59,7 @@ const formLabels = {
 ---
 
 <Section id="contact">
-  <div class="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+  <div class="grid items-start gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
     <Reveal type="slide-up">
       <SectionHeader
         eyebrow={t('eyebrow')}
@@ -70,17 +70,10 @@ const formLabels = {
 
       <a
         data-contact-email
-        class="group mt-8 flex w-fit items-center gap-3 text-lg font-medium"
+        class="group mt-6 inline-flex w-fit items-center gap-2.5 rounded-full border border-primary/40 bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-soft transition-all hover:-translate-y-0.5 hover:bg-primary/90"
       >
-        <span
-          class="flex size-10 shrink-0 items-center justify-center rounded-full border border-border/70 bg-card text-primary shadow-soft transition-colors group-hover:border-primary/40 group-hover:bg-primary/5"
-        >
-          <Icon name="mail" className="size-4" />
-        </span>
-        <span
-          data-email-label
-          class="break-all transition-colors group-hover:text-primary"
-        ></span>
+        <Icon name="mail" className="size-4" />
+        {t('emailCta')}
       </a>
 
       <ul class="mt-8 flex flex-wrap items-center gap-2.5">
@@ -116,9 +109,5 @@ const formLabels = {
   const address = ['alfredmouelle', 'gmail.com'].join('@');
   const link = document.querySelector<HTMLAnchorElement>('[data-contact-email]');
 
-  if (link) {
-    link.href = `mailto:${address}`;
-    const label = link.querySelector<HTMLElement>('[data-email-label]');
-    if (label) label.textContent = address;
-  }
+  if (link) link.href = `mailto:${address}`;
 </script>

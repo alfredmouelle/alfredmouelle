@@ -93,6 +93,7 @@ export default {
     title: "Let's work together",
     eyebrow: 'Contact',
     quickContact: 'Quick Links',
+    emailCta: 'Send me an email',
     description:
       'A project, a question or an opportunity? Send me a message through the form, I usually reply within 24 hours.',
     form: {
