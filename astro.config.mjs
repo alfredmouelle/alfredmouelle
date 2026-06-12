@@ -12,6 +12,7 @@ const SITE = process.env.VERCEL_PROJECT_PRODUCTION_URL
 export default defineConfig({
   site: SITE,
   output: 'static',
+  trailingSlash: 'always',
   adapter: vercel(),
   integrations: [
     react(),
