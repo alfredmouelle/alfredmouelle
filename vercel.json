@@ -5,6 +5,19 @@
   "trailingSlash": true,
   "headers": [
     {
+      "source": "/(en|fr)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "CDN-Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
       "source": "/(.*)\\.(woff2|svg|webp|pdf)",
       "headers": [
         {
