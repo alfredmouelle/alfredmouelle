@@ -1,0 +1,72 @@
+---
+title: "create-stack"
+description: "An open-source, framework-agnostic scaffolding CLI: it forks a fully-wired base app and strips it to exactly what you pick (framework, database, auth, tRPC, mailer, capabilities). The generated project builds and boots from the very first commit."
+year: 2026
+role: "Creator & Full-Stack Developer"
+stacks:
+  - Node.js
+  - TanStack Start
+  - Next.js
+  - tRPC
+  - Drizzle
+  - better-auth
+  - Tailwind CSS
+  - Biome
+url: "https://create-stack.alfredmouelle.com"
+repo: "https://github.com/alfredmouelle/create-stack"
+cover: ../_assets/create-stack-hero.webp
+featured: true
+order: 2
+readTime: 4
+published: true
+meta:
+  keywords:
+    - create-stack
+    - cli
+    - scaffolding
+    - bootstrapper
+    - framework agnostic
+    - starter
+    - tanstack start
+    - nextjs
+    - trpc
+    - drizzle
+    - better-auth
+    - ports and adapters
+    - open source
+---
+
+# create-stack: compose your stack, ship a real app
+
+## The product
+
+**create-stack** is a scaffolding CLI published on npm (`@alfredmouelle/create-stack`) that generates a production-ready full-stack starter. It is designed as a **framework-agnostic** bootstrapper: Next.js (App Router) and TanStack Start are supported today, with more frameworks on the roadmap. Unlike classic token-based template generators, it takes a "fork then strip" approach: it copies a **real, fully-wired base application**, then cleanly removes everything you didn't select. The output builds, typechecks and boots from the first commit, with no guesswork.
+
+## Key features
+
+- **Framework-agnostic**: Next.js (App Router) and TanStack Start available today, more frameworks coming. Each is a real app with SSR, routing, Tailwind v4 + shadcn and a theme toggle.
+- **Interactive wizard**: a command-line assistant (`@clack/prompts`) guides every choice; passing a flag automatically switches to non-interactive mode for automation.
+- **Pick your database**: Drizzle (Postgres with driver adapter, schema, seed and keyset pagination), Prisma 7, Convex realtime, or none for a landing page.
+- **Auth & API**: better-auth (email/password, verification, Google OAuth) or hosted Clerk, with end-to-end type-safe tRPC v11.
+- **Opt-in capabilities**: storage, cache, jobs, logger, analytics and error tracking, each behind a port (ports & adapters architecture) so you swap providers with a single environment variable.
+- **Green from commit one**: strict Biome, typed `env.ts`, Dockerfile, git hooks, a generated GitHub Actions CI workflow, generated `.env`, all verified with typecheck + Biome before the first commit.
+
+![The interactive builder: every choice rewrites the exact CLI command to copy](../_assets/create-stack-builder.webp)
+
+## Engineering & quality
+
+- **End-to-end tested**: full Vitest suite, including a smoke test that generates a real project then runs install, typecheck and lint against it.
+- **Matrix CI**: every PR is verified on both supported frameworks (Next.js and TanStack Start).
+- **Secure publishing**: npm Trusted Publishing (OIDC), tokenless, with signed provenance.
+- **Minimal footprint**: pure ESM CLI, a single runtime dependency (`@clack/prompts`), zero build step.
+
+## Tech stack
+
+- **CLI**: Node.js (≥ 22), ESM, hand-rolled argument parsing, `@clack/prompts` for the interactive flow.
+- **Distribution**: pnpm + Turborepo monorepo, self-contained bundle at `prepack`, published via GitHub Actions + OIDC.
+- **Generated app**: Next.js / TanStack Start (with more coming), React 19, tRPC v11, Drizzle / Prisma 7 / Convex, better-auth / Clerk, Tailwind v4 + shadcn, typed env (`@t3-oss/env-core` + valibot).
+- **Quality**: Vitest, smoke tests, strict Biome v2, GitHub Actions CI + publish.
+
+## My role
+
+An open-source personal project (MIT) I design and build end to end: the framework-agnostic "fork & strip" architecture, the composition engine (auth, database, mailer, capabilities), the interactive wizard, the test and smoke-test suite, the CI/CD pipeline with trusted publishing, plus the showcase site and its interactive command builder. Inspired by create-t3-app.
