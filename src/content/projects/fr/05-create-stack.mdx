@@ -33,6 +33,9 @@ meta:
     - drizzle
     - better-auth
     - ports and adapters
+    - monorepo
+    - turborepo
+    - nx
     - open source
 ---
 
@@ -49,6 +52,7 @@ meta:
 - **Base de données au choix** : Drizzle (Postgres avec adapter, schéma, seed et pagination keyset), Prisma 7, Convex temps réel, ou aucune pour une vitrine.
 - **Auth & API** : better-auth (email/mot de passe, vérification, Google OAuth) ou Clerk hébergé, avec tRPC v11 typé de bout en bout.
 - **Capabilities opt-in** : storage, cache, jobs, logger, analytics et error-tracking, chacun derrière un port (architecture ports & adapters) pour changer de provider via une seule variable d'environnement.
+- **Monorepo au choix** : un flag `--monorepo [turbo|nx]` (ou le prompt interactif) génère l'app dans `apps/web`, encapsulée dans une racine Turborepo ou Nx prête à l'emploi : scripts délégués à l'orchestrateur, workspaces, outputs de build par framework et git hooks hoistés.
 - **Green from commit one** : Biome strict, `env.ts` typé, Dockerfile, git hooks, workflow CI GitHub Actions généré, `.env` créé, le tout vérifié par typecheck + Biome avant le premier commit.
 
 ![Le builder interactif : chaque choix réécrit la commande CLI exacte à copier](../_assets/create-stack-builder.webp)
