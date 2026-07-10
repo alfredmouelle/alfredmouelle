@@ -11,7 +11,7 @@ import {
 } from 'react-email';
 
 export const EMAIL_COLORS = {
-  // Aligné sur les tokens du site (global.css) — off-white chaud, navy profond,
+  // Aligné sur les tokens du site (global.css), off-white chaud, navy profond,
   // accent bleu unique. react-email impose des hex inline, d'où la conversion.
   pageBg: '#FBFAF8',
   cardBg: '#FFFFFF',

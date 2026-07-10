@@ -19,7 +19,7 @@ export interface ComeUpStats {
   profileUrl: string;
 }
 
-/** Pinned fallback values (manual snapshot) — used if the scrape fails. */
+/** Pinned fallback values (manual snapshot), used if the scrape fails. */
 const FALLBACK: ComeUpStats = {
   positiveReviews: 60,
   positiveRate: 100,

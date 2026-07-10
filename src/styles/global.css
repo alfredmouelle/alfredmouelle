@@ -57,7 +57,7 @@
 
 @layer base {
   :root {
-    /* Warm off-white neutrals — softer, more premium than pure white. */
+    /* Warm off-white neutrals, softer, more premium than pure white. */
     --background: 40 33% 99%;
     --foreground: 222 18% 14%;
     --card: 0 0% 100%;
@@ -77,7 +77,7 @@
     --border: 220 16% 90%;
     --input: 220 16% 90%;
     --ring: 221 83% 53%;
-    /* Brand accents — preserved blue + violet. */
+    /* Brand accents, preserved blue + violet. */
     --accent-blue: 221 83% 53%;
     --accent-violet: 270 56% 61%;
     --radius: 0.75rem;
@@ -176,7 +176,7 @@
     color: hsl(var(--primary));
   }
 
-  /* Soft, layered shadows — replaces heavy shadow-lg everywhere. */
+  /* Soft, layered shadows, replaces heavy shadow-lg everywhere. */
   .shadow-soft {
     box-shadow:
       0 1px 2px hsl(222 30% 10% / 0.04),

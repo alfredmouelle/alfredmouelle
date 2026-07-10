@@ -14,7 +14,7 @@ import { getComeUpStats } from '~/lib/comeup';
 import { createScopedTranslator, normalizeLocale } from '~/locales';
 
 const locale = normalizeLocale(Astro.currentLocale);
-const avatarAlt = `${AppConfig.author.name} — ${AppConfig.author.jobTitle[locale]}`;
+const avatarAlt = `${AppConfig.author.name}, ${AppConfig.author.jobTitle[locale]}`;
 const t = createScopedTranslator(locale, 'section_hero');
 const tNav = createScopedTranslator(locale, 'navbar');
 const homePath = getRelativeLocaleUrl(locale, '/');
