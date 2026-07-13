@@ -125,6 +125,7 @@ export const AppConfig = {
       'https://github.com/alfredmouelle',
       'https://www.linkedin.com/in/alfredmouelle',
       'https://x.com/alfredmouelle',
+      'https://comeup.com/@alfredmouelle',
     ],
   },
   metadata,
