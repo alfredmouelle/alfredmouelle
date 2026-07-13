@@ -54,7 +54,7 @@ const metadata: Record<Locale, SiteMetadata> = {
     canonical: `${domain}/fr`,
     twitter: {
       creator: 'Alfred Mouelle',
-      creatorId: '@kali47_',
+      creatorId: '@alfredmouelle',
       site: domain,
     },
     robots: { index: true, follow: true },
@@ -94,7 +94,7 @@ const metadata: Record<Locale, SiteMetadata> = {
     canonical: `${domain}/en`,
     twitter: {
       creator: 'Alfred Mouelle',
-      creatorId: '@kali47_',
+      creatorId: '@alfredmouelle',
       site: domain,
     },
     robots: { index: true, follow: true },
@@ -124,7 +124,7 @@ export const AppConfig = {
     sameAs: [
       'https://github.com/alfredmouelle',
       'https://www.linkedin.com/in/alfredmouelle',
-      'https://twitter.com/kali47_',
+      'https://x.com/alfredmouelle',
     ],
   },
   metadata,
