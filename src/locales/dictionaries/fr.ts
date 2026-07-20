@@ -93,7 +93,6 @@ export default {
   section_contact: {
     title: 'Travaillons ensemble',
     eyebrow: 'Contact',
-    quickContact: 'Liens Rapides',
     emailCta: 'Écrire un email',
     description:
       'Un projet, une question ou une opportunité ? Écrivez-moi via le formulaire, je réponds généralement sous 24 heures.',
