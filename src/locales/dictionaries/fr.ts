@@ -42,7 +42,6 @@ export default {
   section_hero: {
     greetings: 'Salut, je suis',
     position: 'Développeur Full-Stack',
-    availability: 'Disponible pour de nouvelles opportunités',
     description:
       'Développeur full-stack freelance, je conçois, fais évoluer et consolide des applications web et des SaaS B2B/B2C. Depuis 6 ans, j’aide porteurs de projet, startups et entreprises à transformer une idée ou un produit existant en solution fiable et maintenable. Mon objectif n’est pas seulement de faire avancer un projet, mais de livrer une base solide, que vous pourrez utiliser, faire évoluer et assumer sereinement dans la durée.',
     downloadCvBtn: 'Télécharger Mon CV',

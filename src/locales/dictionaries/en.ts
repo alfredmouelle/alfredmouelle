@@ -42,7 +42,6 @@ export default {
   section_hero: {
     greetings: 'Hello, I am',
     position: 'Full-Stack Developer',
-    availability: 'Available for new opportunities',
     description:
       'Freelance full-stack developer, I design, evolve and consolidate web applications and B2B/B2C SaaS products. For the past 6 years, I have helped founders, startups and companies turn an idea or an existing product into a reliable, maintainable solution. My goal is not just to move a project forward, but to deliver a solid foundation you can use, grow and rely on with confidence over time.',
     downloadCvBtn: 'Download Resume',
