@@ -156,6 +156,20 @@ const locale = normalizeLocale(Astro.currentLocale);
         for (const el of toObserve) revealObserver.observe(el);
       };
 
+      const scrollToUrlAnchor = () => {
+        const anchor = new URLSearchParams(window.location.search).get(
+          'anchor'
+        );
+        if (!anchor) return;
+        const element = document.getElementById(anchor);
+        if (!element) return;
+        const navbarHeight = window.innerWidth < 768 ? 50 : 0;
+        window.scrollTo({
+          top: element.getBoundingClientRect().top + window.scrollY - navbarHeight,
+          behavior: 'auto',
+        });
+      };
+
       const syncNavbar = () => {
         const header = document.getElementById('site-header');
         if (header) header.classList.toggle('is-scrolled', window.scrollY > 8);
@@ -163,10 +177,12 @@ const locale = normalizeLocale(Astro.currentLocale);
 
       window.addEventListener('scroll', syncNavbar, { passive: true });
 
+      scrollToUrlAnchor();
       setupSectionObserver();
       setupReveal();
       syncNavbar();
       document.addEventListener('astro:page-load', () => {
+        scrollToUrlAnchor();
         setupSectionObserver();
         setupReveal();
         syncNavbar();

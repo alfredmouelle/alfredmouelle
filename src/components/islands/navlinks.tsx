@@ -51,12 +51,14 @@ const NavLink = ({ text, anchor, homePath, closeMenu }: NavLinkProps) => {
   const jumpTo = () => {
     closeMenu?.();
     const element = document.getElementById(anchor);
-    if (element) {
-      const navbarHeight = window.innerWidth < 768 ? 50 : 0;
-      const top =
-        element.getBoundingClientRect().top + window.scrollY - navbarHeight;
-      window.scrollTo({ top, behavior: 'smooth' });
+    if (!element) {
+      window.location.assign(`${homePath}?anchor=${anchor}`);
+      return;
     }
+    const navbarHeight = window.innerWidth < 768 ? 50 : 0;
+    const top =
+      element.getBoundingClientRect().top + window.scrollY - navbarHeight;
+    window.scrollTo({ top, behavior: 'smooth' });
     window.history.replaceState(null, '', `${homePath}?anchor=${anchor}`);
     window.dispatchEvent(new Event(ANCHOR_CHANGE_EVENT));
   };

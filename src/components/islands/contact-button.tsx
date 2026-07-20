@@ -12,7 +12,11 @@ export const ContactButton = ({
 }) => {
   const jumpTo = () => {
     const element = document.getElementById(ANCHOR);
-    if (element) element.scrollIntoView({ behavior: 'smooth' });
+    if (!element) {
+      window.location.assign(`${homePath}?anchor=${ANCHOR}`);
+      return;
+    }
+    element.scrollIntoView({ behavior: 'smooth' });
     window.history.replaceState(null, '', `${homePath}?anchor=${ANCHOR}`);
   };
 
