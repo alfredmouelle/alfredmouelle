@@ -1,21 +1,23 @@
-## <mark>Author</mark> : Alfred MOUELLE | FullStack Developer
+# Hello 👋
 
-### 🚧 Roadmap
+### I'm Alfred MOUELLE
 
-- [ ] 📝 Create a blog
-- [ ] 📝 Add project sections
-- [ ] 📝 Add freelance statistics (comeup)
-- [x] 📝 Create a resume
-- [x] 📝 Create logo
-- [x] 📝 Add jobs section
-- [x] 📝 Add contact form
-- [x] 📝 Create a roadmap
+- 🌍 Full-stack developer based in Douala, Cameroon
+- 🧱 I build with TypeScript, React, Next.js and TanStack Start
+- 🔗 More about me here: [alfredmouelle.com](https://alfredmouelle.com)
 
-### Meet me on
+### 🚀 Projects
 
-[![ComeUp](https://img.shields.io/static/v1?style=for-the-badge&label=&message=ComeUp&color=yellow)](https://comeup.com/@alfredmouelle)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/alfredmouelle)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/alfred-mouelle-72a976228/)
-[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/alfredmouelle)
-[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:alfredmouelle@gmail.com)
-[![ComeUp](https://img.shields.io/static/v1?style=for-the-badge&label=&message=Portfolio&color=blue)](https://alfredmouelle.com)
+- [create-stack](https://github.com/alfredmouelle/create-stack) : agnostic SaaS foundation with swappable capabilities (mailer, storage, jobs, cache, logger, analytics, error tracking) behind ports & adapters. [Docs](https://create-stack.alfredmouelle.com)
+- [unduck](https://github.com/alfredmouelle/unduck) : search anything, everywhere, using thousands of available bangs.
+- [pdf-to-json](https://github.com/alfredmouelle/pdf-to-json) : extract fields from a PDF file and convert them to JSON.
+- [dotfiles](https://github.com/alfredmouelle/dotfiles) : my whole working environment, backed up just in case.
+- [alfredmouelle.com](https://github.com/alfredmouelle/alfredmouelle) : the source of my personal portfolio.
+
+### 🌐 Find me on
+
+- [Website](https://alfredmouelle.com)
+- [LinkedIn](https://www.linkedin.com/in/alfredmouelle)
+- [X (Twitter)](https://x.com/alfredmouelle)
+- [ComeUp](https://comeup.com/@alfredmouelle)
+- [Email](mailto:alfredmouelle@gmail.com)
