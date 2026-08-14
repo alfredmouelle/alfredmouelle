@@ -79,11 +79,6 @@ export const ThemeToggle = ({ labels }: { labels: Labels }) => {
 
   if (!mounted) return null;
 
-  const isDark =
-    theme === 'dark' ||
-    (theme === 'system' &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches);
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

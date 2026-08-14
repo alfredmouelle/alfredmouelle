@@ -7,8 +7,8 @@ import {
   DropdownMenuTrigger,
 } from '~/components/ui/dropdown-menu';
 
-import { LOCALES, type Locale } from '~/locales';
 import { cn } from '~/lib/utils';
+import { LOCALES, type Locale } from '~/locales';
 
 const LOCALE_PREFIX_RE = new RegExp(`^/(${LOCALES.join('|')})(/|$)`);
 

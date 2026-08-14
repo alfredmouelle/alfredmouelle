@@ -1,6 +1,6 @@
 import type { JobEntry } from '~/lib/jobs';
-import type { Locale } from '~/locales';
 import { cn } from '~/lib/utils';
+import type { Locale } from '~/locales';
 
 import {
   Card,

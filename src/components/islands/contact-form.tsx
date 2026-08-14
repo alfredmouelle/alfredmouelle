@@ -1,8 +1,10 @@
-import { valibotResolver } from '@hookform/resolvers/valibot';
 import { actions } from 'astro:actions';
 import { useState } from 'react';
+import { valibotResolver } from '@hookform/resolvers/valibot';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
+
+import { CONTACT_SCHEMA, type ContactRequest } from '~/schemas/contact.schema';
 
 import { Button } from '~/components/ui/button';
 import {
@@ -15,7 +17,6 @@ import {
 import { Input } from '~/components/ui/input';
 import { Textarea } from '~/components/ui/textarea';
 
-import { CONTACT_SCHEMA, type ContactRequest } from '~/schemas/contact.schema';
 import { cn } from '~/lib/utils';
 
 interface Labels {

@@ -28,7 +28,9 @@ const TypewriterText = ({ className, text, delay = 75 }: Props) => {
   return (
     <span className={className}>
       {typed}
-      <span aria-hidden="true" className={done ? 'animate-pulse' : ''}>_</span>
+      <span aria-hidden="true" className={done ? 'animate-pulse' : ''}>
+        _
+      </span>
     </span>
   );
 };

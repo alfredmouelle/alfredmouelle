@@ -1,4 +1,4 @@
-import { defineAction, ActionError } from 'astro:actions';
+import { ActionError, defineAction } from 'astro:actions';
 import { z } from 'astro/zod';
 
 import { ContactEmail } from '~/emails/contact.email';
@@ -7,7 +7,7 @@ import { getResend } from '~/lib/resend';
 const ContactInput = z.object({
   name: z.string().min(2),
   subject: z.string().min(2),
-  email: z.string().email(),
+  email: z.email(),
   message: z.string().min(10),
 });
 

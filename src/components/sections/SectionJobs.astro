@@ -1,16 +1,16 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
+import Reveal from '~/components/astro/Reveal.astro';
 import Section from '~/components/astro/Section.astro';
 import SectionHeader from '~/components/astro/SectionHeader.astro';
-import Reveal from '~/components/astro/Reveal.astro';
 import { Icon } from '~/components/icons';
 import { JobCard } from '~/components/job-card';
 import { buttonVariants } from '~/components/ui/button';
 
-import { getJobs, getJobSlug } from '~/lib/jobs';
-import { createScopedTranslator, normalizeLocale } from '~/locales';
+import { getJobSlug, getJobs } from '~/lib/jobs';
 import { cn } from '~/lib/utils';
+import { createScopedTranslator, normalizeLocale } from '~/locales';
 
 const locale = normalizeLocale(Astro.currentLocale);
 const t = createScopedTranslator(locale, 'section_jobs');

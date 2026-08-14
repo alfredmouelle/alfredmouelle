@@ -1,7 +1,7 @@
 ---
+import Reveal from '~/components/astro/Reveal.astro';
 import Section from '~/components/astro/Section.astro';
 import SectionHeader from '~/components/astro/SectionHeader.astro';
-import Reveal from '~/components/astro/Reveal.astro';
 import { Icons } from '~/components/icons';
 import {
   Card,
@@ -27,7 +27,13 @@ const skills = [
     title: 'Frontend',
     Icon: Icons.layout,
     details: t('frontend_desc'),
-    mainSkills: ['Next.js', 'TanStack Start', 'Astro', 'Angular', 'Tailwind CSS'],
+    mainSkills: [
+      'Next.js',
+      'TanStack Start',
+      'Astro',
+      'Angular',
+      'Tailwind CSS',
+    ],
   },
   {
     title: 'Mobile',
