@@ -36,6 +36,9 @@ export default defineConfig({
     },
   },
   vite: {
+    resolve: {
+      dedupe: ['react', 'react-dom'],
+    },
     plugins: [tailwindcss()],
   },
 });
