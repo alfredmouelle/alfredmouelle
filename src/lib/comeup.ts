@@ -21,7 +21,7 @@ export interface ComeUpStats {
 
 /** Pinned fallback values (manual snapshot), used if the scrape fails. */
 const FALLBACK: ComeUpStats = {
-  positiveReviews: 60,
+  positiveReviews: 62,
   positiveRate: 100,
   isTopSeller: true,
   profileUrl: COMEUP_PROFILE_URL,
@@ -30,10 +30,10 @@ const FALLBACK: ComeUpStats = {
 const escapeRegExp = (value: string): string =>
   value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-/** Target markup: `<span>LABEL</span> <span class="fw-semibold">VALUE</span>`. */
+/** Target markup: `<dt>LABEL</dt> <dd>VALUE</dd>` or `<span>LABEL</span> <span class="fw-semibold">VALUE</span>`. */
 const extractStat = (html: string, label: string): string | null => {
   const pattern = new RegExp(
-    `<span>\\s*${escapeRegExp(label)}\\s*</span>\\s*<span class="fw-semibold">\\s*([^<]*?)\\s*</span>`,
+    `<(?:dt|span|div)[^>]*>\\s*${escapeRegExp(label)}\\s*<\\/(?:dt|span|div)>\\s*<(?:dd|span|div)[^>]*>\\s*([^<]*?)\\s*<\\/(?:dd|span|div)>`,
     'i'
   );
   const match = html.match(pattern);
@@ -82,52 +82,83 @@ async function notifyFallback(reason: FallbackReason): Promise<void> {
 }
 
 async function scrapeComeUpStats(): Promise<ComeUpStats> {
-  try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 8000);
+  const headers = {
+    'User-Agent':
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+    Accept:
+      'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+    'Accept-Language': 'en-US,en;q=0.9,fr;q=0.8',
+    'Sec-Fetch-Dest': 'document',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-Site': 'none',
+    'Sec-Fetch-User': '?1',
+    'Upgrade-Insecure-Requests': '1',
+  };
 
-    const response = await fetch(COMEUP_PROFILE_URL, {
-      signal: controller.signal,
-      headers: {
-        'User-Agent':
-          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
-        'Accept-Language': 'en',
-      },
-    }).finally(() => clearTimeout(timeout));
+  let lastStatus: number | null = null;
 
-    if (!response.ok) {
-      return useFallback(`http_${response.status}`);
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 8000);
+
+      const response = await fetch(COMEUP_PROFILE_URL, {
+        signal: controller.signal,
+        headers,
+      }).finally(() => clearTimeout(timeout));
+
+      if (!response.ok) {
+        lastStatus = response.status;
+        if (attempt === 0) {
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          continue;
+        }
+        return useFallback(`http_${response.status}`);
+      }
+
+      const html = await response.text();
+
+      const positiveReviews =
+        toNumber(extractStat(html, 'Positive reviews')) ??
+        toNumber(extractStat(html, 'Avis positifs'));
+      const negativeReviews =
+        toNumber(extractStat(html, 'Negative reviews')) ??
+        toNumber(extractStat(html, 'Avis négatifs'));
+      // Only "Top" is exposed publicly (the percentage is JS/auth-only), so the
+      // acceptance rate is used solely to detect the Top-seller badge.
+      const acceptanceRate =
+        extractStat(html, 'Acceptance rate') ??
+        extractStat(html, 'Taux d’acceptation') ??
+        extractStat(html, "Taux d'acceptation");
+
+      if (positiveReviews === null || negativeReviews === null) {
+        return useFallback('parse_incomplete');
+      }
+
+      const total = positiveReviews + negativeReviews;
+      const positiveRate =
+        total > 0 ? Math.round((positiveReviews / total) * 100) : 100;
+
+      console.info(
+        `[comeup] Live stats scraped: ${positiveReviews} reviews, ${positiveRate}% positive.`
+      );
+
+      return {
+        positiveReviews,
+        positiveRate,
+        isTopSeller: /Top/i.test(acceptanceRate ?? '') || positiveRate === 100,
+        profileUrl: COMEUP_PROFILE_URL,
+      };
+    } catch {
+      if (attempt === 0) {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        continue;
+      }
+      return useFallback(lastStatus ? `http_${lastStatus}` : 'network_error');
     }
-
-    const html = await response.text();
-
-    const positiveReviews = toNumber(extractStat(html, 'Positive reviews'));
-    const negativeReviews = toNumber(extractStat(html, 'Negative reviews'));
-    // Only "Top" is exposed publicly (the percentage is JS/auth-only), so the
-    // acceptance rate is used solely to detect the Top-seller badge.
-    const acceptanceRate = extractStat(html, 'Acceptance rate');
-
-    if (positiveReviews === null || negativeReviews === null) {
-      return useFallback('parse_incomplete');
-    }
-
-    const total = positiveReviews + negativeReviews;
-    const positiveRate =
-      total > 0 ? Math.round((positiveReviews / total) * 100) : 100;
-
-    console.info(
-      `[comeup] Live stats scraped: ${positiveReviews} reviews, ${positiveRate}% positive.`
-    );
-
-    return {
-      positiveReviews,
-      positiveRate,
-      isTopSeller: /Top/i.test(acceptanceRate ?? '') || positiveRate === 100,
-      profileUrl: COMEUP_PROFILE_URL,
-    };
-  } catch {
-    return useFallback('network_error');
   }
+
+  return useFallback('network_error');
 }
 
 /**
