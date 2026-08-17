@@ -51,15 +51,20 @@ const NavLink = ({ text, anchor, homePath, closeMenu }: NavLinkProps) => {
   const jumpTo = () => {
     closeMenu?.();
     const element = document.getElementById(anchor);
+    const currentParams = new URLSearchParams(window.location.search);
+    currentParams.set('anchor', anchor);
+    const qs = currentParams.toString();
+    const targetUrl = qs ? `${homePath}?${qs}` : homePath;
+
     if (!element) {
-      window.location.assign(`${homePath}?anchor=${anchor}`);
+      window.location.assign(targetUrl);
       return;
     }
     const navbarHeight = window.innerWidth < 768 ? 50 : 0;
     const top =
       element.getBoundingClientRect().top + window.scrollY - navbarHeight;
     window.scrollTo({ top, behavior: 'smooth' });
-    window.history.replaceState(null, '', `${homePath}?anchor=${anchor}`);
+    window.history.replaceState(null, '', targetUrl);
     window.dispatchEvent(new Event(ANCHOR_CHANGE_EVENT));
   };
 
@@ -70,7 +75,7 @@ const NavLink = ({ text, anchor, homePath, closeMenu }: NavLinkProps) => {
         onClick={jumpTo}
         aria-current={active ? 'true' : undefined}
         className={cn(
-          'flex w-full cursor-pointer items-center rounded-full px-3 py-1.5 text-sm font-medium transition-colors md:w-auto',
+          'flex w-full cursor-pointer items-center rounded px-3 py-1.5 text-sm font-medium transition-colors md:w-auto',
           active
             ? 'bg-primary/10 text-primary'
             : 'text-muted-foreground hover:bg-muted hover:text-foreground'
@@ -149,7 +154,7 @@ export const MobileNav = ({
         <Button
           variant="outline"
           size="icon"
-          className="rounded-full"
+          className="rounded"
           onClick={() => setOpen(true)}
         >
           <Icon name="menu" />

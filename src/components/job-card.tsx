@@ -22,32 +22,46 @@ interface JobCardProps {
 export const JobCard = ({ job, locale, labels }: JobCardProps) => {
   const stacks = job.stacks.slice(0, MAX_STACKS);
 
+  const isCurrent = !job.endDate || new Date(job.endDate) > new Date();
+
   return (
     <Card
       className={cn(
-        'group flex h-full min-h-48 flex-col transition duration-300 ease-out hover:-translate-y-1 hover:shadow-float',
-        job.featured ? 'border-primary/40' : 'hover:border-primary/40'
+        'group flex h-full min-h-48 flex-col rounded border border-border/70 bg-card shadow-soft transition duration-300 ease-out hover:-translate-y-1 hover:shadow-float',
+        isCurrent ? 'border-primary/40' : 'hover:border-primary/40'
       )}
     >
-      <CardHeader className="grow">
+      <CardHeader className="grow p-5 pb-3">
         <div className="flex items-center justify-between gap-x-2">
-          <CardTitle className="text-base">{job.company}</CardTitle>
-          <span className="shrink-0 text-xs text-muted-foreground">
-            {job.readTime} {labels.readTime}
-          </span>
+          <div className="flex items-center gap-1.5">
+            <CardTitle className="font-display text-base font-bold text-foreground transition-colors group-hover:text-primary">
+              {job.company}
+            </CardTitle>
+          </div>
+          {isCurrent ? (
+            <span className="rounded bg-primary/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-primary">
+              {locale === 'fr' ? 'POSTE ACTUEL' : 'CURRENT'}
+            </span>
+          ) : (
+            <span className="shrink-0 font-mono text-xs text-muted-foreground">
+              {job.readTime} {labels.readTime}
+            </span>
+          )}
         </div>
-        <p className="text-sm font-medium text-primary">{job.position}</p>
-        <CardDescription className="mt-1 line-clamp-3 leading-relaxed">
+        <p className="mt-1 font-mono text-xs font-medium text-primary">
+          {job.position}
+        </p>
+        <CardDescription className="mt-2 line-clamp-3 text-xs leading-relaxed text-muted-foreground sm:text-sm">
           {job.description}
         </CardDescription>
       </CardHeader>
 
       {stacks.length > 0 ? (
-        <CardContent className="flex flex-wrap items-center gap-1.5">
+        <CardContent className="flex flex-wrap items-center gap-1.5 px-5 py-2">
           {stacks.map((stack) => (
             <span
               key={stack}
-              className="shrink-0 rounded-full border border-border/70 bg-background px-2.5 py-0.5 text-xs text-muted-foreground"
+              className="shrink-0 rounded border border-border/70 bg-muted/40 px-2 py-0.5 font-mono text-[10px] text-muted-foreground"
             >
               {stack}
             </span>
@@ -55,7 +69,7 @@ export const JobCard = ({ job, locale, labels }: JobCardProps) => {
         </CardContent>
       ) : null}
 
-      <CardFooter>
+      <CardFooter className="p-5 pt-2 font-mono text-xs text-muted-foreground">
         <JobDate
           startDate={job.startDate}
           endDate={job.endDate}
@@ -99,15 +113,18 @@ export const JobDate = ({
 
   if (!endDate)
     return (
-      <span className="text-xs text-muted-foreground">
-        {labels.elapsed} <span>{f(startDate)}</span>
+      <span>
+        {labels.elapsed}{' '}
+        <span className="font-semibold text-foreground">{f(startDate)}</span>
       </span>
     );
 
   return (
-    <span className="text-xs text-muted-foreground">
-      {labels.from} <span>{f(startDate)}</span> {labels.to}
-      <span> {f(endDate)}</span>
+    <span>
+      {labels.from}{' '}
+      <span className="font-semibold text-foreground">{f(startDate)}</span>{' '}
+      {labels.to}{' '}
+      <span className="font-semibold text-foreground">{f(endDate)}</span>
     </span>
   );
 };

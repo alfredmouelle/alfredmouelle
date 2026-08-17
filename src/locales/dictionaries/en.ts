@@ -25,23 +25,9 @@ export default {
     eyebrow: 'Expertise',
     description:
       'The technologies I build with, from backend to infrastructure.',
-    backend_desc:
-      'Expertise in Node.js, PHP (Laravel) and Java Spring Boot for robust server-side applications.',
-    frontend_desc:
-      'Building modern interfaces with Next.js, TanStack Start, Astro and Angular, polished with Tailwind CSS and ShadcnUI.',
-    mobile_desc:
-      'Developing cross-platform mobile applications with Flutter and React Native for iOS and Android.',
-    database_desc:
-      'Data modeling and management with PostgreSQL, MongoDB and Redis, through Prisma and Drizzle.',
-    devops_desc:
-      'Containerization and continuous deployment with Docker, Vercel and GitHub Actions.',
-    tests_desc:
-      'End-to-end, unit and integration testing with Cypress, Vitest and Playwright.',
   },
 
   section_hero: {
-    greetings: 'Hello, I am',
-    position: 'Full-Stack Developer',
     description:
       'Freelance full-stack developer, I design, evolve and consolidate web applications and B2B/B2C SaaS products. For the past 6 years, I have helped founders, startups and companies turn an idea or an existing product into a reliable, maintainable solution. My goal is not just to move a project forward, but to deliver a solid foundation you can use, grow and rely on with confidence over time.',
     downloadCvBtn: 'Download Resume',
@@ -49,7 +35,6 @@ export default {
       badge: 'Top-rated on ComeUp',
       reviews: 'reviews',
       positive: 'positive',
-      viewProfile: 'View ComeUp profile',
     },
   },
 
@@ -78,6 +63,7 @@ export default {
     eyebrow: 'Experience',
     description: 'A few companies and projects I’ve worked on over the years.',
     showJobs: 'See All',
+    count: 'experiences',
   },
 
   section_projects: {
@@ -86,12 +72,12 @@ export default {
     description: 'A selection of projects I’ve designed, built and shipped.',
     showProjects: 'See all',
     visitWebsite: 'Visit website',
+    count: 'projects',
   },
 
   section_contact: {
     title: "Let's work together",
     eyebrow: 'Contact',
-    emailCta: 'Send me an email',
     description:
       'A project, a question or an opportunity? Send me a message through the form, I usually reply within 24 hours.',
     form: {
@@ -110,7 +96,9 @@ export default {
       },
       placeholders: {
         subject: 'Proposal for a service of...',
+        message: 'Your message...',
       },
+      note: 'Usually replies within 24 hours.',
       messages: {
         success: 'Your message has been successfully transmitted.',
         error:

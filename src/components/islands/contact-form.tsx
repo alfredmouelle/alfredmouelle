@@ -28,16 +28,24 @@ interface Labels {
     submit: string;
   };
   errors: { name: string; email: string; subject: string; message: string };
-  placeholders: { subject: string };
+  placeholders: { subject: string; message?: string };
+  note?: string;
   messages: { success: string; error: string };
 }
 
-export function ContactForm({ labels }: { labels: Labels }) {
+interface ContactFormProps {
+  labels: Labels;
+  variant?: 'default' | 'craft';
+}
+
+export function ContactForm({ labels, variant = 'default' }: ContactFormProps) {
   const [submitting, setSubmitting] = useState(false);
   const form = useForm<ContactRequest>({
     resolver: valibotResolver(CONTACT_SCHEMA),
     defaultValues: { name: '', email: '', message: '', subject: '' },
   });
+
+  const isCraft = variant === 'craft';
 
   const onSubmit = async (values: ContactRequest) => {
     setSubmitting(true);
@@ -67,23 +75,28 @@ export function ContactForm({ labels }: { labels: Labels }) {
     <Form {...form}>
       <form
         id="contact-form"
-        className="flex flex-col gap-y-6"
+        className={cn('flex flex-col', isCraft ? 'gap-y-5' : 'gap-y-6')}
         onSubmit={form.handleSubmit(onSubmit)}
       >
-        <div className="grid gap-x-5 gap-y-6 md:grid-cols-2">
+        <div className="grid gap-x-4 gap-y-4 md:grid-cols-2">
           <FormField
             name="name"
             control={form.control}
             render={({ field }) => (
-              <FormItem className="flex flex-col items-start justify-start gap-y-2.5">
-                <FormLabel>{labels.fields.name}</FormLabel>
+              <FormItem className="flex flex-col items-start justify-start gap-y-1.5">
+                <FormLabel className="text-xs font-medium text-foreground">
+                  {labels.fields.name}
+                </FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Alfred Mouelle"
                     {...field}
-                    className={cn({
-                      'border-destructive': !!form.formState.errors.name,
-                    })}
+                    className={cn(
+                      'rounded border-border/70 bg-card/50 text-xs sm:text-sm transition placeholder:text-muted-foreground/50 focus:border-primary focus:bg-background',
+                      {
+                        'border-destructive': !!form.formState.errors.name,
+                      }
+                    )}
                   />
                 </FormControl>
                 {form.formState.errors.name && (
@@ -99,15 +112,20 @@ export function ContactForm({ labels }: { labels: Labels }) {
             name="email"
             control={form.control}
             render={({ field }) => (
-              <FormItem className="flex flex-col items-start justify-start gap-y-2.5">
-                <FormLabel>{labels.fields.email}</FormLabel>
+              <FormItem className="flex flex-col items-start justify-start gap-y-1.5">
+                <FormLabel className="text-xs font-medium text-foreground">
+                  {labels.fields.email}
+                </FormLabel>
                 <FormControl>
                   <Input
                     placeholder="alfredmouelle@gmail.com"
                     {...field}
-                    className={cn({
-                      'border-destructive': !!form.formState.errors.email,
-                    })}
+                    className={cn(
+                      'rounded border-border/70 bg-card/50 text-xs sm:text-sm transition placeholder:text-muted-foreground/50 focus:border-primary focus:bg-background',
+                      {
+                        'border-destructive': !!form.formState.errors.email,
+                      }
+                    )}
                   />
                 </FormControl>
                 {form.formState.errors.email && (
@@ -124,15 +142,20 @@ export function ContactForm({ labels }: { labels: Labels }) {
           name="subject"
           control={form.control}
           render={({ field }) => (
-            <FormItem className="flex flex-col items-start justify-start gap-y-2.5">
-              <FormLabel>{labels.fields.subject}</FormLabel>
+            <FormItem className="flex flex-col items-start justify-start gap-y-1.5">
+              <FormLabel className="text-xs font-medium text-foreground">
+                {labels.fields.subject}
+              </FormLabel>
               <FormControl>
                 <Input
                   placeholder={labels.placeholders.subject}
                   {...field}
-                  className={cn({
-                    'border-destructive': !!form.formState.errors.subject,
-                  })}
+                  className={cn(
+                    'rounded border-border/70 bg-card/50 text-xs sm:text-sm transition placeholder:text-muted-foreground/50 focus:border-primary focus:bg-background',
+                    {
+                      'border-destructive': !!form.formState.errors.subject,
+                    }
+                  )}
                 />
               </FormControl>
               {form.formState.errors.subject && (
@@ -148,16 +171,21 @@ export function ContactForm({ labels }: { labels: Labels }) {
           name="message"
           control={form.control}
           render={({ field }) => (
-            <FormItem className="flex flex-col items-start justify-start gap-y-2.5">
-              <FormLabel>{labels.fields.message}</FormLabel>
+            <FormItem className="flex flex-col items-start justify-start gap-y-1.5">
+              <FormLabel className="text-xs font-medium text-foreground">
+                {labels.fields.message}
+              </FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Message"
-                  rows={6}
+                  placeholder={labels.placeholders.message || '...'}
+                  rows={4}
                   {...field}
-                  className={cn({
-                    'border-destructive': !!form.formState.errors.message,
-                  })}
+                  className={cn(
+                    'rounded border-border/70 bg-card/50 text-xs sm:text-sm transition placeholder:text-muted-foreground/50 focus:border-primary focus:bg-background',
+                    {
+                      'border-destructive': !!form.formState.errors.message,
+                    }
+                  )}
                 />
               </FormControl>
               {form.formState.errors.message && (
@@ -169,13 +197,22 @@ export function ContactForm({ labels }: { labels: Labels }) {
           )}
         />
 
-        <Button
-          type="submit"
-          isLoading={submitting}
-          className="self-stretch md:self-end"
-        >
-          {labels.fields.submit}
-        </Button>
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2">
+          {labels.note ? (
+            <p className="font-mono text-xs text-muted-foreground">
+              {labels.note}
+            </p>
+          ) : (
+            <span />
+          )}
+          <Button
+            type="submit"
+            isLoading={submitting}
+            className="rounded border border-primary/40 bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary active:scale-[0.98] font-mono text-xs font-semibold px-5 py-2.5 shadow-xs transition-all self-end sm:self-auto cursor-pointer"
+          >
+            {labels.fields.submit}
+          </Button>
+        </div>
       </form>
     </Form>
   );

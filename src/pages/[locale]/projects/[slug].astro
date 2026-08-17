@@ -1,30 +1,28 @@
 ---
-import { Image } from 'astro:assets';
-import { render } from 'astro:content';
-import { getRelativeLocaleUrl } from 'astro:i18n';
+import { Image } from "astro:assets";
+import { render } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
-import Reveal from '~/components/astro/Reveal.astro';
-import Section from '~/components/astro/Section.astro';
-import { Icon } from '~/components/icons';
+import Reveal from "~/components/astro/Reveal.astro";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbSeparator,
-} from '~/components/ui/breadcrumb';
-import { Button, buttonVariants } from '~/components/ui/button';
+} from "~/components/ui/breadcrumb";
+import { Button } from "~/components/ui/button";
 
-import { AppConfig } from '~/app.config';
-import BaseLayout from '~/layouts/BaseLayout.astro';
-import { breadcrumbSchema, creativeWorkSchema } from '~/lib/jsonld';
-import { getProjectSlug, getProjects } from '~/lib/projects';
-import { cn } from '~/lib/utils';
+import { AppConfig } from "~/app.config";
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import { breadcrumbSchema, creativeWorkSchema } from "~/lib/jsonld";
+import { getProjectSlug, getProjects } from "~/lib/projects";
+import { cn } from "~/lib/utils";
 import {
   createScopedTranslator,
   LOCALES,
   type Locale,
   normalizeLocale,
-} from '~/locales';
+} from "~/locales";
 
 export async function getStaticPaths() {
   const paths = await Promise.all(
@@ -34,16 +32,17 @@ export async function getStaticPaths() {
         params: { locale, slug: getProjectSlug(project) },
         props: { project },
       }));
-    })
+    }),
   );
   return paths.flat();
 }
 
 const { project } = Astro.props;
 const locale = normalizeLocale(Astro.currentLocale);
-const tBC = createScopedTranslator(locale, 'breadcrumb');
-const tProj = createScopedTranslator(locale, 'section_projects');
+const tBC = createScopedTranslator(locale, "breadcrumb");
+const tProj = createScopedTranslator(locale, "section_projects");
 
+const allProjects = await getProjects(locale);
 const { Content } = await render(project);
 
 const slug = getProjectSlug(project);
@@ -53,12 +52,12 @@ const ogImage = `/og/${locale}/projects/${slug}.png`;
 const jsonLd = [
   breadcrumbSchema([
     {
-      name: tBC('home'),
-      url: `${AppConfig.domain}${getRelativeLocaleUrl(locale, '/')}`,
+      name: tBC("home"),
+      url: `${AppConfig.domain}${getRelativeLocaleUrl(locale, "/")}`,
     },
     {
-      name: tBC('projects'),
-      url: `${AppConfig.domain}${getRelativeLocaleUrl(locale, '/projects')}`,
+      name: tBC("projects"),
+      url: `${AppConfig.domain}${getRelativeLocaleUrl(locale, "/projects")}`,
     },
     { name: project.data.title, url: canonical },
   ]),
@@ -84,99 +83,191 @@ const jsonLd = [
   ogImageHeight={630}
   jsonLd={jsonLd}
 >
-  <Section class="hero mt-20" skipFadeIn>
-    <Breadcrumb className="mb-6 text-sm text-muted-foreground">
-      <BreadcrumbList>
-        <BreadcrumbItem>
-          <a
-            href={getRelativeLocaleUrl(locale, '/')}
-            class="transition-colors hover:text-foreground"
-          >
-            {tBC('home')}
-          </a>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <a
-            href={getRelativeLocaleUrl(locale, '/projects')}
-            class="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            {tBC('projects')}
-          </a>
-        </BreadcrumbItem>
-      </BreadcrumbList>
-    </Breadcrumb>
-
-    <Reveal type="slide-up">
-      <header class="mb-8 flex flex-col gap-3">
-        <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-          <h1 class="font-display text-[clamp(1.75rem,4vw,2.75rem)]">
-            {project.data.title}
-          </h1>
-          <span class="text-sm tabular-nums text-muted-foreground">
-            {project.data.year}
-          </span>
-        </div>
-        {
-          project.data.role ? (
-            <p class="text-base font-medium text-primary">{project.data.role}</p>
-          ) : null
-        }
-        <p class="max-w-2xl text-pretty text-muted-foreground">
-          {project.data.description}
-        </p>
-        <div class="mt-2 flex flex-wrap items-center gap-3">
-          {
-            project.data.url ? (
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href={project.data.url}
-                class={cn('group', buttonVariants({ variant: 'default' }))}
-              >
-                <Icon
-                  name="website"
-                  className="size-4 transition-transform group-hover:-translate-y-0.5"
-                />
-                {tProj('visitWebsite')}
-              </a>
-            ) : null
-          }
-          {
-            project.data.repo ? (
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href={project.data.repo}
-                class={cn('group', buttonVariants({ variant: 'outline' }))}
-              >
-                <Icon name="github" className="size-4" />
-                GitHub
-              </a>
-            ) : null
-          }
-        </div>
-      </header>
-
-      {
-        project.data.cover ? (
-          <Image
-            src={project.data.cover}
-            alt={project.data.title}
-            width={1280}
-            height={800}
-            loading="eager"
-            decoding="async"
-            class="mb-10 w-full rounded-2xl border border-border/70 object-cover object-top shadow-soft"
-          />
-        ) : null
-      }
-
-      <article
-        class="prose w-full max-w-none dark:prose-invert prose-headings:font-display prose-headings:tracking-tight prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
+  <div
+    class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 lg:pt-28 pb-16 lg:pb-20 font-sans"
+  >
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
+      <aside
+        class="lg:col-span-4 lg:sticky lg:top-24 lg:h-[calc(100dvh-7.5rem)] lg:overflow-y-auto lg:pr-2 space-y-5"
       >
-        <Content components={{ Button }} />
-      </article>
-    </Reveal>
-  </Section>
+        <Breadcrumb className="text-xs text-muted-foreground font-mono">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <a
+                href={getRelativeLocaleUrl(locale, "/")}
+                class="transition-colors hover:text-foreground"
+              >
+                {tBC("home")}
+              </a>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <a
+                href={getRelativeLocaleUrl(locale, "/projects")}
+                class="text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {tBC("projects")}
+              </a>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+
+        <div
+          class="border-b border-border/70 pb-3 flex items-baseline justify-between"
+        >
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-xs font-bold text-primary">02.</span>
+            <h2
+              class="font-display text-sm font-bold tracking-tight text-foreground uppercase"
+            >
+              {tProj("title")}
+            </h2>
+          </div>
+          <span class="font-mono text-xs text-muted-foreground"
+            >({allProjects.length})</span
+          >
+        </div>
+
+        <nav class="space-y-1.5 font-mono text-xs">
+          {
+            allProjects.map((p) => {
+              const pSlug = getProjectSlug(p);
+              const isActive = pSlug === slug;
+              return (
+                <a
+                  href={getRelativeLocaleUrl(locale, `/projects/${pSlug}`)}
+                  class={cn(
+                    "group flex flex-col gap-1 rounded p-3 transition duration-200 border",
+                    isActive
+                      ? "border-primary/40 bg-primary/10 text-foreground shadow-xs"
+                      : "border-transparent text-muted-foreground hover:bg-muted/40 hover:text-foreground",
+                  )}
+                >
+                  <div class="flex items-center justify-between gap-2">
+                    <div class="flex items-center gap-1.5 truncate">
+                      {isActive && (
+                        <span class="size-1.5 rounded bg-primary shrink-0 animate-pulse" />
+                      )}
+                      <span
+                        class={cn(
+                          "truncate font-display text-sm font-semibold",
+                          isActive
+                            ? "text-primary"
+                            : "group-hover:text-foreground",
+                        )}
+                      >
+                        {p.data.title}
+                      </span>
+                    </div>
+                    <span class="text-[11px] tabular-nums shrink-0 text-muted-foreground">
+                      {p.data.year}
+                    </span>
+                  </div>
+                  <p class="text-[11px] font-sans line-clamp-1 text-muted-foreground/80 leading-normal">
+                    {p.data.description}
+                  </p>
+                </a>
+              );
+            })
+          }
+        </nav>
+      </aside>
+
+      <main class="lg:col-span-8 space-y-8">
+        <Reveal type="slide-up" class="space-y-8">
+          <header class="flex flex-col gap-4 border-b border-border/70 pb-6">
+            <div
+              class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1"
+            >
+              <h1
+                class="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl"
+              >
+                {project.data.title}
+              </h1>
+              <span
+                class="font-mono text-xs font-semibold tabular-nums text-primary"
+              >
+                [{project.data.year}]
+              </span>
+            </div>
+            {
+              project.data.role ? (
+                <p class="text-sm font-medium text-primary font-mono">
+                  {project.data.role}
+                </p>
+              ) : null
+            }
+            <p
+              class="text-sm sm:text-base leading-relaxed text-muted-foreground text-pretty"
+            >
+              {project.data.description}
+            </p>
+
+            {
+              project.data.stacks?.length > 0 && (
+                <div class="flex flex-wrap gap-1.5 pt-1">
+                  {project.data.stacks.map((st: string) => (
+                    <span class="rounded border border-border/70 bg-card px-2.5 py-0.5 font-mono text-xs text-muted-foreground">
+                      {st}
+                    </span>
+                  ))}
+                </div>
+              )
+            }
+
+            <div class="mt-1 flex flex-wrap items-center gap-4">
+              {
+                project.data.url ? (
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={project.data.url}
+                    class="font-mono text-xs font-medium text-primary underline-offset-4 hover:underline"
+                  >
+                    {tProj("visitWebsite")}
+                  </a>
+                ) : null
+              }
+              {
+                project.data.repo ? (
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={project.data.repo}
+                    class="font-mono text-xs font-medium text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+                  >
+                    GitHub
+                  </a>
+                ) : null
+              }
+            </div>
+          </header>
+
+          {
+            project.data.cover ? (
+              <div class="overflow-hidden rounded border border-border/70 bg-card shadow-soft">
+                <Image
+                  src={project.data.cover}
+                  alt={project.data.title}
+                  width={1600}
+                  height={900}
+                  widths={[640, 960, 1280, 1600]}
+                  sizes="(max-width: 1024px) 100vw, 800px"
+                  loading="eager"
+                  fetchpriority="high"
+                  class="aspect-video w-full object-cover"
+                />
+              </div>
+            ) : null
+          }
+
+          <article
+            class="prose prose-neutral w-full max-w-none dark:prose-invert prose-headings:font-display prose-headings:tracking-tight prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
+          >
+            <Content components={{ Button }} />
+          </article>
+        </Reveal>
+      </main>
+    </div>
+  </div>
 </BaseLayout>

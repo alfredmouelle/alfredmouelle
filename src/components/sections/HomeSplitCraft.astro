@@ -1,0 +1,576 @@
+---
+import { Image } from "astro:assets";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+import ComeUpStats from "~/components/astro/ComeUpStats.astro";
+import { ContactForm } from "~/components/islands/contact-form";
+
+import { AppConfig } from "~/app.config";
+import heroAvatar from "~/assets/hero-avatar.webp";
+import type { ComeUpStats as ComeUpStatsType } from "~/lib/comeup";
+import type { JobEntry } from "~/lib/jobs";
+import { getJobSlug } from "~/lib/jobs";
+import type { ProjectEntry } from "~/lib/projects";
+import { getProjectSlug } from "~/lib/projects";
+import { createScopedTranslator, normalizeLocale } from "~/locales";
+
+interface Props {
+  projects: ProjectEntry[];
+  jobs: JobEntry[];
+  comeupStats: ComeUpStatsType;
+}
+
+const { projects, jobs, comeupStats } = Astro.props;
+
+const locale = normalizeLocale(Astro.currentLocale);
+const tHero = createScopedTranslator(locale, "section_hero");
+const tProjects = createScopedTranslator(locale, "section_projects");
+const tJobs = createScopedTranslator(locale, "section_jobs");
+const tJob = createScopedTranslator(locale, "job");
+const tScholarship = createScopedTranslator(locale, "section_scholarship");
+const tContact = createScopedTranslator(locale, "section_contact");
+
+const avatarAlt = `${AppConfig.author.name}, ${AppConfig.author.jobTitle[locale]}`;
+
+const comeupLabels = {
+  badge: tHero("comeup.badge"),
+  reviews: tHero("comeup.reviews"),
+  positive: tHero("comeup.positive"),
+  viewProfile: tHero("comeup.viewProfile"),
+};
+
+const contactLabels = {
+  fields: {
+    name: tContact("form.fields.name"),
+    email: tContact("form.fields.email"),
+    subject: tContact("form.fields.subject"),
+    message: tContact("form.fields.message"),
+    submit: tContact("form.fields.submit"),
+  },
+  errors: {
+    name: tContact("form.errors.name"),
+    email: tContact("form.errors.email"),
+    subject: tContact("form.errors.subject"),
+    message: tContact("form.errors.message"),
+  },
+  placeholders: {
+    subject: tContact("form.placeholders.subject"),
+    message: tContact("form.placeholders.message"),
+  },
+  note: tContact("form.note"),
+  messages: {
+    success: tContact("form.messages.success"),
+    error: tContact("form.messages.error"),
+  },
+};
+
+const capabilities = [
+  {
+    domain: "Backend & Architecture",
+    technologies: "Node.js, Spring Boot, PHP Laravel, REST, GraphQL",
+    focus:
+      locale === "fr"
+        ? "Architectures modulaires, APIs scalables, sécurité & haute disponibilité"
+        : "Modular architectures, scalable APIs, security & high availability",
+  },
+  {
+    domain: "Frontend & SaaS Modernes",
+    technologies: "Next.js, TanStack Start, React 19, Astro, Tailwind CSS",
+    focus:
+      locale === "fr"
+        ? "Interfaces véloces au pixel près, design systems & SSR/SSG"
+        : "Pixel-perfect fast interfaces, design systems & SSR/SSG",
+  },
+  {
+    domain: "Applications Mobiles",
+    technologies: "React Native, Flutter, Déploiement iOS & Android",
+    focus:
+      locale === "fr"
+        ? "Expériences mobiles multiplateformes, offline-first & fluidité native"
+        : "Cross-platform mobile apps, offline-first & native smoothness",
+  },
+  {
+    domain: "Data Modeling & Cache",
+    technologies: "PostgreSQL, MongoDB, Redis, Prisma, Drizzle ORM",
+    focus:
+      locale === "fr"
+        ? "Schémas relationnels stricts, indexation & requêtes haute performance"
+        : "Strict relational schemas, indexing & high-performance queries",
+  },
+  {
+    domain: "Cloud Infra & CI/CD",
+    technologies: "Docker, GitHub Actions, Vercel, AWS S3, Linux",
+    focus:
+      locale === "fr"
+        ? "Pipelines de déploiement automatisés, conteneurs & environnements reproductibles"
+        : "Automated CI/CD pipelines, containerization & reproducible environments",
+  },
+  {
+    domain: "Assurance Qualité & Tests",
+    technologies: "Vitest, Playwright, Cypress",
+    focus:
+      locale === "fr"
+        ? "Tests unitaires, intégration et non-régression de bout en bout"
+        : "Unit tests, integration, and full end-to-end non-regression",
+  },
+] as const;
+
+const scholarshipEntries = [
+  {
+    title: tScholarship("bts.title"),
+    specialty: tScholarship("bts.specialty"),
+    period: "2018 - 2020",
+    place: tScholarship("bts.academy"),
+    location: tScholarship("bts.location"),
+  },
+  {
+    title: tScholarship("bac.title"),
+    specialty: tScholarship("bac.specialty"),
+    period: "2017 - 2018",
+    place: tScholarship("bac.location1"),
+    location: tScholarship("bac.location2"),
+  },
+  {
+    title: tScholarship("probatoire.title"),
+    specialty: tScholarship("bac.specialty"),
+    period: "2016 - 2017",
+    place: tScholarship("bac.location1"),
+    location: tScholarship("bac.location2"),
+  },
+] as const;
+---
+
+<div
+  class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 lg:pt-28 pb-12 lg:pb-16 font-sans"
+>
+  <div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
+    <aside
+      class="lg:col-span-5 lg:sticky lg:top-24 lg:flex lg:h-[calc(100dvh-7.5rem)] lg:flex-col lg:justify-between lg:overflow-y-auto lg:pr-2 space-y-6 lg:space-y-0"
+    >
+      <div class="space-y-5">
+        <div class="flex flex-col items-center text-center space-y-3.5">
+          <div class="relative w-fit">
+            <div
+              class="rounded-full bg-card p-2 shadow-soft ring-1 ring-border/80"
+            >
+              <Image
+                src={heroAvatar}
+                alt={avatarAlt}
+                width={360}
+                height={360}
+                widths={[160, 240, 360]}
+                sizes="(max-width: 640px) 120px, 144px"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                class="size-28 sm:size-36 lg:size-40 rounded-full bg-background object-cover"
+              />
+            </div>
+          </div>
+
+          <div class="space-y-1.5 flex flex-col items-center">
+            <span
+              class="inline-block rounded bg-primary/10 px-3 py-1 text-xs font-semibold text-primary"
+            >
+              {AppConfig.author.jobTitle[locale]}
+            </span>
+            <h1
+              class="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+            >
+              Alfred Mouelle
+            </h1>
+
+            <div
+              class="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-xs text-muted-foreground pt-1"
+            >
+              <span class="font-bold text-foreground text-sm">
+                6+ {locale === "fr" ? "ans d'expérience" : "years of exp."}
+              </span>
+              <span>&middot;</span>
+              <span>Douala (GMT+1)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-center">
+          <ComeUpStats stats={comeupStats} labels={comeupLabels} />
+        </div>
+
+        <p
+          class="text-xs sm:text-sm leading-relaxed text-muted-foreground text-pretty text-center"
+        >
+          {
+            locale === "fr"
+              ? "J'aide porteurs de projet, startups et entreprises à concevoir des applications web durables, des SaaS évolutifs et des outils performants. Du modèle de données au pixel final."
+              : "Helping startups, founders, and teams build resilient web applications, scalable SaaS products, and tailored digital platforms with clean architecture and typed code."
+          }
+        </p>
+
+        <nav
+          class="hidden lg:flex flex-col gap-1 pt-2 text-xs font-medium text-muted-foreground"
+        >
+          <a
+            href="#manifesto"
+            class="group flex items-center gap-2 hover:text-foreground transition-colors py-1"
+          >
+            <span class="text-primary font-bold">01.</span>
+            <span class="group-hover:translate-x-1 transition-transform"
+              >Philosophie &amp; Approche</span
+            >
+          </a>
+          <a
+            href="#projects"
+            class="group flex items-center gap-2 hover:text-foreground transition-colors py-1"
+          >
+            <span class="text-primary font-bold">02.</span>
+            <span class="group-hover:translate-x-1 transition-transform"
+              >Réalisations ({projects.length})</span
+            >
+          </a>
+          <a
+            href="#jobs"
+            class="group flex items-center gap-2 hover:text-foreground transition-colors py-1"
+          >
+            <span class="text-primary font-bold">03.</span>
+            <span class="group-hover:translate-x-1 transition-transform"
+              >Parcours en entreprise</span
+            >
+          </a>
+          <a
+            href="#skills"
+            class="group flex items-center gap-2 hover:text-foreground transition-colors py-1"
+          >
+            <span class="text-primary font-bold">04.</span>
+            <span class="group-hover:translate-x-1 transition-transform"
+              >Matrice des compétences</span
+            >
+          </a>
+          <a
+            href="#scholarship"
+            class="group flex items-center gap-2 hover:text-foreground transition-colors py-1"
+          >
+            <span class="text-primary font-bold">05.</span>
+            <span class="group-hover:translate-x-1 transition-transform"
+              >Formation académique</span
+            >
+          </a>
+          <a
+            href="#contact"
+            class="group flex items-center gap-2 hover:text-foreground transition-colors py-1"
+          >
+            <span class="text-primary font-bold">06.</span>
+            <span class="group-hover:translate-x-1 transition-transform"
+              >Contact</span
+            >
+          </a>
+        </nav>
+      </div>
+
+      <div class="pt-4 border-t border-border/60 space-y-2.5">
+        <div
+          class="flex flex-wrap items-center justify-center gap-2 font-mono text-xs text-muted-foreground"
+        >
+          <a
+            href={`/assets/cv/CV_MOUELLE_${locale.toUpperCase()}.pdf`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-primary hover:underline font-semibold transition"
+          >
+            [ cv.pdf ]
+          </a>
+          <span>&middot;</span>
+          <a
+            href="https://github.com/alfredmouelle"
+            target="_blank"
+            rel="noreferrer"
+            class="hover:text-foreground transition">[ github ]</a
+          >
+          <span>&middot;</span>
+          <a
+            href="https://linkedin.com/in/alfredmouelle"
+            target="_blank"
+            rel="noreferrer"
+            class="hover:text-foreground transition">[ linkedin ]</a
+          >
+          <span>&middot;</span>
+          <a
+            href="https://x.com/alfredmouelle"
+            target="_blank"
+            rel="noreferrer"
+            class="hover:text-foreground transition">[ x ]</a
+          >
+          <span>&middot;</span>
+          <a
+            href="mailto:alfredmouelle@gmail.com"
+            class="hover:text-foreground transition">[ email ]</a
+          >
+        </div>
+        <p
+          class="hidden lg:block text-center font-mono text-[10px] text-muted-foreground/60"
+        >
+          &copy; {new Date().getFullYear()} Alfred Mouelle
+        </p>
+      </div>
+    </aside>
+
+    <main class="space-y-16 sm:space-y-20 lg:col-span-7">
+      <section id="manifesto" data-watched class="space-y-4 scroll-mt-28">
+        <div class="flex items-center gap-2 border-b border-border/70 pb-2">
+          <span class="font-mono text-xs font-bold text-primary">01.</span>
+          <h2
+            class="font-display text-base sm:text-lg font-bold tracking-tight text-foreground uppercase"
+          >
+            {
+              locale === "fr"
+                ? "Philosophie & Méthode"
+                : "Engineering Philosophy"
+            }
+          </h2>
+        </div>
+
+        <div
+          class="space-y-3 text-xs sm:text-sm leading-relaxed text-muted-foreground"
+        >
+          <p class="text-foreground font-medium">
+            {tHero("description")}
+          </p>
+          <p>
+            {
+              locale === "fr"
+                ? "Mon approche repose sur trois principes fondamentaux : un modèle de données rigoureux, des interfaces fluides et zéro dette technique cachée. Chaque livrable est conçu pour être assumé et maintenu dans le temps par vos équipes."
+                : "My engineering approach centers around three pillars: strict data modeling, fluid user interfaces, and zero hidden technical debt. Every deliverable is built to be easily operated and scaled by your team."
+            }
+          </p>
+        </div>
+      </section>
+
+      <section id="projects" data-watched class="space-y-5 scroll-mt-28">
+        <div
+          class="flex items-baseline justify-between border-b border-border/70 pb-2"
+        >
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-xs font-bold text-primary">02.</span>
+            <h2
+              class="font-display text-base sm:text-lg font-bold tracking-tight text-foreground uppercase"
+            >
+              {tProjects("title")}
+            </h2>
+          </div>
+          <a
+            href={getRelativeLocaleUrl(locale, "/projects")}
+            class="text-xs font-medium text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+          >
+            <span>{tProjects("showProjects")} ({projects.length})</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+
+        <div class="divide-y divide-border/60">
+          {
+            projects.map((project) => (
+              <article class="group py-5 transition duration-200 hover:bg-muted/30 px-3 -mx-3 rounded-xl">
+                <a
+                  href={getRelativeLocaleUrl(
+                    locale,
+                    `/projects/${getProjectSlug(project)}`,
+                  )}
+                  class="block space-y-2.5"
+                >
+                  <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                    <div class="flex items-center gap-2">
+                      <h3 class="font-display text-base font-bold text-foreground group-hover:text-primary transition-colors">
+                        {project.data.title}
+                      </h3>
+                    </div>
+
+                    <div class="text-xs text-muted-foreground">
+                      <span>
+                        {project.data.role ??
+                          (locale === "fr" ? "Créateur" : "Creator")}
+                      </span>
+                      <span class="ml-2 font-medium text-foreground">
+                        &middot; {project.data.year}
+                      </span>
+                    </div>
+                  </div>
+
+                  <p class="text-xs sm:text-sm leading-relaxed text-muted-foreground line-clamp-2">
+                    {project.data.description}
+                  </p>
+
+                  <div class="flex flex-wrap gap-1.5 pt-1">
+                    {project.data.stacks.map((st) => (
+                      <span class="rounded-md border border-border/70 bg-card px-2 py-0.5 text-xs text-muted-foreground">
+                        {st}
+                      </span>
+                    ))}
+                  </div>
+                </a>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+
+      <section id="jobs" data-watched class="space-y-5 scroll-mt-28">
+        <div
+          class="flex items-baseline justify-between border-b border-border/70 pb-2"
+        >
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-xs font-bold text-primary">03.</span>
+            <h2
+              class="font-display text-base sm:text-lg font-bold tracking-tight text-foreground uppercase"
+            >
+              {tJobs("title")}
+            </h2>
+          </div>
+          <a
+            href={getRelativeLocaleUrl(locale, "/jobs")}
+            class="text-xs font-medium text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+          >
+            <span>{tJobs("showJobs")} ({jobs.length})</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+
+        <div class="divide-y divide-border/60">
+          {
+            jobs.map((job) => {
+              const isCurrent =
+                !job.data.endDate || new Date(job.data.endDate) > new Date();
+              return (
+                <a
+                  href={getRelativeLocaleUrl(
+                    locale,
+                    `/jobs/${getJobSlug(job)}`,
+                  )}
+                  class="group block py-4 transition duration-200 hover:bg-muted/30 px-3 -mx-3 rounded-xl"
+                >
+                  <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                    <div class="flex items-center gap-2">
+                      <h3 class="font-display text-sm sm:text-base font-bold text-foreground group-hover:text-primary transition-colors">
+                        {job.data.company}
+                      </h3>
+                      <span class="text-xs text-muted-foreground">
+                        &middot;
+                      </span>
+                      <span class="text-xs font-medium text-foreground/90">
+                        {job.data.position}
+                      </span>
+                    </div>
+
+                    <div class="text-xs text-muted-foreground">
+                      {isCurrent ? (
+                        <span class="rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-semibold text-primary">
+                          {locale === "fr" ? "Poste actuel" : "Current"}
+                        </span>
+                      ) : (
+                        <span>
+                          {job.data.readTime} {tJob("readTime")}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <p class="mt-1 text-xs sm:text-sm leading-relaxed text-muted-foreground line-clamp-2">
+                    {job.data.description}
+                  </p>
+                </a>
+              );
+            })
+          }
+        </div>
+      </section>
+
+      <section id="skills" data-watched class="space-y-5 scroll-mt-28">
+        <div class="flex items-center gap-2 border-b border-border/70 pb-2">
+          <span class="font-mono text-xs font-bold text-primary">04.</span>
+          <h2
+            class="font-display text-base sm:text-lg font-bold tracking-tight text-foreground uppercase"
+          >
+            {
+              locale === "fr"
+                ? "Matrice des Compétences"
+                : "Technical Capabilities"
+            }
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+          {
+            capabilities.map((c) => (
+              <div class="rounded-xl border border-border/70 bg-card p-4 space-y-2 transition hover:border-primary/40 hover:shadow-xs">
+                <h3 class="text-xs sm:text-sm font-bold text-foreground">
+                  {c.domain}
+                </h3>
+                <p class="text-xs font-medium text-primary">{c.technologies}</p>
+                <p class="text-xs text-muted-foreground leading-relaxed">
+                  {c.focus}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <section id="scholarship" data-watched class="space-y-5 scroll-mt-28">
+        <div class="flex items-center gap-2 border-b border-border/70 pb-2">
+          <span class="font-mono text-xs font-bold text-primary">05.</span>
+          <h2
+            class="font-display text-base sm:text-lg font-bold tracking-tight text-foreground uppercase"
+          >
+            {tScholarship("title")}
+          </h2>
+        </div>
+
+        <div class="divide-y divide-border/60">
+          {
+            scholarshipEntries.map((s) => (
+              <div class="py-4 first:pt-0 last:pb-0 space-y-1">
+                <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <h3 class="font-display text-sm sm:text-base font-bold text-foreground">
+                    {s.title}
+                  </h3>
+                  <span class="font-mono text-xs tabular-nums text-primary font-semibold">
+                    {s.period}
+                  </span>
+                </div>
+                <p class="text-xs sm:text-sm font-medium text-primary">
+                  {s.specialty}
+                </p>
+                <p class="text-xs text-muted-foreground">
+                  {s.place} {s.location ? `· ${s.location}` : ""}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <section id="contact" data-watched class="space-y-6 scroll-mt-28">
+        <div class="flex items-center gap-2 border-b border-border/70 pb-2">
+          <span class="font-mono text-xs font-bold text-primary">06.</span>
+          <h2
+            class="font-display text-base sm:text-lg font-bold tracking-tight text-foreground uppercase"
+          >
+            {tContact("title")}
+          </h2>
+        </div>
+
+        <p class="text-xs sm:text-sm leading-relaxed text-muted-foreground">
+          {tContact("description")}
+        </p>
+
+        <div class="pt-2">
+          <ContactForm client:idle labels={contactLabels} variant="craft" />
+        </div>
+      </section>
+
+      <footer
+        class="lg:hidden border-t border-border/50 pt-8 pb-4 text-center font-mono text-[11px] text-muted-foreground/60"
+      >
+        <p>&copy; {new Date().getFullYear()} Alfred Mouelle</p>
+      </footer>
+    </main>
+  </div>
+</div>

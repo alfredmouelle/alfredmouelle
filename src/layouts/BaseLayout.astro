@@ -24,8 +24,10 @@ interface Props {
   noindex?: boolean;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   bodyClass?: string;
+  showFooter?: boolean;
 }
 
+const { showFooter = true } = Astro.props;
 const locale = normalizeLocale(Astro.currentLocale);
 ---
 
@@ -36,14 +38,14 @@ const locale = normalizeLocale(Astro.currentLocale);
 
     <link
       rel="preload"
-      href="/fonts/BeVietnamPro-Regular.woff2"
+      href="/fonts/BeVietnamPro-Variable.woff2"
       as="font"
       type="font/woff2"
       crossorigin
     />
     <link
       rel="preload"
-      href="/fonts/BeVietnamPro-Bold.woff2"
+      href="/fonts/GeistMono-Variable.woff2"
       as="font"
       type="font/woff2"
       crossorigin
@@ -86,17 +88,19 @@ const locale = normalizeLocale(Astro.currentLocale);
     <main class="grow" transition:animate="none">
       <slot />
     </main>
-    <Footer transition:persist />
+    {showFooter && <Footer transition:persist />}
 
     <BackToTop client:idle transition:persist />
 
     <Toaster client:idle richColors position="top-center" transition:persist />
 
     <script>
-      const HERO = 'section_hero';
+      const HERO = 'manifesto';
       const ANCHOR_EVENT = 'app:anchor-change';
       let sectionObserver: IntersectionObserver | null = null;
       let revealObserver: IntersectionObserver | null = null;
+      let isNavigatingAnchor = false;
+      let anchorTimer: ReturnType<typeof setTimeout> | null = null;
 
       const setupSectionObserver = () => {
         sectionObserver?.disconnect();
@@ -108,17 +112,25 @@ const locale = normalizeLocale(Astro.currentLocale);
         const base = window.location.pathname.replace(/\?.*$/, '');
         sectionObserver = new IntersectionObserver(
           (entries) => {
+            if (isNavigatingAnchor) return;
             for (const entry of entries) {
               if (!entry.isIntersecting) continue;
               const id = entry.target.id;
-              const url = id === HERO ? base : `${base}?anchor=${id}`;
+              const currentParams = new URLSearchParams(window.location.search);
+              if (id === HERO) {
+                currentParams.delete('anchor');
+              } else {
+                currentParams.set('anchor', id);
+              }
+              const qs = currentParams.toString();
+              const url = qs ? `${base}?${qs}` : base;
               if (url === window.location.pathname + window.location.search)
                 continue;
               window.history.replaceState(null, '', url);
               window.dispatchEvent(new Event(ANCHOR_EVENT));
             }
           },
-          { threshold: 0.85 }
+          { threshold: 0, rootMargin: '-15% 0px -65% 0px' }
         );
         for (const section of sections) sectionObserver.observe(section);
       };
@@ -157,17 +169,27 @@ const locale = normalizeLocale(Astro.currentLocale);
       };
 
       const scrollToUrlAnchor = () => {
-        const anchor = new URLSearchParams(window.location.search).get(
-          'anchor'
-        );
+        const anchor =
+          new URLSearchParams(window.location.search).get('anchor') ||
+          window.location.hash.replace('#', '');
         if (!anchor) return;
         const element = document.getElementById(anchor);
         if (!element) return;
-        const navbarHeight = window.innerWidth < 768 ? 50 : 0;
-        window.scrollTo({
-          top: element.getBoundingClientRect().top + window.scrollY - navbarHeight,
-          behavior: 'auto',
-        });
+
+        isNavigatingAnchor = true;
+        if (anchorTimer) clearTimeout(anchorTimer);
+        anchorTimer = setTimeout(() => {
+          isNavigatingAnchor = false;
+        }, 800);
+
+        const performScroll = () => {
+          element.scrollIntoView({ behavior: 'auto', block: 'start' });
+        };
+
+        performScroll();
+        requestAnimationFrame(performScroll);
+        setTimeout(performScroll, 60);
+        setTimeout(performScroll, 250);
       };
 
       const syncNavbar = () => {
@@ -176,6 +198,10 @@ const locale = normalizeLocale(Astro.currentLocale);
       };
 
       window.addEventListener('scroll', syncNavbar, { passive: true });
+      window.addEventListener('prototype:variant-change', () => {
+        setupSectionObserver();
+        setupReveal();
+      });
 
       scrollToUrlAnchor();
       setupSectionObserver();

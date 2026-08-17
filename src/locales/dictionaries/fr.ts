@@ -25,23 +25,9 @@ export default {
     eyebrow: 'Expertise',
     description:
       'Les technologies avec lesquelles je conçois, du back-end à l’infrastructure.',
-    backend_desc:
-      'Expertise en Node.js, PHP (Laravel) et Java Spring Boot pour des applications serveur robustes.',
-    frontend_desc:
-      "Création d'interfaces modernes avec Next.js, TanStack Start, Astro et Angular, soignées avec Tailwind CSS et ShadcnUI.",
-    mobile_desc:
-      "Développement d'applications mobiles multi-plateformes avec Flutter et React Native pour iOS et Android.",
-    database_desc:
-      'Modélisation et gestion des données avec PostgreSQL, MongoDB et Redis, via Prisma et Drizzle.',
-    devops_desc:
-      'Conteneurisation et déploiement continu avec Docker, Vercel et GitHub Actions.',
-    tests_desc:
-      "Tests end-to-end, unitaires et d'intégration avec Cypress, Vitest et Playwright.",
   },
 
   section_hero: {
-    greetings: 'Salut, je suis',
-    position: 'Développeur Full-Stack',
     description:
       'Développeur full-stack freelance, je conçois, fais évoluer et consolide des applications web et des SaaS B2B/B2C. Depuis 6 ans, j’aide porteurs de projet, startups et entreprises à transformer une idée ou un produit existant en solution fiable et maintenable. Mon objectif n’est pas seulement de faire avancer un projet, mais de livrer une base solide, que vous pourrez utiliser, faire évoluer et assumer sereinement dans la durée.',
     downloadCvBtn: 'Télécharger Mon CV',
@@ -49,7 +35,6 @@ export default {
       badge: 'Top vendeur ComeUp',
       reviews: 'avis',
       positive: 'positifs',
-      viewProfile: 'Voir le profil ComeUp',
     },
   },
 
@@ -79,6 +64,7 @@ export default {
     description:
       'Quelques entreprises et projets sur lesquels j’ai travaillé ces dernières années.',
     showJobs: 'Voir tout',
+    count: 'expériences',
   },
 
   section_projects: {
@@ -88,12 +74,12 @@ export default {
       'Une sélection de projets que j’ai conçus, développés et livrés.',
     showProjects: 'Voir tout',
     visitWebsite: 'Visiter le site web',
+    count: 'projets',
   },
 
   section_contact: {
     title: 'Travaillons ensemble',
     eyebrow: 'Contact',
-    emailCta: 'Écrire un email',
     description:
       'Un projet, une question ou une opportunité ? Écrivez-moi via le formulaire, je réponds généralement sous 24 heures.',
     form: {
@@ -112,7 +98,9 @@ export default {
       },
       placeholders: {
         subject: 'Proposition pour un service de...',
+        message: 'Votre message...',
       },
+      note: 'Réponse généralement sous 24h.',
       messages: {
         success: 'Votre message a été transmis avec succès.',
         error:

@@ -2,7 +2,7 @@
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
 import { LocaleToggle } from '~/components/islands/locale-toggle';
-import { MobileNav, NavLinks } from '~/components/islands/navlinks';
+import { MobileNav } from '~/components/islands/navlinks';
 import { ThemeToggle } from '~/components/islands/theme-toggle';
 
 import { getProjects } from '~/lib/projects';
@@ -42,31 +42,18 @@ const logoSrc = '/assets/logo.svg';
   id="site-header"
   class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-colors duration-300"
 >
-  <nav class="container flex h-16 items-center md:gap-10">
-    <div class="flex items-center justify-center gap-x-4 lg:gap-x-10">
-      <a href={homePath} class="shrink-0">
-        <img
-          src={logoSrc}
-          alt="Logo"
-          width={35}
-          height={35}
-          decoding="async"
-        />
-      </a>
+  <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
+    <a href={homePath} class="shrink-0 transition-opacity hover:opacity-80">
+      <img
+        src={logoSrc}
+        alt="Logo"
+        width={35}
+        height={35}
+        decoding="async"
+      />
+    </a>
 
-      <ul
-        class="hidden items-center gap-x-1 justify-self-start text-sm font-medium md:flex lg:gap-10"
-      >
-        <NavLinks
-          client:idle
-          labels={navLabels}
-          homePath={homePath}
-          showProjects={showProjects}
-        />
-      </ul>
-    </div>
-
-    <div class="flex flex-1 items-center justify-end gap-x-1.5">
+    <div class="flex items-center gap-x-2">
       <LocaleToggle
         client:idle
         labels={localeLabels}

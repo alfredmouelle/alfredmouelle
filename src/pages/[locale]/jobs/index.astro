@@ -1,82 +1,161 @@
 ---
-import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getRelativeLocaleUrl } from "astro:i18n";
 
-import Reveal from '~/components/astro/Reveal.astro';
-import Section from '~/components/astro/Section.astro';
-import SectionHeader from '~/components/astro/SectionHeader.astro';
-import { JobCard } from '~/components/job-card';
+import Reveal from "~/components/astro/Reveal.astro";
+import { JobCard } from "~/components/job-card";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '~/components/ui/breadcrumb';
+} from "~/components/ui/breadcrumb";
 
-import { AppConfig } from '~/app.config';
-import BaseLayout from '~/layouts/BaseLayout.astro';
-import { getJobSlug, getJobs } from '~/lib/jobs';
-import { createScopedTranslator, LOCALES, normalizeLocale } from '~/locales';
+import { AppConfig } from "~/app.config";
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import { getJobSlug, getJobs } from "~/lib/jobs";
+import { createScopedTranslator, LOCALES, normalizeLocale } from "~/locales";
 
 export function getStaticPaths() {
   return LOCALES.map((locale) => ({ params: { locale } }));
 }
 
 const locale = normalizeLocale(Astro.currentLocale);
-const t = createScopedTranslator(locale, 'breadcrumb');
-const tSection = createScopedTranslator(locale, 'section_jobs');
-const tJob = createScopedTranslator(locale, 'job');
-const tPeriod = createScopedTranslator(locale, 'job.period');
+const t = createScopedTranslator(locale, "breadcrumb");
+const tSection = createScopedTranslator(locale, "section_jobs");
+const tJob = createScopedTranslator(locale, "job");
+const tPeriod = createScopedTranslator(locale, "job.period");
 
 const labels = {
-  readTime: tJob('readTime'),
-  elapsed: tPeriod('elapsed'),
-  from: tPeriod('from'),
-  to: tPeriod('to'),
+  readTime: tJob("readTime"),
+  elapsed: tPeriod("elapsed"),
+  from: tPeriod("from"),
+  to: tPeriod("to"),
 };
 
 const jobs = await getJobs(locale);
-const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, '/jobs')}`;
+const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, "/jobs")}`;
+
+const allJobStacks = Array.from(
+  new Set(jobs.flatMap((j) => j.data.stacks || [])),
+).sort();
 ---
 
-<BaseLayout title={tSection('title')} canonical={canonical}>
-  <Section class="hero mt-20" skipFadeIn>
-    <Breadcrumb className="mb-6 text-sm text-muted-foreground">
-      <BreadcrumbList>
-        <BreadcrumbItem>
-          <a
-            href={getRelativeLocaleUrl(locale, '/')}
-            class="transition-colors hover:text-foreground"
-          >
-            {t('home')}
-          </a>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbPage>{t('jobs')}</BreadcrumbPage>
-        </BreadcrumbItem>
-      </BreadcrumbList>
-    </Breadcrumb>
+<BaseLayout title={tSection("title")} canonical={canonical}>
+  <div
+    class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 lg:pt-28 pb-16 lg:pb-20 font-sans"
+  >
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
+      <aside
+        class="lg:col-span-4 lg:sticky lg:top-24 lg:h-[calc(100dvh-7.5rem)] lg:overflow-y-auto lg:pr-2 space-y-6"
+      >
+        <Breadcrumb className="text-xs text-muted-foreground font-mono">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <a
+                href={getRelativeLocaleUrl(locale, "/")}
+                class="transition-colors hover:text-foreground"
+              >
+                {t("home")}
+              </a>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage className="font-semibold text-foreground"
+                >{t("jobs")}</BreadcrumbPage
+              >
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
 
-    <SectionHeader
-      eyebrow={tSection('eyebrow')}
-      title={tSection('title')}
-      description={tSection('description')}
-    />
-
-    <ul class="grid gap-4 md:grid-cols-2">
-      {
-        jobs.map((job, index) => (
-          <Reveal as="li" type="slide-up" delay={index * 60}>
-            <a
-              href={getRelativeLocaleUrl(locale, `/jobs/${getJobSlug(job)}`)}
-              class="block h-full"
+        <div class="space-y-2 border-b border-border/70 pb-4">
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-xs font-bold text-primary">03.</span>
+            <h1
+              class="font-display text-2xl font-bold tracking-tight text-foreground uppercase sm:text-3xl"
             >
-              <JobCard job={job.data} locale={locale} labels={labels} />
-            </a>
-          </Reveal>
-        ))
-      }
-    </ul>
-  </Section>
+              {tSection("title")}
+            </h1>
+          </div>
+          <p class="font-mono text-xs text-muted-foreground">
+            {jobs.length}
+            {tSection("count")}
+          </p>
+        </div>
+
+        <p
+          class="text-xs sm:text-sm leading-relaxed text-muted-foreground text-pretty"
+        >
+          {tSection("description")}
+        </p>
+
+        {
+          allJobStacks.length > 0 && (
+            <div class="space-y-2.5 rounded-2xl border border-border/70 bg-card p-4 shadow-soft">
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-[11px] font-semibold text-foreground uppercase tracking-wider">
+                  {locale === "fr" ? "Technologies clés" : "Core technologies"}
+                </span>
+                <span class="font-mono text-[11px] text-muted-foreground">
+                  ({allJobStacks.length})
+                </span>
+              </div>
+              <div class="flex flex-wrap gap-1.5">
+                {allJobStacks.map((stack) => (
+                  <span class="rounded border border-border/60 bg-background/80 px-2 py-0.5 font-mono text-[10px] text-muted-foreground">
+                    {stack}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )
+        }
+
+        <div
+          class="rounded border border-primary/20 bg-primary/5 p-4 space-y-2"
+        >
+          <p class="font-display text-xs font-bold text-foreground">
+            {
+              locale === "fr"
+                ? "Recrutement ou mission ?"
+                : "Hiring or contract?"
+            }
+          </p>
+          <p class="text-[11px] leading-relaxed text-muted-foreground">
+            {
+              locale === "fr"
+                ? "Disponible pour des opportunités en CDI/Freelance à fort impact technique."
+                : "Open to high-impact software engineering roles & consulting."
+            }
+          </p>
+          <a
+            href={`${getRelativeLocaleUrl(locale, "/")}?anchor=contact`}
+            class="inline-block font-mono text-xs font-semibold text-primary hover:underline underline-offset-4 pt-1"
+          >
+            {locale === "fr" ? "Me contacter" : "Get in touch"}
+          </a>
+        </div>
+      </aside>
+
+      <main class="lg:col-span-8 space-y-6">
+        <ul class="grid gap-5">
+          {
+            jobs.map((job, index) => (
+              <Reveal as="li" type="slide-up" delay={index * 50}>
+                <a
+                  href={getRelativeLocaleUrl(
+                    locale,
+                    `/jobs/${getJobSlug(job)}`,
+                  )}
+                  class="block h-full transition duration-300 hover:-translate-y-0.5"
+                >
+                  <JobCard job={job.data} locale={locale} labels={labels} />
+                </a>
+              </Reveal>
+            ))
+          }
+        </ul>
+      </main>
+    </div>
+  </div>
 </BaseLayout>

@@ -1,12 +1,9 @@
 ---
-import SectionContact from '~/components/sections/SectionContact.astro';
-import SectionHero from '~/components/sections/SectionHero.astro';
-import SectionJobs from '~/components/sections/SectionJobs.astro';
-import SectionProjects from '~/components/sections/SectionProjects.astro';
-import SectionScholarship from '~/components/sections/SectionScholarship.astro';
-import SectionSkills from '~/components/sections/SectionSkills.astro';
+import HomeSplitCraft from '~/components/sections/HomeSplitCraft.astro';
 
 import BaseLayout from '~/layouts/BaseLayout.astro';
+import { getComeUpStats } from '~/lib/comeup';
+import { getJobs } from '~/lib/jobs';
 import { getProjects } from '~/lib/projects';
 import { LOCALES, normalizeLocale } from '~/locales';
 
@@ -15,14 +12,11 @@ export function getStaticPaths() {
 }
 
 const locale = normalizeLocale(Astro.currentLocale);
-const hasProjects = (await getProjects(locale)).length > 0;
+const projects = await getProjects(locale);
+const jobs = await getJobs(locale);
+const comeupStats = await getComeUpStats();
 ---
 
-<BaseLayout>
-  <SectionHero />
-  {hasProjects && <SectionProjects />}
-  <SectionJobs />
-  <SectionSkills />
-  <SectionScholarship />
-  <SectionContact />
+<BaseLayout showFooter={false}>
+  <HomeSplitCraft projects={projects} jobs={jobs} comeupStats={comeupStats} />
 </BaseLayout>
