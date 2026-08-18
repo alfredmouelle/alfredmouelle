@@ -10,7 +10,7 @@ More about me here: [alfredmouelle.com](https://alfredmouelle.com)
 - [create-stack](https://github.com/alfredmouelle/create-stack) : start a SaaS without marrying your vendors. Swap your mailer, storage or queue without touching your business code. [Docs](https://create-stack.alfredmouelle.com)
 - [unduck](https://github.com/alfredmouelle/unduck) : search anything, everywhere, using thousands of bangs.
 - [pdf-to-json](https://github.com/alfredmouelle/pdf-to-json) : extract fields from a PDF file and convert them to JSON.
-- [dotfiles](https://github.com/alfredmouelle/dotfiles) : my whole working environment, backed up just in case.
+- [dotfiles](https://github.com/alfredmouelle/dotfiles) : personal macOS developer environment, managed with chezmoi.
 
 ### Find me on
 
