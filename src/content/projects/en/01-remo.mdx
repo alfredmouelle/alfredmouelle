@@ -1,6 +1,6 @@
 ---
 title: "Remo"
-description: "A fast, portable, AI-augmented note-taking app: instant capture, an encrypted vault and real-time sync across web, desktop and Raycast."
+description: "A fast note-taking app with instant Raycast capture, encrypted storage, and real-time sync across web, desktop, and Raycast."
 year: 2026
 role: "Creator & Full-Stack Developer"
 stacks:
@@ -31,34 +31,34 @@ meta:
     - productivity
 ---
 
-# Remo : note-taking built around your workflow
+# Remo: note-taking built around your workflow
 
 ## The product
 
-**Remo** is a note-taking app I design and build in public. The starting point is simple: most note apps are either too lightweight to get real work done, or too heavy and slow. Remo aims for the sweet spot : **simple by default, powerful when needed**.
+I am building **Remo** in public out of frustration with existing tools. Most note apps either lack the depth needed for technical work or feel bloated and slow. Remo aims for a clean balance: simple by default, with powerful tools available when you need them.
 
-The goal comes down to three steps: **capture** an idea in seconds, **structure** notes without friction, then **ship** decisions using AI workflows grounded in your own content.
+The workflow centers on fast capture, frictionless organization, and an AI assistant grounded directly in your own notes.
 
 ![The Remo web app note editor](../_assets/remo-editor.webp)
 
 ## Key features
 
-- **Instant capture** : Create a note in under three seconds, straight from the Raycast extension, without breaking your flow.
-- **Context-aware assistant** : Summarize, reformulate, translate and extract todos through a multi-provider AI layer.
-- **Vault & encryption** : Protect sensitive notes with lock controls and optional end-to-end encryption.
-- **Real-time sync** : Notes sync instantly across every device via Convex.
-- **Data portability** : Free import/export and sharable notes via secure links. Your data is yours.
-- **History** : Snapshot and restore to roll back anytime.
+- **Instant capture**: create notes in seconds directly from the Raycast extension without switching windows.
+- **Context-aware assistant**: summarize, rewrite, translate, and extract action items through a multi-provider AI engine.
+- **Vault & encryption**: protect sensitive notes with passcode locks and optional end-to-end encryption.
+- **Real-time sync**: instant updates across devices powered by Convex.
+- **Data portability**: straightforward Markdown import and export with shareable web links.
+- **Note snapshots**: version history to inspect changes and restore previous drafts.
 
-## AI, grounded in your notes
+## AI grounded in your notes
 
-Remo's assistant does more than generate text: it draws on the user's real content to answer questions, summarize, or extract concrete actions. The AI layer is abstracted behind a multi-provider interface (Anthropic, OpenAI, Gemini, Ollama), so switching models never means rewriting business logic.
+Rather than generic text generation, Remo's assistant queries your existing notes to answer questions, build summaries, and pull out tasks. The AI layer is abstracted behind a multi-provider interface (Anthropic, OpenAI, Gemini, Ollama), making it simple to switch models without modifying product logic.
 
 ![The AI actions panel in the web editor](../_assets/remo-ai-actions.webp)
 
 ## Capture & AI from Raycast
 
-The Raycast extension is what makes Remo truly portable: create a note, run a search or query the AI assistant without ever leaving your workflow.
+The Raycast extension makes Remo accessible anywhere in macOS. You can jot down ideas, search existing notes, or prompt the AI assistant directly from the command bar.
 
 ![Creating a note from the Raycast extension](../_assets/remo-create-note.webp)
 
@@ -68,15 +68,15 @@ The Raycast extension is what makes Remo truly portable: create a note, run a se
 
 ## Architecture & tech stack
 
-Remo is a **Turborepo + pnpm monorepo** bringing several surfaces together around a single backend:
+Remo runs as a Turborepo and pnpm monorepo uniting three client surfaces with a shared backend:
 
-- **Frontend**: TanStack Start (React 19), Shadcn UI and Tailwind CSS.
-- **Backend & database**: Convex (serverless, real-time).
+- **Frontend**: TanStack Start (React 19), Shadcn UI, and Tailwind CSS.
+- **Backend & database**: Convex for real-time document synchronization.
 - **Authentication**: Clerk.
-- **AI**: Vercel AI SDK, as a multi-provider abstraction.
-- **Editor**: Tiptap.
-- **Surfaces**: web app (with offline PWA support), an Electron desktop app (macOS / Windows) and a Raycast extension.
+- **AI integration**: Vercel AI SDK with multi-provider abstraction.
+- **Editor core**: Tiptap.
+- **Client surfaces**: web application (with PWA offline support), Electron desktop app for macOS and Windows, and a native Raycast extension.
 
 ## My role
 
-I drive Remo end to end: product design, monorepo architecture, building the web, desktop and Raycast surfaces, and the shared AI layer. The roadmap is open and the product is built in public, with features prioritized from real user feedback.
+I handle Remo end to end, including product design, monorepo architecture, client applications, and the AI integration layer. The roadmap is public and shaped by active user feedback.

@@ -29,7 +29,7 @@ const metadata: Record<Locale, SiteMetadata> = {
   fr: {
     title: 'Alfred Mouelle - Développeur Full-Stack',
     description:
-      "Découvrez le portfolio d'Alfred Mouelle, développeur full-stack. Explorez ses projets, compétences et expériences professionnelles.",
+      "Portfolio d'Alfred Mouelle, développeur full-stack : projets SaaS, réalisations open source et parcours technique.",
     keywords: [
       'portfolio développeur full-stack',
       'Alfred Mouelle',
@@ -69,7 +69,7 @@ const metadata: Record<Locale, SiteMetadata> = {
   en: {
     title: 'Alfred Mouelle - Full-Stack Developer',
     description:
-      "Discover Alfred Mouelle's portfolio, full-stack developer. Explore his projects, skills, and professional experiences.",
+      'Portfolio of Alfred Mouelle, full-stack developer: SaaS projects, open-source tools, and engineering background.',
     keywords: [
       'full-stack developer portfolio',
       'Alfred Mouelle',

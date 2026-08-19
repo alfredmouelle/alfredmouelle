@@ -1,6 +1,6 @@
 ---
 title: "Rise of Africa"
-description: "Plateforme e-learning dédiée au trading : formations, webinaires, forums communautaires, profils traders et système de signalement anti-arnaque."
+description: "Plateforme e-learning dédiée au trading : cours vidéo structurés, webinaires, forums communautaires, profils de traders et signalement d'arnaques."
 year: 2025
 role: "Développeur Full-Stack"
 stacks:
@@ -30,33 +30,33 @@ meta:
     - dashboard admin
 ---
 
-# Rise of Africa : la plateforme e-learning dédiée au trading
+# Rise of Africa : plateforme e-learning dédiée au trading
 
 ## Le produit
 
-**Rise of Africa** est une plateforme de formation en ligne centrée sur le trading et l'éducation financière. Elle réunit au même endroit les contenus pédagogiques, la communauté et les outils de suivi de progression, pour accompagner ses membres de la première formation jusqu'à la pratique.
+**Rise of Africa** est une plateforme d'apprentissage en ligne consacrée au trading et à l'éducation financière. Elle rassemble dans un espace unique les modules pédagogiques, les échanges communautaires et le suivi de progression des apprenants.
 
 ## Espace membre
 
-Le tableau de bord membre offre une vue claire de la progression : formations suivies, temps de visionnage, modules terminés, webinaires à venir, métriques d'engagement et profil de trader personnalisé.
+Le tableau de bord permet à chaque membre de suivre les modules visionnés, le temps d'apprentissage cumulé, les prochains webinaires en direct et ses indicateurs de progression sur un profil de trader personnalisé.
 
 ![Tableau de bord membre](../_assets/roa.webp)
 
 ## Fonctionnalités clés
 
-- **Formations & webinaires** : Catalogue de formations structurées en modules, avec suivi de progression et webinaires programmés.
-- **Espace membre** : Tableau de bord personnalisé, métriques d'engagement et profil de trader.
-- **Forums communautaires** : Espaces d'échange entre membres pour poser des questions et partager.
-- **Système anti-arnaque** : Signalement d'arnaques pour protéger la communauté des escroqueries.
-- **Paiements & abonnements** : Achat de formations et gestion des abonnements via Stripe.
-- **Vidéo & notifications** : Lecture vidéo des formations et webinaires, notifications push (web-push).
-- **Dashboard administrateur** : Gestion complète des utilisateurs, des formations et des contenus.
+- **Formations vidéo & webinaires** : parcours d'apprentissage par chapitres avec suivi précis de la progression et sessions live planifiées.
+- **Profil de trader** : espace personnel affichant les statistiques de visionnage et les étapes validées.
+- **Forums communautaires** : espaces de discussion thématiques entre apprenants et formateurs.
+- **Signalement anti-arnaque** : module de signalement pour alerter la communauté contre les fraudes récurrentes du secteur.
+- **Paiements & abonnements** : intégration Stripe pour l'achat de modules à l'unité et la gestion des abonnements mensuels.
+- **Diffusion vidéo** : stockage sécurisé sur AWS S3 avec lecteur adaptatif et notifications web-push lors des nouveautés.
+- **Back-office administrateur** : gestion des cohortes d'étudiants, publication de vidéos et suivi financier.
 
 ![Profil de trader du membre](../_assets/roa-trader.webp)
 
 ## Back-office administrateur
 
-Côté administration, la plateforme propose un dashboard complet pour piloter l'activité : suivi des utilisateurs, statistiques globales et gestion du catalogue de formations.
+L'équipe d'administration gère le catalogue de formations, suit les métriques d'engagement des membres et traite les demandes d'assistance depuis un tableau de bord dédié.
 
 ![Dashboard administrateur](../_assets/roa-admin-dashboard.webp)
 
@@ -64,17 +64,16 @@ Côté administration, la plateforme propose un dashboard complet pour piloter l
 
 ## Stack technique
 
-- **Frontend & Backend** : Next.js (App Router) et TypeScript.
-- **API** : tRPC, pour une communication client-serveur typée de bout en bout.
-- **Base de données** : PostgreSQL via Drizzle ORM.
+- **Framework applicatif** : Next.js App Router avec TypeScript.
+- **Couche API** : tRPC pour des appels client-serveur strictement typés.
+- **Base de données** : PostgreSQL avec Drizzle ORM.
 - **Authentification** : better-auth.
-- **Paiements** : Stripe.
-- **Stockage média** : AWS S3, avec lecture vidéo via react-player.
-- **Notifications** : web-push et emails transactionnels (Resend + React Email).
-- **Tâches asynchrones** : Inngest.
-- **UI** : Tailwind CSS et Radix UI.
-- **Tests** : Playwright (E2E) et Vitest.
+- **Paiements** : Stripe (Checkout et Webhooks).
+- **Médias & stockage** : AWS S3 pour l'hébergement vidéo.
+- **Notifications** : Web Push API et emails transactionnels via Resend et React Email.
+- **Tâches asynchrones** : Inngest pour l'orchestration des jobs en arrière-plan.
+- **Tests** : Vitest pour la logique métier et Playwright pour les scénarios E2E.
 
 ## Mon rôle
 
-Je suis intervenu en tant que développeur Full-Stack sur l'ensemble de la plateforme : espace membre, back-office administrateur, forums et système de signalement, intégration des paiements Stripe et de la diffusion vidéo, avec un soin particulier porté à la cohérence de l'expérience entre les espaces membre et admin.
+En tant que développeur full-stack sur ce projet, j'ai développé l'espace membre et le back-office d'administration, modélisé la base de données avec Drizzle, conçu les procédures tRPC et intégré la facturation Stripe ainsi que le traitement vidéo.

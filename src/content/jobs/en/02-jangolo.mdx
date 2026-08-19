@@ -2,7 +2,7 @@
 readTime: 2
 company: "Jangolo"
 position: "Freelance Backend Developer"
-description: "Integration of third-party APIs, development of REST microservices in PHP Laravel, API documentation with OpenAPI v3 Swagger, and management of the AWS API gateway."
+description: "Backend development in Laravel: REST microservices, OpenAPI v3 documentation, AWS API Gateway routing, and partner API integrations."
 startDate: 2022-02-01
 endDate: 2023-03-18
 stacks:
@@ -21,44 +21,23 @@ published: true
 siteUrl: "https://pr.jangolo.com"
 ---
 
-# Backend Development for Jangolo
+# Backend microservices for Jangolo
 
 ## Context
 
-**Jangolo** is a pioneering integrated agricultural platform in Cameroon, revolutionizing the agricultural landscape through digital technologies. Jangolo serves as a central hub connecting farmers, agro-industries, restaurants, and consumers, promoting a smooth and efficient agricultural value chain.
+Jangolo is an agritech platform in Cameroon that connects farmers, distributors, and restaurants. The platform handles produce listings, bulk orders, and supplier deliveries. As traffic and feature requirements grew, the engineering team needed to split monolithic endpoints into modular microservices, integrate partner APIs, and document all public endpoints for client applications.
 
-Since **February 1, 2022**, I have contributed as a **Freelance Backend Developer** to the integration of third-party APIs, the development of REST microservices in **PHP Laravel**, the documentation of APIs with **OpenAPI v3 Swagger**, and the management of the AWS API gateway.
+## My role
 
-## My Role
+Working as a freelance backend developer, I implemented REST microservices in Laravel, routed traffic through AWS API Gateway, and documented all interfaces using OpenAPI 3.0.
 
-My work at Jangolo includes the following responsibilities:
+## What I built
 
-- **Integration of third-party APIs** to extend the functionalities of the Jangolo platform.
-- **Development of REST microservices** in **PHP Laravel** to improve the platform's modularity and scalability.
-- **API Documentation** with **OpenAPI v3 Swagger** to ensure clear and precise communication of API functionalities.
-- **Management of the AWS API gateway** to ensure efficient and secure communication between microservices.
+- **Laravel microservices**: built modular REST services to isolate order lifecycle processing, product catalog queries, and inventory updates.
+- **AWS API Gateway management**: configured routes, authorization headers, request validation, and rate limiting across backend services.
+- **API contracts with OpenAPI v3**: documented all endpoints with Swagger UI, giving mobile and web teams interactive, tested request-response specifications.
+- **Third-party integrations**: connected external payment providers and SMS notification gateways with reliable webhook handling.
 
-## Challenges and Solutions
+## Key takeaways
 
-- **Integration of third-party APIs**: Implementing robust solutions to integrate external services smoothly and securely.
-- **Development of microservices**: Creating modular microservices to improve the platform's maintainability and scalability.
-- **API Documentation**: Using **Swagger** to generate comprehensive and interactive API documentation, facilitating their use by developers.
-- **Management of the AWS API gateway**: Setting up optimal configurations to ensure smooth and secure communication between microservices.
-
-## Technologies Used
-
-- **Programming Language**: PHP
-- **Framework**: Laravel
-- **API Documentation**: OpenAPI v3, Swagger
-- **Cloud Services**: AWS
-
-## Results
-
-- **Extended functionalities**: Thanks to the integration of third-party APIs, the Jangolo platform now offers additional functionalities to its users.
-- **Increased modularity**: The development of microservices has improved the platform's modularity and scalability.
-- **Improved documentation**: API documentation with OpenAPI v3 Swagger has facilitated the integration and use of APIs by developers.
-- **Optimized communication**: Management of the AWS API gateway has ensured smooth and secure communication between microservices.
-
-## Learning
-
-This project has allowed me to gain in-depth expertise in **PHP**, **Laravel**, and **OpenAPI v3 Swagger**, as well as solid experience in third-party API integration, microservices development, and AWS API gateway management. It has also strengthened my skills in API documentation and the use of AWS cloud services.
+Working across distributed microservices made API documentation non-negotiable. Writing strict OpenAPI contracts before writing endpoint handlers eliminated integration guesswork and prevented schema mismatches between backend and client teams.

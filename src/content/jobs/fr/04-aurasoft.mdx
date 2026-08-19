@@ -3,7 +3,7 @@ readTime: 3
 featured: true
 company: "AuraSoft Inc."
 position: "Développeur Full-Stack"
-description: "Contribution active au développement et à la conception de la plateforme SAAS AuraTax, spécialisée dans la gestion automatisée des impôts et des déclarations fiscales."
+description: "Développement full-stack et lead technique sur AuraTax : modules sociétés (T2, CO-17, AT1), fiducies (T3) et déclarations internationales (T1135, T1134, T106, RC4649, RC59) sous Spring Boot, Angular et MongoDB."
 startDate: 2022-02-21
 endDate: 2026-03-21
 stacks:
@@ -22,11 +22,20 @@ meta:
     - typescript
     - mongodb
     - saas fiscal
-    - gestion des impôts
     - déclarations fiscales
     - automatisation fiscale
-    - plateforme fiscale en ligne
     - conformité fiscale
+    - gestion des impôts
+    - plateforme fiscale en ligne
+    - t2
+    - co-17
+    - at1
+    - t3
+    - t1135
+    - t1134
+    - t106
+    - rc4649
+    - rc59
     - agence du revenu du canada
     - auratax
     - aurasoft
@@ -34,43 +43,24 @@ published: true
 siteUrl: "https://www.auratax.ca"
 ---
 
-# Développement du SASS "AuraTax"
+# Développement full-stack et lead technique sur AuraTax
 
 ## Contexte
 
-**AuraTax** est une solution logicielle développée par **AuraSoft Inc.** visant à faciliter la gestion automatisée des impôts et des déclarations fiscales. La plateforme permet aux utilisateurs de gérer et transmettre leurs impôts en ligne de manière efficace, tout en intégrant des fonctionnalités avancées pour l'analyse et la conformité fiscale.
-
-Depuis le **21 février 2022**, je contribue activement en tant que **Développeur Full-Stack** à l'évolution de cette plateforme, travaillant à la fois sur le frontend et le backend pour répondre aux besoins fonctionnels et techniques du produit. En février 2024, j'ai été promu au poste de **Chef d'équipe**, où je supervise désormais une équipe de développeurs tout en continuant à contribuer au développement de la plateforme.
+AuraSoft Inc. édite AuraTax, une solution SaaS et desktop dédiée à la préparation et à la télétransmission des déclarations de sociétés (T2, CO-17, AT1), fiducies (T3), déclarations de revenus étrangers (T1135, T1134, T106, RC4649) et consentements d'entreprise (RC59 / XRC59) auprès de l'Agence du revenu du Canada (ARC) et de Revenu Québec. Chaque module implique des centaines de formulaires interdépendants, des règles de conformité strictes et une exigence absolue d'exactitude.
 
 ## Mon rôle
 
-Mon travail chez AuraSoft Inc. comprend les responsabilités suivantes :
+J'ai rejoint AuraSoft en février 2022 en tant que développeur full-stack sur le backend Spring Boot et l'interface Angular. En février 2024, j'ai évolué vers le rôle de chef d'équipe, supervisant les développeurs tout en continuant à concevoir et coder les fonctionnalités critiques du produit et les services web de télétransmission.
 
-- **Développement Backend** avec **Java Spring Boot** pour implémenter des API robustes et évolutives permettant la gestion des utilisateurs, des déclarations fiscales, et des calculs complexes.
-- **Développement Frontend** avec **Angular** et **TypeScript** pour assurer une interface utilisateur réactive, intuitive, et optimisée pour les utilisateurs de la plateforme AuraTax.
-- **Gestion de base de données** avec **MongoDB**, utilisée pour stocker et manipuler de grandes quantités de données fiscales de manière rapide et sécurisée.
-- **Tests E2E** avec **Cypress** (précédemment **Protractor**), garantissant une couverture de test complète des fonctionnalités critiques de la plateforme.
-- **Versionnement de code** via **Git**, **GitHub**, et **Gitea**, permettant un travail collaboratif efficace et une gestion fluide des versions du projet.
+## Ce que j'ai réalisé et piloté
 
-## Défis et solutions
+- **Moteurs fiscaux sous Spring Boot** : développement des modules de calcul, des schémas de validation et des services de télétransmission SOAP/REST pour la déclaration fédérale T2 (avec Préremplir ma déclaration et pré-validation), le CO-17 du Québec, l'AT1 de l'Alberta, les déclarations de fiducies (T3) et les déclarations internationales (T1135, T1134, T106, RC4649).
+- **Interface utilisateur sous Angular** : conception d'assistants de saisie multi-étapes en Angular et TypeScript, pensés pour rester fluides et lisibles sur des formulaires denses.
+- **Optimisation de MongoDB** : modélisation des schémas de documents pour des déclarations volumineuses et optimisation des index pour absorber les pics de charge en période fiscale.
+- **Tests E2E sous Cypress** : migration des anciens tests Protractor vers Cypress et couverture automatisée des principaux parcours de calcul pour sécuriser les flux de télétransmission.
+- **Lead technique** : cadrage des sprints de développement, revues de code systématiques et accompagnement de l'équipe face aux évolutions réglementaires annuelles de l'ARC et de Revenu Québec.
 
-- **Gestion des performances** : Le volume de données fiscales traitées étant important, des optimisations ont été mises en place au niveau des requêtes MongoDB et de l'architecture du backend pour garantir des temps de réponse rapides.
-- **Sécurité des données** : La sécurité étant primordiale pour une application fiscale, nous avons mis en place des mécanismes robustes d'authentification, de validation des entrées, et de cryptage des données pour protéger les informations sensibles.
-- **Evolution continue du frontend** : L'expérience utilisateur est cruciale pour AuraTax. Nous avons utilisé **Angular** pour créer une interface moderne et dynamique, en tenant compte des retours des utilisateurs afin d'améliorer constamment la convivialité et l'accessibilité de la plateforme.
+## Ce que j'en retire
 
-## Résultats
-
-- **Efficacité accrue** : Grâce à des API backend optimisées et une interface utilisateur améliorée, AuraTax offre une expérience plus fluide, permettant aux utilisateurs de traiter leurs déclarations fiscales plus rapidement.
-- **Amélioration continue** : Les tests E2E avec Cypress garantissent que les nouvelles fonctionnalités et améliorations déployées sont stables et sans régressions.
-
-## Technologies utilisées
-
-- **Base de données** : MongoDB
-- **Versionnement de code** : Git, GitHub, Gitea
-- **Backend** : Java Spring Boot
-- **Frontend** : Angular, TypeScript
-- **Tests E2E** : Cypress (précédemment Protractor)
-
-## Apprentissage
-
-Ce projet m'a permis d'acquérir une expertise approfondie en **Java Spring Boot**, **Angular**, et **MongoDB**, ainsi qu'une solide expérience dans les tests automatisés avec **Cypress**. Il m'a également permis de renforcer mes compétences en gestion des versions et en collaboration avec des équipes pluridisciplinaires.
+Le logiciel fiscal ne tolère aucune approximation. Un simple écart d'arrondi ou une erreur de schéma XML entraîne le rejet pur et simple d'une déclaration par les autorités fiscales. Piloter le développement d'AuraTax m'a appris à exiger des tests de non-régression exhaustifs, une modélisation défensive des données et une rigueur constante dans la traduction du métier en code.

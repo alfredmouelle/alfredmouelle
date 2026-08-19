@@ -1,18 +1,22 @@
 ---
-import { Image } from "astro:assets";
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { Image } from 'astro:assets';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
-import ComeUpStats from "~/components/astro/ComeUpStats.astro";
-import { ContactForm } from "~/components/islands/contact-form";
+import ComeUpStats from '~/components/astro/ComeUpStats.astro';
+import { ContactForm } from '~/components/islands/contact-form';
 
-import { AppConfig } from "~/app.config";
-import heroAvatar from "~/assets/hero-avatar.webp";
-import type { ComeUpStats as ComeUpStatsType } from "~/lib/comeup";
-import type { JobEntry } from "~/lib/jobs";
-import { getJobSlug } from "~/lib/jobs";
-import type { ProjectEntry } from "~/lib/projects";
-import { getProjectSlug } from "~/lib/projects";
-import { createScopedTranslator, normalizeLocale } from "~/locales";
+import { AppConfig } from '~/app.config';
+import heroAvatar from '~/assets/hero-avatar.webp';
+import type { ComeUpStats as ComeUpStatsType } from '~/lib/comeup';
+import type { JobEntry } from '~/lib/jobs';
+import { getJobSlug } from '~/lib/jobs';
+import type { ProjectEntry } from '~/lib/projects';
+import { getProjectSlug } from '~/lib/projects';
+import {
+  createScopedTranslator,
+  getDictionary,
+  normalizeLocale,
+} from '~/locales';
 
 interface Props {
   projects: ProjectEntry[];
@@ -23,119 +27,73 @@ interface Props {
 const { projects, jobs, comeupStats } = Astro.props;
 
 const locale = normalizeLocale(Astro.currentLocale);
-const tHero = createScopedTranslator(locale, "section_hero");
-const tProjects = createScopedTranslator(locale, "section_projects");
-const tJobs = createScopedTranslator(locale, "section_jobs");
-const tJob = createScopedTranslator(locale, "job");
-const tScholarship = createScopedTranslator(locale, "section_scholarship");
-const tContact = createScopedTranslator(locale, "section_contact");
+const dict = getDictionary(locale);
+const tHero = createScopedTranslator(locale, 'section_hero');
+const tManifesto = createScopedTranslator(locale, 'section_manifesto');
+const tProjects = createScopedTranslator(locale, 'section_projects');
+const tJobs = createScopedTranslator(locale, 'section_jobs');
+const tJob = createScopedTranslator(locale, 'job');
+const tSkills = createScopedTranslator(locale, 'section_skills');
+const tScholarship = createScopedTranslator(locale, 'section_scholarship');
+const tContact = createScopedTranslator(locale, 'section_contact');
 
 const avatarAlt = `${AppConfig.author.name}, ${AppConfig.author.jobTitle[locale]}`;
 
 const comeupLabels = {
-  badge: tHero("comeup.badge"),
-  reviews: tHero("comeup.reviews"),
-  positive: tHero("comeup.positive"),
-  viewProfile: tHero("comeup.viewProfile"),
+  badge: tHero('comeup.badge'),
+  reviews: tHero('comeup.reviews'),
+  positive: tHero('comeup.positive'),
+  viewProfile: tHero('comeup.viewProfile'),
 };
 
 const contactLabels = {
   fields: {
-    name: tContact("form.fields.name"),
-    email: tContact("form.fields.email"),
-    subject: tContact("form.fields.subject"),
-    message: tContact("form.fields.message"),
-    submit: tContact("form.fields.submit"),
+    name: tContact('form.fields.name'),
+    email: tContact('form.fields.email'),
+    subject: tContact('form.fields.subject'),
+    message: tContact('form.fields.message'),
+    submit: tContact('form.fields.submit'),
   },
   errors: {
-    name: tContact("form.errors.name"),
-    email: tContact("form.errors.email"),
-    subject: tContact("form.errors.subject"),
-    message: tContact("form.errors.message"),
+    name: tContact('form.errors.name'),
+    email: tContact('form.errors.email'),
+    subject: tContact('form.errors.subject'),
+    message: tContact('form.errors.message'),
   },
   placeholders: {
-    subject: tContact("form.placeholders.subject"),
-    message: tContact("form.placeholders.message"),
+    subject: tContact('form.placeholders.subject'),
+    message: tContact('form.placeholders.message'),
   },
-  note: tContact("form.note"),
+  note: tContact('form.note'),
   messages: {
-    success: tContact("form.messages.success"),
-    error: tContact("form.messages.error"),
+    success: tContact('form.messages.success'),
+    error: tContact('form.messages.error'),
   },
 };
 
-const capabilities = [
-  {
-    domain: "Backend & Architecture",
-    technologies: "Node.js, Spring Boot, PHP Laravel, REST, GraphQL",
-    focus:
-      locale === "fr"
-        ? "Architectures modulaires, APIs scalables, sécurité & haute disponibilité"
-        : "Modular architectures, scalable APIs, security & high availability",
-  },
-  {
-    domain: "Frontend & SaaS Modernes",
-    technologies: "Next.js, TanStack Start, React 19, Astro, Tailwind CSS",
-    focus:
-      locale === "fr"
-        ? "Interfaces véloces au pixel près, design systems & SSR/SSG"
-        : "Pixel-perfect fast interfaces, design systems & SSR/SSG",
-  },
-  {
-    domain: "Applications Mobiles",
-    technologies: "React Native, Flutter, Déploiement iOS & Android",
-    focus:
-      locale === "fr"
-        ? "Expériences mobiles multiplateformes, offline-first & fluidité native"
-        : "Cross-platform mobile apps, offline-first & native smoothness",
-  },
-  {
-    domain: "Data Modeling & Cache",
-    technologies: "PostgreSQL, MongoDB, Redis, Prisma, Drizzle ORM",
-    focus:
-      locale === "fr"
-        ? "Schémas relationnels stricts, indexation & requêtes haute performance"
-        : "Strict relational schemas, indexing & high-performance queries",
-  },
-  {
-    domain: "Cloud Infra & CI/CD",
-    technologies: "Docker, GitHub Actions, Vercel, AWS S3, Linux",
-    focus:
-      locale === "fr"
-        ? "Pipelines de déploiement automatisés, conteneurs & environnements reproductibles"
-        : "Automated CI/CD pipelines, containerization & reproducible environments",
-  },
-  {
-    domain: "Assurance Qualité & Tests",
-    technologies: "Vitest, Playwright, Cypress",
-    focus:
-      locale === "fr"
-        ? "Tests unitaires, intégration et non-régression de bout en bout"
-        : "Unit tests, integration, and full end-to-end non-regression",
-  },
-] as const;
+const capabilities = dict.section_skills.capabilities;
 
 const scholarshipEntries = [
   {
-    title: tScholarship("bts.title"),
-    specialty: tScholarship("bts.specialty"),
-    period: "2018 - 2020",
-    place: tScholarship("bts.academy"),
-    location: tScholarship("bts.location"),
+    title: tScholarship('bts.title'),
+    specialty: tScholarship('bts.specialty'),
+    period: '2018 - 2020',
+    place: tScholarship('bts.academy'),
+    location: tScholarship('bts.location'),
   },
   {
-    title: tScholarship("bac.title"),
-    specialty: tScholarship("bac.specialty"),
-    period: "2017 - 2018",
-    place: tScholarship("bac.location1"),
-    location: tScholarship("bac.location2"),
+    title: tScholarship('bac.title'),
+    specialty: tScholarship('bac.specialty'),
+    period: '2017 - 2018',
+    place: tScholarship('bac.location1'),
+    location: tScholarship('bac.location2'),
   },
   {
-    title: tScholarship("probatoire.title"),
-    specialty: tScholarship("bac.specialty"),
-    period: "2016 - 2017",
-    place: tScholarship("bac.location1"),
-    location: tScholarship("bac.location2"),
+    title: tScholarship('probatoire.title'),
+    specialty: tScholarship('bac.specialty'),
+    period: '2016 - 2017',
+    place: tScholarship('bac.location1'),
+    location: tScholarship('bac.location2'),
   },
 ] as const;
 ---
@@ -184,7 +142,7 @@ const scholarshipEntries = [
               class="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-xs text-muted-foreground pt-1"
             >
               <span class="font-bold text-foreground text-sm">
-                6+ {locale === "fr" ? "ans d'expérience" : "years of exp."}
+                {tHero('experience')}
               </span>
               <span>&middot;</span>
               <span>Douala (GMT+1)</span>
@@ -199,11 +157,7 @@ const scholarshipEntries = [
         <p
           class="text-xs sm:text-sm leading-relaxed text-muted-foreground text-pretty text-center"
         >
-          {
-            locale === "fr"
-              ? "J'aide porteurs de projet, startups et entreprises à concevoir des applications web durables, des SaaS évolutifs et des outils performants. Du modèle de données au pixel final."
-              : "Helping startups, founders, and teams build resilient web applications, scalable SaaS products, and tailored digital platforms with clean architecture and typed code."
-          }
+          {tHero('tagline')}
         </p>
 
         <nav
@@ -215,7 +169,7 @@ const scholarshipEntries = [
           >
             <span class="text-primary font-bold">01.</span>
             <span class="group-hover:translate-x-1 transition-transform"
-              >Philosophie &amp; Approche</span
+              >{tHero('nav.manifesto')}</span
             >
           </a>
           <a
@@ -224,7 +178,7 @@ const scholarshipEntries = [
           >
             <span class="text-primary font-bold">02.</span>
             <span class="group-hover:translate-x-1 transition-transform"
-              >Réalisations ({projects.length})</span
+              >{tHero('nav.projects')} ({projects.length})</span
             >
           </a>
           <a
@@ -233,7 +187,7 @@ const scholarshipEntries = [
           >
             <span class="text-primary font-bold">03.</span>
             <span class="group-hover:translate-x-1 transition-transform"
-              >Parcours en entreprise</span
+              >{tHero('nav.jobs')}</span
             >
           </a>
           <a
@@ -242,7 +196,7 @@ const scholarshipEntries = [
           >
             <span class="text-primary font-bold">04.</span>
             <span class="group-hover:translate-x-1 transition-transform"
-              >Matrice des compétences</span
+              >{tHero('nav.skills')}</span
             >
           </a>
           <a
@@ -251,7 +205,7 @@ const scholarshipEntries = [
           >
             <span class="text-primary font-bold">05.</span>
             <span class="group-hover:translate-x-1 transition-transform"
-              >Formation académique</span
+              >{tHero('nav.scholarship')}</span
             >
           </a>
           <a
@@ -260,7 +214,7 @@ const scholarshipEntries = [
           >
             <span class="text-primary font-bold">06.</span>
             <span class="group-hover:translate-x-1 transition-transform"
-              >Contact</span
+              >{tHero('nav.contact')}</span
             >
           </a>
         </nav>
@@ -320,11 +274,7 @@ const scholarshipEntries = [
           <h2
             class="font-display text-base sm:text-lg font-bold tracking-tight text-foreground uppercase"
           >
-            {
-              locale === "fr"
-                ? "Philosophie & Méthode"
-                : "Engineering Philosophy"
-            }
+            {tManifesto('title')}
           </h2>
         </div>
 
@@ -332,14 +282,10 @@ const scholarshipEntries = [
           class="space-y-3 text-xs sm:text-sm leading-relaxed text-muted-foreground"
         >
           <p class="text-foreground font-medium">
-            {tHero("description")}
+            {tHero('description')}
           </p>
           <p>
-            {
-              locale === "fr"
-                ? "Mon approche repose sur trois principes fondamentaux : un modèle de données rigoureux, des interfaces fluides et zéro dette technique cachée. Chaque livrable est conçu pour être assumé et maintenu dans le temps par vos équipes."
-                : "My engineering approach centers around three pillars: strict data modeling, fluid user interfaces, and zero hidden technical debt. Every deliverable is built to be easily operated and scaled by your team."
-            }
+            {tManifesto('pillar')}
           </p>
         </div>
       </section>
@@ -353,14 +299,14 @@ const scholarshipEntries = [
             <h2
               class="font-display text-base sm:text-lg font-bold tracking-tight text-foreground uppercase"
             >
-              {tProjects("title")}
+              {tProjects('title')}
             </h2>
           </div>
           <a
-            href={getRelativeLocaleUrl(locale, "/projects")}
+            href={getRelativeLocaleUrl(locale, '/projects')}
             class="text-xs font-medium text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
           >
-            <span>{tProjects("showProjects")} ({projects.length})</span>
+            <span>{tProjects('showProjects')} ({projects.length})</span>
             <span>&rarr;</span>
           </a>
         </div>
@@ -372,7 +318,7 @@ const scholarshipEntries = [
                 <a
                   href={getRelativeLocaleUrl(
                     locale,
-                    `/projects/${getProjectSlug(project)}`,
+                    `/projects/${getProjectSlug(project)}`
                   )}
                   class="block space-y-2.5"
                 >
@@ -385,8 +331,7 @@ const scholarshipEntries = [
 
                     <div class="text-xs text-muted-foreground">
                       <span>
-                        {project.data.role ??
-                          (locale === "fr" ? "Créateur" : "Creator")}
+                        {project.data.role ?? tProjects('defaultRole')}
                       </span>
                       <span class="ml-2 font-medium text-foreground">
                         &middot; {project.data.year}
@@ -421,14 +366,14 @@ const scholarshipEntries = [
             <h2
               class="font-display text-base sm:text-lg font-bold tracking-tight text-foreground uppercase"
             >
-              {tJobs("title")}
+              {tJobs('title')}
             </h2>
           </div>
           <a
-            href={getRelativeLocaleUrl(locale, "/jobs")}
+            href={getRelativeLocaleUrl(locale, '/jobs')}
             class="text-xs font-medium text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
           >
-            <span>{tJobs("showJobs")} ({jobs.length})</span>
+            <span>{tJobs('showJobs')} ({jobs.length})</span>
             <span>&rarr;</span>
           </a>
         </div>
@@ -442,7 +387,7 @@ const scholarshipEntries = [
                 <a
                   href={getRelativeLocaleUrl(
                     locale,
-                    `/jobs/${getJobSlug(job)}`,
+                    `/jobs/${getJobSlug(job)}`
                   )}
                   class="group block py-4 transition duration-200 hover:bg-muted/30 px-3 -mx-3 rounded-xl"
                 >
@@ -462,11 +407,11 @@ const scholarshipEntries = [
                     <div class="text-xs text-muted-foreground">
                       {isCurrent ? (
                         <span class="rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-semibold text-primary">
-                          {locale === "fr" ? "Poste actuel" : "Current"}
+                          {tJob('current')}
                         </span>
                       ) : (
                         <span>
-                          {job.data.readTime} {tJob("readTime")}
+                          {job.data.readTime} {tJob('readTime')}
                         </span>
                       )}
                     </div>
@@ -488,11 +433,7 @@ const scholarshipEntries = [
           <h2
             class="font-display text-base sm:text-lg font-bold tracking-tight text-foreground uppercase"
           >
-            {
-              locale === "fr"
-                ? "Matrice des Compétences"
-                : "Technical Capabilities"
-            }
+            {tSkills('matrixTitle')}
           </h2>
         </div>
 
@@ -519,7 +460,7 @@ const scholarshipEntries = [
           <h2
             class="font-display text-base sm:text-lg font-bold tracking-tight text-foreground uppercase"
           >
-            {tScholarship("title")}
+            {tScholarship('title')}
           </h2>
         </div>
 
@@ -539,7 +480,7 @@ const scholarshipEntries = [
                   {s.specialty}
                 </p>
                 <p class="text-xs text-muted-foreground">
-                  {s.place} {s.location ? `· ${s.location}` : ""}
+                  {s.place} {s.location ? `· ${s.location}` : ''}
                 </p>
               </div>
             ))
@@ -553,12 +494,12 @@ const scholarshipEntries = [
           <h2
             class="font-display text-base sm:text-lg font-bold tracking-tight text-foreground uppercase"
           >
-            {tContact("title")}
+            {tContact('title')}
           </h2>
         </div>
 
         <p class="text-xs sm:text-sm leading-relaxed text-muted-foreground">
-          {tContact("description")}
+          {tContact('description')}
         </p>
 
         <div class="pt-2">

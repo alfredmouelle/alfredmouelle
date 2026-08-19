@@ -1,6 +1,6 @@
 ---
 title: "create-stack"
-description: "An open-source, framework-agnostic scaffolding CLI: it forks a fully-wired base app and strips it to exactly what you pick (framework, database, auth, tRPC, mailer, capabilities). The generated project builds and boots from the very first commit."
+description: "A framework-agnostic scaffolding CLI: forks a fully wired base application and strips it down to your selected stack (framework, database, auth, tRPC, capabilities). The generated repository boots and typechecks on commit one."
 year: 2026
 role: "Creator & Full-Stack Developer"
 stacks:
@@ -43,34 +43,36 @@ meta:
 
 ## The product
 
-**create-stack** is a scaffolding CLI published on npm (`@alfredmouelle/create-stack`) that generates a production-ready full-stack starter. It is designed as a **framework-agnostic** bootstrapper: Next.js (App Router) and TanStack Start are supported today, with more frameworks on the roadmap. Unlike classic token-based template generators, it takes a "fork then strip" approach: it copies a **real, fully-wired base application**, then cleanly removes everything you didn't select. The output builds, typechecks and boots from the first commit, with no guesswork.
+**create-stack** is a command-line tool on npm (`@alfredmouelle/create-stack`) that scaffolds modular full-stack projects. Instead of template string replacements with empty placeholders, create-stack takes a fork-and-strip approach: it clones a fully wired base application and removes every library and configuration option you did not choose. The resulting repository passes type checking, lints cleanly, and boots right away.
+
+Next.js App Router and TanStack Start are supported out of the box, with more frameworks planned.
 
 ## Key features
 
-- **Framework-agnostic**: Next.js (App Router) and TanStack Start available today, more frameworks coming. Each is a real app with SSR, routing, Tailwind v4 + shadcn and a theme toggle.
-- **Interactive wizard**: a command-line assistant (`@clack/prompts`) guides every choice; passing a flag automatically switches to non-interactive mode for automation.
-- **Pick your database**: Drizzle (Postgres with driver adapter, schema, seed and keyset pagination), Prisma 7, Convex realtime, or none for a landing page.
-- **Auth & API**: better-auth (email/password, verification, Google OAuth) or hosted Clerk, with end-to-end type-safe tRPC v11.
-- **Opt-in capabilities**: storage, cache, jobs, logger, analytics and error tracking, each behind a port (ports & adapters architecture) so you swap providers with a single environment variable.
-- **Optional monorepo**: a `--monorepo [turbo|nx]` flag (or the interactive prompt) scaffolds the app into `apps/web`, wrapped in a ready-to-use Turborepo or Nx root: orchestrator-delegated scripts, workspaces, per-framework build outputs and hoisted git hooks.
-- **Green from commit one**: strict Biome, typed `env.ts`, Dockerfile, git hooks, a generated GitHub Actions CI workflow, generated `.env`, all verified with typecheck + Biome before the first commit.
+- **Framework choices**: scaffold Next.js (App Router) or TanStack Start apps with SSR, file routing, Tailwind v4, and Shadcn UI.
+- **Interactive terminal wizard**: command-line prompt powered by `@clack/prompts`, with automatic fallback to non-interactive mode when CLI flags are provided.
+- **Database drivers**: configure Drizzle (PostgreSQL with driver adapters, schema, and seed script), Prisma 7, Convex, or none for simple sites.
+- **Auth and API**: better-auth (email/password, verification tokens, OAuth) or Clerk, paired with end-to-end type-safe tRPC v11.
+- **Modular capabilities**: storage, cache, background jobs, structured logging, analytics, and error tracking isolated behind ports (hexagonal architecture) so you can change providers via environment variables.
+- **Monorepo setup**: optional `--monorepo [turbo|nx]` flag scaffolds your application into `apps/web` within a configured Turborepo or Nx workspace.
+- **Clean defaults**: strict Biome config, typed `env.ts` validation, Dockerfile, Git hooks, and a GitHub Actions CI workflow created upfront.
 
-![The interactive builder: every choice rewrites the exact CLI command to copy](../_assets/create-stack-builder.webp)
+![The interactive builder: each selection generates the corresponding CLI command](../_assets/create-stack-builder.webp)
 
-## Engineering & quality
+## Engineering and reliability
 
-- **End-to-end tested**: full Vitest suite, including a smoke test that generates a real project then runs install, typecheck and lint against it.
-- **Matrix CI**: every PR is verified on both supported frameworks (Next.js and TanStack Start).
-- **Secure publishing**: npm Trusted Publishing (OIDC), tokenless, with signed provenance.
-- **Minimal footprint**: pure ESM CLI, a single runtime dependency (`@clack/prompts`), zero build step.
+- **Automated test suite**: Vitest test coverage including smoke tests that generate full projects to verify dependency installation, type checking, and linting.
+- **Matrix testing**: CI verifies both Next.js and TanStack Start configurations on every pull request.
+- **Tokenless publishing**: automated npm releases using GitHub Actions OIDC Trusted Publishing with signed provenance.
+- **Lightweight runtime**: pure ESM script with a single direct dependency (`@clack/prompts`) and no compilation step required to run.
 
 ## Tech stack
 
-- **CLI**: Node.js (≥ 22), ESM, hand-rolled argument parsing, `@clack/prompts` for the interactive flow.
-- **Distribution**: pnpm + Turborepo monorepo, self-contained bundle at `prepack`, published via GitHub Actions + OIDC.
-- **Generated app**: Next.js / TanStack Start (with more coming), React 19, tRPC v11, Drizzle / Prisma 7 / Convex, better-auth / Clerk, Tailwind v4 + shadcn, typed env (`@t3-oss/env-core` + valibot).
-- **Quality**: Vitest, smoke tests, strict Biome v2, GitHub Actions CI + publish.
+- **CLI core**: Node.js (>= 22), pure ESM, custom argument parser, `@clack/prompts`.
+- **Monorepo distribution**: pnpm and Turborepo monorepo, packaged at `prepack`, published with GitHub Actions OIDC.
+- **Generated application stack**: Next.js or TanStack Start, React 19, tRPC v11, Drizzle / Prisma / Convex, better-auth / Clerk, Tailwind v4, Valibot-typed environment variables.
+- **Quality tooling**: Vitest, strict Biome v2 rules, GitHub Actions CI.
 
 ## My role
 
-An open-source personal project (MIT) I design and build end to end: the framework-agnostic "fork & strip" architecture, the composition engine (auth, database, mailer, capabilities), the interactive wizard, the test and smoke-test suite, the CI/CD pipeline with trusted publishing, plus the showcase site and its interactive command builder. Inspired by create-t3-app.
+I built create-stack as an MIT open-source project, architecting the fork-and-strip composition engine, the modular capability ports, the interactive CLI prompts, the test harness, and the interactive web builder.

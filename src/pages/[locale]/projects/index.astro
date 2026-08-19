@@ -1,34 +1,34 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
-import ProjectCard from "~/components/astro/ProjectCard.astro";
-import Reveal from "~/components/astro/Reveal.astro";
+import ProjectCard from '~/components/astro/ProjectCard.astro';
+import Reveal from '~/components/astro/Reveal.astro';
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "~/components/ui/breadcrumb";
+} from '~/components/ui/breadcrumb';
 
-import { AppConfig } from "~/app.config";
-import BaseLayout from "~/layouts/BaseLayout.astro";
-import { getProjectSlug, getProjects } from "~/lib/projects";
-import { createScopedTranslator, LOCALES, normalizeLocale } from "~/locales";
+import { AppConfig } from '~/app.config';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { getProjectSlug, getProjects } from '~/lib/projects';
+import { createScopedTranslator, LOCALES, normalizeLocale } from '~/locales';
 
 export function getStaticPaths() {
   return LOCALES.map((locale) => ({ params: { locale } }));
 }
 
 const locale = normalizeLocale(Astro.currentLocale);
-const t = createScopedTranslator(locale, "breadcrumb");
-const tSection = createScopedTranslator(locale, "section_projects");
+const t = createScopedTranslator(locale, 'breadcrumb');
+const tSection = createScopedTranslator(locale, 'section_projects');
 
 const projects = await getProjects(locale);
-const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, "/projects")}`;
+const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, '/projects')}`;
 
 const allStacks = Array.from(
-  new Set(projects.flatMap((p) => p.data.stacks || [])),
+  new Set(projects.flatMap((p) => p.data.stacks || []))
 ).sort();
 ---
 
@@ -85,9 +85,7 @@ const allStacks = Array.from(
             <div class="space-y-2.5 rounded border border-border/70 bg-card p-4 shadow-soft">
               <div class="flex items-center justify-between">
                 <span class="font-mono text-[11px] font-semibold text-foreground uppercase tracking-wider">
-                  {locale === "fr"
-                    ? "Technologies mobilisées"
-                    : "Technologies used"}
+                  {tSection("techUsed")}
                 </span>
                 <span class="font-mono text-[11px] text-muted-foreground">
                   ({allStacks.length})
@@ -108,28 +106,16 @@ const allStacks = Array.from(
           class="rounded border border-primary/20 bg-primary/5 p-4 space-y-2"
         >
           <p class="font-display text-xs font-bold text-foreground">
-            {
-              locale === "fr"
-                ? "Un projet à concrétiser ?"
-                : "Have a project in mind?"
-            }
+            {tSection("callout.title")}
           </p>
           <p class="text-[11px] leading-relaxed text-muted-foreground">
-            {
-              locale === "fr"
-                ? "Disponible pour concevoir et développer votre produit web ou mobile."
-                : "Available to design and build your web or mobile product."
-            }
+            {tSection("callout.description")}
           </p>
           <a
             href={`${getRelativeLocaleUrl(locale, "/")}?anchor=contact`}
             class="inline-block font-mono text-xs font-semibold text-primary hover:underline underline-offset-4 pt-1"
           >
-            {
-              locale === "fr"
-                ? "Initier une collaboration"
-                : "Start a conversation"
-            }
+            {tSection("callout.cta")}
           </a>
         </div>
       </aside>
@@ -143,7 +129,7 @@ const allStacks = Array.from(
                   project={project.data}
                   href={getRelativeLocaleUrl(
                     locale,
-                    `/projects/${getProjectSlug(project)}`,
+                    `/projects/${getProjectSlug(project)}`
                   )}
                 />
               </Reveal>

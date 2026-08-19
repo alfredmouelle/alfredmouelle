@@ -2,7 +2,7 @@
 readTime: 2
 company: "Jangolo"
 position: "Développeur Backend Freelance"
-description: "Intégration d'APIs tiers, développement de microservices REST en PHP Laravel, documentation des APIs avec OpenAPI v3 Swagger, et gestion de la passerelle API AWS."
+description: "Développement backend sous Laravel : microservices REST, documentation OpenAPI v3, routage AWS API Gateway et intégration d'APIs partenaires."
 startDate: 2022-02-01
 endDate: 2023-03-18
 stacks:
@@ -21,44 +21,23 @@ published: true
 siteUrl: "https://pr.jangolo.com"
 ---
 
-# Développement Backend pour Jangolo
+# Microservices backend pour Jangolo
 
 ## Contexte
 
-**Jangolo** est une plateforme agricole intégrée pionnière au Cameroun, révolutionnant le paysage agricole grâce aux technologies numériques. Jangolo sert de hub central connectant les agriculteurs, les agro-industries, les restaurants et les consommateurs, favorisant une chaîne de valeur agricole fluide et efficace.
-
-Depuis le **1er février 2022**, j'ai contribué en tant que **Développeur Backend Freelance** à l'intégration d'APIs tiers, au développement de microservices REST en **PHP Laravel**, à la documentation des APIs avec **OpenAPI v3 Swagger**, et à la gestion de la passerelle API AWS.
+Jangolo est une plateforme agritech camerounaise reliant producteurs agricoles, distributeurs et restaurateurs. Elle gère la mise en avant des récoltes, les commandes groupées et le suivi logistique des livraisons. Face à la montée en charge et à l'ajout régulier de services partenaires, l'équipe technique devait découper les endpoints monolithiques en microservices modulaires, intégrer des passerelles tierces et formaliser la documentation d'API.
 
 ## Mon rôle
 
-Mon travail chez Jangolo comprend les responsabilités suivantes :
+En tant que développeur backend freelance, j'ai développé des microservices REST avec Laravel, configuré le routage via AWS API Gateway et maintenu les contrats d'API avec OpenAPI 3.0.
 
-- **Intégration d'APIs tiers** pour étendre les fonctionnalités de la plateforme Jangolo.
-- **Développement de microservices REST** en **PHP Laravel** pour améliorer la modularité et l'évolutivité de la plateforme.
-- **Documentation des APIs** avec **OpenAPI v3 Swagger** pour assurer une communication claire et précise des fonctionnalités de l'API.
-- **Gestion de la passerelle API AWS** pour assurer une communication efficace et sécurisée entre les microservices.
+## Ce que j'ai réalisé
 
-## Défis et solutions
+- **Microservices Laravel** : développement de services REST indépendants pour isoler la gestion des commandes, le catalogue de produits et les stocks des fournisseurs.
+- **Gestion d'AWS API Gateway** : paramétrage du routage, des en-têtes d'autorisation, de la validation des requêtes et du rate limiting vers les services internes.
+- **Documentation OpenAPI v3** : rédaction des spécifications interactives sous Swagger UI pour permettre aux équipes mobiles et web d'intégrer les endpoints sans ambiguïté.
+- **Intégration de services tiers** : connexion aux passerelles de paiement locales et aux services de notification SMS avec gestion idempotente des webhooks.
 
-- **Intégration d'APIs tiers** : Mise en place de solutions robustes pour intégrer des services externes de manière fluide et sécurisée.
-- **Développement de microservices** : Création de microservices modulaires pour améliorer la maintenabilité et l'évolutivité de la plateforme.
-- **Documentation des APIs** : Utilisation de **Swagger** pour générer une documentation complète et interactive des APIs, facilitant leur utilisation par les développeurs.
-- **Gestion de la passerelle API AWS** : Mise en place de configurations optimales pour assurer une communication fluide et sécurisée entre les microservices.
+## Ce que j'en retire
 
-## Technologies utilisées
-
-- **Langage de programmation** : PHP
-- **Framework** : Laravel
-- **Documentation API** : OpenAPI v3, Swagger
-- **Services Cloud** : AWS
-
-## Résultats
-
-- **Fonctionnalités étendues** : Grâce à l'intégration d'APIs tiers, la plateforme Jangolo offre désormais des fonctionnalités supplémentaires à ses utilisateurs.
-- **Modularité accrue** : Le développement de microservices a permis d'améliorer la modularité et l'évolutivité de la plateforme.
-- **Documentation améliorée** : La documentation des APIs avec OpenAPI v3 Swagger a facilité l'intégration et l'utilisation des APIs par les développeurs.
-- **Communication optimisée** : La gestion de la passerelle API AWS a permis une communication fluide et sécurisée entre les microservices.
-
-## Apprentissage
-
-Ce projet m'a permis d'acquérir une expertise approfondie en **PHP**, **Laravel**, et **OpenAPI v3 Swagger**, ainsi qu'une solide expérience dans l'intégration d'APIs tiers, le développement de microservices, et la gestion de la passerelle API AWS. Il m'a également permis de renforcer mes compétences en documentation d'APIs et en utilisation des services cloud AWS.
+Cette mission a mis en évidence l'importance des contrats d'interface stricts dans une architecture distribuée. Rédiger les spécifications OpenAPI avant de coder les contrôleurs a éliminé les allers-retours d'intégration entre le backend et les applications clientes.

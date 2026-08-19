@@ -1,6 +1,6 @@
 ---
 title: "AuraTax"
-description: "Plateforme SaaS canadienne de préparation et de transmission des déclarations d'impôt des sociétés : APIs Spring Boot, interface Angular et application desktop (macOS / Windows)."
+description: "Plateforme SaaS canadienne de préparation et de télétransmission des déclarations de sociétés (T2, CO-17, AT1), fiducies (T3) et déclarations internationales (T1135, T1134, T106, RC4649) auprès de l'ARC et de Revenu Québec."
 year: 2026
 role: "Développeur Full-Stack & Chef d'équipe"
 stacks:
@@ -22,6 +22,19 @@ meta:
     - aurasoft
     - saas fiscal
     - déclarations fiscales
+    - automatisation fiscale
+    - conformité fiscale
+    - gestion des impôts
+    - plateforme fiscale en ligne
+    - t2
+    - co-17
+    - at1
+    - t3
+    - t1135
+    - t1134
+    - t106
+    - rc4649
+    - rc59
     - impôt des sociétés
     - spring boot
     - angular
@@ -30,31 +43,38 @@ meta:
     - agence du revenu du canada
 ---
 
-# AuraTax : préparer et transmettre ses déclarations fiscales, sereinement
+# AuraTax : déclarations fiscales des sociétés, fiducies et opérations étrangères
 
 ## Le produit
 
-**AuraTax** est une plateforme SaaS développée par **AuraSoft Inc.** qui aide les entreprises canadiennes à **préparer et transmettre leurs déclarations d'impôt des sociétés**. Le produit se positionne comme une solution réfléchie et fiable, prise en charge des particularités fiscales fédérales et provinciales, et conçue pour transmettre une déclaration en quelques minutes.
+**AuraTax** est une plateforme fiscale développée par **AuraSoft Inc.** permettant aux comptables et aux entreprises de préparer et télétransmettre leurs déclarations fédérales, provinciales, de fiducies et internationales auprès de l'Agence du revenu du Canada (ARC) et de Revenu Québec.
 
-> *« File your returns, the right way. »*, la promesse d'AuraTax.
+## Déclarations et services pris en charge
+
+- **Impôt des sociétés (T2, CO-17, AT1)** : déclaration T2 complète avec transmission par Internet des sociétés, Préremplir ma déclaration (AFR), pré-validation, transmission des pièces justificatives, CO-17 pour le Québec et AT1 pour l'Alberta (avec synchronisation automatique avec la T2 correspondante).
+- **Déclaration des fiducies (T3)** : préparation et télétransmission des déclarations de revenus des fiducies.
+- **Déclarations internationales et revenus étrangers** :
+  - **T1135** : Bilan de vérification du revenu étranger.
+  - **T1134** : Déclaration de renseignements sur les sociétés étrangères affiliées (contrôlées et non contrôlées).
+  - **T106** : Déclaration de renseignements sur les opérations avec lien de dépendance avec des non-résidents.
+  - **RC4649** : Déclaration pays par pays.
+- **Autorisations d'entreprise (RC59 / XRC59)** : demande et annulation d'autorisation d'entreprise pour les représentants via les services web de l'ARC.
 
 ## Fonctionnalités clés
 
-- **Préparation guidée** : Saisie assistée des déclarations d'impôt des sociétés, avec validation et contrôle de conformité.
-- **Transmission en ligne** : Transmission des déclarations conforme aux exigences de l'Agence du revenu du Canada et des provinces.
-- **Application desktop** : Version desktop disponible sur macOS et Windows, en complément du web.
-- **Sécurité des données** : Authentification robuste, validation des entrées et chiffrement des données fiscales sensibles.
+- **Validation et pré-validation en temps réel** : moteur de calcul vérifiant l'interdépendance des annexes et exécutant les contrôles de pré-validation de l'ARC avant transmission.
+- **Télétransmission directe** : génération des flux XML certifiés et envoi sécurisé vers les serveurs de l'ARC et de Revenu Québec.
+- **Double déclinaison web et desktop** : plateforme SaaS en ligne et application desktop installable pour macOS et Windows.
+- **Sécurité des données financières** : chiffrement des états financiers, gestion des droits d'accès et authentification à deux facteurs.
 
 ## Stack technique
 
-- **Backend** : Java Spring Boot, pour des APIs robustes et évolutives (gestion des utilisateurs, déclarations, calculs complexes).
-- **Frontend** : Angular et TypeScript, pour une interface réactive et accessible.
-- **Base de données** : MongoDB, pour stocker et manipuler de grands volumes de données fiscales.
-- **Tests E2E** : Cypress (précédemment Protractor), garantissant la stabilité des fonctionnalités critiques.
-- **Desktop** : application packagée pour macOS et Windows.
+- **Backend** : Java Spring Boot pour les moteurs de calcul fiscal, la validation des schémas et les protocoles de transmission SOAP/REST de l'ARC et de Revenu Québec.
+- **Frontend** : Angular et TypeScript pour les assistants de saisie d'annexes, les grilles de calcul et les retours de validation instantanés.
+- **Base de données** : MongoDB pour le stockage des déclarations multi-exercices et des pistes d'audit.
+- **Tests automatisés** : suite Cypress pour valider les calculs complexes, les dépendances inter-formulaires et les flux XML.
+- **Packaging desktop** : application Electron packagée pour macOS et Windows.
 
 ## Mon rôle
 
-J'ai rejoint AuraSoft Inc. en février 2022 comme **Développeur Full-Stack**, contribuant à la fois au backend et au frontend de la plateforme. En février 2024, j'ai été promu **Chef d'équipe** : je supervise désormais une équipe de développeurs tout en continuant à faire évoluer le produit.
-
-Mes contributions couvrent l'optimisation des performances (requêtes MongoDB et architecture backend pour absorber d'importants volumes de données), la sécurité des données fiscales et l'amélioration continue de l'interface Angular à partir des retours utilisateurs.
+J'ai rejoint AuraSoft en février 2022 comme développeur full-stack sur les moteurs Spring Boot et l'interface Angular. En février 2024, j'ai été promu chef d'équipe : j'encadre l'équipe de développement et supervise les choix d'architecture lors des campagnes fiscales annuelles de l'ARC et de Revenu Québec, tout en continuant à concevoir les moteurs de calcul.

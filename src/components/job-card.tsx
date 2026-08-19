@@ -16,7 +16,13 @@ const MAX_STACKS = 4;
 interface JobCardProps {
   job: JobEntry['data'];
   locale: Locale;
-  labels: { readTime: string; elapsed: string; from: string; to: string };
+  labels: {
+    readTime: string;
+    current: string;
+    elapsed: string;
+    from: string;
+    to: string;
+  };
 }
 
 export const JobCard = ({ job, locale, labels }: JobCardProps) => {
@@ -39,8 +45,8 @@ export const JobCard = ({ job, locale, labels }: JobCardProps) => {
             </CardTitle>
           </div>
           {isCurrent ? (
-            <span className="rounded bg-primary/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-primary">
-              {locale === 'fr' ? 'POSTE ACTUEL' : 'CURRENT'}
+            <span className="rounded bg-primary/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-primary uppercase">
+              {labels.current}
             </span>
           ) : (
             <span className="shrink-0 font-mono text-xs text-muted-foreground">

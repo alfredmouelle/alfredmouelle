@@ -1,6 +1,6 @@
 ---
 title: "AuraTax"
-description: "A Canadian SaaS platform to prepare and transmit corporation tax returns: Spring Boot APIs, an Angular interface and a desktop app (macOS / Windows)."
+description: "A Canadian tax SaaS for preparing and electronically filing corporate (T2, CO-17, AT1), trust (T3), and international information returns (T1135, T1134, T106, RC4649) with the CRA and Revenu Québec."
 year: 2026
 role: "Full-Stack Developer & Team Lead"
 stacks:
@@ -22,6 +22,19 @@ meta:
     - aurasoft
     - tax software
     - tax returns
+    - tax automation
+    - online tax platform
+    - tax compliance
+    - tax management
+    - t2
+    - co-17
+    - at1
+    - t3
+    - t1135
+    - t1134
+    - t106
+    - rc4649
+    - rc59
     - corporation tax
     - spring boot
     - angular
@@ -30,31 +43,38 @@ meta:
     - canada revenue agency
 ---
 
-# AuraTax : file your returns, the right way
+# AuraTax: Canadian corporate, trust, and foreign tax filing
 
 ## The product
 
-**AuraTax** is a SaaS platform built by **AuraSoft Inc.** that helps Canadian businesses **prepare and transmit their corporation tax returns**. It positions itself as a thoughtful, reliable solution that handles federal and provincial tax specifics and is designed to transmit a return in minutes.
+**AuraTax** is a Canadian tax platform developed by **AuraSoft Inc.** for accountants and enterprises to prepare and electronically file federal, provincial, trust, and international tax returns directly with the Canada Revenue Agency (CRA) and Revenu Québec.
 
-> *"File your returns, the right way."*, AuraTax's promise.
+## Supported returns and services
+
+- **Corporate tax (T2, CO-17, AT1)**: full T2 preparation with Corporation Internet Filing, Auto-Fill My Return (AFR), pre-validation, document attachment, Québec CO-17, and Alberta AT1 (with automatic sync to its T2 counterpart).
+- **Trust income tax (T3)**: preparation and electronic filing of trust returns and related schedules.
+- **Foreign reporting & international returns**:
+  - **T1135**: Foreign Income Verification Statement.
+  - **T1134**: Information Return Relating to Controlled and Non-Controlled Foreign Affiliates.
+  - **T106**: Information Return of Non-Arm's Length Transactions with Non-Residents.
+  - **RC4649**: Country-by-Country Report.
+- **Business authorizations (RC59 / XRC59)**: submit and cancel business consent for representatives directly through CRA web services.
 
 ## Key features
 
-- **Guided preparation** : Assisted entry of corporation tax returns, with validation and compliance checks.
-- **Online transmission** : Return transmission compliant with Canada Revenue Agency and provincial requirements.
-- **Desktop app** : A desktop version available on macOS and Windows, alongside the web app.
-- **Data security** : Robust authentication, input validation and encryption of sensitive tax data.
+- **Automated validation and pre-validation**: real-time calculation engine with cross-schedule verification and CRA pre-filing validation checks.
+- **Direct electronic transmission**: generates certified XML payloads and dispatches returns through CRA Internet Filing and Revenu Québec NetFile.
+- **Web and desktop distribution**: cloud SaaS interface paired with an offline-capable desktop application for macOS and Windows.
+- **Tax data security**: encrypted storage of financial records, role-based permissions, and multi-factor authentication.
 
 ## Tech stack
 
-- **Backend**: Java Spring Boot, for robust and scalable APIs (user management, returns, complex calculations).
-- **Frontend**: Angular and TypeScript, for a responsive and accessible interface.
-- **Database**: MongoDB, to store and manipulate large volumes of tax data.
-- **E2E testing**: Cypress (previously Protractor), ensuring the stability of critical features.
-- **Desktop**: an app packaged for macOS and Windows.
+- **Backend**: Java Spring Boot handling tax calculation engines, schema validation, and CRA/Revenu Québec SOAP/REST transmission protocols.
+- **Frontend**: Angular and TypeScript for dynamic schedule wizards, large data grids, and live calculation updates.
+- **Database**: MongoDB storing nested multi-year return documents and audit trails.
+- **Automated testing**: Cypress suites covering calculation edge cases, cross-form dependencies, and electronic filing payloads.
+- **Desktop packaging**: Electron packaging for macOS and Windows.
 
 ## My role
 
-I joined AuraSoft Inc. in February 2022 as a **Full-Stack Developer**, contributing to both the backend and the frontend of the platform. In February 2024 I was promoted to **Team Lead**: I now supervise a team of developers while continuing to evolve the product.
-
-My contributions span performance optimization (MongoDB queries and backend architecture to absorb large data volumes), tax-data security, and continuous improvement of the Angular interface based on user feedback.
+I joined AuraSoft in February 2022 as a full-stack developer working on Spring Boot calculation engines and Angular interfaces. In February 2024, I became Team Lead, supervising developers and guiding technical architecture across annual CRA and Revenu Québec compliance cycles while continuing to write core tax engine code.

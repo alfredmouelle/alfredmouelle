@@ -3,7 +3,7 @@ readTime: 3
 featured: true
 company: "AuraSoft Inc."
 position: "Full-Stack Developer"
-description: "Active contribution to the development and design of the AuraTax SAAS platform, specialized in automated tax management and tax return filing."
+description: "Full-stack development and team leadership on AuraTax: corporate (T2, CO-17, AT1), trust (T3), and foreign reporting modules (T1135, T1134, T106, RC4649, RC59) with Spring Boot, Angular, and MongoDB."
 startDate: 2022-02-21
 endDate: 2026-03-21
 stacks:
@@ -22,11 +22,20 @@ meta:
     - typescript
     - mongodb
     - tax saas
-    - tax management
     - tax returns
     - tax automation
     - online tax platform
     - tax compliance
+    - tax management
+    - t2
+    - co-17
+    - at1
+    - t3
+    - t1135
+    - t1134
+    - t106
+    - rc4649
+    - rc59
     - cra
     - canada revenue agency
     - auratax
@@ -35,43 +44,24 @@ published: true
 siteUrl: "https://www.auratax.ca"
 ---
 
-# "AuraTax" SASS Development
+# Full-stack development and team lead on AuraTax
 
 ## Context
 
-**AuraTax** is a software solution developed by **AuraSoft Inc.** aimed at facilitating automated tax management and tax return filing. The platform allows users to manage and transmit their taxes online efficiently, while integrating advanced features for tax analysis and compliance.
+AuraSoft Inc. builds AuraTax, a Canadian tax SaaS and desktop application for preparing and electronically filing corporate returns (T2, CO-17, AT1), trust returns (T3), international information slips (T1135, T1134, T106, RC4649), and business consents (RC59 / XRC59) with the Canada Revenue Agency (CRA) and Revenu Québec. Each filing module requires hundreds of interdependent form fields, strict validation rules, and zero tolerance for calculation drift.
 
-Since **February 21, 2022**, I have been actively contributing as a **Full-Stack Developer** to the evolution of this platform, working on both the frontend and backend to meet the product's functional and technical needs. In February 2024, I was promoted to **Team Lead**, where I now supervise a team of developers while continuing to contribute to the platform's development.
+## My role
 
-## My Role
+I joined AuraSoft in February 2022 as a full-stack developer working on both the Spring Boot backend and Angular client. In February 2024, I stepped into the Team Lead role, managing a team of developers while continuing to architect and write code for critical platform features and electronic filing web services.
 
-My work at AuraSoft Inc. includes the following responsibilities:
+## What I built and led
 
-- **Backend Development** with **Java Spring Boot** to implement robust and scalable APIs for managing users, tax returns, and complex calculations.
-- **Frontend Development** with **Angular** and **TypeScript** to ensure a responsive, intuitive, and optimized user interface for AuraTax platform users.
-- **Database Management** with **MongoDB**, used to store and manipulate large amounts of tax data quickly and securely.
-- **E2E Testing** with **Cypress** (previously **Protractor**), ensuring comprehensive test coverage of the platform's critical features.
-- **Code Versioning** via **Git**, **GitHub**, and **Gitea**, enabling effective collaborative work and smooth project version management.
+- **Spring Boot tax engines**: engineered calculation modules, validation schemas, and SOAP/REST transmission services for federal T2 (with Auto-Fill My Return and pre-validation), Québec CO-17, Alberta AT1, trust returns (T3), and foreign affiliate declarations (T1135, T1134, T106, RC4649).
+- **Angular interface**: built responsive multi-step tax wizards and data grids in Angular and TypeScript, keeping deeply nested schedules accessible and fast.
+- **MongoDB optimization**: structured document schemas for multi-year corporate return payloads and tuned database indexes to handle concurrency spikes during tax season.
+- **E2E test suite with Cypress**: migrated legacy Protractor tests to Cypress, building a reliable automated test barrier across calculation paths and electronic filing payloads.
+- **Team leadership**: led technical sprint planning, conducted thorough code reviews, and mentored developers to ensure compliance with annual CRA and Revenu Québec updates.
 
-## Challenges and Solutions
+## Key takeaways
 
-- **Performance Management**: Given the large volume of tax data processed, optimizations were implemented at the MongoDB query level and backend architecture to ensure fast response times.
-- **Data Security**: Security being paramount for a tax application, we implemented robust mechanisms for authentication, input validation, and data encryption to protect sensitive information.
-- **Continuous Frontend Evolution**: User experience is crucial for AuraTax. We used **Angular** to create a modern and dynamic interface, taking user feedback into account to constantly improve the platform's usability and accessibility.
-
-## Results
-
-- **Increased Efficiency**: Thanks to optimized backend APIs and an improved user interface, AuraTax offers a smoother experience, allowing users to process their tax returns more quickly.
-- **Continuous Improvement**: E2E tests with Cypress ensure that new features and improvements deployed are stable and regression-free.
-
-## Technologies Used
-
-- **Database**: MongoDB
-- **Code Versioning**: Git, GitHub, Gitea
-- **Backend**: Java Spring Boot
-- **Frontend**: Angular, TypeScript
-- **E2E Testing**: Cypress (previously Protractor)
-
-## Learning
-
-This project has allowed me to gain in-depth expertise in **Java Spring Boot**, **Angular**, and **MongoDB**, as well as solid experience in automated testing with **Cypress**. It has also enabled me to strengthen my skills in version management and collaboration with multidisciplinary teams.
+Tax software operates under strict regulatory constraints. A minor rounding discrepancy or XML schema error can cause tax authorities to reject an entire corporate filing. Leading development on AuraTax reinforced the value of exhaustive regression testing, defensive data modeling, and clear translation of complex tax legislation into resilient code.

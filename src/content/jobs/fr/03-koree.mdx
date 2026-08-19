@@ -2,22 +2,24 @@
 readTime: 3
 company: "Koree"
 position: "QA Tester Freelance"
-description: "Test E2E des applications Koree & Koree Pro, ainsi que des tests backend E2E, unitaires et d'intégration de l'ensemble de l'API Koree. Développement de l'application mobile en Flutter et de l'API en Laravel."
+description: "Tests E2E, unitaires et d'API avec Cypress, PestPHP et Postman, plus corrections de bugs sur l'application Flutter et l'API Laravel."
 startDate: 2023-02-10
 endDate: 2023-07-29
 stacks:
   - Cypress
+  - PestPHP
   - Postman
-  - Git
-  - GitHub
-  - Node.js
-  - Express
   - Flutter
   - Laravel
+  - Node.js
+  - Express
+  - Git
+  - GitHub
 meta:
   keywords:
     - qa
     - e2e
+    - pestphp
     - tests
     - backend
     - flutter
@@ -26,46 +28,24 @@ published: true
 siteUrl: "https://koree.africa"
 ---
 
-# Intégration & tests E2E des applications & API Koree
+# Assurance qualité et développement mobile pour Koree
 
 ## Contexte
 
-**Koree** est une application de cashback innovante développée pour l'Afrique Francophone, offrant une solution simple, sécurisée, 100% numérique et pratique pour profiter des meilleures offres lors des achats. L'idée de Koree est née en 2018 pour résoudre les problèmes de monnaie en boutique et digitaliser la petite monnaie.
-
-Depuis le **10 février 2023**, j'ai contribué en tant que **QA Tester Freelance** à l'amélioration de la qualité et de la maintenabilité de l'API Koree, en effectuant des tests E2E, unitaires et d'intégration. J'ai également participé au développement de l'application mobile en **Flutter** et de l'API en **Laravel**.
+Koree est une application fintech déployée en Afrique francophone pour régler le problème du manque de pièces de monnaie chez les commerçants en digitalisant le rendu de monnaie sous forme de solde électronique et de cashback. L'écosystème réunit une application mobile grand public, une application commerçant (Koree Pro) et une API centrale en Laravel. Avec des transactions quotidiennes qui touchent directement au porte-monnaie des utilisateurs, les tests automatisés étaient indispensables pour éviter les régressions à chaque déploiement.
 
 ## Mon rôle
 
-Mon travail chez Koree comprend les responsabilités suivantes :
+En tant que testeur QA et développeur freelance, j'ai mis en place les tests E2E sur les applications, écrit les tests backend avec PestPHP et Postman, et corrigé directement les bugs sur le code Flutter et Laravel.
 
-- **Tests E2E** avec **Cypress** pour garantir une couverture de test complète des fonctionnalités critiques des applications Koree & Koree Pro.
-- **Tests backend** avec **Postman** pour vérifier l'intégrité et la performance de l'API Koree.
-- **Tests unitaires et d'intégration** pour assurer la qualité et la maintenabilité du code.
-- **Développement mobile** avec **Flutter**, intégrant de nouvelles fonctionnalités et corrigeant les problèmes rencontrés.
-- **Développement backend** avec **Laravel** pour améliorer les fonctionnalités de l'API et assurer sa qualité et sa maintenabilité.
-- **Versionnement de code** via **Git** et **GitHub**, permettant un travail collaboratif efficace et une gestion fluide des versions du projet.
+## Ce que j'ai réalisé
 
-## Défis et solutions
+- **Tests E2E avec Cypress** : tests des flux critiques sur Koree et Koree Pro (onboarding, calcul du cashback, encaissement marchand).
+- **Tests backend avec PestPHP** : tests unitaires et d'intégration sur les calculs de solde, la logique de transaction et les règles de validation de l'API Laravel.
+- **Validation d'API avec Postman** : collections de tests automatisées pour vérifier les réponses JSON, les codes d'erreur HTTP et le rafraîchissement des tokens.
+- **Corrections sur l'application Flutter** : résolution de bugs d'affichage, de synchronisation d'état et de cas limites en mode hors-ligne.
+- **Ajustements sur le backend Laravel** : correction des failles de validation et optimisation des requêtes SQL remontées par les tests.
 
-- **Assurance qualité** : Mise en place de tests automatisés pour détecter les régressions et garantir la stabilité des nouvelles fonctionnalités.
-- **Amélioration continue** : Collaboration avec les développeurs pour améliorer les fonctionnalités de l'API et optimiser le code.
-- **Développement mobile** : Intégration de nouvelles fonctionnalités et résolution des problèmes rencontrés dans l'application mobile en Flutter.
-- **Optimisation backend** : Amélioration des performances et de la maintenabilité de l'API en Laravel.
+## Ce que j'en retire
 
-## Technologies utilisées
-
-- **Tests** : Cypress, Postman
-- **Versionnement de code** : Git, GitHub
-- **Backend** : Node.js, Express, Laravel
-- **Mobile** : Flutter
-
-## Résultats
-
-- **Qualité accrue** : Grâce aux tests E2E et aux tests backend, l'application Koree offre une expérience utilisateur plus fiable et sans bugs.
-- **Amélioration continue** : Les tests unitaires et d'intégration garantissent que les nouvelles fonctionnalités et améliorations déployées sont stables et maintenables.
-- **Application mobile améliorée** : Les nouvelles fonctionnalités intégrées et les problèmes résolus ont amélioré l'expérience utilisateur de l'application mobile.
-- **API optimisée** : Les améliorations apportées à l'API en Laravel ont permis une meilleure performance et une maintenabilité accrue.
-
-## Apprentissage
-
-Ce projet m'a permis d'acquérir une expertise approfondie en **Cypress**, **Postman**, **Node.js**, **Flutter**, et **Laravel**, ainsi qu'une solide expérience dans les tests automatisés et la gestion des versions avec **Git** et **GitHub**. Il m'a également permis de renforcer mes compétences en collaboration avec des équipes pluridisciplinaires.
+Sur une application de micro-transactions, une erreur de calcul de solde détruit immédiatement la confiance du commerçant et du client. Couvrir les calculs critiques avec PestPHP et les parcours d'encaissement avec Cypress nous a évité de livrer des régressions bêtes en production.

@@ -1,43 +1,44 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
-import Reveal from "~/components/astro/Reveal.astro";
-import { JobCard } from "~/components/job-card";
+import Reveal from '~/components/astro/Reveal.astro';
+import { JobCard } from '~/components/job-card';
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "~/components/ui/breadcrumb";
+} from '~/components/ui/breadcrumb';
 
-import { AppConfig } from "~/app.config";
-import BaseLayout from "~/layouts/BaseLayout.astro";
-import { getJobSlug, getJobs } from "~/lib/jobs";
-import { createScopedTranslator, LOCALES, normalizeLocale } from "~/locales";
+import { AppConfig } from '~/app.config';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { getJobSlug, getJobs } from '~/lib/jobs';
+import { createScopedTranslator, LOCALES, normalizeLocale } from '~/locales';
 
 export function getStaticPaths() {
   return LOCALES.map((locale) => ({ params: { locale } }));
 }
 
 const locale = normalizeLocale(Astro.currentLocale);
-const t = createScopedTranslator(locale, "breadcrumb");
-const tSection = createScopedTranslator(locale, "section_jobs");
-const tJob = createScopedTranslator(locale, "job");
-const tPeriod = createScopedTranslator(locale, "job.period");
+const t = createScopedTranslator(locale, 'breadcrumb');
+const tSection = createScopedTranslator(locale, 'section_jobs');
+const tJob = createScopedTranslator(locale, 'job');
+const tPeriod = createScopedTranslator(locale, 'job.period');
 
 const labels = {
-  readTime: tJob("readTime"),
-  elapsed: tPeriod("elapsed"),
-  from: tPeriod("from"),
-  to: tPeriod("to"),
+  readTime: tJob('readTime'),
+  current: tJob('current'),
+  elapsed: tPeriod('elapsed'),
+  from: tPeriod('from'),
+  to: tPeriod('to'),
 };
 
 const jobs = await getJobs(locale);
-const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, "/jobs")}`;
+const canonical = `${AppConfig.domain}${getRelativeLocaleUrl(locale, '/jobs')}`;
 
 const allJobStacks = Array.from(
-  new Set(jobs.flatMap((j) => j.data.stacks || [])),
+  new Set(jobs.flatMap((j) => j.data.stacks || []))
 ).sort();
 ---
 
@@ -94,7 +95,7 @@ const allJobStacks = Array.from(
             <div class="space-y-2.5 rounded-2xl border border-border/70 bg-card p-4 shadow-soft">
               <div class="flex items-center justify-between">
                 <span class="font-mono text-[11px] font-semibold text-foreground uppercase tracking-wider">
-                  {locale === "fr" ? "Technologies clés" : "Core technologies"}
+                  {tSection("coreTech")}
                 </span>
                 <span class="font-mono text-[11px] text-muted-foreground">
                   ({allJobStacks.length})
@@ -115,24 +116,16 @@ const allJobStacks = Array.from(
           class="rounded border border-primary/20 bg-primary/5 p-4 space-y-2"
         >
           <p class="font-display text-xs font-bold text-foreground">
-            {
-              locale === "fr"
-                ? "Recrutement ou mission ?"
-                : "Hiring or contract?"
-            }
+            {tSection("callout.title")}
           </p>
           <p class="text-[11px] leading-relaxed text-muted-foreground">
-            {
-              locale === "fr"
-                ? "Disponible pour des opportunités en CDI/Freelance à fort impact technique."
-                : "Open to high-impact software engineering roles & consulting."
-            }
+            {tSection("callout.description")}
           </p>
           <a
             href={`${getRelativeLocaleUrl(locale, "/")}?anchor=contact`}
             class="inline-block font-mono text-xs font-semibold text-primary hover:underline underline-offset-4 pt-1"
           >
-            {locale === "fr" ? "Me contacter" : "Get in touch"}
+            {tSection("callout.cta")}
           </a>
         </div>
       </aside>
@@ -145,7 +138,7 @@ const allJobStacks = Array.from(
                 <a
                   href={getRelativeLocaleUrl(
                     locale,
-                    `/jobs/${getJobSlug(job)}`,
+                    `/jobs/${getJobSlug(job)}`
                   )}
                   class="block h-full transition duration-300 hover:-translate-y-0.5"
                 >

@@ -1,9 +1,9 @@
 export default {
   navbar: {
     links: {
-      scholarship: 'Parcours Académique',
-      job: 'Parcours Professionnel',
-      contact: 'Me contacter',
+      scholarship: 'Formation',
+      job: 'Expérience',
+      contact: 'Contact',
       skills: 'Compétences',
       projects: 'Réalisations',
     },
@@ -20,38 +20,92 @@ export default {
     system: 'Système',
   },
 
-  section_skills: {
-    title: 'Compétences',
-    eyebrow: 'Expertise',
-    description:
-      'Les technologies avec lesquelles je conçois, du back-end à l’infrastructure.',
-  },
-
   section_hero: {
+    experience: "6+ ans d'expérience",
+    tagline:
+      "J'aide les porteurs de projet et les équipes techniques à concevoir des applications web durables et des SaaS évolutifs, du modèle de données jusqu'à l'interface.",
     description:
-      'Développeur full-stack freelance, je conçois, fais évoluer et consolide des applications web et des SaaS B2B/B2C. Depuis 6 ans, j’aide porteurs de projet, startups et entreprises à transformer une idée ou un produit existant en solution fiable et maintenable. Mon objectif n’est pas seulement de faire avancer un projet, mais de livrer une base solide, que vous pourrez utiliser, faire évoluer et assumer sereinement dans la durée.',
-    downloadCvBtn: 'Télécharger Mon CV',
+      'Développeur full-stack freelance avec plus de 6 ans d’expérience dans la création d’applications web et de SaaS. J’aide les porteurs de projet et les équipes techniques à concevoir des systèmes fiables, du modèle de données aux interfaces, avec un code maintenable et sans dette cachée.',
+    downloadCvBtn: 'Télécharger mon CV',
     comeup: {
       badge: 'Top vendeur ComeUp',
       reviews: 'avis',
       positive: 'positifs',
+      viewProfile: "Voir le profil d'Alfred Mouelle sur ComeUp",
+    },
+    nav: {
+      manifesto: 'Philosophie & Méthode',
+      projects: 'Réalisations',
+      jobs: 'Expérience',
+      skills: 'Compétences',
+      scholarship: 'Formation',
+      contact: 'Contact',
     },
   },
 
+  section_manifesto: {
+    title: 'Philosophie & Méthode',
+    pillar:
+      'Je privilégie des schémas de données stricts, des interfaces directes et un code sans dette cachée, conçu pour être facilement repris et maintenu par vos équipes.',
+  },
+
+  section_skills: {
+    title: 'Compétences',
+    matrixTitle: 'Matrice des Compétences',
+    eyebrow: 'Expertise',
+    description:
+      'Technologies avec lesquelles je développe, du back-end à l’infrastructure.',
+    capabilities: [
+      {
+        domain: 'Backend & Architecture',
+        technologies: 'Node.js, Spring Boot, PHP Laravel, REST, GraphQL',
+        focus:
+          'Architectures modulaires, APIs évolutives, sécurité et haute disponibilité',
+      },
+      {
+        domain: 'Frontend & SaaS Modernes',
+        technologies: 'Next.js, TanStack Start, React 19, Astro, Tailwind CSS',
+        focus: 'Interfaces réactives et soignées, design systems, SSR et SSG',
+      },
+      {
+        domain: 'Applications Mobiles',
+        technologies: 'React Native, Flutter, Déploiement iOS & Android',
+        focus:
+          'Applications mobiles multiplateformes, support hors-ligne et fluidité native',
+      },
+      {
+        domain: 'Data Modeling & Cache',
+        technologies: 'PostgreSQL, MongoDB, Redis, Prisma, Drizzle ORM',
+        focus: 'Schémas de données stricts, indexation et requêtes optimisées',
+      },
+      {
+        domain: 'Cloud Infra & CI/CD',
+        technologies: 'Docker, GitHub Actions, Vercel, AWS S3, Linux',
+        focus:
+          'Pipelines CI/CD automatisés, conteneurisation et environnements reproductibles',
+      },
+      {
+        domain: 'Assurance Qualité & Tests',
+        technologies: 'Vitest, Playwright, Cypress',
+        focus: 'Tests unitaires, intégration et non-régression de bout en bout',
+      },
+    ],
+  },
+
   section_scholarship: {
-    title: 'Parcours Académique',
-    eyebrow: 'Formation',
+    title: 'Formation',
+    eyebrow: 'Parcours',
     bts: {
       title: 'Brevet de Technicien Supérieur',
       specialty: 'Génie Logiciel',
-      location: 'Douala - Cameroun',
+      location: 'Douala, Cameroun',
       academy: 'Institut Universitaire des Grandes Ecoles des Tropiques',
     },
     bac: {
       title: 'Baccalauréat',
       specialty: "Technologie de l'information",
       location1: 'Lycée Bilingue de Kribi',
-      location2: 'Kribi - Cameroun',
+      location2: 'Kribi, Cameroun',
     },
     probatoire: {
       title: 'Probatoire',
@@ -59,50 +113,65 @@ export default {
   },
 
   section_jobs: {
-    title: 'Parcours Professionnel',
-    eyebrow: 'Expérience',
+    title: 'Expérience',
+    eyebrow: 'Parcours',
     description:
-      'Quelques entreprises et projets sur lesquels j’ai travaillé ces dernières années.',
+      'Entreprises et produits sur lesquels j’ai travaillé ces dernières années.',
     showJobs: 'Voir tout',
     count: 'expériences',
+    coreTech: 'Technologies clés',
+    callout: {
+      title: 'Recrutement ou mission ?',
+      description:
+        "Disponible pour des missions freelance ou des opportunités d'ingénierie logicielle.",
+      cta: 'Me contacter',
+    },
   },
 
   section_projects: {
     title: 'Réalisations',
     eyebrow: 'Projets',
     description:
-      'Une sélection de projets que j’ai conçus, développés et livrés.',
+      'Sélection d’applications en production et d’outils open source que j’ai conçus et développés.',
     showProjects: 'Voir tout',
-    visitWebsite: 'Visiter le site web',
+    visitWebsite: 'Visiter le site',
     count: 'projets',
+    defaultRole: 'Créateur',
+    techUsed: 'Technologies mobilisées',
+    callout: {
+      title: 'Un projet en tête ?',
+      description:
+        'Disponible pour concevoir et développer votre application web ou mobile.',
+      cta: 'Me contacter',
+    },
   },
 
   section_contact: {
     title: 'Travaillons ensemble',
     eyebrow: 'Contact',
     description:
-      'Un projet, une question ou une opportunité ? Écrivez-moi via le formulaire, je réponds généralement sous 24 heures.',
+      'Un projet en tête ou une question technique ? Envoyez-moi un message via le formulaire, je réponds sous 24 heures.',
     form: {
       fields: {
-        email: 'Adresse électronique',
+        email: 'Adresse email',
         message: 'Votre message',
-        name: 'Nom et prénom',
-        subject: 'Objet du message',
-        submit: 'Envoyer',
+        name: 'Nom complet',
+        subject: 'Objet',
+        submit: 'Envoyer le message',
       },
       errors: {
-        email: 'Veuillez saisir une adresse électronique valide.',
+        email: 'Veuillez saisir une adresse email valide.',
         name: 'Le nom doit contenir au moins 2 caractères.',
         message: 'Le message doit contenir au moins 10 caractères.',
         subject: 'L’objet doit contenir au moins 2 caractères.',
       },
       placeholders: {
-        subject: 'Proposition pour un service de...',
+        subject: 'Développement MVP, mission freelance...',
         message: 'Votre message...',
       },
-      note: 'Réponse généralement sous 24h.',
+      note: 'Réponse sous 24h.',
       messages: {
-        success: 'Votre message a été transmis avec succès.',
+        success: 'Message envoyé. Je vous réponds dans les plus brefs délais.',
         error:
           'Une erreur s’est produite lors de l’envoi de votre message. Veuillez réessayer.',
       },
@@ -110,20 +179,21 @@ export default {
   },
 
   notFound: {
-    title: '404 - Page Non Trouvée',
-    message: "Oups ! La page que vous recherchez n'existe pas.",
-    backHome: "Retour à l'Accueil",
+    title: '404 - Page non trouvée',
+    message: "La page que vous recherchez n'existe pas.",
+    backHome: "Retour à l'accueil",
   },
 
   breadcrumb: {
     home: 'Accueil',
-    jobs: 'Parcours professionnel',
+    jobs: 'Expérience',
     projects: 'Réalisations',
   },
 
   job: {
-    visitWebsite: 'Visiter le site web',
-    readTime: 'mins de lecture',
+    visitWebsite: 'Visiter le site',
+    readTime: 'min de lecture',
+    current: 'Poste actuel',
     period: {
       elapsed: 'Depuis',
       from: 'De',
@@ -132,9 +202,9 @@ export default {
   },
 
   footer: {
-    text: 'Conception et intégration par Alfred Mouelle. Tous droits réservés.',
+    text: 'Conçu et développé par Alfred Mouelle. Tous droits réservés.',
     tagline:
-      'Développeur full-stack freelance. Je conçois des produits web et mobiles soignés.',
+      'Développeur full-stack freelance. Je conçois des applications web et mobiles fiables et performantes.',
     navTitle: 'Navigation',
     socialTitle: 'Réseaux',
   },

@@ -1,6 +1,6 @@
 ---
 title: "Rise of Africa"
-description: "An e-learning platform dedicated to trading: courses, webinars, community forums, trader profiles and an anti-scam reporting system."
+description: "An e-learning platform for trading: structured video courses, live webinars, community forums, trader profiles, and fraud reporting."
 year: 2025
 role: "Full-Stack Developer"
 stacks:
@@ -30,33 +30,33 @@ meta:
     - admin dashboard
 ---
 
-# Rise of Africa : the e-learning platform built for trading
+# Rise of Africa: e-learning platform for financial education
 
 ## The product
 
-**Rise of Africa** is an online learning platform centered on trading and financial education. It brings together educational content, community and progress-tracking tools in one place, guiding members from their first course all the way to practice.
+**Rise of Africa** is a learning platform centered on trading and financial literacy. It unifies course content, community discussions, and student progress tracking in a single portal, taking learners from fundamentals to active practice.
 
 ## Member area
 
-The member dashboard gives a clear view of progress: courses taken, watch time, completed modules, upcoming webinars, engagement metrics and a personalized trader profile.
+The student dashboard tracks completed video modules, watch time, upcoming live webinars, and key learning milestones through a personalized trader profile.
 
 ![Member dashboard](../_assets/roa.webp)
 
 ## Key features
 
-- **Courses & webinars** : A catalog of module-based courses with progress tracking and scheduled webinars.
-- **Member area** : Personalized dashboard, engagement metrics and trader profile.
-- **Community forums** : Spaces for members to ask questions and share with one another.
-- **Anti-scam system** : Scam reporting to protect the community from fraud.
-- **Payments & subscriptions** : Course purchases and subscription management via Stripe.
-- **Video & notifications** : Video playback for courses and webinars, plus push notifications (web-push).
-- **Admin dashboard** : Full management of users, courses and content.
+- **Video courses & webinars**: modular curriculum with granular progress tracking and scheduled live sessions.
+- **Trader profile**: personal dashboard with watch time stats and verified learning milestones.
+- **Discussion forums**: community spaces organized by asset class and topic.
+- **Anti-scam reporting**: verification and reporting tools to protect students from common trading scams.
+- **Payments & subscriptions**: Stripe integration for one-time course purchases and recurring memberships.
+- **Video delivery**: AWS S3 video storage with adaptive playback and web-push notifications for new content.
+- **Admin back-office**: comprehensive management tools for student cohorts, video uploads, and revenue reporting.
 
 ![Member trader profile](../_assets/roa-trader.webp)
 
 ## Admin back-office
 
-On the admin side, the platform offers a complete dashboard to run the operation: user tracking, global statistics and course-catalog management.
+Platform administrators manage course releases, monitor student engagement metrics, and handle support requests from a unified back-office.
 
 ![Admin dashboard](../_assets/roa-admin-dashboard.webp)
 
@@ -64,17 +64,16 @@ On the admin side, the platform offers a complete dashboard to run the operation
 
 ## Tech stack
 
-- **Frontend & Backend**: Next.js (App Router) and TypeScript.
-- **API**: tRPC, for end-to-end type-safe client-server communication.
-- **Database**: PostgreSQL via Drizzle ORM.
+- **Application framework**: Next.js App Router with TypeScript.
+- **API layer**: tRPC for type-safe client-server procedures.
+- **Database**: PostgreSQL with Drizzle ORM.
 - **Authentication**: better-auth.
-- **Payments**: Stripe.
-- **Media storage**: AWS S3, with video playback via react-player.
-- **Notifications**: web-push and transactional emails (Resend + React Email).
-- **Background jobs**: Inngest.
-- **UI**: Tailwind CSS and Radix UI.
-- **Testing**: Playwright (E2E) and Vitest.
+- **Payments**: Stripe Checkout and Webhooks.
+- **Media & storage**: AWS S3 for secure video delivery.
+- **Notifications**: Web Push API and transactional email via Resend with React Email.
+- **Background queues**: Inngest for asynchronous processing.
+- **Testing**: Vitest for unit logic and Playwright for end-to-end flows.
 
 ## My role
 
-I worked as a Full-Stack developer across the whole platform: member area, admin back-office, forums and reporting system, Stripe payments and video streaming integration, with particular care for a consistent experience between the member and admin spaces.
+As the full-stack developer on the project, I built both the student portal and admin back-office, implemented the tRPC API and Drizzle database models, integrated Stripe billing, and set up automated video processing workflows.

@@ -1,28 +1,28 @@
 ---
-import { render } from "astro:content";
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { render } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
-import Reveal from "~/components/astro/Reveal.astro";
-import { JobDate } from "~/components/job-card";
+import Reveal from '~/components/astro/Reveal.astro';
+import { JobDate } from '~/components/job-card';
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbSeparator,
-} from "~/components/ui/breadcrumb";
-import { Button } from "~/components/ui/button";
+} from '~/components/ui/breadcrumb';
+import { Button } from '~/components/ui/button';
 
-import { AppConfig } from "~/app.config";
-import BaseLayout from "~/layouts/BaseLayout.astro";
-import { getJobSlug, getJobs } from "~/lib/jobs";
-import { breadcrumbSchema, creativeWorkSchema } from "~/lib/jsonld";
-import { cn } from "~/lib/utils";
+import { AppConfig } from '~/app.config';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { getJobSlug, getJobs } from '~/lib/jobs';
+import { breadcrumbSchema, creativeWorkSchema } from '~/lib/jsonld';
+import { cn } from '~/lib/utils';
 import {
   createScopedTranslator,
   LOCALES,
   type Locale,
   normalizeLocale,
-} from "~/locales";
+} from '~/locales';
 
 export async function getStaticPaths() {
   const paths = await Promise.all(
@@ -32,24 +32,24 @@ export async function getStaticPaths() {
         params: { locale, slug: getJobSlug(job) },
         props: { job },
       }));
-    }),
+    })
   );
   return paths.flat();
 }
 
 const { job } = Astro.props;
 const locale = normalizeLocale(Astro.currentLocale);
-const tBC = createScopedTranslator(locale, "breadcrumb");
-const tJobs = createScopedTranslator(locale, "section_jobs");
-const tJob = createScopedTranslator(locale, "job");
-const tPeriod = createScopedTranslator(locale, "job.period");
+const tBC = createScopedTranslator(locale, 'breadcrumb');
+const tJobs = createScopedTranslator(locale, 'section_jobs');
+const tJob = createScopedTranslator(locale, 'job');
+const tPeriod = createScopedTranslator(locale, 'job.period');
 
 const allJobs = await getJobs(locale);
 
 const labels = {
-  elapsed: tPeriod("elapsed"),
-  from: tPeriod("from"),
-  to: tPeriod("to"),
+  elapsed: tPeriod('elapsed'),
+  from: tPeriod('from'),
+  to: tPeriod('to'),
 };
 
 const { Content } = await render(job);
@@ -62,18 +62,18 @@ const ogImage = `/og/${locale}/jobs/${slug}.png`;
 const jsonLd = [
   breadcrumbSchema([
     {
-      name: tBC("home"),
-      url: `${AppConfig.domain}${getRelativeLocaleUrl(locale, "/")}`,
+      name: tBC('home'),
+      url: `${AppConfig.domain}${getRelativeLocaleUrl(locale, '/')}`,
     },
     {
-      name: tBC("jobs"),
-      url: `${AppConfig.domain}${getRelativeLocaleUrl(locale, "/jobs")}`,
+      name: tBC('jobs'),
+      url: `${AppConfig.domain}${getRelativeLocaleUrl(locale, '/jobs')}`,
     },
     { name: title, url: canonical },
   ]),
   creativeWorkSchema({
     locale,
-    type: "Article",
+    type: 'Article',
     name: title,
     description: job.data.description,
     url: canonical,
@@ -174,8 +174,8 @@ const jsonLd = [
                       </span>
                     </div>
                     {isCurrent ? (
-                      <span class="rounded bg-primary/20 px-1.5 py-0.5 font-mono text-[9px] font-semibold text-primary">
-                        {locale === "fr" ? "ACTUEL" : "CURRENT"}
+                      <span class="rounded bg-primary/20 px-1.5 py-0.5 font-mono text-[9px] font-semibold text-primary uppercase">
+                        {tJob("current")}
                       </span>
                     ) : null}
                   </div>
